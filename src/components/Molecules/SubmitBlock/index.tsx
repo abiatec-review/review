@@ -16,8 +16,8 @@ const SubmitBlock: React.FC = () => {
 
   console.log('SubmitBlock');
   return (
-    <div>
-      <Input ref={inputRef} />
+    <div className="grid justify-center">
+      <Input reference={inputRef} />
       <Button clickHandler={clickHandler} />
     </div>
   );

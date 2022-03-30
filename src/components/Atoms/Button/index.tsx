@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-props-no-multi-spaces */
+/* eslint-disable react/button-has-type */
 
 import React from 'react';
 import { IButton } from './types';
@@ -8,14 +8,12 @@ const Button: React.FC<IButton> = ({ clickHandler }) => {
   console.log('Button');
 
   return (
-    <div
-      style={{
-        padding: '10px', border: 'solid black 1px', width: '80px', textAlign: 'center',
-      }}
+    <button
       onClick={clickHandler}
+      className="mt-5 border-black border-2 border-solid rounded"
     >
       Click
-    </div>
+    </button>
   );
 };
 
