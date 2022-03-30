@@ -10,7 +10,8 @@ const mockData = [
 
 const startState = {
   heroes: [],
-  isError: false
+  isError: false,
+  isLoading: false,
 }
 
 describe("Test reducer", function () {
