@@ -1,16 +1,19 @@
 import { IContentItem } from '../../Atoms/ContentItem'
+import './index.css'
+
 interface IProps {
-  characters: IContentItem[]
+  characters: IContentItem[];
+  setSelectedHeroId: (id: string) => void
 }
 
-const ContentList: React.FC<IProps>= ({characters}) => {
+const ContentList: React.FC<IProps>= ({characters, setSelectedHeroId}) => {
     return (
-        <ul>
+        <ul className="list">
             {characters.map((character: IContentItem) => {
-            return <figure key={character.id}>
+            return <div key={character.id} onClick={() => setSelectedHeroId(character.id)} className='fragment'>
                 <img src={character.image} alt={`${character.name} character`}/>
-                <figcaption>{character.name}</figcaption>
-            </figure>
+                <div>{character.name}</div>
+            </div>
         })}
         </ul>
     )
