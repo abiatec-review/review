@@ -11,11 +11,14 @@ const initialState = {
 
 
 
-function reducer(state = {}, action: any) {
+function reducer(state:any = {}, action: any) {
   console.log(action.type);
   switch (action.type) {
     case 'setImages': {
       return {...state, currentImages: action.payload.results, info: action.payload.info }
+    }
+    case 'addImages': {
+      return {...state, currentImages: [...state.currentImages, ...action.payload.results], info: action.payload.info }
     }
     default:
       return state
