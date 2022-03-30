@@ -2,15 +2,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React from 'react';
+import { IButton } from './types';
 
-const Button: React.FC = () => {
+const Button: React.FC<IButton> = ({ clickHandler }) => {
   console.log('Button');
-
-  const clickHandler = () => {
-    // if (inputRef.current != null && inputRef.current.value != null) {
-    //   dispatch(getCards(inputRef.current.value));
-    // }
-  };
 
   return (
     <div
