@@ -1,0 +1,41 @@
+.Header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 3rem;
+  border-radius: 1.5rem;
+  box-shadow: rgba(149, 157, 165, 0.4) 0 8px 24px;
+  background: rgba(255,255,255,0.9);
+}
+
+.Header-logo {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 5rem;
+  height: 5rem;
+  pointer-events: none;
+}
+.Header-logo svg {
+  width: 100px;
+  height: 110px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Header-logo {
+    animation: Header-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes Header-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
