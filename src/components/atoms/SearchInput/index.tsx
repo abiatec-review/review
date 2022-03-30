@@ -1,5 +1,7 @@
 
 import { useCallback, useState } from 'react';
+
+import { useDispatch } from 'react-redux';
 import Button from "../Button";
 
 
@@ -7,17 +9,18 @@ interface IProps {
     onSearch: any
 }
 
-const SearchInput: React.FC<IProps> = ({onSearch}) => {
+const SearchInput: React.FC<IProps> = () => {
   const [name, setName] = useState("");
 
+  const dispatch = useDispatch();
 
   const onSearchChange = useCallback((e) => {
       setName(e.target.value)
   }, []);
 
   const onSubmit = useCallback(() => {
-      onSearch(name)
-  }, [name, onSearch]);
+    dispatch({type: 'FETCH_IMAGES', payload: name });
+  }, [name]);
 
     const onKeyPressHandler = (e: any) => {
         if (e.charCode === 13) {
