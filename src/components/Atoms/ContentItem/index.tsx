@@ -4,16 +4,16 @@ export interface IContentItem {
   name: string;
   id: string;
   image: string;
+  status?: string;
 }
 
 const ContentItem: React.FC<IContentItem> = ({id, image, name}) => {
-
   return (
-    <figure key={id}>
+    <div key={id}>
         <img src={image} alt={`${name} character`}/>
-        <figcaption>{name}</figcaption>
-    </figure>
-    )
+        <div>{name}</div>
+    </div>
+  )
 }
 
 export default ContentItem;

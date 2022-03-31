@@ -1,9 +1,12 @@
 
-import Button from "../../Atoms/Button"
 import { useCallback, useState, KeyboardEvent } from 'react';
-import { SearchInput } from "../../Atoms/SearchInput"
 import { useDispatch } from "react-redux";
-import { LOAD_HEROES } from "../../../redux/actions";
+
+import './index.css'
+
+import Button from "../../Atoms/Button"
+import SearchInput from "../../Atoms/SearchInput";
+import { LOAD_HEROES } from "../../../redux/actions/heroActions";
 
 export const SearchBlock = () => {
   const [name, setName] = useState("");
@@ -24,7 +27,7 @@ export const SearchBlock = () => {
   }
 
   return (
-    <div>
+    <div className="search-block">
       <SearchInput value={name} onSearchChange={onSearchChange} onKeyPressHandler={onKeyPressHandler}/>
       <Button onClick={onSubmit}>Find character</Button>
     </div>

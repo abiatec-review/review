@@ -3,7 +3,7 @@ import { Image } from "../../Atoms/Image";
 import { ImageTypes } from "../../../utils/constants";
 import "./index.css";
 
-const HeaderBlock = ({onSearch}: any) => {
+const HeaderBlock: React.FC = () => {
 
     return (
         <header className="Header">

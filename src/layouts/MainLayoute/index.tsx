@@ -2,13 +2,11 @@ import React from 'react';
 import HeaderBlock from '../../components/Molecules/HeaderBlock';
 interface IProps {
   children: JSX.Element
-  color?: string
-  font?: string
 }
-export const MainLayout:React.FC<IProps> = ({children, color, font}) => {
+export const MainLayout:React.FC<IProps> = ({children}) => {
     return (
       <>
-          <HeaderBlock />
+        <HeaderBlock />
         <main>
           {children}
         </main>

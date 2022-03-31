@@ -19,5 +19,4 @@ const ContentList: React.FC<IProps>= ({characters, setSelectedHeroId}) => {
     )
 }
 
-
 export default ContentList;

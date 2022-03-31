@@ -5,7 +5,6 @@ interface IProps {
   children?: string
 }
 
-
 const Button: React.FC<IProps>= ({onClick, children}) => (
   <button className="Button" onClick={onClick} >{children}</button>
 );

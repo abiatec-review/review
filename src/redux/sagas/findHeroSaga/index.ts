@@ -1,10 +1,7 @@
-import { apply, call, put, takeEvery } from "redux-saga/effects";
-import { LOAD_HEROES, LOAD_HEROES_FAILURE, LOAD_HEROES_SUCCESS, LOAD_HEROES_LOADING } from "../../actions";
+import { call, put, takeEvery } from "redux-saga/effects";
 
-export const getHeroes = async (payload: string) => {
-  const res = await fetch(`https://rickandmortyapi.com/api/character/?name=${payload}`)
-  return await res.json()
-}
+import { LOAD_HEROES, LOAD_HEROES_FAILURE, LOAD_HEROES_SUCCESS, LOAD_HEROES_LOADING } from "../../actions/heroActions";
+import { getHeroes } from "./api";
 
 export function* loadHeroes({payload}: any): Generator<any, any, any> {
   try {

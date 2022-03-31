@@ -24,30 +24,3 @@
   background-color: #000;
   opacity: 0.75;
 }
-.modal-header {
-  font-size:24pt;
-}
-
-.modal-image {
-  border-radius: 50%;
-  margin: 20px 0
-}
-
-.modal-status {
-  font-size:18pt
-}
-
-.modal-button {
-  position: absolute;
-    left: 348px;
-    background-color: #e25a83; /* Green */
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    border-radius:5px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-}

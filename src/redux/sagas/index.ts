@@ -4,7 +4,6 @@ import findHeroSaga from './findHeroSaga';
 export default function* rootSaga() {
   const sagas = [findHeroSaga];
 
-
   yield all(sagas.map(saga =>
     spawn(function* () {
       while (true) {
@@ -12,7 +11,7 @@ export default function* rootSaga() {
           yield call(saga)
           break
         } catch (e) {
-          // console.log(e)
+          console.log(e)
         }
       }
     }))
