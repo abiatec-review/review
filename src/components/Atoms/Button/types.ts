@@ -1,3 +1,4 @@
 export interface IButton {
-    clickHandler: ()=>void
+    clickHandler: ()=>void,
+    text: string
 }

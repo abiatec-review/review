@@ -4,7 +4,7 @@
 import React from 'react';
 import { IButton } from './types';
 
-const Button: React.FC<IButton> = ({ clickHandler }) => {
+const Button: React.FC<IButton> = ({ clickHandler, text }) => {
   console.log('Button');
 
   return (
@@ -12,7 +12,7 @@ const Button: React.FC<IButton> = ({ clickHandler }) => {
       onClick={clickHandler}
       className="mt-5 py-1 border-black rounded shadow-inner-md"
     >
-      Click
+      {text}
     </button>
   );
 };

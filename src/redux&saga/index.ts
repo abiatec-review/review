@@ -1,9 +1,10 @@
 import {
-  createStore, Store, combineReducers, applyMiddleware,
+  applyMiddleware, combineReducers, createStore, Store,
 } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
 import cardsReducer from './reducers/cardsReducer';
+import modalReducer from './reducers/modalReducer';
 import cardsSaga from './sagas/cardsSaga';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -14,6 +15,7 @@ function* rootSaga() {
 
 const rootReducer = combineReducers({
   cards: cardsReducer,
+  modal: modalReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>

@@ -8,6 +8,7 @@ module.exports = {
         '3xl': '0 0 15px 1px black',
         'inner-md' : "inset 0 0 5px 1px rgba(0,0,0,0.5)"
       },
+      
       screens: {
         'sm': '576px',
         'md': '700px',

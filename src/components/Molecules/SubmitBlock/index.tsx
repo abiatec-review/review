@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { getCards } from '../../../redux/actions/cardsAction';
+import { getCards } from '../../../redux&saga/actions/cardsAction';
 import { Button, Input } from '../../Atoms';
 
 const SubmitBlock: React.FC = () => {
@@ -19,7 +19,7 @@ const SubmitBlock: React.FC = () => {
   return (
     <div className="grid justify-center">
       <Input reference={inputRef} />
-      <Button clickHandler={clickHandler} />
+      <Button clickHandler={clickHandler} text="Click" />
     </div>
   );
 };

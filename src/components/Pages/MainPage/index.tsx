@@ -1,10 +1,9 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux';
+import { RootState } from '../../../redux&saga';
+import { CardsList, Header, Modal } from '../../Organism';
 // import { changeCharName, getCards } from '../../../redux/actions/cardsAction';
-import { CardsList, Header } from '../../Organism';
 
 const MainPage: React.FC = () => {
   const cards = useSelector((state: RootState) => state.cards);
@@ -13,6 +12,7 @@ const MainPage: React.FC = () => {
     <div className="grid grid-cols-1 justify-center items-center ">
       <Header />
       <CardsList arrOfCards={cards.cardsList.results} />
+      <Modal />
     </div>
   );
 };
