@@ -1,7 +1,6 @@
 import { put, call, takeEvery, all } from 'redux-saga/effects';
 
 import api from '../../services/api';
-import axios from 'axios';
 
 export function* fetchImages(action:any) {
   // yield delay(1000);
@@ -21,7 +20,7 @@ export function* fetchMoreImages(action:any) {
   // yield delay(1000);
 
   try {
-    const { data } = yield call<any>(axios.get, action.payload);
+    const { data } = yield call<any>(api.get, action.payload);
     const {info, results} = data;
     yield put({ type: 'addImages', payload: {info, results} })
   } catch (e: any) {
