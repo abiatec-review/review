@@ -4,15 +4,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux';
 // import { changeCharName, getCards } from '../../../redux/actions/cardsAction';
-import { Header } from '../../Organism';
+import { CardsList, Header } from '../../Organism';
 
 const MainPage: React.FC = () => {
   const cards = useSelector((state: RootState) => state.cards);
 
   return (
-    <div className="grid justify-center items-center">
+    <div className="grid grid-cols-1 justify-center items-center ">
       <Header />
-      <div>{cards.cardsList.results.map((e:{name: string}) => e.name)}</div>
+      <CardsList arrOfCards={cards.cardsList.results} />
     </div>
   );
 };
