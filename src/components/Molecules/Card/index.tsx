@@ -1,5 +1,5 @@
+import { Image } from 'components/Atoms';
 import React from 'react';
-import Image from '../../Atoms/Image';
 import { ICard } from './types';
 
 const Card: React.FC<ICard> = ({ data }) => {

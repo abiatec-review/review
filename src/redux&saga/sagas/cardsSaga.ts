@@ -1,6 +1,6 @@
+import { redefineCardList } from 'redux&saga/actions/cardsAction';
+import { IAction } from 'redux&saga/types';
 import { put, takeEvery } from 'redux-saga/effects';
-import { redefineCardList } from '../actions/cardsAction';
-import { IAction } from '../types';
 
 export function* getCardsSaga(action: IAction) {
   try {

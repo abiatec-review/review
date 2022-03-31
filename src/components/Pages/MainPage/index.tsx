@@ -1,9 +1,7 @@
-/* eslint-disable import/no-unresolved */
+import { CardsList, Header, Modal } from 'components/Organism';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux&saga';
-import { CardsList, Header, Modal } from '../../Organism';
-// import { changeCharName, getCards } from '../../../redux/actions/cardsAction';
+import { RootState } from 'redux&saga';
 
 const MainPage: React.FC = () => {
   const cards = useSelector((state: RootState) => state.cards);

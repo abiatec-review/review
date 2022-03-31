@@ -1,6 +1,5 @@
-/* eslint-disable import/no-unresolved */
+import { SubmitBlock } from 'components/Molecules';
 import React from 'react';
-import { SubmitBlock } from '../../Molecules';
 
 const Header: React.FC = () => {
   console.log('Header');
