@@ -3,7 +3,6 @@ import { put, call, takeEvery, all } from 'redux-saga/effects';
 import api from '../../services/api';
 
 export function* fetchImages(action:any) {
-  // yield delay(1000);
 
   try {
     const { data } = yield call<any>(api.get, `?name=${action.payload}`);
@@ -13,11 +12,9 @@ export function* fetchImages(action:any) {
     console.log(e.message)
   }
 
-  // yield put({ type: 'setImages' , payload: 'dfvdfvdfv'});
 }
 
 export function* fetchMoreImages(action:any) {
-  // yield delay(1000);
 
   try {
     const { data } = yield call<any>(api.get, action.payload);
@@ -27,7 +24,6 @@ export function* fetchMoreImages(action:any) {
     console.log(e.message)
   }
 
-  // yield put({ type: 'setImages' , payload: 'dfvdfvdfv'});
 }
 
 export default function* rootSaga() {

@@ -28,7 +28,7 @@ function App() {
                     </div>
                 </MainLayout>
             }>
-                <Route path="info/:id" element={<Popup />} />
+                <Route path="info/:id/*" element={<Popup />} />
             </Route >
         </Routes>
 
