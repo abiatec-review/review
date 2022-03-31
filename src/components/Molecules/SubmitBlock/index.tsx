@@ -8,13 +8,14 @@ const SubmitBlock: React.FC = () => {
 
   const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
 
+  const validateCharName = (name: string) => name.toLowerCase();
+
   const clickHandler = () => {
     if (inputRef.current != null && inputRef.current.value != null) {
-      dispatch(getCards(inputRef.current.value));
+      dispatch(getCards(validateCharName(inputRef.current.value)));
     }
   };
 
-  console.log('SubmitBlock');
   return (
     <div className="grid justify-center">
       <Input reference={inputRef} />

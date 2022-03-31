@@ -10,7 +10,7 @@ const Button: React.FC<IButton> = ({ clickHandler }) => {
   return (
     <button
       onClick={clickHandler}
-      className="mt-5 border-black border-2 border-solid rounded"
+      className="mt-5 py-1 border-black rounded shadow-inner-md"
     >
       Click
     </button>
