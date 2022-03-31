@@ -15,6 +15,8 @@ module.exports = {
         'lg': '1100px',
         'xlg': '1440px',
       },
+
+      
     },
     
   },
