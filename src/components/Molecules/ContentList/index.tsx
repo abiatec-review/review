@@ -1,6 +1,6 @@
-import { IContentItem } from '../../Atoms/ContentItem'
-import './index.css'
-
+import { IContentItem } from '../../../redux/reducers/HeroesReducer/types';
+import {ContentItem} from '../../Atoms'
+import styles from './index.module.scss'
 interface IProps {
   characters: IContentItem[];
   setSelectedHeroId: (id: string) => void
@@ -8,12 +8,15 @@ interface IProps {
 
 const ContentList: React.FC<IProps>= ({characters, setSelectedHeroId}) => {
     return (
-        <ul className="list">
+        <ul className={styles.list}>
             {characters.map((character: IContentItem) => {
-            return <div key={character.id} onClick={() => setSelectedHeroId(character.id)} className='fragment'>
-                <img src={character.image} alt={`${character.name} character`}/>
-                <div>{character.name}</div>
-            </div>
+              return <ContentItem 
+                        key={character.id} 
+                        image={character.image}
+                        name={character.name}
+                        id={character.id}
+                        setSelectedHeroId={setSelectedHeroId}
+                      />
         })}
         </ul>
     )

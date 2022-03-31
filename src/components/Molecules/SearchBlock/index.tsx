@@ -2,13 +2,12 @@
 import { useCallback, useState, KeyboardEvent } from 'react';
 import { useDispatch } from "react-redux";
 
-import './index.css'
+import  styles from './index.module.scss'
 
-import Button from "../../Atoms/Button"
-import SearchInput from "../../Atoms/SearchInput";
+import {Button, SearchInput} from "../../Atoms"
 import { LOAD_HEROES } from "../../../redux/actions/heroActions";
 
-export const SearchBlock = () => {
+const SearchBlock = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch()
 
@@ -27,9 +26,11 @@ export const SearchBlock = () => {
   }
 
   return (
-    <div className="search-block">
+    <div className={styles.searchBlock}>
       <SearchInput value={name} onSearchChange={onSearchChange} onKeyPressHandler={onKeyPressHandler}/>
       <Button onClick={onSubmit}>Find character</Button>
     </div>
   )
 }
+
+export default SearchBlock

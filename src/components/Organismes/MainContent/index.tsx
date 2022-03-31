@@ -3,10 +3,8 @@ import { useSelector } from "react-redux";
 
 import { RootReducer } from "../../../redux/reducers";
 
-import ErrorComponent from "../../Atoms/ErrorComponent/ErrorComponent";
-import { Loader } from "../../Atoms/Loader/Loader";
-import ContentList from "../../Molecules/ContentList";
-import { ModalHero } from "../../Molecules/ModalHero";
+import {ErrorComponent, Loader} from "../../Atoms";
+import { ContentList, ModalHero } from "../../Molecules";
 
 export const MainContent = () => {
 

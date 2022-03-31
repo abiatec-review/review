@@ -5,7 +5,7 @@ interface IProps {
   className?: string
 }
 
-export const Image: React.FC<IProps> = ({type, className}:{type: ImageTypes  , className?:string}) => {
+const Image: React.FC<IProps> = ({type, className}:{type: ImageTypes  , className?:string}) => {
   switch(type) {
     case ImageTypes.logSvg: {
       return <div className={className}>
@@ -17,3 +17,5 @@ export const Image: React.FC<IProps> = ({type, className}:{type: ImageTypes  , c
     }
   }
 }
+
+export default Image

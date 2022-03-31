@@ -1,4 +1,4 @@
-import "./index.css";
+import styles from './index.module.scss'
 interface IProps {
   value: string;
   onSearchChange: (e: React.FormEvent<HTMLInputElement>) => void;
@@ -7,7 +7,7 @@ interface IProps {
 
 const SearchInput:React.FC<IProps> = ({value, onSearchChange, onKeyPressHandler }) => {
    return (
-    <div className="SearchInput">
+    <div className={styles.SearchInput}>
       <input value={value} onChange={onSearchChange} onKeyPress={onKeyPressHandler} />
     </div>
   );

@@ -1,4 +1,4 @@
-import "./index.css";
+import styles from "./index.module.scss";
 
 interface IProps {
   onClick?: () => void;
@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const Button: React.FC<IProps>= ({onClick, children}) => (
-  <button className="Button" onClick={onClick} >{children}</button>
+  <button className={styles.button} onClick={onClick} >{children}</button>
 );
 
 export default Button;

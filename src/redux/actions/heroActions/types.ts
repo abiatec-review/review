@@ -1,4 +1,4 @@
-import { IContentItem } from "../../../components/Atoms/ContentItem"
+import { IContentItem } from "../../reducers/HeroesReducer/types"
 import { LOAD_HEROES_SUCCESS, LOAD_HEROES_FAILURE, LOAD_HEROES_LOADING } from "./index"
 
 export type IHeroesAction = ILoadHeroes | ILoadFailHeroes | ILoadingHeroes

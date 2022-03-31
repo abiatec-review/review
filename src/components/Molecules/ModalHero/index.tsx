@@ -1,26 +1,28 @@
 import React from 'react';
 
-import './index.css'
+import styles from './index.module.scss'
 
-import { IContentItem } from '../../Atoms/ContentItem';
 import Modal from '../../Atoms/Modal';
+import { IContentItem } from '../../../redux/reducers/HeroesReducer/types';
 
 interface IProps {
   setIsModalOpen: () => void,
   hero: IContentItem | undefined
 }
 
-export const ModalHero: React.FC<IProps> = ({setIsModalOpen, hero}) => {
+const ModalHero: React.FC<IProps> = ({setIsModalOpen, hero}) => {
   console.log(hero)
   return (
     <Modal>
       <>
-        <button className='modal-button' onClick={setIsModalOpen}>Close</button>
-        <div className='modal-header'>{hero?.name}</div>
-        <img className='modal-image' src={hero?.image} alt='hero'/>
-        <div className='modal-status'>Status: {hero?.status}</div>
+        <button className={styles.button} onClick={setIsModalOpen}>Close</button>
+        <div className={styles.header}>{hero?.name}</div>
+        <img className={styles.image} src={hero?.image} alt='hero'/>
+        <div className={styles.status}>Status: {hero?.status}</div>
       </>
     </Modal>
     
   )
 }
+
+export default ModalHero

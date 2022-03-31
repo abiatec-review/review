@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css'
+import styles from "./index.module.scss";
 interface IProps {
   closeModal?: () => void,
   children: JSX.Element
@@ -7,11 +7,11 @@ interface IProps {
 
 const Modal: React.FC<IProps> = ({closeModal, children}) => {
   return (
-    <div className="modal">
-      <div className="modal-pop" >
+    <div className={styles.modal}>
+      <div className={styles.pop} >
         {children}
       </div>  
-      <div onClick={closeModal} className="modal-overlay"></div>    
+      <div onClick={closeModal} className={styles.overlay}></div>    
     </div>
   )
 }

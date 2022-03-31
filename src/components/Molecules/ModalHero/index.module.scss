@@ -1,20 +1,22 @@
-.modal-header {
+@import "../../../styles/mixins.module.scss";
+
+.header {
   font-size:24pt;
 }
 
-.modal-image {
+.image {
   border-radius: 50%;
   margin: 20px 0
 }
 
-.modal-status {
+.status {
   font-size:18pt
 }
 
-.modal-button {
+.button {
   position: absolute;
   left: 348px;
-  background-color: #e25a83; /* Green */
+  background-color: #e25a83;
   border: none;
   color: white;
   padding: 5px 10px;

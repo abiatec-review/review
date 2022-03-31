@@ -1,0 +1,17 @@
+@import "../../../styles/mixins.module.scss";
+
+.item {
+  margin: 50px;
+
+  & img {
+    border-radius: 50%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.itemName {
+  margin-top: 40px;
+  font-size: 15pt;
+}

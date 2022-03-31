@@ -1,17 +1,15 @@
-import './index.css'
+import { IContentItem } from "../../../redux/reducers/HeroesReducer/types";
+import styles from "./index.module.scss";
 
-export interface IContentItem {
-  name: string;
-  id: string;
-  image: string;
-  status?: string;
+interface IProps extends IContentItem {
+  setSelectedHeroId: (id: string) => void;
 }
 
-const ContentItem: React.FC<IContentItem> = ({id, image, name}) => {
+const ContentItem: React.FC<IProps> = ({id, image, name, setSelectedHeroId}) => {
   return (
-    <div key={id}>
+    <div className={styles.item} onClick={() => setSelectedHeroId(id)}>
         <img src={image} alt={`${name} character`}/>
-        <div>{name}</div>
+        <div className={styles.itemName}>{name}</div>
     </div>
   )
 }

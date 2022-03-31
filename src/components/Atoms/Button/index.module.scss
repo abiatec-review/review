@@ -1,0 +1,19 @@
+@import "../../../styles/mixins.module.scss";
+
+.button {
+  height: 2.325rem;
+  background: $button-color;
+  border-radius: 0.25rem;
+  padding: 0 1rem;
+  outline: 0;
+  border: 0;
+  color: $white-color;
+  font-size: 11pt;
+  
+
+  &:hover {
+    background: $button-color-hover;
+    cursor: pointer;
+    transition: background-color 200ms ease-in-out;
+  }
+}
