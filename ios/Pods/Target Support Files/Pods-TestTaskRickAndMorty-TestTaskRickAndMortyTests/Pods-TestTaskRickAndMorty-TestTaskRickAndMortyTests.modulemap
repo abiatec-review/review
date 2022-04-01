@@ -1,0 +1,6 @@
+module Pods_TestTaskRickAndMorty_TestTaskRickAndMortyTests {
+  umbrella header "Pods-TestTaskRickAndMorty-TestTaskRickAndMortyTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

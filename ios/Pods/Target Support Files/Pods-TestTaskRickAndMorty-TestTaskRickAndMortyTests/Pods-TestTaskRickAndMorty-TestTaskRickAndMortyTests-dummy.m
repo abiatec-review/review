@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_TestTaskRickAndMorty_TestTaskRickAndMortyTests : NSObject
+@end
+@implementation PodsDummy_Pods_TestTaskRickAndMorty_TestTaskRickAndMortyTests
+@end
