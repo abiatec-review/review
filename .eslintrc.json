@@ -23,14 +23,14 @@
     "@typescript-eslint"
   ],
   "rules": {
-    // "max-len": [
-    //   "warn",
-    //   {
-    //     "code": 60,
-    //     "ignoreComments": true,
-    //     "ignoreUrls": true
-    //   }
-    // ],
+    "max-len": [
+      "off",
+      {
+        "code": 60,
+        "ignoreComments": true,
+        "ignoreUrls": true
+      }
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -49,6 +49,7 @@
         ]
       }
     ],
+    "import/no-cycle": "off",
     "react/jsx-filename-extension": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "warn",
     "react/function-component-definition": "off",

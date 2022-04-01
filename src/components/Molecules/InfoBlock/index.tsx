@@ -7,14 +7,12 @@ import { InfoItem } from 'components/Atoms';
 // import { InfoBlockStyles } from './styles.tailwind';
 
 const InfoBlock: React.FC<IInfoBlock> = ({ content }) => {
-  console.log(content);
-
   const renderInfoBlock = () => Object.entries(content).map((item: [string, unknown]) => (
-    <InfoItem dataType={item[0]} data={item[1]} />
+    <InfoItem dataType={item[0]} data={item[1]} key={`${item[0]}-infoItem`} />
   ));
 
   return (
-    <div className={`${/* InfoBlockStyles */ 'grid gap-2'}`}>
+    <div className={`${'grid gap-2 mt-10'}`}>
       {renderInfoBlock()}
     </div>
   );

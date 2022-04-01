@@ -11,8 +11,14 @@ export interface IImage {
 }
 
 export interface IButton {
-    clickHandler: ()=>void,
+    clickHandler?: ()=>void,
     text: string
+}
+
+export interface ITab {
+    clickHandler?: ()=>void,
+    text: string,
+    active: boolean
 }
 
 export interface IShadowField {

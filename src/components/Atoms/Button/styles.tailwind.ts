@@ -1,1 +1,1 @@
-export const buttonStyles = 'mt-5 py-1 border-black rounded shadow-inner-md';
+export const buttonStyles = ' py-1 border-black rounded shadow-inner-md';

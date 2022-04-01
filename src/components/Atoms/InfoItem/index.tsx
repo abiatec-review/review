@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useMemo } from 'react';
 import { IFunctions, IInfoItem } from 'Atoms/types';

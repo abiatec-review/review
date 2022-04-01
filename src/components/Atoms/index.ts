@@ -4,7 +4,8 @@ import Button from './Button';
 import Image from './Image';
 import ShadowField from './ShadowField';
 import InfoItem from './InfoItem';
+import Tab from './Tab';
 
 export {
-  Input, Button, Image, ShadowField, InfoItem,
+  Input, Button, Image, ShadowField, InfoItem, Tab,
 };

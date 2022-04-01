@@ -5,8 +5,6 @@ import { hideModal } from 'redux&saga/actions/modalActions';
 import { shadowFieldStyles } from './styles.tailwind';
 
 const ShadowField: React.FC<IShadowField> = ({ isVisible }) => {
-  console.log(isVisible);
-
   const dispatch = useDispatch();
 
   const handleClick = () => {
