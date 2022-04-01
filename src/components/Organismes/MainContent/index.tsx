@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { RootReducer } from "../../../redux/reducers";
-import { getContentfulFields } from "../../../redux/selectors/contentfulSelectors";
+import { getContentfulFieldsSelector } from "../../../redux/selectors/contentfulSelectors";
 
 import {ErrorComponent, Loader} from "../../Atoms";
 import { ContentList, ModalHero } from "../../Molecules";
@@ -11,8 +11,8 @@ export const MainContent = () => {
 
   const heroes = useSelector((store: RootReducer) => store.heroes)
   const episode = useSelector((store: RootReducer) => store.episode)
-  const contentfulInfo = useSelector(getContentfulFields)
-
+  const contentfulInfo = useSelector(getContentfulFieldsSelector)
+  console.log(contentfulInfo)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHeroId, setSelectedHeroId] = useState('');
 
