@@ -6,3 +6,7 @@ export type cardData = {
 export interface ICard {
     data: cardData
 }
+
+export interface IInfoBlock {
+    content: Object
+}

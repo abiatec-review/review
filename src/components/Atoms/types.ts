@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
 export interface IInput {
@@ -12,4 +13,17 @@ export interface IImage {
 export interface IButton {
     clickHandler: ()=>void,
     text: string
+}
+
+export interface IShadowField {
+    isVisible: boolean
+}
+
+export interface IInfoItem {
+    data: Object | unknown,
+    dataType: string
+}
+
+export interface IFunctions {
+    [key:string] : (argument?: any) => any
 }

@@ -1,5 +1,6 @@
 const initialState = {
-  isOpen: true,
+  isOpen: false,
+  content: {},
 };
 
 export const modalReducer = (
@@ -7,13 +8,10 @@ export const modalReducer = (
   action: any,
 ) => {
   switch (action.type) {
-    case 'MAKE_MODAL_VISIBLE':
-      console.log('MAKE_MODAL_VISIBLE');
-
-      return { ...state, isOpen: true };
-    case 'MAKE_MODAL_INVISIBLE':
+    case 'SHOW_MODAL':
+      return { ...state, isOpen: true, content: action.payload };
+    case 'HIDE_MODAL':
       console.log('MAKE_MODAL_INVISIBLE');
-
       return { ...state, isOpen: false };
     default:
       return state;

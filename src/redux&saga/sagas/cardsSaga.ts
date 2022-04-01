@@ -1,4 +1,4 @@
-import { redefineCardList } from 'redux&saga/actions/cardsAction';
+import { redefineCardList } from 'redux&saga/actions/cardsActions';
 import { IAction } from 'redux&saga/types';
 import { put, takeEvery } from 'redux-saga/effects';
 

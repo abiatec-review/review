@@ -1,6 +1,29 @@
 {
-    "eslint.format.enable": true,
-    "editor.codeActionsOnSave": {
-  "source.fixAll.eslint": true
-}
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": [
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "javascriptreact",
+      "autoFix": true
+    },
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
+  "eslint.run": "onType",
+  "eslint.packageManager": "npm",
+  "eslint.alwaysShowStatus": true,
+  "eslint.autoFixOnSave": true
 }
