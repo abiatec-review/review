@@ -1,0 +1,39 @@
+@import "../../../../styles/mixins.module.scss";
+
+.header {
+  font-size:24pt;
+}
+
+.image {
+  border-radius: 50%;
+  margin: 20px 0
+}
+
+.status {
+  font-size:18pt
+}
+
+.button, 
+.buttonBack {
+  position: absolute;
+  left: 348px;
+  background-color: #e25a83;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius:5px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+.buttonBack {
+  left: 10px;
+}
+.heroes {
+  display: flex;
+  margin-top:10px;
+  width: 100%;
+  justify-content: space-around
+}

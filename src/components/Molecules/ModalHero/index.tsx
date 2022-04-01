@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from './index.module.scss'
 
 import Modal from '../../Atoms/Modal';
 import { IContentItem } from '../../../redux/reducers/HeroesReducer/types';
+import ModalHeroPart from './ModalHeroPart';
+import ModalEpisodePart from './ModalEpisodePart';
 
 interface IProps {
   setIsModalOpen: () => void,
-  hero: IContentItem | undefined
+  hero?: IContentItem,
+  episode?: any
 }
 
-const ModalHero: React.FC<IProps> = ({setIsModalOpen, hero}) => {
-  console.log(hero)
+const ModalHero: React.FC<IProps> = ({setIsModalOpen, hero, episode}) => {
+  const [isEpisodePartOpen, setIsEpisodePartOpen] = useState(false)
   return (
-    <Modal>
+    <Modal closeModal={setIsModalOpen}>
       <>
-        <button className={styles.button} onClick={setIsModalOpen}>Close</button>
-        <div className={styles.header}>{hero?.name}</div>
-        <img className={styles.image} src={hero?.image} alt='hero'/>
-        <div className={styles.status}>Status: {hero?.status}</div>
+        {isEpisodePartOpen ? 
+          <ModalEpisodePart goBack={() => setIsEpisodePartOpen(false)} episode={episode} setIsModalOpen={setIsModalOpen}/>: 
+          <ModalHeroPart setIsEpisodePartOpen={setIsEpisodePartOpen} setIsModalOpen={setIsModalOpen} hero={hero}/> }
       </>
     </Modal>
     

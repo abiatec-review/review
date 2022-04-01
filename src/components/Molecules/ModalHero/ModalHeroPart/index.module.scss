@@ -1,0 +1,39 @@
+@import "../../../../styles/mixins.module.scss";
+
+.header {
+  font-size:24pt;
+}
+
+.image {
+  border-radius: 50%;
+  margin: 20px 0
+}
+
+.status {
+  font-size:18pt
+}
+
+.button {
+  position: absolute;
+  left: 348px;
+  background-color: #e25a83;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius:5px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.linksBlock {
+  overflow: auto;
+  max-height:200px;
+  margin-top:20px
+}
+
+.episodesTitle {
+  font-size:24pt;
+}

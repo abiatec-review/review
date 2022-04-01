@@ -2,13 +2,17 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { RootReducer } from "../../../redux/reducers";
+import { getFieldsSelector } from "../../../redux/selectors/contentfulSelectors";
 
 import {ErrorComponent, Loader} from "../../Atoms";
 import { ContentList, ModalHero } from "../../Molecules";
 
 export const MainContent = () => {
 
-  const store = useSelector((store: RootReducer) => store.heroes)
+  const heroes = useSelector((store: RootReducer) => store.heroes)
+  const episode = useSelector((store: RootReducer) => store.episode)
+  const contentfulInfo = useSelector(getFieldsSelector)
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHeroId, setSelectedHeroId] = useState('');
 
@@ -17,13 +21,13 @@ export const MainContent = () => {
     setIsModalOpen(true)
   }
 
-  const searchResult = !store.isError ? <ContentList characters={store?.heroes} setSelectedHeroId={openModal}/> : <ErrorComponent />
+  const searchResult = !heroes.isError ? <ContentList characters={heroes?.heroes} setSelectedHeroId={openModal}/> : <ErrorComponent />
   return (
     <div>
-      {isModalOpen && <ModalHero hero={store.heroes.find(hero => hero.id === selectedHeroId)} setIsModalOpen={() => setIsModalOpen(false)} />}
+      {isModalOpen && <ModalHero episode={episode} hero={heroes.heroes.find(hero => hero.id === selectedHeroId)} setIsModalOpen={() => setIsModalOpen(false)} />}
       <div className='content'>
-        <h1>Simple content list</h1>
-        { store?.isLoading ? <Loader /> : searchResult}
+        <h1>{contentfulInfo?.title}</h1>
+        { heroes?.isLoading ? <Loader /> : searchResult}
       </div>
     </div>
   )
