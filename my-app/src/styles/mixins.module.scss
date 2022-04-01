@@ -1,0 +1,13 @@
+@import './variables.module.scss';
+
+@mixin Flex($ai: '', $jc: '', $dir: '') {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-direction: $dir;
+}
+
+@mixin Size($h: '', $mw: '') {
+  height: $h;
+  width: $mw;
+}

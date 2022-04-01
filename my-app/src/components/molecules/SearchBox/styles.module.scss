@@ -1,0 +1,6 @@
+@import '../../../styles/mixins.module.scss';
+
+.headerSearchBox {
+  @include Flex(center, center, row);
+  max-width: fit-content;
+}
