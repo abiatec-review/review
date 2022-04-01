@@ -3,8 +3,10 @@
     "browser": true,
     "es2021": true
   },
+  "root": true,
   "extends": [
-    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
     "airbnb"
   ],
   "parser": "@typescript-eslint/parser",
@@ -41,10 +43,26 @@
     ],
     "react/jsx-filename-extension": "off",
     "react/function-component-definition": "off",
-    "default-param-last": "off"
+    "default-param-last": "off",
+    "import/no-named-as-default": "off",
+    "@typescript-eslint/ban-types": [
+      "warn",
+      {
+        "types": {
+          // add a custom message to help explain why not to use it
+          "Foo": "Don't use Foo because it is unsafe",
+          // add a custom message, AND tell the plugin how to fix it
+          "{}": {
+            "message": "Use object instead",
+            "fixWith": "Object"
+          }
+        }
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
+      "typescript": {},
       "node": {
         "extensions": [
           ".js",

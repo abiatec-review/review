@@ -1,5 +1,5 @@
 import React from 'react';
-import { IInput } from './types';
+import { IInput } from 'Atoms/types';
 
 const Input: React.FC<IInput> = ({ reference }) => {
   console.log('Input');

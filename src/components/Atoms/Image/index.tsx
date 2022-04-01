@@ -1,5 +1,5 @@
 import React from 'react';
-import { IImage } from './types';
+import { IImage } from 'Atoms/types';
 
 const Image: React.FC<IImage> = ({ src, alt }) => {
   console.log('Image');

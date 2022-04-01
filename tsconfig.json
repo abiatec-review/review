@@ -1,7 +1,20 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "paths": {},
+    "paths": {
+      "Molecules/*": [
+        "components/Molecules/*"
+      ],
+      "Atoms/*": [
+        "components/Atoms/*"
+      ],
+      "Organism/*": [
+        "components/Organism/*"
+      ],
+      "Pages/*": [
+        "components/Pages/*"
+      ]
+    },
     "target": "es5",
     "lib": [
       "dom",

@@ -1,6 +1,6 @@
 import { Card } from 'components/Molecules';
 import React from 'react';
-import { ICardList } from './types';
+import { ICardList } from 'Organism/types';
 
 const CardsList: React.FC<ICardList> = ({ arrOfCards }) => {
   console.log('CardsList');

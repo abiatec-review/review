@@ -1,6 +1,6 @@
 import { Image } from 'components/Atoms';
 import React from 'react';
-import { ICard } from './types';
+import { ICard } from 'Molecules/types';
 
 const Card: React.FC<ICard> = ({ data }) => {
   console.log(data);

@@ -2,7 +2,7 @@
 /* eslint-disable react/button-has-type */
 
 import React from 'react';
-import { IButton } from './types';
+import { IButton } from 'Atoms/types';
 
 const Button: React.FC<IButton> = ({ clickHandler, text }) => {
   console.log('Button');
