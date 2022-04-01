@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { LOAD_MORE_HEROES } from "../../../redux/actions/heroActions";
 
 import { RootReducer } from "../../../redux/reducers";
 import { getContentfulFieldsSelector } from "../../../redux/selectors/contentfulSelectors";
+import { getHeroName, getNextPage } from "../../../redux/selectors/heroesSelectors";
+import { defineNextPage } from "../../../utils/validator";
 
-import {ErrorComponent, Loader} from "../../Atoms";
+import {Button, ErrorComponent, Loader} from "../../Atoms";
 import { ContentList, ModalHero } from "../../Molecules";
 
 export const MainContent = () => {
@@ -12,7 +15,8 @@ export const MainContent = () => {
   const heroes = useSelector((store: RootReducer) => store.heroes)
   const episode = useSelector((store: RootReducer) => store.episode)
   const contentfulInfo = useSelector(getContentfulFieldsSelector)
-  console.log(contentfulInfo)
+  const nextPage = useSelector(getNextPage)
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHeroId, setSelectedHeroId] = useState('');
 
@@ -21,6 +25,17 @@ export const MainContent = () => {
     setIsModalOpen(true)
   }
 
+  const fetchMore = () => {
+    dispatch({
+      type: LOAD_MORE_HEROES, 
+      payload: {
+        name: name || '', 
+        page: defineNextPage(nextPage) || 1
+      }
+    })
+  }
+  const name = useSelector(getHeroName)
+  const dispatch = useDispatch();
   const searchResult = !heroes.isError ? <ContentList characters={heroes?.heroes} setSelectedHeroId={openModal}/> : <ErrorComponent />
   return (
     <div>
@@ -28,6 +43,7 @@ export const MainContent = () => {
       <div className='content'>
         <h1>{contentfulInfo?.title || 'Rick and Morty'}</h1>
         { heroes?.isLoading ? <Loader /> : searchResult}
+        {heroes?.heroes?.length > 19 && nextPage && <Button onClick={fetchMore}>Fetch more</Button>}
       </div>
     </div>
   )

@@ -4,14 +4,12 @@ import styles from './index.module.scss'
 
 interface IProps {
   setIsModalOpen: () => void,
-  goBack: () => void,
   episode?: IEpisodeState
 }
 
-const ModalEpisodePart: React.FC<IProps> = ({setIsModalOpen, episode, goBack})  => {
+const ModalEpisodePart: React.FC<IProps> = ({setIsModalOpen, episode})  => {
   return ( 
     < >
-      <button className={styles.buttonBack} onClick={goBack}>Back</button>
       <button className={styles.button} onClick={setIsModalOpen}>Close</button>
       {episode?.isLoading ? <Loader /> : <>
         <div className={styles.name}>{episode?.name}</div>

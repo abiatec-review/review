@@ -12,6 +12,8 @@ const startState = {
   heroes: [],
   isError: false,
   isLoading: false,
+  heroName: '',
+  nextPage: ''
 }
 
 describe("Test reducer", function () {

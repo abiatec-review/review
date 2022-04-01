@@ -10,4 +10,6 @@ export interface IHeroesState {
   heroes: IContentItem[],
   isError: boolean,
   isLoading: boolean,
+  heroName: string,
+  nextPage: string
 }

@@ -11,7 +11,7 @@ const App: React.FC= () => {
   
   useEffect(() => {
     dispatch({type: LOAD_CONTENTFUL})
-  }, )
+  }, [])
   
   return (
     <div className="App">

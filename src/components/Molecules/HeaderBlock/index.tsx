@@ -4,7 +4,6 @@ import styles from "./index.module.scss";
 import SearchBlock from "../SearchBlock";
 import {Image} from "../../Atoms";
 import { useSelector } from "react-redux";
-import { RootReducer } from "../../../redux/reducers";
 import { getImageSelector } from "../../../redux/selectors/contentfulSelectors";
 
 const HeaderBlock: React.FC = () => {
