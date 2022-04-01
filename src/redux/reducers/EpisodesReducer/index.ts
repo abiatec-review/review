@@ -1,8 +1,9 @@
 
-import { LOAD_EPISODE_SUCCESS, LOAD_HEROES_FROM_EPISODE } from "../../actions/episodeActions"
-import { IHeroesState } from "./types"
+import { LOAD_EPISODE_LOADING, LOAD_EPISODE_SUCCESS, LOAD_HEROES_FROM_EPISODE } from "../../actions/episodeActions"
+import { IEpisodeAction } from "../../actions/episodeActions/types"
+import { IEpisodeState } from "./types"
 
-const initialState: any = {
+const initialState: IEpisodeState = {
   heroes: [],
   name: '',
   episode: '',
@@ -11,7 +12,7 @@ const initialState: any = {
   isLoading: false
 }
 
-export default function episodesReducer(state = initialState, action: any): IHeroesState {
+export default function episodesReducer(state = initialState, action: IEpisodeAction): IEpisodeState {
   switch (action.type) {
     case LOAD_EPISODE_SUCCESS: {
       return {
@@ -29,6 +30,12 @@ export default function episodesReducer(state = initialState, action: any): IHer
         ],
         isError: false,  
         isLoading: false,
+      }
+    }
+    case LOAD_EPISODE_LOADING: {
+      return {
+        ...state, 
+        isLoading: true,
       }
     }
     default: return state

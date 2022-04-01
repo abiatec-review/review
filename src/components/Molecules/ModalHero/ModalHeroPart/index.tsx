@@ -29,7 +29,7 @@ const ModalHeroPart: React.FC<IProps> = ({setIsModalOpen, hero, setIsEpisodePart
         <div className={styles.status}>Status: {hero?.status}</div>
         <div className={styles.linksBlock}>
           <div className={styles.episodesTitle}>All episodes</div>
-          {hero?.episode?.map(elem => <Link openEpisode={openEpisode} link={elem} />)}
+          {hero?.episode?.map(elem => <Link key={elem} openEpisode={openEpisode} link={elem} />)}
         </div>
         
       </>

@@ -6,15 +6,17 @@ import Modal from '../../Atoms/Modal';
 import { IContentItem } from '../../../redux/reducers/HeroesReducer/types';
 import ModalHeroPart from './ModalHeroPart';
 import ModalEpisodePart from './ModalEpisodePart';
+import { IEpisodeState } from '../../../redux/reducers/EpisodesReducer/types';
 
 interface IProps {
   setIsModalOpen: () => void,
   hero?: IContentItem,
-  episode?: any
+  episode?: IEpisodeState
 }
 
 const ModalHero: React.FC<IProps> = ({setIsModalOpen, hero, episode}) => {
   const [isEpisodePartOpen, setIsEpisodePartOpen] = useState(false)
+
   return (
     <Modal closeModal={setIsModalOpen}>
       <>

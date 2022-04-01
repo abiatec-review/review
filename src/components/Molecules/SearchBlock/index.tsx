@@ -6,7 +6,6 @@ import  styles from './index.module.scss'
 
 import {Button, SearchInput} from "../../Atoms"
 import { LOAD_HEROES } from "../../../redux/actions/heroActions";
-import { RootReducer } from '../../../redux/reducers';
 import { getButtonTextSelector } from '../../../redux/selectors/contentfulSelectors';
 
 const SearchBlock = () => {
@@ -30,7 +29,7 @@ const SearchBlock = () => {
   return (
     <div className={styles.searchBlock}>
       <SearchInput value={name} onSearchChange={onSearchChange} onKeyPressHandler={onKeyPressHandler}/>
-      <Button onClick={onSubmit}>{buttonText?.buttonTitle}</Button>
+      <Button onClick={onSubmit}>{buttonText?.buttonTitle || "Find character"}</Button>
     </div>
   )
 }

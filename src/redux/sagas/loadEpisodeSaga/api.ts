@@ -6,13 +6,13 @@ export const getEpisode = async (payload: string) => {
 }
 
 export const getHeroesInfo = async (payload: string[]) => {
-  const res1 = await fetch(`${API}/character/${payload[0]}`);
-  const res2 = await fetch(`${API}/character/${payload[1]}`)
-  const res3 = await fetch(`${API}/character/${payload[2]}`)
-  const result1 = await res1.json()
-  const result2 = await res2.json()
-  const result3 = await res3.json()
-
+  const character1 = await fetch(`${API}/character/${payload[0]}`);
+  const character2 = await fetch(`${API}/character/${payload[1]}`)
+  const character3 = await fetch(`${API}/character/${payload[2]}`)
+  
+  const result1 = await character1.json()
+  const result2 = await character2.json()
+  const result3 = await character3.json()
 
   return [result1, result2, result3]
 }

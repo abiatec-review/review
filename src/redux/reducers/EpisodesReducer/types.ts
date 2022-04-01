@@ -1,13 +1,14 @@
-export interface IContentItem {
+export interface IHeroFromEpisode {
   name: string;
   id: string;
   image: string;
-  status?: string;
-  episode?: string[]
 }
 
-export interface IHeroesState {
-  heroes: IContentItem[],
+export interface IEpisodeState {
+  heroes: IHeroFromEpisode[],
+  name: string,
+  episode: string,
+  air_date: string,
   isError: boolean,
-  isLoading: boolean,
+  isLoading: boolean
 }
