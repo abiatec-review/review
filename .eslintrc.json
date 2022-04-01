@@ -58,6 +58,9 @@
           }
         }
       }
+    ],
+    "import/prefer-default-export": [
+      "warn"
     ]
   },
   "settings": {

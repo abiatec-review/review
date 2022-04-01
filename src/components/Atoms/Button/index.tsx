@@ -3,6 +3,7 @@
 
 import React from 'react';
 import { IButton } from 'Atoms/types';
+import { buttonStyles } from './styles.tailwind';
 
 const Button: React.FC<IButton> = ({ clickHandler, text }) => {
   console.log('Button');
@@ -10,7 +11,7 @@ const Button: React.FC<IButton> = ({ clickHandler, text }) => {
   return (
     <button
       onClick={clickHandler}
-      className="mt-5 py-1 border-black rounded shadow-inner-md"
+      className={`${buttonStyles}`}
     >
       {text}
     </button>
