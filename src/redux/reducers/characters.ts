@@ -1,8 +1,8 @@
-import { actionsTypes } from "../actions/actionsType";
+import {actionsTypes} from '../actions/actionsType';
 
 const initState: any = {
   characters: [],
-  charactersLoder: false,
+  charactersLoader: false,
 };
 
 const Characters = (
@@ -14,14 +14,14 @@ const Characters = (
       return {
         ...state,
         characters: action.payload,
-        charactersLoder: true,
+        charactersLoader: true,
       };
     }
     case actionsTypes.GET_CHARACTERS_SUCSESS: {
       return {
         ...state,
         characters: action.payload,
-        charactersLoder: false,
+        charactersLoader: false,
       };
     }
     default:

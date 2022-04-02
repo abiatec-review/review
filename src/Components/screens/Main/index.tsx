@@ -1,12 +1,5 @@
 import React, {useEffect} from 'react';
-import {
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getCharatersSucsess} from '../../../redux/actions/characters';
 import CharactersInfoBlock from '../../Items/CharactersBlock';
@@ -14,7 +7,7 @@ import {Characters} from '../../../types/types';
 
 const MainScreen = () => {
   const {
-    CharactersReducer: {characters, charactersLoder},
+    CharactersReducer: {characters, charactersLoader},
   } = useSelector((CharactersReducer: any) => CharactersReducer);
   const dispatch = useDispatch();
 
@@ -30,9 +23,12 @@ const MainScreen = () => {
 
   return (
     <View style={styles.mainScreenContainer}>
-      <Text>Main Screen</Text>
-      {charactersLoder && (
-        <FlatList data={characters} renderItem={renderItem}>
+      {charactersLoader && (
+        <FlatList
+          numColumns={2}
+          style={styles.flatlistContainer}
+          data={characters}
+          renderItem={renderItem}>
           keyExtractor={(item: Characters) => item.id}
         </FlatList>
       )}
@@ -42,7 +38,13 @@ const MainScreen = () => {
 
 const styles = StyleSheet.create({
   mainScreenContainer: {
-    height: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  flatlistContainer: {
+    flex: 1,
+    alignContent: 'space-around',
   },
 });
 

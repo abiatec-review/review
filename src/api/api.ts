@@ -1,15 +1,20 @@
-import axios from "axios";
+import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: "https://rickandmortyapi.com/api/",
+  baseURL: 'https://rickandmortyapi.com/api/',
   headers: {
-    "Content-Type": "application/json",
-  }
+    'Content-Type': 'application/json',
+  },
 });
 
 export const services = {
   async getCharacters() {
     const response = await instance.get('character');
-    return response.data.results
+    return response.data;
+  },
+  async getNextCharacters(nextCharacters: string) {
+    const response = await instance.get(`character?page=${nextCharacters}`);
+    console.log(response);
+    // return response.data;
   },
 };
