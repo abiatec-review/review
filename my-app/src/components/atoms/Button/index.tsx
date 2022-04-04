@@ -1,9 +1,11 @@
 import styles from './styles.module.scss'
 
-interface IProps {}
+interface IProps {
+  buttonName: string;
+}
 
-export const Button: React.FC<IProps> = ( {  } ) => {
+export const Button: React.FC<IProps> = ( { buttonName } ) => {
   return ( 
-    <button className={styles.submitButton}>Submit</button>
+    <button className={styles.submitButton}>{buttonName}</button>
   )
 }

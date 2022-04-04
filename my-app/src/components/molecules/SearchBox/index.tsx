@@ -10,7 +10,7 @@ export const SearchBox: React.FC<IProps> = ( {classname} ) => {
   return ( 
     <div className={styles.headerSearchBox}>
       <Input />
-      <Button />
+      <Button buttonName='Submit'/>
     </div>
   )
 } 
