@@ -14,7 +14,6 @@ export const services = {
   },
   async getNextCharacters(nextCharacters: string) {
     const response = await instance.get(`character?page=${nextCharacters}`);
-    console.log(response);
-    // return response.data;
+    return response.data;
   },
 };

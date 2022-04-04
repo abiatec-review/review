@@ -2,7 +2,7 @@ export type Characters = {
   created?: string;
   episode?: string[];
   gender?: string;
-  id?: number;
+  id: number;
   image?: string;
   location?: {
     name: string;
@@ -17,4 +17,16 @@ export type Characters = {
   status?: string;
   type?: string;
   url?: string;
+};
+
+export type infoTypes = {
+  count: number;
+  next: string | null;
+  pages: number;
+  prev: string | null;
+};
+
+export type allDataInfo = {
+  info: infoTypes;
+  results: Characters[];
 };

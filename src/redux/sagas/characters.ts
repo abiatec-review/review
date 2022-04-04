@@ -1,16 +1,25 @@
 import {AxiosResponse} from 'axios';
 import {all, fork, put, takeEvery} from 'redux-saga/effects';
 import {services} from '../../api/api';
-import {Characters} from '../../types/types';
+import {allDataInfo} from '../../types/types';
 import {actionsTypes} from '../actions/actionsType';
-import {getCharaters} from '../actions/characters';
+import {getCharaters, getNextCharaters} from '../actions/characters';
 
 function* getAllCharactersSaga() {
   try {
-    let allCharactersGetResult: AxiosResponse<Characters[]> =
+    const allCharactersGetResult: AxiosResponse<allDataInfo> =
       yield services.getCharacters();
-    console.log(3, allCharactersGetResult);
     yield put(getCharaters(allCharactersGetResult));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function* getNextAllCharactersSaga(payload: any) {
+  try {
+    const nexstCharacters: AxiosResponse<allDataInfo> =
+      yield services.getNextCharacters(payload.payload.nextCharactersPage);
+    yield put(getNextCharaters(nexstCharacters));
   } catch (err) {
     console.log(err);
   }
@@ -20,6 +29,13 @@ function* getAllCharactersFork() {
   yield takeEvery(actionsTypes.GET_CHARACTERS_SUCSESS, getAllCharactersSaga);
 }
 
+function* getNextCharactersFork() {
+  yield takeEvery(
+    actionsTypes.GET_NEXT_CHARACTERS_SUCSESS,
+    getNextAllCharactersSaga,
+  );
+}
+
 export default function* rootSaga() {
-  yield all([fork(getAllCharactersFork)]);
+  yield all([fork(getAllCharactersFork), fork(getNextCharactersFork)]);
 }
