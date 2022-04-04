@@ -1,16 +1,16 @@
-import "./App.css";
-
-import { MainLayout } from "./layouts/MainLayoute";
-import { MainContent } from "./components/Organismes/MainContent";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { LOAD_CONTENTFUL } from "./redux/actions/ContentfulActions";
+
+import { loadContentfulAC } from "./redux/actions/ContentfulActions";
+
+import MainLayout from "./layouts/MainLayoute";
+import MainContent from "./components/Organismes/MainContent";
 
 const App: React.FC= () => {
  const dispatch = useDispatch()
   
   useEffect(() => {
-    dispatch({type: LOAD_CONTENTFUL})
+    dispatch(loadContentfulAC())
   }, [])
   
   return (

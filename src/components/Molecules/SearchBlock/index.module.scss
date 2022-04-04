@@ -1,3 +1,10 @@
+@import 'styles/mixins.module.scss';
+
 .searchBlock {
-  display: flex
+  display: flex;
+
+  @include phone(){
+    flex-direction: column;
+    margin-left: 100px;
+  }
 }

@@ -1,19 +1,21 @@
-import { ImageTypes } from '../../../utils/constants'
+import { ImageTypes } from "utils/constants";
+
 interface IProps {
   type: ImageTypes;
   className?: string;
   img?: string;
 }
 
-const Image: React.FC<IProps> = ({type, className, img}) => {
+export const Image: React.FC<IProps> = ({type, className, img}) => {
   switch(type) {
     case ImageTypes.logSvg: {
-      return <img className={className} src={img} alt=""/>
+      return <img className={className} src={img} alt="rickMorty"/>
     }
     case ImageTypes.imageError: {
-      return <img className={className} src={img} alt=""/>
+      return <img className={className} src={img} alt="cat"/>
+    }
+    default: {
+      return <img className={className} src={img} alt="default"/>
     }
   }
 }
-
-export default Image

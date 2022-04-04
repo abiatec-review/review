@@ -1,8 +1,16 @@
+@import 'styles/mixins.module.scss';
+
 .link {
   margin: 5px;
+  font-size: 0.8rem;
+
   &:hover {
     text-decoration: underline;
     cursor: pointer;
-    color: rgb(14, 214, 187);
+    color: $links-color;
+  }
+
+  @include phone() {
+    font-size: 3rem;
   }
 }

@@ -1,27 +1,31 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 
-import { LOAD_HEROES, LOAD_HEROES_FAILURE, LOAD_HEROES_SUCCESS, LOAD_HEROES_LOADING, LOAD_MORE_HEROES, LOAD_MORE_HEROES_SUCCESS } from "../../actions/heroActions";
-import { getHeroes } from "./api";
+import { LOAD_HEROES, LOAD_HEROES_FAILURE, LOAD_HEROES_SUCCESS, LOAD_HEROES_LOADING, LOAD_MORE_HEROES, LOAD_MORE_HEROES_SUCCESS } from "redux/actions/heroActions";
+import { getHeroes, IPayloadArguments } from "./api";
 
-export function* loadMoreHeroes({payload}: any): Generator<any, any, any> {
+interface IPayload {
+  payload: IPayloadArguments
+}
+
+export function* loadMoreHeroes({payload: {name, page}}: IPayload): Generator<any, any, any> {
   try {
-    const data = yield call(getHeroes, payload.name, payload.page)
+    const data = yield call(getHeroes, {name, page})
     yield put({
       type: LOAD_MORE_HEROES_SUCCESS,
       payload: data
     })
 
   } catch (e) {
-    
+    console.log(e)
   }
 }
 
-export function* loadHeroes({payload}: any): Generator<any, any, any> {
+export function* loadHeroes({payload: {name, page}}: IPayload): Generator<any, any, any> {
   try {
     yield put({
       type: LOAD_HEROES_LOADING
     })
-    const data = yield call(getHeroes, payload.name, payload.page)
+    const data = yield call(getHeroes, {name, page});
     yield put({
       type: LOAD_HEROES_SUCCESS,
       payload: data

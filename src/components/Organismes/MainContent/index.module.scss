@@ -1,3 +1,22 @@
+@import 'styles//mixins.module.scss';
+
+.content {
+  margin-top: 11vw;
+
+  @include flex(column, center, center);
+
+  @include phone() {
+    margin-top: 50vw;
+  }
+
+}
 .button {
   margin-bottom: 20px;
+}
+.header {
+  font-size: 2rem;
+
+  @include phone() {
+    font-size: 10rem;
+  }
 }

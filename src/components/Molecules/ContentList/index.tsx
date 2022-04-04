@@ -1,15 +1,19 @@
-import { IContentItem } from '../../../redux/reducers/HeroesReducer/types';
-import {ContentItem} from '../../Atoms'
+import { IContentItem } from 'redux/reducers/HeroesReducer/types';
+
+import {ContentItem} from 'components/Atoms'
+
 import styles from './index.module.scss'
 interface IProps {
   characters: IContentItem[];
-  setSelectedHeroId: (id: string) => void
+  setSelectedHeroId: (id: string) => () => void
 }
 
 const ContentList: React.FC<IProps>= ({characters, setSelectedHeroId}) => {
-    return (
-        <ul className={styles.list}>
-            {characters.map((character: IContentItem) => {
+  
+  return (
+    <>
+     <ul className={styles.list}>
+            {characters?.map((character: IContentItem) => {
               return <ContentItem 
                         key={character.id} 
                         image={character.image}
@@ -19,6 +23,8 @@ const ContentList: React.FC<IProps>= ({characters, setSelectedHeroId}) => {
                       />
         })}
         </ul>
+    </>
+        
     )
 }
 

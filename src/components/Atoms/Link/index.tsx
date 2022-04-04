@@ -2,13 +2,11 @@ import styles from './index.module.scss'
 
 interface IProps {
   link: string;
-  openEpisode: (link: string) => void;
+  openEpisode: (link: string) => () => void;
 }
 
-const Link: React.FC<IProps>= ({link, openEpisode }) => {
+export const Link: React.FC<IProps>= ({link, openEpisode }) => {
   return (
-    <div className={styles.link} onClick={() => openEpisode(link)}>{link}</div>
+    <div className={styles.link} onClick={openEpisode(link)}>{link}</div>
   )
 }
-
-export default Link

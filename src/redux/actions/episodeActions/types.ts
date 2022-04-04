@@ -1,4 +1,4 @@
-import { IEpisodeState, IHeroFromEpisode } from '../../reducers/EpisodesReducer/types';
+import { IEpisodeState, IHeroFromEpisode } from 'redux/reducers/EpisodesReducer/types';
 import { LOAD_EPISODE_SUCCESS, LOAD_HEROES_FROM_EPISODE, LOAD_EPISODE_LOADING } from './index';
 
 export type IEpisodeAction = ILoadEpisode | ILoadHeroes | ILoadingEpisode;

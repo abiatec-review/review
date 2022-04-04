@@ -1,29 +1,20 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { LOAD_EPISODE } from '../../../../redux/actions/episodeActions';
-import { IContentItem } from '../../../../redux/reducers/HeroesReducer/types';
-import { defineEpisodeIndex } from '../../../../utils/validator';
-import { Link } from '../../../Atoms';
+
+import { IContentItem } from 'redux/reducers/HeroesReducer/types';
+
+import { Link } from 'components/Atoms';
 
 import styles from './index.module.scss'
 
 interface IProps {
   setIsModalOpen: () => void,
   hero?: IContentItem,
-  setIsEpisodePartOpen: (isOpen: boolean) => void,
+  openEpisode: (link: string) => () => void
 }
 
-const ModalHeroPart: React.FC<IProps> = ({setIsModalOpen, hero, setIsEpisodePartOpen}) => {
-  const dispatch = useDispatch()
-
-  const openEpisode = (id: string) => {
-    const episodeId = defineEpisodeIndex(id)
-    dispatch({type: LOAD_EPISODE, payload: episodeId})
-    setIsEpisodePartOpen(true)
-  }
+const ModalHeroPart: React.FC<IProps> = ({openEpisode, setIsModalOpen, hero}) => {
   return (
       <>
-        <button className={styles.button} onClick={setIsModalOpen}>Close</button>
         <div className={styles.header}>{hero?.name}</div>
         <img className={styles.image} src={hero?.image} alt='hero'/>
         <div className={styles.status}>Status: {hero?.status}</div>
@@ -31,7 +22,6 @@ const ModalHeroPart: React.FC<IProps> = ({setIsModalOpen, hero, setIsEpisodePart
           <div className={styles.episodesTitle}>All episodes</div>
           {hero?.episode?.map(elem => <Link key={elem} openEpisode={openEpisode} link={elem} />)}
         </div>
-        
       </>
     
   )

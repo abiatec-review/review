@@ -1,9 +1,9 @@
 import React from 'react';
-import HeaderBlock from '../../components/Molecules/HeaderBlock';
+import HeaderBlock from 'components/Molecules/HeaderBlock';
 interface IProps {
   children: JSX.Element
 }
-export const MainLayout:React.FC<IProps> = ({children}) => {
+const MainLayout:React.FC<IProps> = ({children}) => {
     return (
       <>
         <HeaderBlock />
@@ -14,3 +14,5 @@ export const MainLayout:React.FC<IProps> = ({children}) => {
       </>
     )
 }
+
+export default MainLayout;

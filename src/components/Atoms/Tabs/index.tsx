@@ -1,4 +1,5 @@
 import classNames from "classnames";
+
 import styles from "./index.module.scss";
 
 interface IProps {
@@ -7,17 +8,18 @@ interface IProps {
   openHero: () => void
 }
 
-const Tabs: React.FC<IProps>= ({isSelectedTab, openEpisode, openHero}) => {
+export const Tabs: React.FC<IProps>= ({isSelectedTab, openEpisode, openHero}) => {
   return (
     <div>
       <span 
-        className={classNames(!isSelectedTab && styles.active, styles.tab)} 
+        // className={classNames(!isSelectedTab && styles.active, styles.tab)} 
+        className={classNames(styles.tab, {[styles.active]: !isSelectedTab})}
         onClick={openHero}
       >
         Hero
       </span>
       <span 
-        className={classNames(isSelectedTab && styles.active, styles.tab)} 
+        className={classNames(styles.tab, {[styles.active]: isSelectedTab})} 
         onClick={openEpisode}
       >
         Episode
@@ -26,5 +28,3 @@ const Tabs: React.FC<IProps>= ({isSelectedTab, openEpisode, openHero}) => {
     
   )
 }
-
-export default Tabs;

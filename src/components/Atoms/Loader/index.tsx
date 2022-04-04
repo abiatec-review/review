@@ -1,11 +1,18 @@
+import classNames from "classnames";
+
 import styles from "./index.module.scss";
 
-const Loader: React.FC = () => {
+interface IProps {
+  className?: string
+}
+
+export const Loader: React.FC<IProps> = ({className}) => {
   return (
     <>
-      <div className={styles.loader}><div></div><div></div></div>
+      <div className={classNames(styles.loader, className)}>
+        <div />
+        <div />
+      </div>
     </>
   )
 }
-
-export default Loader

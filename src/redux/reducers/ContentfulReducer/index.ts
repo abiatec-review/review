@@ -1,6 +1,6 @@
 
-import { LOAD_CONTENTFUL, LOAD_CONTENTFUL_SUCCESS } from "../../actions/ContentfulActions"
-import { IContentfulAction } from "../../actions/ContentfulActions/types"
+import { LOAD_CONTENTFUL_SUCCESS } from "redux/actions/ContentfulActions"
+import { IContentfulAction } from "redux/actions/ContentfulActions/types"
 
 export default function contentfulReducer(state = {}, action: IContentfulAction): any {
   switch (action.type) {

@@ -1,6 +1,6 @@
 
-import { LOAD_HEROES_SUCCESS, LOAD_HEROES_FAILURE, LOAD_HEROES_LOADING, SAVE_HERO_NAME, LOAD_MORE_HEROES_SUCCESS } from "../../actions/heroActions"
-import { IHeroesAction } from "../../actions/heroActions/types"
+import { LOAD_HEROES_SUCCESS, LOAD_HEROES_FAILURE, LOAD_HEROES_LOADING, SAVE_HERO_NAME, LOAD_MORE_HEROES_SUCCESS } from "redux/actions/heroActions"
+import { IHeroesAction } from "redux/actions/heroActions/types"
 import { IHeroesState } from "./types"
 
 const initialState: IHeroesState = {

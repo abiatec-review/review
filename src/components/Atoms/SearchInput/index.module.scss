@@ -1,17 +1,26 @@
-@import "../../../styles/mixins.module.scss";
+@import "styles/mixins.module.scss";
 
 .SearchInput {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  & > input {
-    height: 2rem;
-    font-size: 1.5rem;
+  @include flex('', center, center);
+}
+
+.input {
+  // height: 2rem;
+  width: 40vw;
+  font-size: 1.5rem;
+  border-radius: 0.25rem;
+  outline: 0;
+  border: 0.1rem solid $button-color;
+  margin-right: 1rem;
+
+  @include phone() {
+    margin: 0 0 15px 0;
+    height: 5rem;
+    font-size: 3.5rem;
+    width: 65vw;
     border-radius: 0.25rem;
     outline: 0;
     border: 0.1rem solid $button-color;
     margin-right: 1rem;
   }
 }
-

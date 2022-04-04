@@ -1,11 +1,12 @@
 import React from 'react';
+
 import styles from "./index.module.scss";
 interface IProps {
   closeModal?: () => void,
   children: JSX.Element
 }
 
-const Modal: React.FC<IProps> = ({closeModal, children}) => {
+export const Modal: React.FC<IProps> = ({closeModal, children}) => {
   return (
     <div className={styles.modal}>
       <div className={styles.pop} >
@@ -15,5 +16,3 @@ const Modal: React.FC<IProps> = ({closeModal, children}) => {
     </div>
   )
 }
-
-export default Modal

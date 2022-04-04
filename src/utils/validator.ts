@@ -7,6 +7,5 @@ export const getThreeRandomElements = (array: string[]): string[] => {
 }
 
 export const defineNextPage = (link: string): string => {
-
-  return link?.length > 2 ? link.split('page=')?.[1]?.[0] : link
+  return link?.length > 5 ? link.split('page=')?.[1]?.[0] : link
 }

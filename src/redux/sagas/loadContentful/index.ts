@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { LOAD_CONTENTFUL, LOAD_CONTENTFUL_SUCCESS } from "../../actions/ContentfulActions";
+import { LOAD_CONTENTFUL, LOAD_CONTENTFUL_SUCCESS } from "redux/actions/ContentfulActions";
 import { getContentful } from "./api";
 
 

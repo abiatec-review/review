@@ -1,14 +1,25 @@
-@import "../../../styles/mixins.module.scss";
 
-.header {
-  font-size:24pt;
+@import "styles/mixins.module.scss";
+
+.loader { 
+  margin-top: 20px;
 }
+.button {
+  @include position(absolute, 10px, 335px);
+  
+  background-color: $tab-color;
+  border: none;
+  color: $white-color;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius:5px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: $font-h3;
+  cursor: pointer;
 
-.image {
-  border-radius: 50%;
-  margin: 20px 0
-}
-
-.status {
-  font-size:18pt
+  @include phone() {
+    font-size: 3rem;
+    width: 13vw;
+  }
 }

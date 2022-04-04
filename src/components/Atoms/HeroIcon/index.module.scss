@@ -1,6 +1,16 @@
+@import "styles/mixins.module.scss";
+
+.item {
+  @include flex(column, center);
+}
 .name {
-  font-size: 11pt;
-  width:120px;
+  font-size: $font-span;
+  margin-top: 10px;
+  text-align: center;
+
+  @include phone() {
+    font-size: 2rem;
+  }
 }
 
 .image {
