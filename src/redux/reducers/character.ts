@@ -12,30 +12,31 @@ export function characterReducer(state = initialState, action: CharacterAction):
   const { type } = action;
 
   switch (type) {
-    case CharacterActionType.GET_CHARACTER: {
+    case CharacterActionType.GET_CHARACTER_SUCCESS: {
       const { payload } = action;
-      return { ...state, character: payload.character };
+      return { ...state, error: undefined, character: payload.data };
     }
-    case CharacterActionType.GET_CHARACTER_LIST: {
+    case CharacterActionType.GET_CHARACTER_FAILED: {
+      const { payload } = action;
+      return { ...state, error: payload.error };
+    }
+    case CharacterActionType.GET_CHARACTER_LIST_SUCCESS: {
       const { payload } = action;
       return {
         ...state,
-        characterList: [...state.characterList, ...payload.characters]
+        error: undefined,
+        characterList: [...state.characterList, ...payload.data]
       };
+    }
+    case CharacterActionType.GET_CHARACTER_LIST_FAILED: {
+      const { payload } = action;
+      return { ...state, error: payload.error };
     }
     case LoadingActionType.START: {
-      return {
-        ...state,
-        isLoading: true,
-        characterList: [...state.characterList]
-      };
+      return { ...state, isLoading: true };
     }
     case LoadingActionType.STOP: {
-      return {
-        ...state,
-        isLoading: false,
-        characterList: [...state.characterList]
-      };
+      return { ...state, isLoading: false };
     }
     default:
       return state;

@@ -33,7 +33,7 @@ describe("Location reducer", () => {
     store.dispatch(getLocationListAction(locations));
     const actions = store.getActions();
     expect(actions[1]).toEqual<GetLocationsAction>({
-      type: LocationActionType.GET_LOCATIONS,
+      type: LocationActionType.GET_LOCATIONS_SUCCESS,
       payload: { locations }
     });
   });

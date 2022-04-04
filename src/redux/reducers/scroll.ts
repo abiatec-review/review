@@ -9,16 +9,17 @@ const initialState: ScrollReducer = {
 
 export function scrollReducer(state = initialState, action: ScrollAction): ScrollReducer {
   const { type, payload } = action;
+  const { data } = payload;
 
   switch (type) {
     case ScrollActionType.SCROLL_CHARACTERS: {
-      return { ...state, characterOffset: payload.offset };
+      return { ...state, characterOffset: data };
     }
     case ScrollActionType.SCROLL_LOCATIONS: {
-      return { ...state, locationOffset: payload.offset };
+      return { ...state, locationOffset: data };
     }
     case ScrollActionType.SCROLL_EPISODES: {
-      return { ...state, episodeOffset: payload.offset };
+      return { ...state, episodeOffset: data };
     }
     default:
       return state;

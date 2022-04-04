@@ -10,13 +10,17 @@ export function episodeReducer(state = initialState, action: EpisodeAction): Epi
   const { type } = action;
 
   switch (type) {
-    case EpisodeActionType.GET_EPISODES: {
+    case EpisodeActionType.GET_EPISODES_SUCCESS: {
       const { payload } = action;
-
       return {
         ...state,
-        episodes: [...state.episodes, ...payload.episodes]
+        error: undefined,
+        episodes: [...state.episodes, ...payload.data]
       };
+    }
+    case EpisodeActionType.GET_EPISODES_FAILED: {
+      const { payload } = action;
+      return { ...state, error: payload.error };
     }
     case LoadingActionType.START: {
       return { ...state, isLoading: true };

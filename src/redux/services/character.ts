@@ -1,11 +1,13 @@
 import {
-  getCharacterAction,
-  getCharactersListAction,
+  getCharacterFailedAction,
+  getCharactersListFailedAction,
+  getCharactersListSuccessAction,
+  getCharacterSuccessAction,
   startLoadingAction,
   stopLoadingAction
 } from "@actions";
 import { CharacterAction } from "@models/actions";
-import { Character, Pagination, ResultList } from "@models/entities";
+import { Character, ResultList } from "@models/entities";
 import { Dispatch } from "redux";
 
 import requests, { fixDate } from "./base";
@@ -13,27 +15,32 @@ import requests, { fixDate } from "./base";
 export function getCharacter(id: number) {
   return async function (dispatch: Dispatch<CharacterAction>) {
     dispatch(startLoadingAction());
-
-    const result = await requests.get<Character>(`/character/${id}`);
-
-    const character = fixDate(result);
-    dispatch(getCharacterAction(character));
-
-    dispatch(stopLoadingAction());
+    try {
+      const result = await requests.get<Character>(`/character/${id}`);
+      const character = fixDate(result);
+      dispatch(getCharacterSuccessAction(character));
+    } catch (error) {
+      dispatch(getCharacterFailedAction(String(error)));
+    } finally {
+      dispatch(stopLoadingAction());
+    }
   };
 }
 
-export function getCharacterList(page = 1) {
-  return async function (dispatch: Dispatch<CharacterAction>): Promise<Pagination> {
+export function getCharacterList(page: number) {
+  return async function (dispatch: Dispatch<CharacterAction>) {
     dispatch(startLoadingAction());
-
-    const { info, results } = await requests.get<ResultList<Character>>(`/character/?page=${page}`);
-
-    const characters = results.map(fixDate);
-    dispatch(getCharactersListAction(characters));
-
-    dispatch(stopLoadingAction());
-
-    return { nextPage: page + 1, hasMore: info.next !== null };
+    try {
+      const { info, results } = await requests.get<ResultList<Character>>(
+        `/character/?page=${page}`
+      );
+      const characters = results.map(fixDate);
+      dispatch(getCharactersListSuccessAction(characters));
+      return { nextPage: page + 1, hasMore: info.next !== null };
+    } catch (error) {
+      dispatch(getCharactersListFailedAction(String(error)));
+    } finally {
+      dispatch(stopLoadingAction());
+    }
   };
 }

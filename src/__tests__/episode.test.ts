@@ -33,7 +33,7 @@ describe("Episode reducer", () => {
     store.dispatch(getEpisodeListAction(episodes));
     const actions = store.getActions();
     expect(actions[1]).toEqual<GetEpisodesAction>({
-      type: EpisodeActionType.GET_EPISODES,
+      type: EpisodeActionType.GET_EPISODES_SUCCESS,
       payload: { episodes }
     });
   });

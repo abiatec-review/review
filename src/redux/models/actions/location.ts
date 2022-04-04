@@ -1,14 +1,18 @@
 import { Location } from "@models/entities";
 
+import { FailedAction, SuccessAction } from "./action";
 import { LoadingAction } from "./loading";
 
 export const enum LocationActionType {
-  GET_LOCATIONS = "GET_LOCATIONS"
+  GET_LOCATIONS_SUCCESS = "GET_LOCATIONS_SUCCESS",
+  GET_LOCATIONS_FAILED = "GET_LOCATIONS_FAILED"
 }
 
-interface GetLocationsAction {
-  type: LocationActionType.GET_LOCATIONS;
-  payload: { locations: Array<Location> };
-}
+type GetEpisodesSuccessAction = SuccessAction<
+  LocationActionType.GET_LOCATIONS_SUCCESS,
+  Array<Location>
+>;
 
-export type LocationAction = GetLocationsAction | LoadingAction;
+type GetEpisodesFailedAction = FailedAction<LocationActionType.GET_LOCATIONS_FAILED>;
+
+export type LocationAction = GetEpisodesSuccessAction | GetEpisodesFailedAction | LoadingAction;

@@ -12,16 +12,16 @@
     "noEmit": true,
     "baseUrl": "./src",
     "paths": {
-      "@hooks": ["./hooks"],
       "@actions": ["./redux/actions"],
       "@models/*": ["./redux/models/*"],
       "@reducers": ["./redux/reducers"],
       "@services": ["./redux/services"],
-      "@utils": ["./utils"],
       "@store": ["./redux/store"],
-      "@components/*": ["./components/*"],
+      "@hooks": ["./hooks"],
+      "@utils": ["./utils"],
       "@screens": ["./screens"],
-      "@navigation": ["./navigation"]
+      "@navigation": ["./navigation"],
+      "@components/*": ["./components/*"]
     }
   },
   "exclude": ["node_modules"]

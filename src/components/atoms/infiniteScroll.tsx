@@ -10,8 +10,8 @@ interface Props {
   offset?: number;
   isLoading: boolean;
   onScroll?: (offset: number) => void;
-  load: (page: number) => Promise<Pagination>;
   numColumns?: { portrait: number; landscape: number };
+  load: (page: number) => Promise<Pagination | undefined>;
 }
 
 type DefaultProps<T> = Omit<FlatListProps<T>, "numColumns" | "onScroll">;
@@ -21,14 +21,16 @@ export function InfiniteScroll<T>(props: DefaultProps<T> & Props) {
 
   const [pagination, setPagination] = useState<Pagination>();
 
+  const handleResult = (result?: Pagination) => result && setPagination(result);
+
   useEffect(() => {
-    load(1).then(setPagination);
+    load(1).then(handleResult);
   }, []);
 
   const endReached = () => {
     if (pagination) {
       const { hasMore, nextPage } = pagination;
-      !isLoading && hasMore && load(nextPage).then(setPagination);
+      !isLoading && hasMore && load(nextPage).then(handleResult);
     }
   };
 

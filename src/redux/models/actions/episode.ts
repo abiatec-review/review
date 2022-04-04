@@ -1,14 +1,18 @@
 import { Episode } from "@models/entities";
 
+import { FailedAction, SuccessAction } from "./action";
 import { LoadingAction } from "./loading";
 
 export const enum EpisodeActionType {
-  GET_EPISODES = "GET_EPISODES"
+  GET_EPISODES_SUCCESS = "GET_EPISODES_SUCCESS",
+  GET_EPISODES_FAILED = "GET_EPISODES_FAILED"
 }
 
-interface GetEpisodesAction {
-  type: EpisodeActionType.GET_EPISODES;
-  payload: { episodes: Array<Episode> };
-}
+type GetEpisodesSuccessAction = SuccessAction<
+  EpisodeActionType.GET_EPISODES_SUCCESS,
+  Array<Episode>
+>;
 
-export type EpisodeAction = GetEpisodesAction | LoadingAction;
+type GetEpisodesFailedAction = FailedAction<EpisodeActionType.GET_EPISODES_FAILED>;
+
+export type EpisodeAction = GetEpisodesSuccessAction | GetEpisodesFailedAction | LoadingAction;

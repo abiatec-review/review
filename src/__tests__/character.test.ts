@@ -42,7 +42,7 @@ describe("Character reducer", () => {
     store.dispatch(getCharacterAction(character));
     const actions = store.getActions();
     expect(actions[1]).toEqual<CharacterAction>({
-      type: CharacterActionType.GET_CHARACTER,
+      type: CharacterActionType.GET_CHARACTER_SUCCESS,
       payload: { character }
     });
   });
@@ -64,7 +64,7 @@ describe("Character reducer", () => {
     store.dispatch(getCharactersListAction(characters));
     const actions = store.getActions();
     expect(actions[4]).toEqual<CharacterAction>({
-      type: CharacterActionType.GET_CHARACTER_LIST,
+      type: CharacterActionType.GET_CHARACTER_LIST_SUCCESS,
       payload: { characters }
     });
   });
