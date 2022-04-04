@@ -2,20 +2,22 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { LOAD_MORE_HEROES } from "../../../redux/actions/heroActions";
 
-import { RootReducer } from "../../../redux/reducers";
 import { getContentfulFieldsSelector } from "../../../redux/selectors/contentfulSelectors";
-import { getHeroName, getNextPage } from "../../../redux/selectors/heroesSelectors";
+import { getEpisodeSelector } from "../../../redux/selectors/episodeSelectors";
+import { getHeroesSelector, getHeroNameSelector, getNextPageSelector } from "../../../redux/selectors/heroesSelectors";
 import { defineNextPage } from "../../../utils/validator";
 
 import {Button, ErrorComponent, Loader} from "../../Atoms";
 import { ContentList, ModalHero } from "../../Molecules";
 
+import styles from './index.module.scss';
+
 export const MainContent = () => {
 
-  const heroes = useSelector((store: RootReducer) => store.heroes)
-  const episode = useSelector((store: RootReducer) => store.episode)
+  const heroes = useSelector(getHeroesSelector)
+  const episode = useSelector(getEpisodeSelector)
   const contentfulInfo = useSelector(getContentfulFieldsSelector)
-  const nextPage = useSelector(getNextPage)
+  const nextPage = useSelector(getNextPageSelector)
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedHeroId, setSelectedHeroId] = useState('');
@@ -34,7 +36,7 @@ export const MainContent = () => {
       }
     })
   }
-  const name = useSelector(getHeroName)
+  const name = useSelector(getHeroNameSelector)
   const dispatch = useDispatch();
   const searchResult = !heroes.isError ? <ContentList characters={heroes?.heroes} setSelectedHeroId={openModal}/> : <ErrorComponent />
   return (
@@ -43,7 +45,7 @@ export const MainContent = () => {
       <div className='content'>
         <h1>{contentfulInfo?.title || 'Rick and Morty'}</h1>
         { heroes?.isLoading ? <Loader /> : searchResult}
-        {heroes?.heroes?.length > 19 && nextPage && <Button onClick={fetchMore}>Fetch more</Button>}
+        {heroes?.heroes?.length > 19 && nextPage && <Button className={styles.button} onClick={fetchMore}>Fetch more</Button>}
       </div>
     </div>
   )

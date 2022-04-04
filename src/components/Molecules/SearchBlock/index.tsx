@@ -1,5 +1,5 @@
 
-import { useCallback, useState, KeyboardEvent } from 'react';
+import { useCallback, KeyboardEvent } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import  styles from './index.module.scss'
@@ -7,14 +7,13 @@ import  styles from './index.module.scss'
 import {Button, SearchInput} from "../../Atoms"
 import { LOAD_HEROES, SAVE_HERO_NAME } from "../../../redux/actions/heroActions";
 import { getButtonTextSelector } from '../../../redux/selectors/contentfulSelectors';
-import { RootReducer } from '../../../redux/reducers';
-import { getHeroName, getNextPage } from '../../../redux/selectors/heroesSelectors';
+import { getHeroNameSelector, getNextPageSelector } from '../../../redux/selectors/heroesSelectors';
 import { defineNextPage } from '../../../utils/validator';
 
 const SearchBlock = () => {
   
-  const name = useSelector(getHeroName)
-  const nextPage = useSelector(getNextPage)
+  const name = useSelector(getHeroNameSelector)
+  const nextPage = useSelector(getNextPageSelector)
   
   const dispatch = useDispatch()
   const buttonText = useSelector(getButtonTextSelector)

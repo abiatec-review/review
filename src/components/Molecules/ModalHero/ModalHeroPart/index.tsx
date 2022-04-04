@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { LOAD_EPISODE } from '../../../../redux/actions/episodeActions';
 import { IContentItem } from '../../../../redux/reducers/HeroesReducer/types';
 import { defineEpisodeIndex } from '../../../../utils/validator';

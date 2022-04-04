@@ -1,0 +1,14 @@
+@import "../../../styles/mixins.module.scss";
+
+.active {
+  color: #e25a83;
+  text-decoration: underline;
+}
+.tab {
+  font-size: 16pt;
+  margin-right: 20px;
+  &:hover {
+    cursor: pointer;
+    color: #e25a83;
+  }
+}

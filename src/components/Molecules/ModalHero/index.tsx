@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import classnames from 'classnames';
 
 import styles from './index.module.scss'
-import classnames from 'classnames';
+
 import Modal from '../../Atoms/Modal';
-import { IContentItem } from '../../../redux/reducers/HeroesReducer/types';
 import ModalHeroPart from './ModalHeroPart';
 import ModalEpisodePart from './ModalEpisodePart';
+
+import { IContentItem } from '../../../redux/reducers/HeroesReducer/types';
 import { IEpisodeState } from '../../../redux/reducers/EpisodesReducer/types';
-import { defineEpisodeIndex } from '../../../utils/validator';
 import { LOAD_EPISODE } from '../../../redux/actions/episodeActions';
-import { useDispatch } from 'react-redux';
+
+import { defineEpisodeIndex } from '../../../utils/validator';
+import { Loader, Tabs } from '../../Atoms';
 
 interface IProps {
   setIsModalOpen: () => void,
@@ -26,13 +30,16 @@ const ModalHero: React.FC<IProps> = ({setIsModalOpen, hero, episode}) => {
     dispatch({type: LOAD_EPISODE, payload: episodeId})
     setIsEpisodePartOpen(true)
   }
+
+  const episodePart = episode?.isLoading ? <Loader /> : <ModalEpisodePart episode={episode} setIsModalOpen={setIsModalOpen}/>
+
   return (
-    <Modal closeModal={setIsModalOpen}>
+    <Modal >
       <>
-      <span className={classnames(!isEpisodePartOpen && styles.active, styles.tab)} onClick={() => setIsEpisodePartOpen(false)}>Hero</span>
-      <span className={classnames(isEpisodePartOpen && styles.active, styles.tab)} onClick={() => openEpisode(hero?.episode?.[0])}>Episode</span>
-        {isEpisodePartOpen ? 
-          <ModalEpisodePart episode={episode} setIsModalOpen={setIsModalOpen}/>: 
+      <Tabs isSelectedTab={isEpisodePartOpen} 
+           openEpisode={() => openEpisode(hero?.episode?.[0])}
+           openHero={() => setIsEpisodePartOpen(false)} />
+        {isEpisodePartOpen ? episodePart : 
           <ModalHeroPart setIsEpisodePartOpen={setIsEpisodePartOpen} setIsModalOpen={setIsModalOpen} hero={hero}/> }
       </>
     </Modal>
