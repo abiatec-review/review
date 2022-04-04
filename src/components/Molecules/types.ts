@@ -24,5 +24,5 @@ export interface ITabNames {
 }
 
 export interface IEpisodesBlock {
-    episodesArray: Array<TabNameType>,
+    episodeUrlsArray: Array<TabNameType>,
 }

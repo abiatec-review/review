@@ -22,7 +22,8 @@ export interface ITab {
 }
 
 export interface IShadowField {
-    isVisible: boolean
+    isVisible: boolean,
+    closeModalFunction: ()=>void
 }
 
 export interface IInfoItem {

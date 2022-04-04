@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.shadow-center-xl {
-    box-shadow: 0 0 10px black;
+
+.modal::-webkit-scrollbar {
+    width: 0px;
 }

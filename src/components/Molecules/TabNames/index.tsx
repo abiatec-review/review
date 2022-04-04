@@ -4,7 +4,7 @@ import React from 'react';
 import { TabNamesStyles } from './styles.tailwind';
 
 const TabNames: React.FC<ITabNames> = ({ tabsNames, clickHandler }) => {
-  console.log(tabsNames);
+  console.log('tabsNames');
 
   return (
     <div className={`${TabNamesStyles}`}>
