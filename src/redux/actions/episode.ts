@@ -1,9 +1,9 @@
-import EpisodeAction, {EpisodeActionType} from '@models/actions/episode';
-import Episode from '@models/episode';
+import { EpisodeAction, EpisodeActionType } from "@models/actions";
+import { Episode } from "@models/entities";
 
-export function GetEpisodeListAction(episodes: Array<Episode>): EpisodeAction {
+export function getEpisodeListAction(episodes: Array<Episode>): EpisodeAction {
   return {
     type: EpisodeActionType.GET_EPISODES,
-    payload: {episodes},
+    payload: { episodes }
   };
 }

@@ -1,6 +1,6 @@
-import Character from '../character';
+import { Character } from "@models/entities";
 
-export default interface CharacterState {
+export interface CharacterReducer {
   isLoading: boolean;
   character: Character;
   characterList: Array<Character>;

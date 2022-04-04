@@ -1,23 +1,24 @@
-import CharactersModal from '@components/modals/characters';
-import TextRow from '@components/textRow';
-import Location from '@models/location';
-import {useSelector} from '@store';
-import React, {useState} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import { TextRow } from "@components/atoms";
+import { CharactersModal } from "@components/moleculas/modals";
+import { Location } from "@models/entities";
+import { useSelector } from "@store";
+import { Colors, Indent, Radius } from "@utils";
+import React, { useState } from "react";
+import { Pressable, StyleSheet } from "react-native";
 
 interface Props {
   location: Location;
 }
 
-function LocationCard({location}: Props) {
+export function LocationCard(props: Props) {
+  const { location } = props;
+
   const [isModalShown, setIsModalShown] = useState(false);
 
   const toggleModal = () => setIsModalShown(!isModalShown);
 
-  const residents = useSelector(({characterReducer}) =>
-    characterReducer.characterList.filter(({url}) =>
-      location.residents.includes(url),
-    ),
+  const residents = useSelector(({ characterReducer }) =>
+    characterReducer.characterList.filter(({ url }) => location.residents.includes(url))
   );
 
   return (
@@ -29,7 +30,7 @@ function LocationCard({location}: Props) {
         <TextRow field="Created" data={location.created} />
         <TextRow field="Residents" data={residents.length.toString()} />
       </Pressable>
-      {residents.length > 0 && (
+      {residents?.length > 0 && (
         <CharactersModal
           title="Residents"
           toggle={toggleModal}
@@ -41,17 +42,15 @@ function LocationCard({location}: Props) {
   );
 }
 
-export default (LocationCard);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10,
-    padding: 15,
     height: 170,
-    borderRadius: 20,
-    alignItems: 'center',
-    backgroundColor: 'gray',
-    justifyContent: "space-between",
-  },
+    alignItems: "center",
+    padding: Indent.HUGE,
+    margin: Indent.DEFAULT,
+    borderRadius: Radius.DEFAULT,
+    backgroundColor: Colors.GRAY,
+    justifyContent: "space-between"
+  }
 });

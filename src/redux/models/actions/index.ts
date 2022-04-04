@@ -1,8 +1,5 @@
-import CharacterAction from './character';
-import EpisodeAction from './episode';
-import LocationAction from './location';
-import ScrollAction from './scroll';
-
-type Action = CharacterAction | LocationAction | EpisodeAction | ScrollAction;
-
-export default Action;
+export { CharacterAction, CharacterActionType } from "./character";
+export { EpisodeAction, EpisodeActionType } from "./episode";
+export { LocationAction, LocationActionType } from "./location";
+export { LoadingAction, LoadingActionType } from "./loading";
+export { ScrollAction, ScrollActionType } from "./scroll";

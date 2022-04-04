@@ -1,9 +1,9 @@
-import {LocationActionType} from '@models/actions/location';
-import Location from '@models/location';
+import { LocationActionType } from "@models/actions";
+import { Location } from "@models/entities";
 
-export function GetLocationListAction(locations: Array<Location>) {
+export function getLocationListAction(locations: Array<Location>) {
   return {
     type: LocationActionType.GET_LOCATIONS,
-    payload: {locations},
+    payload: { locations }
   };
 }

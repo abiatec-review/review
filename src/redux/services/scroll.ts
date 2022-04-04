@@ -1,10 +1,6 @@
-import {
-  scrollCharactersAction,
-  scrollEpisodesAction,
-  scrollLocationsAction,
-} from '@actions/scroll';
-import ScrollAction from '@models/actions/scroll';
-import {Dispatch} from 'react';
+import { scrollCharactersAction, scrollEpisodesAction, scrollLocationsAction } from "@actions";
+import { ScrollAction } from "@models/actions";
+import { Dispatch } from "redux";
 
 export function scrollCharacters(offset: number) {
   return function (dispatch: Dispatch<ScrollAction>) {

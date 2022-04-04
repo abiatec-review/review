@@ -1,4 +1,4 @@
-export default interface ScrollState {
+export interface ScrollReducer {
   characterOffset: number;
   locationOffset: number;
   episodeOffset: number;

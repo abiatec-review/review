@@ -1,10 +1,11 @@
-import TextRow from '@components/textRow';
-import useOrientation from '@hooks/useOrientation';
-import Character from '@models/character';
-import React from 'react';
-import {Image, Platform, StyleSheet, View} from 'react-native';
+import { TextRow } from "@components/atoms";
+import { useOrientation } from "@hooks";
+import { Character } from "@models/entities";
+import { Indent, Radius } from "@utils";
+import React from "react";
+import { Image, Platform, StyleSheet, View } from "react-native";
 
-import Modal from '.';
+import Modal from "./modal";
 
 interface Props {
   character: Character;
@@ -12,16 +13,16 @@ interface Props {
   toggle: () => void;
 }
 
-function CharacterDetailsModal(props: Props) {
-  const {character, isShown, toggle} = props;
+export function CharacterDetailsModal(props: Props) {
+  const { character, isShown, toggle } = props;
 
-  const {isPortrait} = useOrientation();
+  const { isPortrait } = useOrientation();
   const styles = isPortrait ? portraitStyles : landscapeStyles;
 
   return (
     <Modal isShown={isShown} toggle={toggle} style={styles.modal}>
       <View style={styles.infoBlock}>
-        <Image source={{uri: character.image}} style={styles.image} />
+        <Image source={{ uri: character.image }} style={styles.image} />
         <View style={styles.textBlock}>
           <TextRow field="Status" data={character.status} />
           <TextRow field="Gender" data={character.gender} />
@@ -33,45 +34,43 @@ function CharacterDetailsModal(props: Props) {
   );
 }
 
-export default CharacterDetailsModal;
-
 const baseStyles = StyleSheet.create({
   image: {
     aspectRatio: 1,
-    borderRadius: 20,
+    borderRadius: Radius.DEFAULT
   },
   textBlock: {
     flex: 1,
-    justifyContent: 'space-evenly',
-  },
+    justifyContent: "space-evenly"
+  }
 });
 
 const portraitStyles = StyleSheet.create({
   ...baseStyles,
   modal: {
-    flex: Platform.select({ios: 0.65, android: 0.85}),
+    flex: Platform.select({ ios: 0.65, android: 0.85 })
   },
-  infoBlock: {flex: 1},
+  infoBlock: { flex: 1 },
   image: {
     ...baseStyles.image,
-    width: '100%',
-  },
+    width: "100%"
+  }
 });
 
 const landscapeStyles = StyleSheet.create({
   ...baseStyles,
   modal: {
-    flex: 0.62,
+    flex: 0.62
   },
   infoBlock: {
-    marginBottom: 10,
-    alignItems: 'center',
-    flexDirection: 'row',
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: Indent.DEFAULT
   },
   image: {
     ...baseStyles.image,
-    flex: Platform.select({ios: 0.45, android: 0.5}),
-    marginRight: 15,
+    marginRight: Indent.HUGE,
+    flex: Platform.select({ ios: 0.45, android: 0.5 })
   },
   textBlock: {
     ...baseStyles.textBlock,
