@@ -7,7 +7,8 @@ export interface IInput {
 
 export interface IImage {
     src: string,
-    alt: string
+    alt: string,
+    pdd?: string
 }
 
 export interface IButton {

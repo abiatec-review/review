@@ -8,7 +8,7 @@ export const getEpisodesInfo = (payload: any) => ({
   payload,
 });
 
-export const addNewChar = (payload: any) => ({
+export const addNewChars = (payload: any) => ({
   type: 'ADD_NEW_CHARACTERS',
   payload,
 });

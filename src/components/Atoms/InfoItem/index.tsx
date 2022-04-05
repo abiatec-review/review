@@ -2,7 +2,6 @@
 import React, { useMemo } from 'react';
 import { IFunctions, IInfoItem } from 'Atoms/types';
 import { Image } from 'components/Atoms';
-// import { InfoItemStyles } from './styles.tailwind';
 
 const InfoItem: React.FC<IInfoItem> = ({ data, dataType }) => {
   const validateFunctions:IFunctions = useMemo(() => ({

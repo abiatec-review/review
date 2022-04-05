@@ -1,16 +1,18 @@
 import { Button } from 'components/Atoms';
+import { EpisodeItem } from 'components/Molecules';
 import { IEpisodesBlock } from 'Molecules/types';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux&saga';
 import { getEpisodesInfo } from 'redux&saga/actions/episodesActions';
+import { IEpisode } from 'redux&saga/types';
 
 const EpisodesBlock: React.FC<IEpisodesBlock> = ({ episodeUrlsArray }) => {
   const [numOfVisibleChunks, setNumOfVisibleChunks] = useState(1);
 
   const dispatch = useDispatch();
 
-  const { receivedEpisodesInfo } = useSelector((state: RootState) => state.episodes);
+  const { receivedEpisodesInfo, characters } = useSelector((state: RootState) => state.episodes);
 
   const episodeUrlsChunks = useMemo(() => {
     const episodes = [];
@@ -24,7 +26,7 @@ const EpisodesBlock: React.FC<IEpisodesBlock> = ({ episodeUrlsArray }) => {
 
   const renderEpisodesList = () => {
     if (receivedEpisodesInfo) {
-      return receivedEpisodesInfo.map((el: {name: string}) => <div key={`${numOfVisibleChunks} ${el.name}-episodes-item`}>{el.name}</div>);
+      return receivedEpisodesInfo.map((el: IEpisode) => <EpisodeItem chars={characters} key={`${numOfVisibleChunks} ${el.name}-episodes-item`} episodeData={el} />);
     }
     return null;
   };
@@ -34,11 +36,13 @@ const EpisodesBlock: React.FC<IEpisodesBlock> = ({ episodeUrlsArray }) => {
   };
 
   useEffect(() => {
-    dispatch(getEpisodesInfo(episodeUrlsChunks[numOfVisibleChunks - 1]));
+    if (episodeUrlsChunks[numOfVisibleChunks - 1]) {
+      dispatch(getEpisodesInfo(episodeUrlsChunks[numOfVisibleChunks - 1]));
+    }
   }, [numOfVisibleChunks]);
 
   return (
-    <div className={`${'EpisodesBlockStyles'}`}>
+    <div className="pt-5 grid justify-center gap-5">
       {renderEpisodesList()}
       <Button text="More" clickHandler={moreButtonClickHandler} />
     </div>

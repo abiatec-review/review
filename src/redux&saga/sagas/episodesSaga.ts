@@ -15,15 +15,21 @@ export function* getEpisodesSaga(action: IEpisodesAction) {
 
     const exisingChars:Object = yield select((state: RootState) => state.episodes.characters);
     const charsToFetch:Array<string> = [];
-    console.log(collectEpisodesInfo);
-    console.log(exisingChars);
+
     collectEpisodesInfo.forEach((ep) => {
-      const newChars = mapChars(ep.characters);
-      newChars.forEach((ch) => {
-        if (!(ch.id in exisingChars))charsToFetch.push(ch.path);
-      });
+      const newChars = mapChars(ep.characters); // rework to parse only 3 items
+      for (let i = 0; i < 3; i++) {
+        if (!(newChars[i].id in exisingChars))charsToFetch.push(newChars[i].path);
+      }
     });
-    yield put(addNewChars(charsToFetch));
+    const charResponces: Array<IEpisodesResponse> = yield Promise.allSettled(
+      charsToFetch.map((url) => (fetch(`${url}`).then((resp) => resp.json()))),
+    );
+    yield put(addNewChars(
+      charResponces.reduce((acc, ch) => ({
+        ...acc, [ch.value.id]: ch.value.image,
+      }), {}),
+    ));
   } catch (error) {
     console.log(error);
   }

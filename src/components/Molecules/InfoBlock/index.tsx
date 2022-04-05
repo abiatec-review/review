@@ -1,10 +1,6 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable max-len */
-/* eslint-disable arrow-body-style */
 import React from 'react';
 import { IInfoBlock } from 'Molecules/types';
 import { InfoItem } from 'components/Atoms';
-// import { InfoBlockStyles } from './styles.tailwind';
 
 const InfoBlock: React.FC<IInfoBlock> = ({ content }) => {
   const renderInfoBlock = () => Object.entries(content).map((item: [string, unknown]) => (
@@ -12,7 +8,7 @@ const InfoBlock: React.FC<IInfoBlock> = ({ content }) => {
   ));
 
   return (
-    <div className={`${'grid gap-2 mt-10'}`}>
+    <div className="grid gap-2 mt-10">
       {renderInfoBlock()}
     </div>
   );

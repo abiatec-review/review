@@ -13,10 +13,16 @@ export type IEpisode = {
     name: string,
     episode: string,
     url: string,
-    id: number
+    id: number,
+    image: 'string'
 }
 
 export type IEpisodesResponse = {
     status: string,
     value: IEpisode
 }
+
+// export type ICharResponse =
+// {
+
+// }

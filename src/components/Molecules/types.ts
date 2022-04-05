@@ -9,7 +9,7 @@ export interface ICard {
 }
 
 export interface IInfoBlock {
-    content: Object
+    content: Object,
 }
 
 export type TabNameType = {
@@ -25,4 +25,16 @@ export interface ITabNames {
 
 export interface IEpisodesBlock {
     episodeUrlsArray: Array<TabNameType>,
+}
+
+export interface IEpisodeItem {
+    episodeData: {
+        characters: Array<string>,
+        name: string,
+        episode: string
+    },
+    chars: {
+        [key:number]:string
+    }
+
 }

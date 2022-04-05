@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { Image } from 'components/Atoms';
 import React from 'react';
 import { ICard } from 'Molecules/types';
