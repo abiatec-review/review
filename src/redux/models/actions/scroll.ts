@@ -1,27 +1,15 @@
+import { SuccessAction } from "./action";
+
 export const enum ScrollActionType {
-  SCROLL_CHARACTERS = 'SCROLL_CHARACTERS',
-  SCROLL_LOCATIONS = 'SCROLL_LOCATIONS',
-  SCROLL_EPISODES = 'SCROLL_EPISODES',
+  SCROLL_CHARACTERS = "SCROLL_CHARACTERS",
+  SCROLL_LOCATIONS = "SCROLL_LOCATIONS",
+  SCROLL_EPISODES = "SCROLL_EPISODES"
 }
 
-export interface CharacterScrollAction {
-  type: ScrollActionType.SCROLL_CHARACTERS;
-  payload: {offset: number};
-}
+type CharacterScrollAction = SuccessAction<ScrollActionType.SCROLL_CHARACTERS, number>;
 
-export interface LocationScrollAction {
-  type: ScrollActionType.SCROLL_LOCATIONS;
-  payload: {offset: number};
-}
+type LocationScrollAction = SuccessAction<ScrollActionType.SCROLL_LOCATIONS, number>;
 
-export interface EpisodeScrollAction {
-  type: ScrollActionType.SCROLL_EPISODES;
-  payload: {offset: number};
-}
+type EpisodeScrollAction = SuccessAction<ScrollActionType.SCROLL_EPISODES, number>;
 
-type ScrollAction =
-  | CharacterScrollAction
-  | LocationScrollAction
-  | EpisodeScrollAction;
-
-export default ScrollAction;
+export type ScrollAction = CharacterScrollAction | LocationScrollAction | EpisodeScrollAction;

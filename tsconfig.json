@@ -12,14 +12,15 @@
     "noEmit": true,
     "baseUrl": "./src",
     "paths": {
-      "@hooks/*": ["./hooks/*"],
-      "@actions/*": ["./redux/actions/*"],
+      "@hooks": ["./hooks"],
+      "@actions": ["./redux/actions"],
       "@models/*": ["./redux/models/*"],
-      "@reducers/*": ["./redux/reducers/*"],
-      "@services/*": ["./redux/services/*"],
+      "@reducers": ["./redux/reducers"],
+      "@services": ["./redux/services"],
+      "@utils": ["./utils"],
       "@store": ["./redux/store"],
       "@components/*": ["./components/*"],
-      "@screens/*": ["./screens/*"],
+      "@screens": ["./screens"],
       "@navigation": ["./navigation"]
     }
   },

@@ -1,31 +1,26 @@
-import ScrollAction, {ScrollActionType} from '@models/actions/scroll';
-import ScrollState from '@models/state/scroll';
+import { ScrollAction, ScrollActionType } from "@models/actions";
+import { ScrollReducer } from "@models/reducers";
 
-const initialState: ScrollState = {
+const initialState: ScrollReducer = {
   characterOffset: 0,
   locationOffset: 0,
-  episodeOffset: 0,
+  episodeOffset: 0
 };
 
-function scrollReducer(
-  state = initialState,
-  action: ScrollAction,
-): ScrollState {
-  const {type, payload} = action;
+export function scrollReducer(state = initialState, action: ScrollAction): ScrollReducer {
+  const { type, payload } = action;
 
   switch (type) {
     case ScrollActionType.SCROLL_CHARACTERS: {
-      return {...state, characterOffset: payload.offset};
+      return { ...state, characterOffset: payload.data };
     }
     case ScrollActionType.SCROLL_LOCATIONS: {
-      return {...state, locationOffset: payload.offset};
+      return { ...state, locationOffset: payload.data };
     }
     case ScrollActionType.SCROLL_EPISODES: {
-      return {...state, episodeOffset: payload.offset};
+      return { ...state, episodeOffset: payload.data };
     }
     default:
       return state;
   }
 }
-
-export default scrollReducer;

@@ -1,23 +1,24 @@
-import CharactersModal from '@components/modals/characters';
-import TextRow from '@components/textRow';
-import Episode from '@models/episode';
-import {useSelector} from '@store';
-import React, {useState} from 'react';
-import {Pressable, StyleSheet} from 'react-native';
+import { TextRow } from "@components/atoms";
+import { CharactersModal } from "@components/moleculas/modals";
+import { Episode } from "@models/entities";
+import { useSelector } from "@store";
+import { Colors, Indent, Radius } from "@utils";
+import React, { useState } from "react";
+import { Pressable, StyleSheet } from "react-native";
 
 interface Props {
   episode: Episode;
 }
 
-function EpisodeCard({episode}: Props) {
+export function EpisodeCard(props: Props) {
+  const { episode } = props;
+
   const [isModalShown, setIsModalShown] = useState(false);
 
   const toggleModal = () => setIsModalShown(!isModalShown);
 
-  const characters = useSelector(({characterReducer}) =>
-    characterReducer.characterList.filter(({url}) =>
-      episode.characters.includes(url),
-    ),
+  const characters = useSelector(({ character }) =>
+    character.characterList.filter(({ url }) => episode.characters.includes(url))
   );
 
   return (
@@ -28,7 +29,7 @@ function EpisodeCard({episode}: Props) {
         <TextRow field="Code" data={episode.episode} />
         <TextRow field="Created" data={episode.created} />
       </Pressable>
-      {characters.length > 0 && (
+      {characters?.length > 0 && (
         <CharactersModal
           title="Characters"
           toggle={toggleModal}
@@ -40,17 +41,15 @@ function EpisodeCard({episode}: Props) {
   );
 }
 
-export default React.memo(EpisodeCard);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 10,
-    padding: 15,
     height: 140,
-    borderRadius: 20,
-    alignItems: 'center',
-    backgroundColor: 'gray',
-    justifyContent: 'space-between',
-  },
+    alignItems: "center",
+    padding: Indent.HUGE,
+    margin: Indent.DEFAULT,
+    borderRadius: Radius.DEFAULT,
+    backgroundColor: Colors.GRAY,
+    justifyContent: "space-between"
+  }
 });

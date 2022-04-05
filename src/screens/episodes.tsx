@@ -1,29 +1,30 @@
-import EpisodeCard from '@components/cards/episode';
-import InfiniteScroll from '@components/infiniteScroll';
-import {getEpisodes} from '@services/episode';
-import {scrollEpisodes} from '@services/scroll';
-import {useDispatch, useSelector} from '@store';
-import React from 'react';
+import { InfiniteScroll } from "@components/atoms";
+import { EpisodeCard } from "@components/moleculas/cards";
+import { ErrorModal } from "@components/moleculas/modals";
+import { getEpisodes, scrollEpisodes } from "@services";
+import { useDispatch, useSelector } from "@store";
+import React from "react";
 
-function EpisodesScreen() {
+export function EpisodesScreen() {
   const dispatch = useDispatch();
 
-  const state = useSelector(({episodeReducer}) => episodeReducer);
-  const {episodes, isLoading} = state;
+  const state = useSelector(({ episode }) => episode);
+  const { episodes, isLoading, error } = state;
 
-  const offset = useSelector(({scrollReducer}) => scrollReducer.episodeOffset);
+  const offset = useSelector(({ scroll }) => scroll.episodeOffset);
 
   return (
-    <InfiniteScroll
-      offset={offset}
-      data={episodes}
-      isLoading={isLoading}
-      numColumns={{portrait: 1, landscape: 2}}
-      load={page => dispatch(getEpisodes(page))}
-      onScroll={offset => dispatch(scrollEpisodes(offset))}
-      renderItem={({item}) => <EpisodeCard episode={item} />}
-    />
+    <>
+      <InfiniteScroll
+        offset={offset}
+        data={episodes}
+        isLoading={isLoading}
+        numColumns={{ portrait: 1, landscape: 2 }}
+        load={(page) => dispatch(getEpisodes(page))}
+        onScroll={(offset) => dispatch(scrollEpisodes(offset))}
+        renderItem={({ item }) => <EpisodeCard episode={item} />}
+      />
+      <ErrorModal errorText={error} />
+    </>
   );
 }
-
-export default EpisodesScreen;

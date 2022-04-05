@@ -1,23 +1,20 @@
-import FullCharacterCard from '@components/cards/fullCharacter';
-import ReducedCharacterCard from '@components/cards/reducedCharacter';
-import InfiniteScroll from '@components/infiniteScroll';
-import Spinner from '@components/spinner';
-import {getCharacter, getCharacterList} from '@services/character';
-import {scrollCharacters} from '@services/scroll';
-import {useDispatch, useSelector} from '@store';
-import React, {useState} from 'react';
-import * as RN from 'react-native';
+import { InfiniteScroll, Spinner } from "@components/atoms";
+import { FullCharacterCard, ReducedCharacterCard } from "@components/moleculas/cards";
+import { ErrorModal } from "@components/moleculas/modals";
+import { getCharacter, getCharacterList, scrollCharacters } from "@services";
+import { useDispatch, useSelector } from "@store";
+import { Colors, FontSize, Indent, Radius } from "@utils";
+import React, { useState } from "react";
+import * as RN from "react-native";
 
-function CharactersScreen() {
+export function CharactersScreen() {
   const [id, setId] = useState<number>();
   const dispatch = useDispatch();
 
-  const state = useSelector(({characterReducer}) => characterReducer);
-  const {character, characterList, isLoading} = state;
+  const state = useSelector(({ character }) => character);
+  const { character, characterList, isLoading, error } = state;
 
-  const offset = useSelector(
-    ({scrollReducer}) => scrollReducer.characterOffset,
-  );
+  const offset = useSelector(({ scroll }) => scroll.characterOffset);
 
   const fetchCharacter = (id: number) => {
     setId(id);
@@ -26,21 +23,17 @@ function CharactersScreen() {
 
   const getData = () => {
     if (id) {
-      return isLoading ? (
-        <Spinner />
-      ) : (
-        <FullCharacterCard character={character} />
-      );
+      return isLoading ? <Spinner /> : <FullCharacterCard character={character} />;
     } else {
       return (
         <InfiniteScroll
           offset={offset}
           data={characterList}
           isLoading={isLoading}
-          numColumns={{portrait: 2, landscape: 4}}
-          load={page => dispatch(getCharacterList(page))}
-          onScroll={offset => dispatch(scrollCharacters(offset))}
-          renderItem={({item}) => <ReducedCharacterCard character={item} />}
+          numColumns={{ portrait: 2, landscape: 4 }}
+          load={(page) => dispatch(getCharacterList(page))}
+          onScroll={(offset) => dispatch(scrollCharacters(offset))}
+          renderItem={({ item }) => <ReducedCharacterCard character={item} />}
         />
       );
     }
@@ -52,41 +45,36 @@ function CharactersScreen() {
         <RN.TextInput
           placeholder="Search"
           style={styles.input}
-          onChangeText={text => fetchCharacter(Number(text))}
+          onChangeText={(text) => fetchCharacter(Number(text))}
         />
       </RN.View>
       <RN.View style={styles.content}>{getData()}</RN.View>
+      <ErrorModal errorText={error} />
     </RN.SafeAreaView>
   );
 }
 
-export default CharactersScreen;
-
 const styles = RN.StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   header: {
-    padding: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    padding: Indent.DEFAULT,
+    justifyContent: "space-between"
   },
-  content: {
-    paddingHorizontal: 10,
-  },
+  content: { paddingHorizontal: Indent.DEFAULT },
   input: {
     flex: 1,
-    fontSize: 18,
-    padding: 15,
-    borderRadius: 24,
-    backgroundColor: 'gray',
+    padding: Indent.HUGE,
+    fontSize: FontSize.DEFAULT,
+    borderRadius: Radius.MEDIUM,
+    backgroundColor: Colors.GRAY
   },
   button: {
     width: 60,
     height: 60,
-    borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'gray',
-  },
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: Radius.HUGE,
+    backgroundColor: Colors.GRAY
+  }
 });

@@ -1,6 +1,7 @@
-import useOrientation from '@hooks/useOrientation';
-import React from 'react';
-import * as RN from 'react-native';
+import { useOrientation } from "@hooks";
+import { Colors, FontSize, Indent, Radius } from "@utils";
+import React from "react";
+import * as RN from "react-native";
 
 interface Props {
   isShown: boolean;
@@ -9,9 +10,9 @@ interface Props {
 }
 
 function Modal(props: React.PropsWithChildren<Props>) {
-  const {isShown, toggle, children, style} = props;
+  const { isShown, toggle, children, style } = props;
 
-  const {isPortrait} = useOrientation();
+  const { isPortrait } = useOrientation();
   const styles = isPortrait ? portraitStyles : landscapelStyles;
 
   return (
@@ -20,7 +21,8 @@ function Modal(props: React.PropsWithChildren<Props>) {
       animationType="fade"
       visible={isShown}
       onRequestClose={toggle}
-      supportedOrientations={['portrait', 'landscape']}>
+      supportedOrientations={["portrait", "landscape"]}
+    >
       <RN.View style={styles.container}>
         <RN.View style={[styles.content, style]}>
           {children}
@@ -38,41 +40,41 @@ export default Modal;
 const baseStyles = RN.StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Colors.TRANSPARENT_DARK
   },
   content: {
-    padding: 20,
-    borderRadius: 20,
-    backgroundColor: 'white',
+    padding: Indent.EXTRA_HUGE,
+    borderRadius: Radius.DEFAULT,
+    backgroundColor: Colors.WHITE
   },
   closeButton: {
-    width: '100%',
-    padding: 10,
-    borderRadius: 20,
-    backgroundColor: '#2196F3',
+    width: "100%",
+    padding: Indent.DEFAULT,
+    borderRadius: Radius.DEFAULT,
+    backgroundColor: Colors.BLUE_LIGHT
   },
   closeText: {
-    fontSize: 18,
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
+    fontWeight: "bold",
+    textAlign: "center",
+    color: Colors.WHITE,
+    fontSize: FontSize.DEFAULT
+  }
 });
 
 const portraitStyles = RN.StyleSheet.create({
   ...baseStyles,
   content: {
     ...baseStyles.content,
-    width: '91%',
-  },
+    width: "91%"
+  }
 });
 
 const landscapelStyles = RN.StyleSheet.create({
   ...baseStyles,
   content: {
     ...baseStyles.content,
-    width: '70%',
-  },
+    width: "70%"
+  }
 });

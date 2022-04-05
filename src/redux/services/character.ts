@@ -1,42 +1,46 @@
-import {getCharacterAction, getCharactersListAction} from '@actions/character';
-import {startLoadingAction, stopLoadingAction} from '@actions/loading';
-import CharacterAction from '@models/actions/character';
-import Character from '@models/character';
-import {Pagination, ResultList} from '@models/pagination';
-import {Dispatch} from 'redux';
+import {
+  getCharacterFailedAction,
+  getCharacterListFailedAction,
+  getCharacterListSuccessAction,
+  getCharacterSuccessAction,
+  startLoadingAction,
+  stopLoadingAction
+} from "@actions";
+import { CharacterAction } from "@models/actions";
+import { Character, ResultList } from "@models/entities";
+import { Dispatch } from "redux";
 
-import requests, {fixDate} from '.';
+import requests, { fixDate } from "./base";
 
 export function getCharacter(id: number) {
-  return function (dispatch: Dispatch<CharacterAction>) {
+  return async function (dispatch: Dispatch<CharacterAction>) {
     dispatch(startLoadingAction());
-    requests.get<Character>(`/character/${id}`).then(res => {
-      setTimeout(() => {
-        const character = fixDate(res);
-        dispatch(getCharacterAction(character));
-      }, 2000);
-      setTimeout(() => dispatch(stopLoadingAction()), 2000);
-    });
+    try {
+      const result = await requests.get<Character>(`/character/${id}`);
+      const character = fixDate(result);
+      dispatch(getCharacterSuccessAction(character));
+    } catch (error) {
+      dispatch(getCharacterFailedAction(String(error)));
+    } finally {
+      dispatch(stopLoadingAction());
+    }
   };
 }
 
-export function getCharacterList(page = 1) {
-  return async function (
-    dispatch: Dispatch<CharacterAction>,
-  ): Promise<Pagination> {
+export function getCharacterList(page: number) {
+  return async function (dispatch: Dispatch<CharacterAction>) {
     dispatch(startLoadingAction());
-
-    const {info, results} = await requests.get<ResultList<Character>>(
-      `/character/?page=${page}`,
-    );
-
-    setTimeout(() => {
+    try {
+      const { info, results } = await requests.get<ResultList<Character>>(
+        `/character/?page=${page}`
+      );
       const characters = results.map(fixDate);
-      dispatch(getCharactersListAction(characters));
-    }, 2000);
-
-    setTimeout(() => dispatch(stopLoadingAction()), 2000);
-
-    return {nextPage: page + 1, hasMore: info.next !== null};
+      dispatch(getCharacterListSuccessAction(characters));
+      return { nextPage: page + 1, hasMore: info.next !== null };
+    } catch (error) {
+      dispatch(getCharacterListFailedAction(String(error)));
+    } finally {
+      dispatch(stopLoadingAction());
+    }
   };
 }

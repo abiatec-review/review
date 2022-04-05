@@ -1,26 +1,32 @@
-import Character from '../character';
-import LoadingAction from './loading';
+import { Character } from "@models/entities";
+
+import { FailedAction, SuccessAction } from "./action";
+import { LoadingAction } from "./loading";
 
 export const enum CharacterActionType {
-  GET_CHARACTER = 'GET_CHARACTER',
-  GET_CHARACTER_LIST = 'GET_CHARACTER_LIST',
+  GET_CHARACTER_SUCCESS = "GET_CHARACTER_SUCCESS",
+  GET_CHARACTER_FAILED = "GET_CHARACTER_FAILED",
+  GET_CHARACTER_LIST_SUCCESS = "GET_CHARACTER_LIST_SUCCESS",
+  GET_CHARACTER_LIST_FAILED = "GET_CHARACTER_LIST_FAILED"
 }
 
-interface GetCharacterAction {
-  type: CharacterActionType.GET_CHARACTER;
-  payload: {
-    character: Character;
-  };
-}
+type GetCharacterSuccessAction = SuccessAction<
+  CharacterActionType.GET_CHARACTER_SUCCESS,
+  Character
+>;
 
-interface GetCharacterListAction {
-  type: CharacterActionType.GET_CHARACTER_LIST;
-  payload: {characters: Array<Character>};
-}
+type GetCharacterFailedAction = FailedAction<CharacterActionType.GET_CHARACTER_FAILED>;
 
-type CharacterAction =
-  | GetCharacterAction
-  | GetCharacterListAction
+type GetCharacterListSuccessAction = SuccessAction<
+  CharacterActionType.GET_CHARACTER_LIST_SUCCESS,
+  Array<Character>
+>;
+
+type GetCharacterListFailedAction = FailedAction<CharacterActionType.GET_CHARACTER_LIST_FAILED>;
+
+export type CharacterAction =
+  | GetCharacterSuccessAction
+  | GetCharacterFailedAction
+  | GetCharacterListSuccessAction
+  | GetCharacterListFailedAction
   | LoadingAction;
-
-export default CharacterAction;

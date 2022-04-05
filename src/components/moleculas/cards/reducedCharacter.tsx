@@ -1,0 +1,49 @@
+import { CharacterDetailsModal } from "@components/moleculas/modals";
+import { Character } from "@models/entities";
+import { Colors, FontSize, Indent, Radius } from "@utils";
+import React, { useState } from "react";
+import * as RN from "react-native";
+
+interface Props {
+  character: Character;
+}
+
+export function ReducedCharacterCard(props: Props) {
+  const { character } = props;
+
+  const [isModalShown, setIsModalShown] = useState(false);
+
+  const toggleModal = () => setIsModalShown(!isModalShown);
+
+  return (
+    <>
+      <RN.Pressable style={styles.container} onPress={toggleModal}>
+        <RN.Image source={{ uri: character.image }} style={styles.image} />
+        <RN.Text style={styles.text}>{character.name}</RN.Text>
+      </RN.Pressable>
+      <CharacterDetailsModal character={character} isShown={isModalShown} toggle={toggleModal} />
+    </>
+  );
+}
+
+const styles = RN.StyleSheet.create({
+  container: {
+    flex: 1,
+    margin: Indent.DEFAULT,
+    padding: Indent.MEDIUM,
+    flexDirection: "column",
+    borderRadius: Radius.DEFAULT,
+    backgroundColor: Colors.GRAY
+  },
+  image: {
+    width: "100%",
+    aspectRatio: 1,
+    marginBottom: Indent.DEFAULT,
+    borderRadius: Radius.DEFAULT
+  },
+  text: {
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: FontSize.DEFAULT
+  }
+});
