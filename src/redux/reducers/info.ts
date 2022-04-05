@@ -12,13 +12,13 @@ const initialState: StateInfoType = {
 const infoReducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case ActionType.SetPicturesInfo: {
-            return action.payload
+            return {...state, ...action.payload};
         }
         case ActionType.ResetPicturesInfo: {
-            return initialState
+            return initialState;
         }
         default:
-            return state
+            return state;
     }
 }
 

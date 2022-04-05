@@ -4,47 +4,54 @@ interface IProps {
     info: PictureType
 }
 
-const InfoTab: React.FC<IProps> = ({info}) => {
-    const { name,
-        status,
-        species,
-        type,
-        gender,
-        origin,
-        location } = info;
-
+const InfoTab: React.FC<IProps> = ({ info: { name,
+    status,
+    species,
+    type,
+    gender,
+    origin,
+    location,
+    image
+}
+}) => {
     return (
         <div>
             <figure >
                 <img
                     className=' m-auto'
-                    src={info.image} alt={`${info.name} character`} />
-                <figcaption>{info.name}</figcaption>
+                    src={image} alt={`${name} character`} />
+                <figcaption>{name}</figcaption>
             </figure>
             <ul>
-                <li>
-                    {`name : ${name}`}
-                </li>
-                <li>
-                    {`status : ${status}`}
-                </li>
-                <li>
-                    {`species : ${species}`}
-                </li>
+                {name &&
+                    <li>
+                        {`name : ${name}`}
+                    </li>}
+                {status &&
+                    <li>
+                        {`status : ${status}`}
+                    </li>}
+                {species &&
+                    <li>
+                        {`species : ${species}`}
+                    </li>}
                 {type &&
                     <li>
                         {`type : ${type}`}
                     </li>
                 }
-                <li>
-                    {`gender : ${gender}`}
-                </li>
-                <li>
-                    {`origin : ${origin.name}`}
-                </li>
-                <li>
-                    {`location : ${location.name}`}
-                </li>
+                {gender &&
+                    <li>
+                        {`gender : ${gender}`}
+                    </li>}
+                {origin && origin.name &&
+                    <li>
+                        {`origin : ${origin.name}`}
+                    </li>}
+                {location&& location.name &&
+                    <li>
+                        {`location : ${location.name}`}
+                    </li>}
 
             </ul>
         </div>

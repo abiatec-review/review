@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-import { RouterPath} from 'utils/constants';
+import NothingFound from 'components/atoms/NothingFound';
+import { RouterPath } from 'utils/constants';
 import { PictureType } from 'types';
 
 interface IProps {
     characters: PictureType[]
 }
 const ContentList: React.FC<IProps> = ({ characters }) => {
-    const items = characters.map(character => {
-        return (
+    const items = characters?.map(character => (
             <li key={character.id} className='mx-[30px] '>
                 <Link to={`${RouterPath.Info}${character.id}`} >
                     <figure className='w-[300px] '>
@@ -18,14 +18,20 @@ const ContentList: React.FC<IProps> = ({ characters }) => {
                     </figure>
                 </Link>
             </li>
-        );
-    })
+        )
+    );
 
     return (
-        <ul className='flex flex-wrap w-[1440px] '>
-            {items}
-        </ul>
-    )
+        <>
+            {!!characters.length ?
+                <ul className='flex flex-wrap w-[1440px] '>
+                    {items}
+                </ul>
+                :
+                <NothingFound/>
+            }
+        </>
+    );
 }
 
 

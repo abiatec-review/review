@@ -1,4 +1,4 @@
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import { Routes, Route, Outlet } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMorePictures } from 'redux/actions/pictures';
@@ -22,10 +22,10 @@ function App() {
             <Routes>
                 <Route path={RouterPath.Root} element={
                     <MainLayout>
-                        {characters.length < 0 ?
-                            <div>
-                                <ContentList characters={characters} />
+                        <>
+                            <ContentList characters={characters} />
 
+                            {!!characters.length &&
                                 <>
                                     <Button disabled={!prev}
                                         onClick={() => {
@@ -45,12 +45,9 @@ function App() {
                                         Next
                                     </Button>
                                 </>
-
-                                <Outlet />
-                            </div>
-                            :
-                            <div> Nothing found</div>
-                        }
+                            }
+                            <Outlet />
+                        </>
                     </MainLayout>
                 }>
                     <Route path={RouterPath.Popup} element={<Popup />} />
