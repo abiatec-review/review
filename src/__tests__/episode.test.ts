@@ -1,14 +1,22 @@
-import { getEpisodeListAction } from "@actions/episode";
-import { startLoadingAction, stopLoadingAction } from "@actions/loading";
-import GetEpisodesAction, { EpisodeActionType } from "@models/actions/episode";
-import LoadingAction, { LoadingActionType } from "@models/actions/loading";
-import Episode from "@models/episode";
+import {
+  getEpisodeListFailedAction,
+  getEpisodeListSuccessAction,
+  startLoadingAction,
+  stopLoadingAction
+} from "@actions";
+import {
+  EpisodeAction,
+  EpisodeActionType,
+  LoadingAction,
+  LoadingActionType
+} from "@models/actions";
+import { Episode } from "@models/entities";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
 const mockStore = configureMockStore([thunk]);
 
-const episodes: Array<Episode> = [
+const data: Array<Episode> = [
   {
     id: 1,
     name: "test",
@@ -29,18 +37,28 @@ describe("Episode reducer", () => {
     expect(actions[0]).toEqual<LoadingAction>({ type: LoadingActionType.START });
   });
 
-  test("set episodes", () => {
-    store.dispatch(getEpisodeListAction(episodes));
+  test("set episodes: success", () => {
+    store.dispatch(getEpisodeListSuccessAction(data));
     const actions = store.getActions();
-    expect(actions[1]).toEqual<GetEpisodesAction>({
-      type: EpisodeActionType.GET_EPISODES,
-      payload: { episodes }
+    expect(actions[1]).toEqual<EpisodeAction>({
+      type: EpisodeActionType.GET_EPISODE_LIST_SUCCESS,
+      payload: { data }
+    });
+  });
+
+  test("set episodes: failure", () => {
+    const error = "test error";
+    store.dispatch(getEpisodeListFailedAction(error));
+    const actions = store.getActions();
+    expect(actions[2]).toEqual<EpisodeAction>({
+      type: EpisodeActionType.GET_EPISODE_LIST_FAILED,
+      payload: { error }
     });
   });
 
   test("stop loading", () => {
     store.dispatch(stopLoadingAction());
     const actions = store.getActions();
-    expect(actions[2]).toEqual<LoadingAction>({ type: LoadingActionType.STOP });
+    expect(actions[3]).toEqual<LoadingAction>({ type: LoadingActionType.STOP });
   });
 });

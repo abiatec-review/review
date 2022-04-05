@@ -17,8 +17,8 @@ export function EpisodeCard(props: Props) {
 
   const toggleModal = () => setIsModalShown(!isModalShown);
 
-  const characters = useSelector(({ characterReducer }) =>
-    characterReducer.characterList.filter(({ url }) => episode.characters.includes(url))
+  const characters = useSelector(({ character }) =>
+    character.characterList.filter(({ url }) => episode.characters.includes(url))
   );
 
   return (

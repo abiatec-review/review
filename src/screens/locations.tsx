@@ -7,10 +7,10 @@ import React from "react";
 export function LocationsScreen() {
   const dispatch = useDispatch();
 
-  const locationState = useSelector(({ locationReducer }) => locationReducer);
+  const locationState = useSelector(({ location }) => location);
   const { locations, isLoading } = locationState;
 
-  const offset = useSelector(({ scrollReducer }) => scrollReducer.locationOffset);
+  const offset = useSelector(({ scroll }) => scroll.locationOffset);
 
   return (
     <InfiniteScroll

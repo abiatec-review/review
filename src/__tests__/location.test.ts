@@ -1,14 +1,22 @@
-import { startLoadingAction, stopLoadingAction } from "@actions/loading";
-import { getLocationListAction } from "@actions/location";
-import LoadingAction, { LoadingActionType } from "@models/actions/loading";
-import GetLocationsAction, { LocationActionType } from "@models/actions/location";
-import Location from "@models/location";
+import {
+  getLocationListFailedAction,
+  getLocationListSuccessAction,
+  startLoadingAction,
+  stopLoadingAction
+} from "@actions";
+import {
+  LoadingAction,
+  LoadingActionType,
+  LocationAction,
+  LocationActionType
+} from "@models/actions";
+import { Location } from "@models/entities";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
 const mockStore = configureMockStore([thunk]);
 
-const locations: Array<Location> = [
+const data: Array<Location> = [
   {
     id: 1,
     name: "test",
@@ -29,18 +37,28 @@ describe("Location reducer", () => {
     expect(actions[0]).toEqual<LoadingAction>({ type: LoadingActionType.START });
   });
 
-  test("set locations", () => {
-    store.dispatch(getLocationListAction(locations));
+  test("set locations: success", () => {
+    store.dispatch(getLocationListSuccessAction(data));
     const actions = store.getActions();
-    expect(actions[1]).toEqual<GetLocationsAction>({
-      type: LocationActionType.GET_LOCATIONS,
-      payload: { locations }
+    expect(actions[1]).toEqual<LocationAction>({
+      type: LocationActionType.GET_LOCATION_LIST_SUCCESS,
+      payload: { data }
+    });
+  });
+
+  test("set locations: failure", () => {
+    const error = "test error";
+    store.dispatch(getLocationListFailedAction(error));
+    const actions = store.getActions();
+    expect(actions[2]).toEqual<LocationAction>({
+      type: LocationActionType.GET_LOCATION_LIST_FAILED,
+      payload: { error }
     });
   });
 
   test("stop loading", () => {
     store.dispatch(stopLoadingAction());
     const actions = store.getActions();
-    expect(actions[2]).toEqual<LoadingAction>({ type: LoadingActionType.STOP });
+    expect(actions[3]).toEqual<LoadingAction>({ type: LoadingActionType.STOP });
   });
 });

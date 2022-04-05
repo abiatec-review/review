@@ -1,5 +1,5 @@
-import * as ScrollAction from "@actions/scroll";
-import * as ActionTypes from "@models/actions/scroll";
+import { scrollCharactersAction, scrollEpisodesAction, scrollLocationsAction } from "@actions";
+import { ScrollAction, ScrollActionType } from "@models/actions";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
@@ -11,29 +11,29 @@ describe("Scroll reducer", () => {
   const store = mockStore();
 
   test("scroll characters", () => {
-    store.dispatch(ScrollAction.scrollCharactersAction(offset));
+    store.dispatch(scrollCharactersAction(offset));
     const actions = store.getActions();
-    expect(actions[0]).toEqual<ActionTypes.CharacterScrollAction>({
-      type: ActionTypes.ScrollActionType.SCROLL_CHARACTERS,
-      payload: { offset }
+    expect(actions[0]).toEqual<ScrollAction>({
+      type: ScrollActionType.SCROLL_CHARACTERS,
+      payload: { data: offset }
     });
   });
 
   test("scroll locations", () => {
-    store.dispatch(ScrollAction.scrollLocationsAction(offset));
+    store.dispatch(scrollLocationsAction(offset));
     const actions = store.getActions();
-    expect(actions[1]).toEqual<ActionTypes.LocationScrollAction>({
-      type: ActionTypes.ScrollActionType.SCROLL_LOCATIONS,
-      payload: { offset }
+    expect(actions[1]).toEqual<ScrollAction>({
+      type: ScrollActionType.SCROLL_LOCATIONS,
+      payload: { data: offset }
     });
   });
 
   test("scroll episodes", () => {
-    store.dispatch(ScrollAction.scrollEpisodesAction(offset));
+    store.dispatch(scrollEpisodesAction(offset));
     const actions = store.getActions();
-    expect(actions[2]).toEqual<ActionTypes.EpisodeScrollAction>({
-      type: ActionTypes.ScrollActionType.SCROLL_EPISODES,
-      payload: { offset }
+    expect(actions[2]).toEqual<ScrollAction>({
+      type: ScrollActionType.SCROLL_EPISODES,
+      payload: { data: offset }
     });
   });
 });

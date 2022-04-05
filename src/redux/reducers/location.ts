@@ -10,12 +10,17 @@ export function locationReducer(state = initialState, action: LocationAction): L
   const { type } = action;
 
   switch (type) {
-    case LocationActionType.GET_LOCATIONS: {
+    case LocationActionType.GET_LOCATION_LIST_SUCCESS: {
       const { payload } = action;
       return {
         ...state,
-        locations: [...state.locations, ...payload.locations]
+        error: undefined,
+        locations: [...state.locations, ...payload.data]
       };
+    }
+    case LocationActionType.GET_LOCATION_LIST_FAILED: {
+      const { payload } = action;
+      return { ...state, error: payload.error };
     }
     case LoadingActionType.START: {
       return { ...state, isLoading: true };

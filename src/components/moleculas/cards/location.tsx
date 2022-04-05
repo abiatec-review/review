@@ -17,8 +17,8 @@ export function LocationCard(props: Props) {
 
   const toggleModal = () => setIsModalShown(!isModalShown);
 
-  const residents = useSelector(({ characterReducer }) =>
-    characterReducer.characterList.filter(({ url }) => location.residents.includes(url))
+  const residents = useSelector(({ character }) =>
+    character.characterList.filter(({ url }) => location.residents.includes(url))
   );
 
   return (

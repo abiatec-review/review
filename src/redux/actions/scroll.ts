@@ -1,22 +1,22 @@
 import { ScrollAction, ScrollActionType } from "@models/actions";
 
-export function scrollCharactersAction(offset: number): ScrollAction {
+export function scrollCharactersAction(data: number): ScrollAction {
   return {
     type: ScrollActionType.SCROLL_CHARACTERS,
-    payload: { offset }
+    payload: { data }
   };
 }
 
-export function scrollLocationsAction(offset: number): ScrollAction {
+export function scrollLocationsAction(data: number): ScrollAction {
   return {
     type: ScrollActionType.SCROLL_LOCATIONS,
-    payload: { offset }
+    payload: { data }
   };
 }
 
-export function scrollEpisodesAction(offset: number): ScrollAction {
+export function scrollEpisodesAction(data: number): ScrollAction {
   return {
     type: ScrollActionType.SCROLL_EPISODES,
-    payload: { offset }
+    payload: { data }
   };
 }

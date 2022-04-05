@@ -7,10 +7,10 @@ import React from "react";
 export function EpisodesScreen() {
   const dispatch = useDispatch();
 
-  const state = useSelector(({ episodeReducer }) => episodeReducer);
+  const state = useSelector(({ episode }) => episode);
   const { episodes, isLoading } = state;
 
-  const offset = useSelector(({ scrollReducer }) => scrollReducer.episodeOffset);
+  const offset = useSelector(({ scroll }) => scroll.episodeOffset);
 
   return (
     <InfiniteScroll

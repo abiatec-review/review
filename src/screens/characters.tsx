@@ -10,10 +10,10 @@ export function CharactersScreen() {
   const [id, setId] = useState<number>();
   const dispatch = useDispatch();
 
-  const state = useSelector(({ characterReducer }) => characterReducer);
+  const state = useSelector(({ character }) => character);
   const { character, characterList, isLoading } = state;
 
-  const offset = useSelector(({ scrollReducer }) => scrollReducer.characterOffset);
+  const offset = useSelector(({ scroll }) => scroll.characterOffset);
 
   const fetchCharacter = (id: number) => {
     setId(id);

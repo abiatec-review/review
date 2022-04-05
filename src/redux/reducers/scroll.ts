@@ -12,13 +12,13 @@ export function scrollReducer(state = initialState, action: ScrollAction): Scrol
 
   switch (type) {
     case ScrollActionType.SCROLL_CHARACTERS: {
-      return { ...state, characterOffset: payload.offset };
+      return { ...state, characterOffset: payload.data };
     }
     case ScrollActionType.SCROLL_LOCATIONS: {
-      return { ...state, locationOffset: payload.offset };
+      return { ...state, locationOffset: payload.data };
     }
     case ScrollActionType.SCROLL_EPISODES: {
-      return { ...state, episodeOffset: payload.offset };
+      return { ...state, episodeOffset: payload.data };
     }
     default:
       return state;

@@ -1,16 +1,30 @@
 import { CharacterAction, CharacterActionType } from "@models/actions";
 import { Character } from "@models/entities";
 
-export function getCharacterAction(character: Character): CharacterAction {
+export function getCharacterSuccessAction(data: Character): CharacterAction {
   return {
-    type: CharacterActionType.GET_CHARACTER,
-    payload: { character }
+    type: CharacterActionType.GET_CHARACTER_SUCCESS,
+    payload: { data }
   };
 }
 
-export function getCharactersListAction(characters: Array<Character>): CharacterAction {
+export function getCharacterFailedAction(error: string): CharacterAction {
   return {
-    type: CharacterActionType.GET_CHARACTER_LIST,
-    payload: { characters }
+    type: CharacterActionType.GET_CHARACTER_FAILED,
+    payload: { error }
+  };
+}
+
+export function getCharacterListSuccessAction(data: Array<Character>): CharacterAction {
+  return {
+    type: CharacterActionType.GET_CHARACTER_LIST_SUCCESS,
+    payload: { data }
+  };
+}
+
+export function getCharacterListFailedAction(error: string): CharacterAction {
+  return {
+    type: CharacterActionType.GET_CHARACTER_LIST_FAILED,
+    payload: { error }
   };
 }

@@ -1,6 +1,6 @@
 import { CharacterAction, EpisodeAction, LocationAction, ScrollAction } from "@models/actions";
 import Store from "@models/store";
-import { characterReducer, episodeReducer, locationReducer, scrollReducer } from "@reducers";
+import { character, episode, location, scroll } from "@reducers";
 import {
   TypedUseSelectorHook,
   useDispatch as reduxDispatch,
@@ -9,12 +9,7 @@ import {
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunkMiddleware, { ThunkDispatch } from "redux-thunk";
 
-const rootReducer = combineReducers({
-  characterReducer,
-  locationReducer,
-  episodeReducer,
-  scrollReducer
-});
+const rootReducer = combineReducers({ character, location, episode, scroll });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 

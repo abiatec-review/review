@@ -1,4 +1,4 @@
-export { characterReducer } from "./character";
-export { locationReducer } from "./location";
-export { episodeReducer } from "./episode";
-export { scrollReducer } from "./scroll";
+export { characterReducer as character } from "./character";
+export { locationReducer as location } from "./location";
+export { episodeReducer as episode } from "./episode";
+export { scrollReducer as scroll } from "./scroll";
