@@ -1,29 +1,16 @@
-import { createStore, compose, applyMiddleware } from 'redux'
-
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga';
-
 import rootSaga from './sagas';
-
-const initialState = {
-  currentImages: [],
-  info:{}
-};
+import PicturesReducer from 'redux/reducers/pictures';
+import infoReducer from './reducers/info';
 
 
+const rootReducer = combineReducers({
+  pictures: PicturesReducer,
+  info: infoReducer
+});
 
-function reducer(state:any = {}, action: any) {
-  console.log(action.type);
-  switch (action.type) {
-    case 'setImages': {
-      return {...state, currentImages: action.payload.results, info: action.payload.info }
-    }
-    case 'addImages': {
-      return {...state, currentImages: [...state.currentImages, ...action.payload.results], info: action.payload.info }
-    }
-    default:
-      return state
-  }
-}
+
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
@@ -31,13 +18,12 @@ declare global {
 }
 
 
-
 const sagaMiddleware = createSagaMiddleware();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer, initialState,composeEnhancers(applyMiddleware(sagaMiddleware)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 
 sagaMiddleware.run(rootSaga);
 
-export default  store
+export default  store;

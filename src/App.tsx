@@ -1,43 +1,63 @@
-import React from 'react';
-import FetchMoreButton from './components/atoms/FetchMoreButton';
-import MainLayout from './components/layouts/MainPage';
-import ContentList from './components/moleculs/ContentList';
-import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer} from 'react-toastify';
 import { Routes, Route, Outlet } from 'react-router';
-import {Popup} from './components/moleculs';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMorePictures } from 'redux/actions/pictures';
+import { getPrevLink, getNextLink } from 'redux/selectors/info';
+import { getPictures } from 'redux/selectors/pictures';
+import Button from 'components/atoms/Button';
+import MainLayout from 'components/layouts/MainPage';
+import ContentList from 'components/moleculs/ContentList';
+import { Popup } from 'components/moleculs';
+import { RouterPath } from 'utils/constants';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-    const characters = useSelector((store: any) => store.currentImages);
-
-    const next = useSelector((store: any) => store.info.next);
+    const characters = useSelector(getPictures);
+    const next = useSelector(getNextLink);
+    const prev = useSelector(getPrevLink);
     const dispatch = useDispatch();
-    const fetchMore = () => {
-        dispatch({ type: 'FETCH_MORE_IMAGES', payload: next });
-    };
     return (
-        <Routes>
-            <Route path="/" element={
-                <MainLayout>
-                    <div className='content'>
-                        <h1 >Simple content list</h1>
-                        <ContentList characters={characters} />
-                        {characters.length >= 10 &&
-                            <FetchMoreButton onClick={fetchMore}>Fetch more</FetchMoreButton>}
+        <>
+            <ToastContainer />
+            <Routes>
+                <Route path={RouterPath.Root} element={
+                    <MainLayout>
+                        {characters.length < 0 ?
+                            <div>
+                                <ContentList characters={characters} />
 
-                        <Outlet />
-                    </div>
-                </MainLayout>
-            }>
-                <Route path="info/:id/*" element={<Popup />} />
-            </Route >
-        </Routes>
+                                <>
+                                    <Button disabled={!prev}
+                                        onClick={() => {
+                                            if (prev) {
+                                                dispatch(getMorePictures(prev));
+                                            }
+                                        }}>
+                                        Previous
+                                    </Button>
+                                    <Button
+                                        disabled={!next}
+                                        onClick={() => {
+                                            if (next) {
+                                                dispatch(getMorePictures(next));
+                                            }
+                                        }}>
+                                        Next
+                                    </Button>
+                                </>
 
-
+                                <Outlet />
+                            </div>
+                            :
+                            <div> Nothing found</div>
+                        }
+                    </MainLayout>
+                }>
+                    <Route path={RouterPath.Popup} element={<Popup />} />
+                </Route >
+            </Routes>
+        </>
     );
 }
 
 export default App;
-
-// TODO
-// дебоунс
-// модалка,инфинити скролл , табы (инфо и эпизоды)
