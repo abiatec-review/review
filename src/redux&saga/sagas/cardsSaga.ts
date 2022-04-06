@@ -1,6 +1,7 @@
+import { put, takeEvery } from 'redux-saga/effects';
+
 import { redefineCardList } from 'redux&saga/actions/cardsActions';
 import { CardActionTypes, IAction } from 'redux&saga/types';
-import { put, takeEvery } from 'redux-saga/effects';
 
 const { GET_CARDS } = CardActionTypes;
 

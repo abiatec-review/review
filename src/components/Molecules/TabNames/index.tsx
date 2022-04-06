@@ -1,6 +1,8 @@
+import React from 'react';
+
 import { Tab } from 'components/Atoms';
 import { ITabNames, TabNameType } from 'Molecules/types';
-import React from 'react';
+
 import { TabNamesStyles } from './styles.tailwind';
 
 const TabNames: React.FC<ITabNames> = ({ tabsNames, clickHandler }) => (

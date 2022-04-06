@@ -1,6 +1,8 @@
-import { Button, Input } from 'components/Atoms';
 import React, { useRef } from 'react';
+
 import { useDispatch } from 'react-redux';
+
+import { Button, Input } from 'components/Atoms';
 import { getCards } from 'redux&saga/actions/cardsActions';
 
 const SubmitBlock: React.FC = () => {

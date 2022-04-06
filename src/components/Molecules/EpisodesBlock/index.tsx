@@ -1,9 +1,11 @@
+import React, { useEffect, useMemo, useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'redux&saga';
+
 import { Button } from 'components/Atoms';
 import { EpisodeItem } from 'components/Molecules';
 import { IEpisodesBlock } from 'Molecules/types';
-import React, { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'redux&saga';
 import { getEpisodesInfo } from 'redux&saga/actions/episodesActions';
 import { IEpisode } from 'redux&saga/types';
 

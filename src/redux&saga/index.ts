@@ -1,8 +1,10 @@
+import { all } from 'redux-saga/effects';
+
 import {
   applyMiddleware, combineReducers, createStore, Store,
 } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { all } from 'redux-saga/effects';
+
 import cardsReducer from './reducers/cardsReducer';
 import episodesReducer from './reducers/episodesReducer';
 import modalReducer from './reducers/modalReducer';

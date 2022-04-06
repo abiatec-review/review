@@ -1,6 +1,8 @@
-import { Card } from 'components/Molecules';
 import React from 'react';
+
+import { Card } from 'components/Molecules';
 import { ICardList } from 'Organism/types';
+
 import { cardListStyles } from './styles.tailwind';
 
 const CardsList: React.FC<ICardList> = ({ arrOfCards }) => (arrOfCards ? (

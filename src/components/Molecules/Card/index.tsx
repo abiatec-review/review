@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { showModal } from 'redux&saga/actions/modalActions';
 
 import { Image } from 'components/Atoms';
 import { ICard } from 'Molecules/types';
+import { showModal } from 'redux&saga/actions/modalActions';
 
 import { cardStyles } from './styles.tailwind';
 

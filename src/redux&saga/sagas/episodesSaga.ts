@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { mapChars } from 'helpers';
+import {
+  put, takeEvery, select, call,
+} from 'redux-saga/effects';
+
 import { RootState } from 'redux&saga';
+
+import { mapChars } from 'helpers';
 import { addEpisodesInfo, addNewChars, getChars } from 'redux&saga/actions/episodesActions';
 import {
   EpisodesActionTypes, ICharsAction, IEpisode, IEpisodesAction, IEpisodesResponse,
 } from 'redux&saga/types';
-import {
-  put, takeEvery, select, call,
-} from 'redux-saga/effects';
 
 const { GET_CHARS_INFO, GET_EPISODES_INFO } = EpisodesActionTypes;
 

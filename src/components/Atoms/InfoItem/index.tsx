@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useMemo, FunctionComponentElement, ReactElement } from 'react';
+
 import { IInfoItem, IInfoItemRenderFunction } from 'Atoms/types';
 import { Image } from 'components/Atoms';
 

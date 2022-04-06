@@ -1,11 +1,14 @@
+import React from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'redux&saga';
+
 import { ShadowField } from 'components/Atoms';
 import { InfoBlock, EpisodesBlock } from 'components/Molecules';
 import { TabsComponent } from 'components/Organism';
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'redux&saga';
 import { clearEpisodesInfoList } from 'redux&saga/actions/episodesActions';
 import { hideModal } from 'redux&saga/actions/modalActions';
+
 import { modalStyles } from './styles.tailwind';
 
 const Modal: React.FC = () => {

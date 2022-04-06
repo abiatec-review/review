@@ -1,6 +1,7 @@
 import React from 'react';
-import { IInfoBlock } from 'Molecules/types';
+
 import { InfoItem } from 'components/Atoms';
+import { IInfoBlock } from 'Molecules/types';
 
 const InfoBlock: React.FC<IInfoBlock> = ({ content }) => {
   const renderInfoBlock = () => Object.entries(content).map((item: [string, {name: string}]) => (

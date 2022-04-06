@@ -1,9 +1,11 @@
+import React from 'react';
+
+import { useSelector } from 'react-redux';
+import { RootState } from 'redux&saga';
+
 import { Image } from 'components/Atoms';
 import { mapChars } from 'helpers';
 import { IEpisodeItem } from 'Molecules/types';
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from 'redux&saga';
 
 const EpisodeItem: React.FC<IEpisodeItem> = ({ episodeData }) => {
   const chars = useSelector((state: RootState) => state.episodes.characters);

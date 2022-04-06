@@ -1,8 +1,10 @@
-import { TabNames } from 'components/Molecules';
-import { ITabsComponent } from 'Organism/types';
 import React, { useEffect, useState } from 'react';
+
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux&saga';
+
+import { TabNames } from 'components/Molecules';
+import { ITabsComponent } from 'Organism/types';
 
 const TabsComponent: React.FC<ITabsComponent> = ({ arrOfTabsData }) => {
   const [currentTab, setCurrentTab] = useState(0);
