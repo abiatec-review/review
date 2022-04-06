@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import { IFunctions, IInfoItem } from 'Atoms/types';
 import { Image } from 'components/Atoms';
 
-const InfoItem: React.FC<IInfoItem> = ({ data, dataType }) => {
+export const InfoItem: React.FC<IInfoItem> = ({ data, dataType }) => {
   const validateFunctions:IFunctions = useMemo(() => ({
     id: () => null,
     episode: () => null,
@@ -26,5 +26,3 @@ const InfoItem: React.FC<IInfoItem> = ({ data, dataType }) => {
     </div>
   ) : null;
 };
-
-export default InfoItem;

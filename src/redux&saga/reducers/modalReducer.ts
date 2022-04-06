@@ -5,7 +5,7 @@ const initialState = {
 
 export const modalReducer = (
   state: typeof initialState = initialState,
-  action: any, //  todo
+  action: any,
 ) => {
   switch (action.type) {
     case 'SHOW_MODAL':

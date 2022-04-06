@@ -3,7 +3,7 @@ import React from 'react';
 import { ITab } from 'Atoms/types';
 import { tabStyles } from './styles.tailwind';
 
-const Tab: React.FC<ITab> = ({ clickHandler, text, active }) => (
+export const Tab: React.FC<ITab> = ({ clickHandler, text, active }) => (
   <div
     onClick={clickHandler}
     className={`${tabStyles} ${active ? 'shadow-blue-300' : ''}`}
@@ -12,5 +12,3 @@ const Tab: React.FC<ITab> = ({ clickHandler, text, active }) => (
     {text}
   </div>
 );
-
-export default Tab;

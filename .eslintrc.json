@@ -73,7 +73,7 @@
       }
     ],
     "import/prefer-default-export": [
-      "warn"
+      "off"
     ]
   },
   "settings": {

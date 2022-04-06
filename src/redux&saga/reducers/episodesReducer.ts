@@ -1,12 +1,11 @@
 const initialState = {
-  arrayOfEpisodes: [],
   characters: { },
   receivedEpisodesInfo: [],
 };
 
 export const episodesReducer = (
   state: typeof initialState = initialState,
-  action: any, //  todo
+  action: any,
 ) => {
   switch (action.type) {
     case 'REDEFINE_EPISODES_URL_LIST':

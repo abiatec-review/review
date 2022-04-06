@@ -8,7 +8,7 @@ import { getEpisodesInfo } from 'redux&saga/actions/episodesActions';
 import { IEpisode } from 'redux&saga/types';
 
 const EpisodesBlock: React.FC<IEpisodesBlock> = ({ episodeUrlsArray }) => {
-  const [numOfVisibleChunks, setNumOfVisibleChunks] = useState(1);
+  const [numOfVisibleChunks, setNumOfVisibleChunks] = useState<number>(1);
 
   const dispatch = useDispatch();
 

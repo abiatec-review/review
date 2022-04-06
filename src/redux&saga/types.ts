@@ -8,6 +8,13 @@ export type IEpisodesAction = {
     payload: Array<string>
 }
 
+
+export type ICharsAction = {
+    type: string,
+    payload: Array<string>
+}
+
+
 export type IEpisode = {
     characters: Array<string>,
     name: string,
@@ -22,7 +29,25 @@ export type IEpisodesResponse = {
     value: IEpisode
 }
 
-// export type ICharResponse =
-// {
+export type ICardActionCreator = (payloadType: string[])=>IEpisodesAction
 
-// }
+
+export enum CardActionTypes {
+    REDEFINE_CARD_LIST='REDEFINE_CARD_LIST',
+    CHANGE_CHAR_NAME='CHANGE_CHAR_NAME',
+    GET_CARDS='GET_CARDS'
+}
+
+export enum EpisodesActionTypes {
+    'GET_CHARS_INFO',
+    'CLEAR_EPISODES_INFO',
+    'ADD_NEW_CHARACTERS',
+    'GET_EPISODES_INFO',
+    'ADD_EPISODES_INFO',
+}
+
+
+export enum ModalActionTypes {
+    'SHOW_MODAL',
+    'HIDE_MODAL',
+}

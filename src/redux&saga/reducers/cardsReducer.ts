@@ -1,3 +1,5 @@
+import { CardActionTypes } from 'redux&saga/types';
+
 const initialState = {
   name: '',
   cardsList: {
@@ -5,16 +7,16 @@ const initialState = {
   },
 };
 
+const { CHANGE_CHAR_NAME, REDEFINE_CARD_LIST } = CardActionTypes;
+
 export const cardsReducer = (
   state: typeof initialState = initialState,
-  action: any, // todo
+  action: any,
 ) => {
   switch (action.type) {
-    case 'GET_NEW_CARDS':
-      return { ...state };
-    case 'CHANGE_CHAR_NAME':
+    case CHANGE_CHAR_NAME:
       return { ...state, name: action.payload };
-    case 'REDEFINE_CARD_LIST':
+    case REDEFINE_CARD_LIST:
       return { ...state, cardsList: action.payload };
     default:
       return state;

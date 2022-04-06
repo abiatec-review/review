@@ -1,10 +1,6 @@
-import Input from './Input';
-import Button from './Button';
-import Image from './Image';
-import ShadowField from './ShadowField';
-import InfoItem from './InfoItem';
-import Tab from './Tab';
-
-export {
-  Input, Button, Image, ShadowField, InfoItem, Tab,
-};
+export { Input } from './Input';
+export { Button } from './Button';
+export { Image } from './Image';
+export { ShadowField } from './ShadowField';
+export { InfoItem } from './InfoItem';
+export { Tab } from './Tab';

@@ -1,8 +1,11 @@
-import { Image } from 'components/Atoms';
 import React from 'react';
-import { ICard } from 'Molecules/types';
+
 import { useDispatch } from 'react-redux';
 import { showModal } from 'redux&saga/actions/modalActions';
+
+import { Image } from 'components/Atoms';
+import { ICard } from 'Molecules/types';
+
 import { cardStyles } from './styles.tailwind';
 
 const Card: React.FC<ICard> = ({ data }) => {
