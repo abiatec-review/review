@@ -3,7 +3,7 @@ import { IInfoBlock } from 'Molecules/types';
 import { InfoItem } from 'components/Atoms';
 
 const InfoBlock: React.FC<IInfoBlock> = ({ content }) => {
-  const renderInfoBlock = () => Object.entries(content).map((item: [string, unknown]) => (
+  const renderInfoBlock = () => Object.entries(content).map((item: [string, {name: string}]) => (
     <InfoItem dataType={item[0]} data={item[1]} key={`${item[0]}-infoItem`} />
   ));
 

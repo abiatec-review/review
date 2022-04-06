@@ -11,9 +11,7 @@ const SubmitBlock: React.FC = () => {
   const validateCharName = (name: string) => name.toLowerCase();
 
   const clickHandler = () => {
-    if (inputRef.current != null && inputRef.current.value != null) {
-      dispatch(getCards(validateCharName(inputRef.current.value)));
-    }
+    inputRef?.current?.value && dispatch(getCards(validateCharName(inputRef.current.value)));
   };
 
   return (

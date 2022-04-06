@@ -1,9 +1,9 @@
 import { cardData } from 'Molecules/types';
 
 export interface ICardList {
-    arrOfCards: Array<cardData>
+  arrOfCards: Array<cardData>
 }
 
 export interface ITabsComponent {
-    arrOfTabsData: Array<any>
+  arrOfTabsData: Array<any>
 }

@@ -6,7 +6,7 @@ const { GET_CARDS } = CardActionTypes;
 
 export function* getCardsSaga(action: IAction) {
   try {
-    const resp:Object = yield fetch(`https://rickandmortyapi.com/api/character/?name=${action.payload}`)
+    const resp:Object = yield fetch(`${process.env.REACT_APP_BASE_URL}/api/character/?name=${action.payload}`)
       .then((response) => response.json()).catch((err) => { throw err; });
     yield put(redefineCardList(resp));
   } catch (error) {

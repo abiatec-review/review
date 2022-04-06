@@ -1,40 +1,40 @@
 /* eslint-disable no-unused-vars */
 export type cardData = {
-    name: string;
-    image: string
+  name: string;
+  image: string
 }
 
 export interface ICard {
-    data: cardData
+  data: cardData
 }
 
 export interface IInfoBlock {
-    content: Object,
+  content: Object,
 }
 
 export type TabNameType = {
-    name: string,
-    number: number,
-    isActive:boolean
+  name: string,
+  number: number,
+  isActive:boolean
 }
 
 export interface ITabNames {
-    tabsNames: Array<TabNameType>,
-    clickHandler: (num: number)=>void
+  tabsNames: Array<TabNameType>,
+  clickHandler: (num: number)=>void
 }
 
 export interface IEpisodesBlock {
-    episodeUrlsArray: Array<TabNameType>,
+  episodeUrlsArray: Array<TabNameType>,
 }
 
 export interface IEpisodeItem {
-    episodeData: {
-        characters: Array<string>,
-        name: string,
-        episode: string
-    },
-    chars: {
-        [key:number]:string
-    }
+  episodeData: {
+    characters: Array<string>,
+    name: string,
+    episode: string
+  },
+  chars: {
+    [key:number]:string
+  }
 
 }
