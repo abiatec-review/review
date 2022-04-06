@@ -1,6 +1,7 @@
 export type StoreType = {
     pictures: PictureType[],
-    info: StateInfoType
+    info: StateInfoType,
+    details: any
 }
 export type PictureType = {
     id: number,
@@ -34,3 +35,23 @@ export type StateInfoType = {
     next: string | null,
     prev: string | null
 }
+
+
+export type EpisodesInfoType = {
+    url: string,
+    name: string,
+    date: string,
+    characters: string[]
+}
+
+export type StringsKeysObjectInterface<T> = { [key: string]: T }
+
+
+
+export type StateDetailsType = {
+    isLoaded: boolean,
+    loadedWithError: boolean,
+    charactersPictures: StringsKeysObjectInterface<string>,
+    episodesInfo: StringsKeysObjectInterface<EpisodesInfoType>
+}
+

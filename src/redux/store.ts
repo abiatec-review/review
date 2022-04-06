@@ -2,12 +2,14 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
 import PicturesReducer from 'redux/reducers/pictures';
-import infoReducer from './reducers/info';
+import infoReducer from 'redux/reducers/info';
+import detailsReducer from 'redux/reducers/details';
 
 
 const rootReducer = combineReducers({
   pictures: PicturesReducer,
-  info: infoReducer
+  info: infoReducer,
+  details: detailsReducer
 });
 
 
