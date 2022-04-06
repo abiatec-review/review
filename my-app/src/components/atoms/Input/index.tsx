@@ -1,9 +1,20 @@
+import React, { useState } from 'react'
 import styles from './styles.module.scss'
 
-interface IProps {}
+interface IProps {
+  inputValue: string
+  onChangeHandler: any
+}
 
-export const Input: React.FC<IProps> = ( {  } ) => {
+export const Input: React.FC<IProps> = ( { inputValue, onChangeHandler } ) => {
+
   return ( 
-    <input className={styles.headerInputField}></input>
+    <input className={styles.headerInputField}
+            value={inputValue}
+            onChange={onChangeHandler}
+            name={'name'}
+            placeholder={'Enter the character name'}
+            >
+    </input>
   )
 }

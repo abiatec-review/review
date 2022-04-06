@@ -5,9 +5,10 @@ import animations from '../../../styles/animations.module.scss'
 
 interface IProps {
   type: constants
+  srcImage: string
 }
 
-export const Picture: React.FC<IProps> = ( {type} ) => {
+export const Picture: React.FC<IProps> = ( {type, srcImage} ) => {
   switch (type) {
     case constants.HEADER_PICTURE: 
     return (
@@ -97,6 +98,10 @@ export const Picture: React.FC<IProps> = ( {type} ) => {
       </g>
       </svg>
     )
+    case constants.CARD_PICTURE:
+      return (
+        <img src={srcImage} alt="cardPicture" />
+      )
     default: return null
   }
   
