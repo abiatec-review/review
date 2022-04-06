@@ -10,6 +10,14 @@ export default defineComponent({});
 
 <style lang="scss">
 * {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+body {
   margin: 0;
 }
 
