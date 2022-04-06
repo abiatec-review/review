@@ -1,10 +1,6 @@
-import Card from './Card';
-import EpisodeItem from './EpisodeItem';
-import EpisodesBlock from './EpisodesBlock';
-import InfoBlock from './InfoBlock';
-import SubmitBlock from './SubmitBlock';
-import TabNames from './TabNames';
-
-export {
-  SubmitBlock, Card, InfoBlock, TabNames, EpisodesBlock, EpisodeItem,
-};
+export { Card } from './Card';
+export { EpisodeItem } from './EpisodeItem';
+export { EpisodesBlock } from './EpisodesBlock';
+export { InfoBlock } from './InfoBlock';
+export { SubmitBlock } from './SubmitBlock';
+export { TabNames } from './TabNames';

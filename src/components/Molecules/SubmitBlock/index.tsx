@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Button, Input } from 'components/Atoms';
 import { getCards } from 'redux&saga/actions/cardsActions';
 
-const SubmitBlock: React.FC = () => {
+export const SubmitBlock: React.FC = () => {
   const dispatch = useDispatch();
 
   const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
@@ -13,7 +13,7 @@ const SubmitBlock: React.FC = () => {
   const validateCharName = (name: string) => name.toLowerCase();
 
   const clickHandler = () => {
-    inputRef?.current?.value && dispatch(getCards(validateCharName(inputRef.current.value)));
+    dispatch(getCards(validateCharName(inputRef?.current?.value ? inputRef.current.value : '')));
   };
 
   return (
@@ -23,5 +23,3 @@ const SubmitBlock: React.FC = () => {
     </div>
   );
 };
-
-export default SubmitBlock;

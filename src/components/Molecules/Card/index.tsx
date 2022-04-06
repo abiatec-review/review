@@ -8,7 +8,7 @@ import { showModal } from 'redux&saga/actions/modalActions';
 
 import { cardStyles } from './styles.tailwind';
 
-const Card: React.FC<ICard> = ({ data }) => {
+export const Card: React.FC<ICard> = ({ data }) => {
   const dispatch = useDispatch();
 
   const clickHandler = () => {
@@ -21,5 +21,3 @@ const Card: React.FC<ICard> = ({ data }) => {
     </div>
   );
 };
-
-export default Card;

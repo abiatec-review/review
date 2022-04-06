@@ -1,8 +1,4 @@
-import CardsList from './CardsList';
-import Header from './Header';
-import Modal from './Modal';
-import TabsComponent from './TabsComponent';
-
-export {
-  Header, CardsList, Modal, TabsComponent,
-};
+export { CardsList } from './CardsList';
+export { Header } from './Header';
+export { Modal } from './Modal';
+export { TabsComponent } from './TabsComponent';

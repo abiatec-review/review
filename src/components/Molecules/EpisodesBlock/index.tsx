@@ -9,7 +9,7 @@ import { IEpisodesBlock } from 'Molecules/types';
 import { getEpisodesInfo } from 'redux&saga/actions/episodesActions';
 import { IEpisode } from 'redux&saga/types';
 
-const EpisodesBlock: React.FC<IEpisodesBlock> = ({ episodeUrlsArray }) => {
+export const EpisodesBlock: React.FC<IEpisodesBlock> = ({ episodeUrlsArray }) => {
   const [numOfVisibleChunks, setNumOfVisibleChunks] = useState<number>(1);
 
   const dispatch = useDispatch();
@@ -50,5 +50,3 @@ const EpisodesBlock: React.FC<IEpisodesBlock> = ({ episodeUrlsArray }) => {
     </div>
   );
 };
-
-export default EpisodesBlock;

@@ -5,7 +5,7 @@ import { RootState } from 'redux&saga';
 
 import { CardsList, Header, Modal } from 'components/Organism';
 
-const MainPage: React.FC = () => {
+export const MainPage: React.FC = () => {
   const cards = useSelector((state: RootState) => state.cards);
 
   return (
@@ -16,5 +16,3 @@ const MainPage: React.FC = () => {
     </div>
   );
 };
-
-export default MainPage;

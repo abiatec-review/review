@@ -7,7 +7,7 @@ import { Image } from 'components/Atoms';
 import { mapChars } from 'helpers';
 import { IEpisodeItem } from 'Molecules/types';
 
-const EpisodeItem: React.FC<IEpisodeItem> = ({ episodeData }) => {
+export const EpisodeItem: React.FC<IEpisodeItem> = ({ episodeData }) => {
   const chars = useSelector((state: RootState) => state.episodes.characters);
   return (
     <div className="grid grid-cols-3">
@@ -19,5 +19,3 @@ const EpisodeItem: React.FC<IEpisodeItem> = ({ episodeData }) => {
     </div>
   );
 };
-
-export default EpisodeItem;

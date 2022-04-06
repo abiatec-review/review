@@ -63,20 +63,8 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "no-unused-expressions": "off",
-    // "@typescript-eslint/sort-imports": [
-    //   "error",
-    //   {
-    //     "ignoreCase": false,
-    //     "ignoreDeclarationSort": false,
-    //     "ignoreMemberSort": false,
-    //     "memberSyntaxSortOrder": [
-    //       "all"
-    //     ],
-    //     "allowSeparatedGroups": true
-    //   }
-    // ],
     "import/order": [
-      "error",
+      "warn",
       {
         "groups": [
           "builtin",

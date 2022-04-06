@@ -11,7 +11,7 @@ import { hideModal } from 'redux&saga/actions/modalActions';
 
 import { modalStyles } from './styles.tailwind';
 
-const Modal: React.FC = () => {
+export const Modal: React.FC = () => {
   const { isOpen, content } = useSelector((state: RootState) => state.modal);
 
   const dispatch = useDispatch();
@@ -34,5 +34,3 @@ const Modal: React.FC = () => {
     </>
   );
 };
-
-export default Modal;

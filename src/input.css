@@ -4,5 +4,9 @@
 
 
 .modal::-webkit-scrollbar {
-    width: 0px;
+    display: none
+}
+
+body::-webkit-scrollbar {
+    display: none
 }

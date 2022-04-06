@@ -6,8 +6,8 @@ import { RootState } from 'redux&saga';
 import { TabNames } from 'components/Molecules';
 import { ITabsComponent } from 'Organism/types';
 
-const TabsComponent: React.FC<ITabsComponent> = ({ arrOfTabsData }) => {
-  const [currentTab, setCurrentTab] = useState(0);
+export const TabsComponent: React.FC<ITabsComponent> = ({ arrOfTabsData }) => {
+  const [currentTab, setCurrentTab] = useState<number>(0);
 
   const getTabsNames = () => arrOfTabsData.map((el, i) => ({ name: el.name, number: i, isActive: i === currentTab }));
 
@@ -22,5 +22,3 @@ const TabsComponent: React.FC<ITabsComponent> = ({ arrOfTabsData }) => {
     </div>
   );
 };
-
-export default TabsComponent;
