@@ -1,6 +1,8 @@
 import { redefineCardList } from 'redux&saga/actions/cardsActions';
-import { IAction } from 'redux&saga/types';
+import { CardActionTypes, IAction } from 'redux&saga/types';
 import { put, takeEvery } from 'redux-saga/effects';
+
+const { GET_CARDS } = CardActionTypes;
 
 export function* getCardsSaga(action: IAction) {
   try {
@@ -13,7 +15,7 @@ export function* getCardsSaga(action: IAction) {
 }
 
 const cardsSaga = [
-  takeEvery('GET_CARDS', getCardsSaga),
+  takeEvery(GET_CARDS, getCardsSaga),
 ];
 
 export default cardsSaga;

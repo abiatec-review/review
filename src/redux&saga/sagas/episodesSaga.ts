@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { mapChars } from 'helpers';
 import { RootState } from 'redux&saga';
-import { addEpisodesInfo, addNewChars } from 'redux&saga/actions/episodesActions';
+import { addEpisodesInfo, addNewChars, getChars } from 'redux&saga/actions/episodesActions';
 import {
   EpisodesActionTypes, ICharsAction, IEpisode, IEpisodesAction, IEpisodesResponse,
 } from 'redux&saga/types';
@@ -44,10 +44,8 @@ export function* getEpisodesSaga(action: IEpisodesAction) {
         if (!(newChars[i].id in exisingChars))charsToFetch.push(newChars[i].path);
       }
     });
-    // const getCardAction:ICardActionCreator = yield take(GET_CHARS_INFO);
-    // @ts-ignore
 
-    yield call(getCharsSaga({ type: GET_CHARS_INFO, payload: charsToFetch }));
+    yield call(getCharsSaga, getChars(charsToFetch));
   } catch (error) {
     console.log(error);
   }
