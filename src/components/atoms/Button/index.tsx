@@ -1,9 +1,13 @@
 import { ReactElement } from 'react';
 
 
+const styles = {
+    button:`h-9 bg-btn_bcground text-white rounded px-4 disabled:opacity-50`
+};
+
 const Button = (props: any): ReactElement => {
     return (
-        <button className='h-9 bg-[#767676] text-white rounded px-4 disabled:opacity-50' 
+        <button className={styles.button} 
         {...props} 
         />
     );

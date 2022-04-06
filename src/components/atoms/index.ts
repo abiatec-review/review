@@ -1,5 +1,4 @@
-import Image from './Image';
-import SearchInput from './SearchInput';
-import Spinner from './Spinner';
-
-export {Image, SearchInput, Spinner};
+export {Image} from './Image';
+export {SearchInput} from './SearchInput';
+export {Spinner} from './Spinner';
+export {NothingFound} from './NothingFound';

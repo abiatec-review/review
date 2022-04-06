@@ -1,18 +1,9 @@
 import infoReducer from 'redux/reducers/info';
 import ActionType from 'redux/actions/actionType';
-const mockInfoData = {
-    count: 826,
-    pages: 42,
-    next: 'https://rickandmortyapi.com/api/character/?page=2',
-    prev: null
-};
+import { mockInfoData, initialInfoState as initialState} from 'mocks';
 
-const initialState = {
-    count: 0,
-    pages: null,
-    next: null,
-    prev: null
-}
+
+
 
 describe("Test info reducer", function () {
     test("set data", function () {

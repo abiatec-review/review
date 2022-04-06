@@ -1,4 +1,2 @@
-import ContentList from './ContentList';
-import Popup from './Popup';
-
-export {ContentList, Popup};
+export { ContentList } from './ContentList';
+export  {Popup}  from './Popup';

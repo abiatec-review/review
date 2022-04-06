@@ -9,8 +9,20 @@ import { PictureType } from 'types';
 
 
 
+const styles = {
+    popupWrapper: `top-0 pt-[100px] w-full h-full flex justify-center fixed`,
+    popup: ` h-[600px] w-[800px] bg-popup_bcground rounded-[25px] 
+    flex flex-col items-center shadow-lg fixed`,
+    popup__tabs: `flex justify-between w-[200px]`,
+    popup__content: `overflow-auto w-full`,
+    closeBtn: `absolute right-[-10px] top-[-10px] z-10000 h-[40px] 
+    w-[40px] rounded-full bg-indigo-500`,
+    character__img: `m-auto`,
+    tab: `m-1`
+}
 
-const Popup = (): ReactElement => {
+
+export const Popup = (): ReactElement => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const { id } = useParams();
@@ -26,35 +38,33 @@ const Popup = (): ReactElement => {
     }
 
     return (
-        <div className='top-0 pt-[100px] w-[100%] h-[100%] flex justify-center fixed'
+        <div className={styles.popupWrapper}
             onClick={closePopup}
         >
-            <div className=' h-[600px] w-[800px] bg-[#c7c7c7] text-[#444444]] rounded-[25px] 
-             flex flex-col items-center shadow-lg fixed'
+            <div className={styles.popup}
                 onClick={(evt) => {
                     evt.stopPropagation();
                 }}
             >
-                <button className='absolute right-[-10px] top-[-10px] z-10000 h-[40px] 
-                w-[40px] rounded-full bg-indigo-500 '
+                <button className={styles.closeBtn}
                     onClick={closePopup}
                 >
                     X
                 </button>
-                <ul className='flex justify-between w-[200px]'>
-                    <li className={`m-1 
+                <ul className={styles.popup__tabs}>
+                    <li className={`${styles.tab} 
                     ${!pathname.endsWith(RouterPath.Details) ? 'underline' : ''}
                    `}
                     >
                         <Link to={`.${RouterPath.Root}`}>info</Link>
                     </li>
-                    <li className={`m-1
+                    <li className={`${styles.tab} 
                      ${pathname.endsWith(RouterPath.Details) ? 'underline' : ''}
                     `}>
                         <Link to={`.${RouterPath.Details}`}>details</Link>
                     </li>
                 </ul>
-                <div className='overflow-auto w-[100%]'>
+                <div className={styles.popup__content}>
                     <Routes>
                         <Route path={RouterPath.Root} element={<InfoTab info={activePicture} />} />
                         <Route path={RouterPath.Details} element={<DetailsTab episodes={activePicture.episode} />} />
@@ -66,5 +76,4 @@ const Popup = (): ReactElement => {
     );
 };
 
-export default Popup;
 

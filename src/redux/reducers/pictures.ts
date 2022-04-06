@@ -6,7 +6,7 @@ const initialState: PictureType[] = [];
 const pictureReducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case ActionType.SetPictures: {
-            return [...state, ...action.payload];
+            return [...action.payload];
         }
         case ActionType.ResetPictures: {
             return initialState;

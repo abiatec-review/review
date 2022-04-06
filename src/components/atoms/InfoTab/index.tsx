@@ -2,23 +2,30 @@ import { PictureType } from 'types';
 
 interface IProps {
     info: PictureType
-}
+};
 
-const InfoTab: React.FC<IProps> = ({ info: { name,
-    status,
-    species,
-    type,
-    gender,
-    origin,
-    location,
-    image
-}
+const styles = {
+    infoTab__img: `m-auto`
+};
+
+
+const InfoTab: React.FC<IProps> = ({ info:
+    {
+        name,
+        status,
+        species,
+        type,
+        gender,
+        origin,
+        location,
+        image
+    }
 }) => {
     return (
         <div>
             <figure >
                 <img
-                    className=' m-auto'
+                    className={styles.infoTab__img}
                     src={image} alt={`${name} character`} />
                 <figcaption>{name}</figcaption>
             </figure>
@@ -48,7 +55,7 @@ const InfoTab: React.FC<IProps> = ({ info: { name,
                     <li>
                         {`origin : ${origin.name}`}
                     </li>}
-                {location&& location.name &&
+                {location && location.name &&
                     <li>
                         {`location : ${location.name}`}
                     </li>}
