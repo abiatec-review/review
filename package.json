@@ -6,7 +6,9 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "lint:watch": "eslint \"**/*.{js,ts,tsx}\"",
+    "lint:fix": "yarn lint:watch --fix"
   },
   "jest": {
     "preset": "react-native"
@@ -29,12 +31,17 @@
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@types/jest": "^27.4.1",
-    "@types/lodash.debounce": "^4.0.6",
     "@types/react": "^17.0.41",
     "@types/react-native": "^0.67.3",
     "@types/react-native-vector-icons": "^6.4.10",
     "@types/redux-mock-store": "^1.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
     "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "^8.12.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-native": "^4.0.0",
     "jest": "^27.5.1",
     "metro-react-native-babel-preset": "^0.66.2",
     "redux-mock-store": "^1.5.4",

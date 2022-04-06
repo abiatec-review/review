@@ -1,7 +1,12 @@
-import { scrollCharactersAction, scrollEpisodesAction, scrollLocationsAction } from "@actions";
-import { ScrollAction, ScrollActionType } from "@models/actions";
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
+
+import {
+  scrollCharactersAction,
+  scrollEpisodesAction,
+  scrollLocationsAction
+} from "@redux/actions";
+import { ScrollAction, ScrollActionType } from "@redux/models/actions";
 
 const mockStore = configureMockStore([thunk]);
 

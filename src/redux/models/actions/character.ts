@@ -1,4 +1,4 @@
-import { Character } from "@models/entities";
+import { Character } from "@redux/models/entities";
 
 import { FailedAction, SuccessAction } from "./action";
 import { LoadingAction } from "./loading";

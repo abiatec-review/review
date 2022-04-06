@@ -1,12 +1,13 @@
+import { Dispatch } from "redux";
+
 import {
   getLocationListFailedAction,
   getLocationListSuccessAction,
   startLoadingAction,
   stopLoadingAction
-} from "@actions";
-import { LocationAction } from "@models/actions";
-import { Location, ResultList } from "@models/entities";
-import { Dispatch } from "redux";
+} from "@redux/actions";
+import { LocationAction } from "@redux/models/actions";
+import { Location, ResultList } from "@redux/models/entities";
 
 import requests, { fixDate } from "./base";
 

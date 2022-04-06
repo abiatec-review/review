@@ -1,18 +1,19 @@
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+
 import {
   getLocationListFailedAction,
   getLocationListSuccessAction,
   startLoadingAction,
   stopLoadingAction
-} from "@actions";
+} from "@redux/actions";
 import {
   LoadingAction,
   LoadingActionType,
   LocationAction,
   LocationActionType
-} from "@models/actions";
-import { Location } from "@models/entities";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
+} from "@redux/models/actions";
+import { Location } from "@redux/models/entities";
 
 const mockStore = configureMockStore([thunk]);
 

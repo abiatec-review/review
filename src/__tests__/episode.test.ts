@@ -1,18 +1,19 @@
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+
 import {
   getEpisodeListFailedAction,
   getEpisodeListSuccessAction,
   startLoadingAction,
   stopLoadingAction
-} from "@actions";
+} from "@redux/actions";
 import {
   EpisodeAction,
   EpisodeActionType,
   LoadingAction,
   LoadingActionType
-} from "@models/actions";
-import { Episode } from "@models/entities";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
+} from "@redux/models/actions";
+import { Episode } from "@redux/models/entities";
 
 const mockStore = configureMockStore([thunk]);
 

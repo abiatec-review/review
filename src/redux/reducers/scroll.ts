@@ -1,5 +1,5 @@
-import { ScrollAction, ScrollActionType } from "@models/actions";
-import { ScrollReducer } from "@models/reducers";
+import { ScrollAction, ScrollActionType } from "@redux/models/actions";
+import { ScrollReducer } from "@redux/models/reducers";
 
 const initialState: ScrollReducer = {
   characterOffset: 0,

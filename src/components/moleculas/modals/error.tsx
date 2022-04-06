@@ -1,6 +1,8 @@
-import { Colors, FontSize, Indent } from "@utils";
 import React, { useEffect, useState } from "react";
+
 import { StyleSheet, Text } from "react-native";
+
+import { Colors, FontSize, Indent } from "@utils";
 
 import Modal from "./modal";
 

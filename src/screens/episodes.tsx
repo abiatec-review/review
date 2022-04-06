@@ -1,9 +1,10 @@
+import React from "react";
+
 import { InfiniteScroll } from "@components/atoms";
 import { EpisodeCard } from "@components/moleculas/cards";
 import { ErrorModal } from "@components/moleculas/modals";
-import { getEpisodes, scrollEpisodes } from "@services";
-import { useDispatch, useSelector } from "@store";
-import React from "react";
+import { getEpisodes, scrollEpisodes } from "@redux/services";
+import { useDispatch, useSelector } from "@redux/store";
 
 export function EpisodesScreen() {
   const dispatch = useDispatch();

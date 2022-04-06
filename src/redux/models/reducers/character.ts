@@ -1,4 +1,4 @@
-import { Character } from "@models/entities";
+import { Character } from "@redux/models/entities";
 
 export interface CharacterReducer {
   error?: string;

@@ -1,5 +1,5 @@
-import { EpisodeAction, EpisodeActionType, LoadingActionType } from "@models/actions";
-import { EpisodeReducer } from "@models/reducers";
+import { EpisodeAction, EpisodeActionType, LoadingActionType } from "@redux/models/actions";
+import { EpisodeReducer } from "@redux/models/reducers";
 
 const initialState: EpisodeReducer = {
   episodes: [],

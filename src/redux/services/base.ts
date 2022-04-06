@@ -1,5 +1,6 @@
-import { Urls } from "@utils";
 import axios, { AxiosResponse } from "axios";
+
+import { Urls } from "@utils";
 
 axios.defaults.baseURL = Urls.AXIOS;
 

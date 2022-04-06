@@ -1,12 +1,13 @@
+import { Dispatch } from "redux";
+
 import {
   getEpisodeListFailedAction,
   getEpisodeListSuccessAction,
   startLoadingAction,
   stopLoadingAction
-} from "@actions";
-import { EpisodeAction } from "@models/actions";
-import { Episode, ResultList } from "@models/entities";
-import { Dispatch } from "redux";
+} from "@redux/actions";
+import { EpisodeAction } from "@redux/models/actions";
+import { Episode, ResultList } from "@redux/models/entities";
 
 import requests, { fixDate } from "./base";
 

@@ -1,7 +1,9 @@
+import React from "react";
+
+import * as RN from "react-native";
+
 import { useOrientation } from "@hooks";
 import { Colors, FontSize, Indent, Radius } from "@utils";
-import React from "react";
-import * as RN from "react-native";
 
 interface Props {
   isShown: boolean;

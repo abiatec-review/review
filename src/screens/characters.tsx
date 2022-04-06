@@ -1,11 +1,13 @@
+import React, { useState } from "react";
+
+import * as RN from "react-native";
+
 import { InfiniteScroll, Spinner } from "@components/atoms";
 import { FullCharacterCard, ReducedCharacterCard } from "@components/moleculas/cards";
 import { ErrorModal } from "@components/moleculas/modals";
-import { getCharacter, getCharacterList, scrollCharacters } from "@services";
-import { useDispatch, useSelector } from "@store";
+import { getCharacter, getCharacterList, scrollCharacters } from "@redux/services";
+import { useDispatch, useSelector } from "@redux/store";
 import { Colors, FontSize, Indent, Radius } from "@utils";
-import React, { useState } from "react";
-import * as RN from "react-native";
 
 export function CharactersScreen() {
   const [id, setId] = useState<number>();

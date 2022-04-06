@@ -1,5 +1,5 @@
-import { CharacterAction, CharacterActionType } from "@models/actions";
-import { Character } from "@models/entities";
+import { CharacterAction, CharacterActionType } from "@redux/models/actions";
+import { Character } from "@redux/models/entities";
 
 export function getCharacterSuccessAction(data: Character): CharacterAction {
   return {

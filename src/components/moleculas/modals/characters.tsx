@@ -1,8 +1,10 @@
-import { useOrientation } from "@hooks";
-import { Character } from "@models/entities";
-import { FontSize, Indent, Radius } from "@utils";
 import React from "react";
+
 import * as RN from "react-native";
+
+import { useOrientation } from "@hooks";
+import { Character } from "@redux/models/entities";
+import { FontSize, Indent, Radius } from "@utils";
 
 import Modal from "./modal";
 

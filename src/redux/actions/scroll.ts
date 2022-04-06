@@ -1,4 +1,4 @@
-import { ScrollAction, ScrollActionType } from "@models/actions";
+import { ScrollAction, ScrollActionType } from "@redux/models/actions";
 
 export function scrollCharactersAction(data: number): ScrollAction {
   return {

@@ -1,3 +1,5 @@
+import { Dispatch } from "redux";
+
 import {
   getCharacterFailedAction,
   getCharacterListFailedAction,
@@ -5,10 +7,9 @@ import {
   getCharacterSuccessAction,
   startLoadingAction,
   stopLoadingAction
-} from "@actions";
-import { CharacterAction } from "@models/actions";
-import { Character, ResultList } from "@models/entities";
-import { Dispatch } from "redux";
+} from "@redux/actions";
+import { CharacterAction } from "@redux/models/actions";
+import { Character, ResultList } from "@redux/models/entities";
 
 import requests, { fixDate } from "./base";
 

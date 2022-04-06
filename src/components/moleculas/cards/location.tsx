@@ -1,10 +1,12 @@
+import React, { useState } from "react";
+
+import { Pressable, StyleSheet } from "react-native";
+
 import { TextRow } from "@components/atoms";
 import { CharactersModal } from "@components/moleculas/modals";
-import { Location } from "@models/entities";
-import { useSelector } from "@store";
+import { Location } from "@redux/models/entities";
+import { useSelector } from "@redux/store";
 import { Colors, Indent, Radius } from "@utils";
-import React, { useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
 
 interface Props {
   location: Location;

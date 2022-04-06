@@ -1,6 +1,6 @@
-import { CharacterAction, CharacterActionType, LoadingActionType } from "@models/actions";
-import { Character } from "@models/entities";
-import { CharacterReducer } from "@models/reducers";
+import { CharacterAction, CharacterActionType, LoadingActionType } from "@redux/models/actions";
+import { Character } from "@redux/models/entities";
+import { CharacterReducer } from "@redux/models/reducers";
 
 const initialState: CharacterReducer = {
   isLoading: false,

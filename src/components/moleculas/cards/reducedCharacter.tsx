@@ -1,8 +1,10 @@
-import { CharacterDetailsModal } from "@components/moleculas/modals";
-import { Character } from "@models/entities";
-import { Colors, FontSize, Indent, Radius } from "@utils";
 import React, { useState } from "react";
+
 import * as RN from "react-native";
+
+import { CharacterDetailsModal } from "@components/moleculas/modals";
+import { Character } from "@redux/models/entities";
+import { Colors, FontSize, Indent, Radius } from "@utils";
 
 interface Props {
   character: Character;

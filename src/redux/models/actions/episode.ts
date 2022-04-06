@@ -1,4 +1,4 @@
-import { Episode } from "@models/entities";
+import { Episode } from "@redux/models/entities";
 
 import { FailedAction, SuccessAction } from "./action";
 import { LoadingAction } from "./loading";

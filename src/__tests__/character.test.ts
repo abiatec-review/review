@@ -1,3 +1,6 @@
+import configureMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+
 import {
   getCharacterFailedAction,
   getCharacterListFailedAction,
@@ -5,16 +8,14 @@ import {
   getCharacterSuccessAction,
   startLoadingAction,
   stopLoadingAction
-} from "@actions";
+} from "@redux/actions";
 import {
   CharacterAction,
   CharacterActionType,
   LoadingAction,
   LoadingActionType
-} from "@models/actions";
-import { Character } from "@models/entities";
-import configureMockStore from "redux-mock-store";
-import thunk from "redux-thunk";
+} from "@redux/models/actions";
+import { Character } from "@redux/models/entities";
 
 const mockStore = configureMockStore([thunk]);
 
@@ -91,7 +92,6 @@ describe("Character reducer", () => {
   });
 
   test("set character list: failure", () => {
-    const characters = [character];
     store.dispatch(getCharacterListFailedAction(error));
     const actions = store.getActions();
     expect(actions[6]).toEqual<CharacterAction>({

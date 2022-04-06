@@ -1,4 +1,9 @@
-import { CharacterReducer, EpisodeReducer, LocationReducer, ScrollReducer } from "@models/reducers";
+import {
+  CharacterReducer,
+  EpisodeReducer,
+  LocationReducer,
+  ScrollReducer
+} from "@redux/models/reducers";
 
 export default interface Store {
   character: CharacterReducer;

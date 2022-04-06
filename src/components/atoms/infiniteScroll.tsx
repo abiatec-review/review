@@ -1,10 +1,11 @@
-import { useOrientation } from "@hooks";
-import { Pagination } from "@models/entities";
-import { Indent } from "@utils";
 import React, { useEffect, useRef, useState } from "react";
+
 import { FlatList, FlatListProps, SafeAreaView, StyleSheet } from "react-native";
 
-import { Spinner } from "./spinner";
+import { Spinner } from "@components/atoms/spinner";
+import { useOrientation } from "@hooks";
+import { Pagination } from "@redux/models/entities";
+import { Indent } from "@utils";
 
 interface Props {
   offset?: number;

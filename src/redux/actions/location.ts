@@ -1,5 +1,5 @@
-import { LocationAction, LocationActionType } from "@models/actions";
-import { Location } from "@models/entities";
+import { LocationAction, LocationActionType } from "@redux/models/actions";
+import { Location } from "@redux/models/entities";
 
 export function getLocationListSuccessAction(data: Array<Location>): LocationAction {
   return {

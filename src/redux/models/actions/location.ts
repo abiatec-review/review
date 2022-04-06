@@ -1,4 +1,4 @@
-import { Location } from "@models/entities";
+import { Location } from "@redux/models/entities";
 
 import { FailedAction, SuccessAction } from "./action";
 import { LoadingAction } from "./loading";

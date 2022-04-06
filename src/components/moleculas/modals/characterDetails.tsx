@@ -1,9 +1,11 @@
+import React from "react";
+
+import { Image, Platform, StyleSheet, View } from "react-native";
+
 import { TextRow } from "@components/atoms";
 import { useOrientation } from "@hooks";
-import { Character } from "@models/entities";
+import { Character } from "@redux/models/entities";
 import { Indent, Radius } from "@utils";
-import React from "react";
-import { Image, Platform, StyleSheet, View } from "react-native";
 
 import Modal from "./modal";
 

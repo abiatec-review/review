@@ -1,9 +1,11 @@
+import React from "react";
+
+import { Image, StyleSheet, View } from "react-native";
+
 import { TextRow } from "@components/atoms";
 import { useOrientation } from "@hooks";
-import { Character } from "@models/entities";
+import { Character } from "@redux/models/entities";
 import { Colors, Indent, Radius } from "@utils";
-import React from "react";
-import { Image, StyleSheet, View } from "react-native";
 
 interface Props {
   character: Character;
@@ -11,7 +13,7 @@ interface Props {
 
 export function FullCharacterCard(props: Props) {
   const { character } = props;
-  
+
   const { isPortrait } = useOrientation();
   const styles = isPortrait ? portraitStyles : landscapeStyles;
 

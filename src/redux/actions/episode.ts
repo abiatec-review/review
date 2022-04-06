@@ -1,5 +1,5 @@
-import { EpisodeAction, EpisodeActionType } from "@models/actions";
-import { Episode } from "@models/entities";
+import { EpisodeAction, EpisodeActionType } from "@redux/models/actions";
+import { Episode } from "@redux/models/entities";
 
 export function getEpisodeListSuccessAction(data: Array<Episode>): EpisodeAction {
   return {

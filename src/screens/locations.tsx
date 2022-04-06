@@ -1,9 +1,10 @@
+import React from "react";
+
 import { InfiniteScroll } from "@components/atoms";
 import { LocationCard } from "@components/moleculas/cards";
 import { ErrorModal } from "@components/moleculas/modals";
-import { getLocations, scrollLocations } from "@services";
-import { useDispatch, useSelector } from "@store";
-import React from "react";
+import { getLocations, scrollLocations } from "@redux/services";
+import { useDispatch, useSelector } from "@redux/store";
 
 export function LocationsScreen() {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
-import { LoadingActionType, LocationAction, LocationActionType } from "@models/actions";
-import { LocationReducer } from "@models/reducers";
+import { LoadingActionType, LocationAction, LocationActionType } from "@redux/models/actions";
+import { LocationReducer } from "@redux/models/reducers";
 
 const initialState: LocationReducer = {
   locations: [],

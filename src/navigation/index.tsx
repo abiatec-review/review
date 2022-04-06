@@ -1,9 +1,11 @@
+import React from "react";
+
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/FontAwesome";
+
 import { CharactersScreen, EpisodesScreen, LocationsScreen } from "@screens";
 import { Colors } from "@utils";
-import React from "react";
-import Icon from "react-native-vector-icons/FontAwesome";
 
 const Tab = createMaterialBottomTabNavigator();
 

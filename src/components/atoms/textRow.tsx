@@ -1,6 +1,8 @@
-import { FontSize, Indent } from "@utils";
 import React from "react";
+
 import { StyleSheet, Text, View } from "react-native";
+
+import { FontSize, Indent } from "@utils";
 
 interface Props {
   field: string;

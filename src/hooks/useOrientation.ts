@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { Dimensions, ScaledSize } from "react-native";
 
 export function useOrientation(onChange?: (width: number, height: number) => void) {
