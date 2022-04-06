@@ -1,5 +1,9 @@
 <template>
-  <router-view />
+  <router-view v-slot="slotProps">
+    <transition name="route" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <script lang="ts">
@@ -31,6 +35,23 @@ nav {
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+}
+
+.route-enter-active {
+  animation: opacity 1s;
+}
+
+.route-leave-active {
+  animation: opacity 1s ease-in;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 </style>

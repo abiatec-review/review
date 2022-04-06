@@ -9,38 +9,45 @@ export const key: InjectionKey<Store<State>> = Symbol();
 export const store = createStore<State>({
   state: {
     characterList: [],
+    searchedCharactersName: '',
   },
   getters: {
     getCharactersList(state) {
       return state.characterList;
     },
+    getSearchedCharactersName(state) {
+      return state.searchedCharactersName;
+    },
   },
   mutations: {
     setCharactersList(state, items) {
+      state.characterList = items;
+    },
+    addCharactersList(state, items) {
       state.characterList.push(...items);
+    },
+    setSearchedCharactersName(state, name) {
+      state.searchedCharactersName = name;
     },
   },
   actions: {
-    async fetchData({ commit }, name = '') {
-      // try {
-      //   const res = await fetch(`https://rickandmortyapi.com/api/character?name=${name}&page=1`);
-      //   const { results } = await res.json();
-      //   commit('setCharactersList', results);
-      // } catch {
-      //   throw new Error('There is on such an characher. Try another one!');
-      // }
+    async fetchFirstData({ commit, state }) {
+      const page = 1;
+      const name = state.searchedCharactersName;
       try {
-        const { data } = await axios.get(`https://rickandmortyapi.com/api/character?name=${name}&page=1`);
+        const { data } = await axios.get(`https://rickandmortyapi.com/api/character?name=${name}&page=${page}`);
         const results = await data.results;
         commit('setCharactersList', results);
       } catch {
         throw new Error('There is on such an characher. Try another one!');
       }
     },
-    async fetchAnotherData(context, name = '') {
-      const res = await fetch(`https://rickandmortyapi.com/api/character?name=${name}&page=2`);
+    async fetchExtraData({ commit, state }) {
+      const page = 2;
+      const name = state.searchedCharactersName;
+      const res = await fetch(`https://rickandmortyapi.com/api/character?name=${name}&page=${page}`);
       const { results } = await res.json();
-      context.commit('setCharactersList', results);
+      commit('addCharactersList', results);
     },
   },
   modules: {},

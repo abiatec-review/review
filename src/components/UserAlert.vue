@@ -1,21 +1,23 @@
 <template>
-  <div class="backdrop" @click="closeDialog" @keydown="closeDialog"></div>
-  <dialog open>
-    <header>
-      <h2>{{ title }}</h2>
-    </header>
-    <div>
-      <slot></slot>
-    </div>
-    <menu>
-      <button @click="closeDialog">Close</button>
-    </menu>
-  </dialog>
+  <div v-if="open" class="backdrop" @click="closeDialog" @keydown="closeDialog"></div>
+  <transition name="modal">
+    <dialog open v-if="open">
+      <header>
+        <h2>{{ title }}</h2>
+      </header>
+      <div>
+        <slot></slot>
+      </div>
+      <menu>
+        <button @click="closeDialog">Close</button>
+      </menu>
+    </dialog>
+  </transition>
 </template>
 
 <script>
 export default {
-  props: ['title'],
+  props: ['title', 'open'],
   emits: ['close'],
   methods: {
     closeDialog() {
@@ -56,6 +58,7 @@ header {
   padding: 1rem;
   background-color: #767676;
   color: white;
+  box-shadow: rgba(149, 157, 165) 0 8px 24px;
 }
 
 dialog div {
@@ -83,5 +86,25 @@ button:hover,
 button:active {
   background-color: #767676c0;
   border-color: #767676c0;
+}
+
+.modal-enter-active {
+  animation: modal 0.3s ease-out;
+}
+
+.modal-leave-active {
+  animation: modal 0.3s ease-in reverse;
+}
+
+@keyframes modal {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 </style>

@@ -17,7 +17,8 @@ export default defineComponent({
     const modelValue = ref('');
 
     function submit() {
-      store.dispatch('fetchData', modelValue.value);
+      store.commit('setSearchedCharactersName', modelValue.value);
+      store.dispatch('fetchFirstData');
       modelValue.value = '';
     }
 
