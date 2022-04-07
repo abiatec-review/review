@@ -2,7 +2,8 @@
 
 .modal {
   @include size(100%, 100%);
-  @include position(fixed, '', '', '', '', 10);
+  @include position(fixed, 0, '', '', '', 10);
+  margin-top: 10vw;
 }
 .pop {
   @include flex(column, center, center);
@@ -17,6 +18,7 @@
 
   @include phone() {
     max-width: 400px;
+    top: 0;
   }
   @include small-phone {
     max-width: 340px;

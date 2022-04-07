@@ -1,0 +1,1 @@
+export const ACCEPT_COOKIES =  'ACCEPT_COOKIES'

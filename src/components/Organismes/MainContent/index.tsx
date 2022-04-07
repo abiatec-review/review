@@ -6,12 +6,14 @@ import { getContentfulFieldsSelector } from "redux/selectors/contentfulSelectors
 import { getEpisodeSelector } from "redux/selectors/episodeSelectors";
 import { getHeroesSelector, getHeroNameSelector, getNextPageSelector } from "redux/selectors/heroesSelectors";
 
-import {Button, ErrorComponent, Loader} from "components/Atoms";
-import { ContentList, ModalHero } from "components/Molecules";
+import {Button, ErrorComponent, Loader, LoginForm} from "components/Atoms";
+import { ContentList, HeaderBlock, ModalHero } from "components/Molecules";
 
 import { defineNextPage } from "utils/validator";
 
 import styles from './index.module.scss';
+import { getUserMail } from "redux/selectors/userSelectors";
+import ModalSignIn from "components/Molecules/ModalSignIn";
 
 const MainContent = () => {
 
@@ -20,6 +22,7 @@ const MainContent = () => {
   const contentfulInfo = useSelector(getContentfulFieldsSelector)
   const nextPage = useSelector(getNextPageSelector)
   const name = useSelector(getHeroNameSelector)
+  const userMail = useSelector(getUserMail)
 
   const dispatch = useDispatch();
 
@@ -40,16 +43,32 @@ const MainContent = () => {
   }
   const isShowFetchButton = !heroes?.isLoading && !heroes.isError && heroes?.heroes?.length > 19 && nextPage;
   
-  const searchResult = !heroes.isError ? <ContentList characters={heroes?.heroes} setSelectedHeroId={openModal}/> : <ErrorComponent />
   const fetchButton = isShowFetchButton && <Button className={styles.button} onClick={fetchMore}>Fetch more</Button>
+
+  const renderHeroes = () => {
+    switch (true) {
+      case heroes?.isLoading: {
+        return <Loader />
+      }
+      case !heroes.isError && !heroes?.isLoading: {
+        return <ContentList characters={heroes?.heroes} setSelectedHeroId={openModal}/>
+      }
+      case heroes.isError && !heroes?.isLoading: {
+        return <ErrorComponent />
+      }
+    }
+  }
+
   return (
     <div>
-      {isModalOpen && <ModalHero episode={episode} hero={heroes.heroes.find((hero: any) => hero.id === selectedHeroId)} setIsModalOpen={() => setIsModalOpen(false)} />}
-      <div className={styles.content}>
-        <h1 className={styles.header}>{contentfulInfo?.title || 'Rick and Morty'}</h1>
-        {heroes?.isLoading ? <Loader /> : searchResult}
-        {fetchButton}
-      </div>
+      {userMail ? <>
+        <HeaderBlock userMail={userMail}/>
+        {isModalOpen && <ModalHero episode={episode} hero={heroes.heroes.find((hero: any) => hero.id === selectedHeroId)} setIsModalOpen={() => setIsModalOpen(false)} />}
+        <div className={styles.content}>
+          {renderHeroes()}
+          {fetchButton}
+        </div>
+      </> : <ModalSignIn />}
     </div>
   )
 }

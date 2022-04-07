@@ -1,0 +1,34 @@
+@import "../../../styles/mixins.module.scss";
+
+.container {
+  @include size(100%, 500px);
+  @include flex(column, center);
+}
+.label {
+  @include flex(column, center, center);
+  margin-top: 20px;
+}
+
+.button {
+  width: 70%;
+  margin-top: 20px;
+  font-size: 10pt;
+}
+
+.input {
+  margin-top: 5px;
+  width: 370px;
+  height: 30px;
+}
+
+.header {
+  font-size: 30pt;
+  margin-top: 100px;
+}
+.error {
+  margin-top: 40px;
+
+  font-size: 15pt;
+  text-align: center;
+  color: red;
+}

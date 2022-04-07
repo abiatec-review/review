@@ -25,7 +25,9 @@ export function* loadHeroes({payload: {name, page}}: IPayload): Generator<any, a
     yield put({
       type: LOAD_HEROES_LOADING
     })
+
     const data = yield call(getHeroes, {name, page});
+    
     yield put({
       type: LOAD_HEROES_SUCCESS,
       payload: data

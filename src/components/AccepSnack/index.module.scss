@@ -1,0 +1,19 @@
+.content {
+  position: relative;
+
+  z-index: 20;
+  bottom:-800px;
+  margin: auto;
+  width: 300px;
+  background-color:white;
+  height:100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+
+  button {
+    margin-left: 10px;
+  }
+}
