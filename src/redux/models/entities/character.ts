@@ -12,3 +12,9 @@ export interface Character extends ResponseObject {
   episode: Array<string>;
   created: string;
 }
+
+export interface ReducedCharacter {
+  id: number;
+  name: string;
+  image: string;
+}

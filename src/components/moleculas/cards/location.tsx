@@ -5,7 +5,6 @@ import { Pressable, StyleSheet } from "react-native";
 import { TextRow } from "@components/atoms";
 import { CharactersModal } from "@components/moleculas/modals";
 import { Location } from "@redux/models/entities";
-import { useSelector } from "@redux/store";
 import { Colors, Indent, Radius } from "@utils";
 
 interface Props {
@@ -19,10 +18,6 @@ export function LocationCard(props: Props) {
 
   const toggleModal = () => setIsModalShown(!isModalShown);
 
-  const residents = useSelector(({ character }) =>
-    character.characterList.filter(({ url }) => location.residents.includes(url))
-  );
-
   return (
     <>
       <Pressable style={styles.container} onPress={toggleModal}>
@@ -30,14 +25,14 @@ export function LocationCard(props: Props) {
         <TextRow field="Type" data={location.type} />
         <TextRow field="Dimension" data={location.dimension} />
         <TextRow field="Created" data={location.created} />
-        <TextRow field="Residents" data={residents.length.toString()} />
+        <TextRow field="Residents" data={location.residents.length.toString()} />
       </Pressable>
-      {residents?.length > 0 && (
+      {location.residents?.length > 0 && (
         <CharactersModal
-          title="Residents"
           toggle={toggleModal}
-          characters={residents}
+          title={location.name}
           isShown={isModalShown}
+          charactersUrls={location.residents}
         />
       )}
     </>

@@ -1,3 +1,4 @@
+import { map } from "bluebird";
 import { Dispatch } from "redux";
 
 import {
@@ -9,7 +10,7 @@ import {
   stopLoadingAction
 } from "@redux/actions";
 import { CharacterAction } from "@redux/models/actions";
-import { Character, ResultList } from "@redux/models/entities";
+import { Character, ReducedCharacter, ResultList } from "@redux/models/entities";
 
 import requests, { fixDate } from "./base";
 
@@ -44,4 +45,8 @@ export function getCharacterList(page: number) {
       dispatch(stopLoadingAction());
     }
   };
+}
+
+export function getCharactersByUrls(urls: Array<string>) {
+  return map(urls, (url) => requests.get<ReducedCharacter>(url));
 }

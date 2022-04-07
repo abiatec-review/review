@@ -5,7 +5,6 @@ import { Pressable, StyleSheet } from "react-native";
 import { TextRow } from "@components/atoms";
 import { CharactersModal } from "@components/moleculas/modals";
 import { Episode } from "@redux/models/entities";
-import { useSelector } from "@redux/store";
 import { Colors, Indent, Radius } from "@utils";
 
 interface Props {
@@ -19,10 +18,6 @@ export function EpisodeCard(props: Props) {
 
   const toggleModal = () => setIsModalShown(!isModalShown);
 
-  const characters = useSelector(({ character }) =>
-    character.characterList.filter(({ url }) => episode.characters.includes(url))
-  );
-
   return (
     <>
       <Pressable style={styles.container} onPress={toggleModal}>
@@ -31,12 +26,12 @@ export function EpisodeCard(props: Props) {
         <TextRow field="Code" data={episode.episode} />
         <TextRow field="Created" data={episode.created} />
       </Pressable>
-      {characters?.length > 0 && (
+      {episode.characters?.length > 0 && (
         <CharactersModal
-          title="Characters"
+          title={episode.name}
           toggle={toggleModal}
           isShown={isModalShown}
-          characters={characters}
+          charactersUrls={episode.characters}
         />
       )}
     </>
