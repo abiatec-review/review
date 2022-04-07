@@ -43,15 +43,13 @@ const MainContent = () => {
   }
   const isShowFetchButton = !heroes?.isLoading && !heroes.isError && heroes?.heroes?.length > 19 && nextPage;
   
-  const fetchButton = isShowFetchButton && <Button className={styles.button} onClick={fetchMore}>Fetch more</Button>
-
   const renderHeroes = () => {
     switch (true) {
       case heroes?.isLoading: {
         return <Loader />
       }
       case !heroes.isError && !heroes?.isLoading: {
-        return <ContentList characters={heroes?.heroes} setSelectedHeroId={openModal}/>
+        return <ContentList userMail={userMail} characters={heroes?.heroes} setSelectedHeroId={openModal} fetchMore={fetchMore} isShowFetchButton={isShowFetchButton}/>
       }
       case heroes.isError && !heroes?.isLoading: {
         return <ErrorComponent />
@@ -61,14 +59,11 @@ const MainContent = () => {
 
   return (
     <div>
-      {userMail ? <>
         <HeaderBlock userMail={userMail}/>
         {isModalOpen && <ModalHero episode={episode} hero={heroes.heroes.find((hero: any) => hero.id === selectedHeroId)} setIsModalOpen={() => setIsModalOpen(false)} />}
         <div className={styles.content}>
           {renderHeroes()}
-          {fetchButton}
         </div>
-      </> : <ModalSignIn />}
     </div>
   )
 }

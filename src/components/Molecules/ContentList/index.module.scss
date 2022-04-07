@@ -3,3 +3,14 @@
 .list {
   @include flex('', center, center, wrap);
 }
+
+.link {
+  margin: 5px;
+  font-size: 0.8rem;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: $links-color;
+  }
+}

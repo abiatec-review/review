@@ -1,7 +1,7 @@
 @import "../../../styles/mixins.module.scss";
 
 .container {
-  @include size(100%, 500px);
+  @include size(100%, '');
   @include flex(column, center);
 }
 .label {
@@ -23,7 +23,7 @@
 
 .header {
   font-size: 30pt;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .error {
   margin-top: 40px;
@@ -31,4 +31,16 @@
   font-size: 15pt;
   text-align: center;
   color: red;
+}
+
+.link {
+  margin-top: 10px;
+
+  font-size: 15pt;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: $links-color;
+  }
 }

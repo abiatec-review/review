@@ -9,3 +9,5 @@ export {Link} from './Link';
 export {HeroIcon} from './HeroIcon';
 export {Tabs} from './Tabs';
 export {LoginForm} from './LoginForm'
+export {AcceptSnack} from './AcceptSnack';
+export {UserSnack} from './UserSnack';

@@ -33,8 +33,20 @@
 }
 
 .mailBlock {
-  margin-left: 20px;
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
 }
 .button {
   margin-left: 10px;
+}
+
+.link {
+  color: $links-color;
+  font-size: 20pt;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer
+  }
 }
