@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     padding: Indent.HUGE,
     fontSize: FontSize.DEFAULT,
     borderRadius: Radius.MEDIUM,
-    backgroundColor: Colors.GRAY
+    marginHorizontal: Indent.DEFAULT,
+    backgroundColor: Colors.CYAN_LIGHT,
   }
 });

@@ -1,15 +1,19 @@
 import React from "react";
 
-import { SafeAreaView, StyleSheet } from "react-native";
+import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 
-import { Indent } from "@utils";
+export function Screen(props: React.PropsWithChildren<{}>) {
+  const { children } = props;
 
-export function Screen({ children }: React.PropsWithChildren<{}>) {
-  return <SafeAreaView style={screen}>{children}</SafeAreaView>;
+  return (
+    <ImageBackground blurRadius={5} style={image} source={require("@assets/background.jpeg")}>
+      <SafeAreaView>{children}</SafeAreaView>
+    </ImageBackground>
+  );
 }
-const { screen } = StyleSheet.create({
-  screen: {
-    flex: 1,
-    marginHorizontal: Indent.DEFAULT
+
+const { image } = StyleSheet.create({
+  image: {
+    height: "100%"
   }
 });

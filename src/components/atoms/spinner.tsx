@@ -5,7 +5,7 @@ import { ActivityIndicator, StyleSheet } from "react-native";
 import { Colors, Indent } from "@utils";
 
 export function Spinner() {
-  return <ActivityIndicator style={spinner} animating size="large" color={Colors.BLUE_DARK} />;
+  return <ActivityIndicator style={spinner} animating size="large" color={Colors.BLUE_LIGHT} />;
 }
 
 const { spinner } = StyleSheet.create({

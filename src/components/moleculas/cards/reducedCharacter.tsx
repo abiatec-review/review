@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     padding: Indent.MEDIUM,
     flexDirection: "column",
     borderRadius: Radius.DEFAULT,
-    backgroundColor: Colors.GRAY
+    backgroundColor: Colors.TRANSPARENT_CYAN
   },
   image: {
     width: "100%",

@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     padding: Indent.HUGE,
     margin: Indent.DEFAULT,
     borderRadius: Radius.DEFAULT,
-    backgroundColor: Colors.GRAY,
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    backgroundColor: Colors.TRANSPARENT_CYAN
   }
 });

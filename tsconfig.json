@@ -12,6 +12,7 @@
     "noEmit": true,
     "baseUrl": "./src",
     "paths": {
+      "@assets/*": ["../assets/*"],
       "@components/*": ["./components/*"],
       "@hooks": ["./hooks"],
       "@navigation": ["./navigation"],

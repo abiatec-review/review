@@ -20,7 +20,7 @@ export function EpisodeCard(props: Props) {
 
   return (
     <>
-      <Pressable style={styles.container} onPress={toggleModal}>
+      <Pressable style={[styles.container]} onPress={toggleModal}>
         <TextRow field="Name" data={episode.name} />
         <TextRow field="Air Date" data={episode.air_date} />
         <TextRow field="Code" data={episode.episode} />
@@ -40,13 +40,11 @@ export function EpisodeCard(props: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     height: 140,
-    alignItems: "center",
     padding: Indent.HUGE,
     margin: Indent.DEFAULT,
     borderRadius: Radius.DEFAULT,
-    backgroundColor: Colors.GRAY,
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    backgroundColor: Colors.TRANSPARENT_CYAN
   }
 });

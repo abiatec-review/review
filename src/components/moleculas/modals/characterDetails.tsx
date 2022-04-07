@@ -40,16 +40,17 @@ const baseStyles = StyleSheet.create({
   name: {
     fontWeight: "bold",
     textAlign: "center",
-    fontSize: FontSize.MEDIUM,
-    marginTop: -Indent.DEFAULT,
-    marginBottom: Indent.DEFAULT
+    fontSize: FontSize.MEDIUM
   },
   image: {
     aspectRatio: 1,
     borderRadius: Radius.DEFAULT
   },
+  infoBlock: {
+    flex: 1
+  },
   textBlock: {
-    flex: 1,
+    flex: 0.9,
     justifyContent: "space-evenly"
   }
 });
@@ -59,7 +60,10 @@ const portraitStyles = StyleSheet.create({
   modal: {
     flex: Platform.select({ ios: 0.65, android: 0.85 })
   },
-  infoBlock: { flex: 1 },
+  name: {
+    ...baseStyles.name,
+    marginBottom: Indent.DEFAULT
+  },
   image: {
     ...baseStyles.image,
     width: "100%"
@@ -69,24 +73,21 @@ const portraitStyles = StyleSheet.create({
 const landscapeStyles = StyleSheet.create({
   ...baseStyles,
   modal: {
-    flex: 0.7
-  },
-  name: {
-    ...baseStyles.name,
-    marginBottom: 0
+    flex: 0.6
   },
   infoBlock: {
-    flex: 1,
+    ...baseStyles.infoBlock,
     flexDirection: "row",
     alignItems: "center"
   },
   image: {
     ...baseStyles.image,
     marginRight: Indent.HUGE,
-    flex: Platform.select({ ios: 0.45, android: 0.5 })
+    flex: 0.5
   },
   textBlock: {
     ...baseStyles.textBlock,
-    height: "100%"
+    flex: 1,
+    height: "80%"
   }
 });

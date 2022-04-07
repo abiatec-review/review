@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text } from "react-native";
 
 import { Modal } from "@components/atoms";
-import { Colors, FontSize, Indent } from "@utils";
+import { Colors, FontSize } from "@utils";
 
 interface Props {
   errorText?: string;
@@ -31,7 +31,6 @@ const { error } = StyleSheet.create({
     color: Colors.RED,
     fontWeight: "bold",
     textAlign: "center",
-    fontSize: FontSize.HUGE,
-    marginBottom: Indent.MEDIUM
+    fontSize: FontSize.HUGE
   }
 });

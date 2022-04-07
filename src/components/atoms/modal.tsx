@@ -1,9 +1,16 @@
 import React from "react";
 
-import { Modal as RnModal, FlexStyle, Text, View, Pressable, StyleSheet } from "react-native";
+import {
+  Modal as RnModal,
+  FlexStyle,
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  TouchableOpacity
+} from "react-native";
 
 import { useOrientation } from "@hooks";
-import { Colors, FontSize, Indent, Radius } from "@utils";
+import { Colors, Indent, Radius } from "@utils";
 
 interface Props {
   isShown: boolean;
@@ -25,14 +32,11 @@ export function Modal(props: React.PropsWithChildren<Props>) {
       onRequestClose={toggle}
       supportedOrientations={["portrait", "landscape"]}
     >
-      <View style={styles.container}>
-        <View style={[styles.content, style]}>
-          {children}
-          <Pressable style={styles.closeButton} onPress={toggle}>
-            <Text style={styles.closeText}>Close</Text>
-          </Pressable>
-        </View>
-      </View>
+      <TouchableOpacity style={styles.container} onPressOut={toggle}>
+        <TouchableWithoutFeedback>
+          <View style={[styles.content, style]}>{children}</View>
+        </TouchableWithoutFeedback>
+      </TouchableOpacity>
     </RnModal>
   );
 }
@@ -45,21 +49,10 @@ const baseStyles = StyleSheet.create({
     backgroundColor: Colors.TRANSPARENT_DARK
   },
   content: {
-    padding: Indent.EXTRA_HUGE,
     borderRadius: Radius.DEFAULT,
-    backgroundColor: Colors.WHITE
-  },
-  closeButton: {
-    width: "100%",
-    padding: Indent.DEFAULT,
-    borderRadius: Radius.DEFAULT,
-    backgroundColor: Colors.BLUE_LIGHT
-  },
-  closeText: {
-    fontWeight: "bold",
-    textAlign: "center",
-    color: Colors.WHITE,
-    fontSize: FontSize.DEFAULT
+    paddingVertical: Indent.DEFAULT,
+    backgroundColor: Colors.CYAN_LIGHT,
+    paddingHorizontal: Indent.EXTRA_HUGE
   }
 });
 
