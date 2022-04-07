@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-import * as RN from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 
 import { InfiniteScroll, Spinner } from "@components/atoms";
+import { Screen } from "@components/atoms";
 import { FullCharacterCard, ReducedCharacterCard } from "@components/moleculas/cards";
 import { ErrorModal } from "@components/moleculas/modals";
 import { getCharacter, getCharacterList, scrollCharacters } from "@redux/services";
@@ -42,41 +43,31 @@ export function CharactersScreen() {
   };
 
   return (
-    <RN.SafeAreaView style={styles.container}>
-      <RN.View style={styles.header}>
-        <RN.TextInput
+    <Screen>
+      <View style={styles.header}>
+        <TextInput
           placeholder="Search"
           style={styles.input}
           onChangeText={(text) => fetchCharacter(Number(text))}
         />
-      </RN.View>
-      <RN.View style={styles.content}>{getData()}</RN.View>
+      </View>
+      {getData()}
       <ErrorModal errorText={error} />
-    </RN.SafeAreaView>
+    </Screen>
   );
 }
 
-const styles = RN.StyleSheet.create({
-  container: { flex: 1 },
+const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     padding: Indent.DEFAULT,
     justifyContent: "space-between"
   },
-  content: { paddingHorizontal: Indent.DEFAULT },
   input: {
     flex: 1,
     padding: Indent.HUGE,
     fontSize: FontSize.DEFAULT,
     borderRadius: Radius.MEDIUM,
-    backgroundColor: Colors.GRAY
-  },
-  button: {
-    width: 60,
-    height: 60,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: Radius.HUGE,
     backgroundColor: Colors.GRAY
   }
 });

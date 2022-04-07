@@ -1,6 +1,7 @@
 import React from "react";
 
 import { InfiniteScroll } from "@components/atoms";
+import { Screen } from "@components/atoms";
 import { EpisodeCard } from "@components/moleculas/cards";
 import { ErrorModal } from "@components/moleculas/modals";
 import { getEpisodes, scrollEpisodes } from "@redux/services";
@@ -15,7 +16,7 @@ export function EpisodesScreen() {
   const offset = useSelector(({ scroll }) => scroll.episodeOffset);
 
   return (
-    <>
+    <Screen>
       <InfiniteScroll
         offset={offset}
         data={episodes}
@@ -26,6 +27,6 @@ export function EpisodesScreen() {
         renderItem={({ item }) => <EpisodeCard episode={item} />}
       />
       <ErrorModal errorText={error} />
-    </>
+    </Screen>
   );
 }

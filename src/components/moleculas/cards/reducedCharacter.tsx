@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import * as RN from "react-native";
+import { Image, Pressable, StyleSheet, Text } from "react-native";
 
 import { CharacterDetailsModal } from "@components/moleculas/modals";
 import { Character } from "@redux/models/entities";
@@ -19,16 +19,16 @@ export function ReducedCharacterCard(props: Props) {
 
   return (
     <>
-      <RN.Pressable style={styles.container} onPress={toggleModal}>
-        <RN.Image source={{ uri: character.image }} style={styles.image} />
-        <RN.Text style={styles.text}>{character.name}</RN.Text>
-      </RN.Pressable>
+      <Pressable style={styles.container} onPress={toggleModal}>
+        <Image source={{ uri: character.image }} style={styles.image} />
+        <Text style={styles.text}>{character.name}</Text>
+      </Pressable>
       <CharacterDetailsModal character={character} isShown={isModalShown} toggle={toggleModal} />
     </>
   );
 }
 
-const styles = RN.StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     margin: Indent.DEFAULT,

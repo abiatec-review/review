@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as RN from "react-native";
+import { Modal as RnModal, FlexStyle, Text, View, Pressable, StyleSheet } from "react-native";
 
 import { useOrientation } from "@hooks";
 import { Colors, FontSize, Indent, Radius } from "@utils";
@@ -8,38 +8,36 @@ import { Colors, FontSize, Indent, Radius } from "@utils";
 interface Props {
   isShown: boolean;
   toggle: () => void;
-  style?: RN.FlexStyle;
+  style?: FlexStyle;
 }
 
-function Modal(props: React.PropsWithChildren<Props>) {
+export function Modal(props: React.PropsWithChildren<Props>) {
   const { isShown, toggle, children, style } = props;
 
   const { isPortrait } = useOrientation();
   const styles = isPortrait ? portraitStyles : landscapelStyles;
 
   return (
-    <RN.Modal
+    <RnModal
       transparent
       animationType="fade"
       visible={isShown}
       onRequestClose={toggle}
       supportedOrientations={["portrait", "landscape"]}
     >
-      <RN.View style={styles.container}>
-        <RN.View style={[styles.content, style]}>
+      <View style={styles.container}>
+        <View style={[styles.content, style]}>
           {children}
-          <RN.Pressable style={styles.closeButton} onPress={toggle}>
-            <RN.Text style={styles.closeText}>Close</RN.Text>
-          </RN.Pressable>
-        </RN.View>
-      </RN.View>
-    </RN.Modal>
+          <Pressable style={styles.closeButton} onPress={toggle}>
+            <Text style={styles.closeText}>Close</Text>
+          </Pressable>
+        </View>
+      </View>
+    </RnModal>
   );
 }
 
-export default Modal;
-
-const baseStyles = RN.StyleSheet.create({
+const baseStyles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
@@ -65,7 +63,7 @@ const baseStyles = RN.StyleSheet.create({
   }
 });
 
-const portraitStyles = RN.StyleSheet.create({
+const portraitStyles = StyleSheet.create({
   ...baseStyles,
   content: {
     ...baseStyles.content,
@@ -73,7 +71,7 @@ const portraitStyles = RN.StyleSheet.create({
   }
 });
 
-const landscapelStyles = RN.StyleSheet.create({
+const landscapelStyles = StyleSheet.create({
   ...baseStyles,
   content: {
     ...baseStyles.content,

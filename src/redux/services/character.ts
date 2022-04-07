@@ -38,7 +38,7 @@ export function getCharacterList(page: number) {
       );
       const characters = results.map(fixDate);
       dispatch(getCharacterListSuccessAction(characters));
-      return { nextPage: page + 1, hasMore: info.next !== null };
+      return info.next !== null;
     } catch (error) {
       dispatch(getCharacterListFailedAction(String(error)));
     } finally {

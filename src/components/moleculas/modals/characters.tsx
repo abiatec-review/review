@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-import * as RN from "react-native";
+import { FlatList, Image, ListRenderItemInfo, StyleSheet, Text, View } from "react-native";
 
 import { Spinner } from "@components/atoms";
+import { Modal } from "@components/atoms";
 import { useOrientation } from "@hooks";
 import { ReducedCharacter } from "@redux/models/entities";
 import { getCharactersByUrls } from "@redux/services";
 import { FontSize, Indent, Radius } from "@utils";
-
-import Modal from "./modal";
 
 interface Props {
   title: string;
@@ -27,10 +26,8 @@ export function CharactersModal(props: Props) {
     if (isShown) {
       setIsLoading(true);
       getCharactersByUrls(charactersUrls).then((result) => {
-        setTimeout(() => {
-          setCharacters(result);
-          setIsLoading(false);
-        }, 2000);
+        setCharacters(result);
+        setIsLoading(false);
       });
     }
     return () => setCharacters([]);
@@ -46,20 +43,20 @@ export function CharactersModal(props: Props) {
     else return { height: multiplier > 2 ? 180 : multiplier * 90 };
   };
 
-  const character = ({ item }: RN.ListRenderItemInfo<ReducedCharacter>) => {
+  const character = ({ item }: ListRenderItemInfo<ReducedCharacter>) => {
     const text = { ...styles.text, ...(isPortrait ? { flex: 1 } : { width: 120 }) };
     return (
-      <RN.View style={styles.character}>
-        <RN.Image source={{ uri: item.image }} style={styles.image} />
-        <RN.Text style={text}>{item.name}</RN.Text>
-      </RN.View>
+      <View style={styles.character}>
+        <Image source={{ uri: item.image }} style={styles.image} />
+        <Text style={text}>{item.name}</Text>
+      </View>
     );
   };
 
   return (
     <Modal isShown={isShown} toggle={toggle}>
-      <RN.Text style={styles.title}>{title}</RN.Text>
-      <RN.FlatList
+      <Text style={styles.title}>{title}</Text>
+      <FlatList
         data={characters}
         style={getHeight()}
         renderItem={character}
@@ -73,7 +70,7 @@ export function CharactersModal(props: Props) {
   );
 }
 
-const styles = RN.StyleSheet.create({
+const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     textAlign: "center",

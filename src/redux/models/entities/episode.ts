@@ -1,4 +1,4 @@
-import { ResponseObject } from "./base";
+import { ResponseObject } from "./common";
 
 export interface Episode extends ResponseObject {
   id: number;

@@ -1,39 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { FlatList, FlatListProps, SafeAreaView, StyleSheet } from "react-native";
+import { FlatList, FlatListProps, NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 
-import { Spinner } from "@components/atoms/spinner";
+import { Spinner } from "@components/atoms";
 import { useOrientation } from "@hooks";
-import { Pagination } from "@redux/models/entities";
-import { Indent } from "@utils";
 
 interface Props {
   offset?: number;
   isLoading: boolean;
   onScroll?: (offset: number) => void;
   numColumns?: { portrait: number; landscape: number };
-  load: (page: number) => Promise<Pagination | undefined>;
+  load: (page: number) => Promise<boolean | undefined>;
 }
 
 type DefaultProps<T> = Omit<FlatListProps<T>, "numColumns" | "onScroll">;
 
 export function InfiniteScroll<T>(props: DefaultProps<T> & Props) {
-  const { load, isLoading, numColumns, offset, onScroll, ...rest } = props;
+  const { load, numColumns, isLoading, offset, onScroll, ...rest } = props;
 
-  const [pagination, setPagination] = useState<Pagination>();
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState<boolean>();
 
-  const handleResult = (result?: Pagination) => result && setPagination(result);
+  const getData = () => {
+    !isLoading && hasMore && setPage((page) => page + 1);
+  };
 
   useEffect(() => {
-    load(1).then(handleResult);
-  }, []);
-
-  const endReached = () => {
-    if (pagination) {
-      const { hasMore, nextPage } = pagination;
-      !isLoading && hasMore && load(nextPage).then(handleResult);
-    }
-  };
+    load(page).then(setHasMore);
+  }, [page]);
 
   const { isPortrait } = useOrientation();
 
@@ -43,29 +37,24 @@ export function InfiniteScroll<T>(props: DefaultProps<T> & Props) {
     offset && listRef.current?.scrollToOffset({ offset });
   }, [isPortrait]);
 
+  const scrollHandler = ({ nativeEvent }: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const ofset = nativeEvent.contentOffset.y;
+    const { height, width } = nativeEvent.layoutMeasurement;
+    const position = ofset * (width / height);
+    onScroll && onScroll(position);
+  };
+
   return (
-    <SafeAreaView>
-      <FlatList
-        style={list}
-        ref={listRef}
-        scrollEventThrottle={16}
-        key={Number(isPortrait)}
-        onEndReached={endReached}
-        keyExtractor={(_, i) => i.toString()}
-        ListFooterComponent={isLoading ? <Spinner /> : null}
-        numColumns={isPortrait ? numColumns?.portrait : numColumns?.landscape}
-        onScroll={({ nativeEvent }) => {
-          const ofset = nativeEvent.contentOffset.y;
-          const { height, width } = nativeEvent.layoutMeasurement;
-          const position = ofset * (width / height);
-          onScroll && onScroll(position);
-        }}
-        {...rest}
-      />
-    </SafeAreaView>
+    <FlatList
+      ref={listRef}
+      onEndReached={getData}
+      scrollEventThrottle={16}
+      key={Number(isPortrait)}
+      onScroll={scrollHandler}
+      keyExtractor={(_, i) => i.toString()}
+      ListFooterComponent={isLoading ? <Spinner /> : null}
+      numColumns={isPortrait ? numColumns?.portrait : numColumns?.landscape}
+      {...rest}
+    />
   );
 }
-
-const { list } = StyleSheet.create({
-  list: { padding: Indent.DEFAULT }
-});

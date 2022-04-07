@@ -1,13 +1,12 @@
 import React from "react";
 
-import { Image, Platform, StyleSheet, View } from "react-native";
+import { Image, Platform, StyleSheet, Text, View } from "react-native";
 
 import { TextRow } from "@components/atoms";
+import { Modal } from "@components/atoms";
 import { useOrientation } from "@hooks";
 import { Character } from "@redux/models/entities";
-import { Indent, Radius } from "@utils";
-
-import Modal from "./modal";
+import { FontSize, Indent, Radius } from "@utils";
 
 interface Props {
   character: Character;
@@ -23,6 +22,7 @@ export function CharacterDetailsModal(props: Props) {
 
   return (
     <Modal isShown={isShown} toggle={toggle} style={styles.modal}>
+      <Text style={styles.name}>{character.name}</Text>
       <View style={styles.infoBlock}>
         <Image source={{ uri: character.image }} style={styles.image} />
         <View style={styles.textBlock}>
@@ -37,6 +37,13 @@ export function CharacterDetailsModal(props: Props) {
 }
 
 const baseStyles = StyleSheet.create({
+  name: {
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: FontSize.MEDIUM,
+    marginTop: -Indent.DEFAULT,
+    marginBottom: Indent.DEFAULT
+  },
   image: {
     aspectRatio: 1,
     borderRadius: Radius.DEFAULT
@@ -62,12 +69,16 @@ const portraitStyles = StyleSheet.create({
 const landscapeStyles = StyleSheet.create({
   ...baseStyles,
   modal: {
-    flex: 0.62
+    flex: 0.7
+  },
+  name: {
+    ...baseStyles.name,
+    marginBottom: 0
   },
   infoBlock: {
+    flex: 1,
     flexDirection: "row",
-    alignItems: "center",
-    marginBottom: Indent.DEFAULT
+    alignItems: "center"
   },
   image: {
     ...baseStyles.image,
@@ -76,6 +87,6 @@ const landscapeStyles = StyleSheet.create({
   },
   textBlock: {
     ...baseStyles.textBlock,
-    height: "80%"
+    height: "100%"
   }
 });

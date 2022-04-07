@@ -18,7 +18,7 @@ export function getLocations(page: number) {
       const { info, results } = await requests.get<ResultList<Location>>(`/location?page=${page}`);
       const locations = results.map(fixDate);
       dispatch(getLocationListSuccessAction(locations));
-      return { nextPage: page + 1, hasMore: info.next !== null };
+      return info.next !== null;
     } catch (error) {
       dispatch(getLocationListFailedAction(String(error)));
     } finally {

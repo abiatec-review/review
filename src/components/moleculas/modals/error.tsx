@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { StyleSheet, Text } from "react-native";
 
+import { Modal } from "@components/atoms";
 import { Colors, FontSize, Indent } from "@utils";
-
-import Modal from "./modal";
 
 interface Props {
   errorText?: string;
