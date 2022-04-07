@@ -4,12 +4,14 @@ import rootSaga from './sagas';
 import PicturesReducer from 'redux/reducers/pictures';
 import infoReducer from 'redux/reducers/info';
 import detailsReducer from 'redux/reducers/details';
+import userReducer from 'redux/reducers/user';
 
 
 const rootReducer = combineReducers({
   pictures: PicturesReducer,
   info: infoReducer,
-  details: detailsReducer
+  details: detailsReducer,
+  user: userReducer
 });
 
 

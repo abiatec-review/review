@@ -1,7 +1,8 @@
 export type StoreType = {
     pictures: PictureType[],
     info: StateInfoType,
-    details: any
+    details: any,
+    user: any
 }
 export type PictureType = {
     id: number,

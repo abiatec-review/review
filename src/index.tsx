@@ -7,8 +7,6 @@ import App from 'App';
 
 import 'index.css';
 
-store.dispatch({ type: ActionType.FetchPictures, payload: '' });
-
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>

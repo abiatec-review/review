@@ -5,7 +5,7 @@ const styles = {
     button:`h-9 bg-btn_bcground text-white rounded px-4 disabled:opacity-50`
 };
 
-const Button = (props: any): ReactElement => {
+export const Button = (props: any): ReactElement => {
     return (
         <button className={styles.button} 
         {...props} 
@@ -14,4 +14,4 @@ const Button = (props: any): ReactElement => {
 
 
 };
-export default Button;
+
