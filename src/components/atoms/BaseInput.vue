@@ -27,10 +27,11 @@ export default defineComponent({
 <style scoped lang="scss">
 input {
   height: 2.325rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border-radius: 0.25rem;
   outline: 0;
   border: 0.1rem solid #767676;
   margin-right: 1rem;
+  text-align: center;
 }
 </style>

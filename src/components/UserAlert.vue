@@ -1,9 +1,11 @@
 <template>
-  <div v-if="open" class="backdrop" @click="closeDialog" @keydown="closeDialog"></div>
+  <transition name="backdrop">
+    <div v-if="open" class="backdrop" @click="closeDialog" @keydown="closeDialog"></div>
+  </transition>
   <transition name="modal">
     <dialog open v-if="open">
       <header>
-        <h2>{{ title }}</h2>
+        <h2>{{ title }} | Episods</h2>
       </header>
       <div>
         <slot></slot>
@@ -17,6 +19,7 @@
 
 <script>
 export default {
+  name: 'UserDialog',
   props: ['title', 'open'],
   emits: ['close'],
   methods: {
@@ -36,6 +39,10 @@ export default {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 10;
+}
+
+h2 {
+  text-align: center;
 }
 
 dialog {
@@ -94,6 +101,24 @@ button:active {
 
 .modal-leave-active {
   animation: modal 0.3s ease-in reverse;
+}
+
+.backdrop-enter-active {
+  animation: backdrop 0.3s ease-out;
+}
+
+.backdrop-leave-active {
+  animation: backdrop 0.3s ease-in reverse;
+}
+
+@keyframes backdrop {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes modal {

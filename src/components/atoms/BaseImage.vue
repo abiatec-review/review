@@ -30,6 +30,10 @@ export default defineComponent({
 .icon {
   width: 200px;
   border-radius: 40%;
+  &:hover {
+    opacity: 0.6;
+    transition: opacity 100ms ease-in-out;
+  }
 }
 
 .logo {
@@ -43,7 +47,7 @@ export default defineComponent({
 
 @media (prefers-reduced-motion: no-preference) {
   .logo {
-    animation: logo-spin infinite 20s linear;
+    animation: logo-spin infinite 3s linear;
   }
 }
 

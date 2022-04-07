@@ -10,6 +10,7 @@ export const store = createStore<State>({
   state: {
     characterList: [],
     searchedCharactersName: '',
+    currentListPage: 1,
   },
   getters: {
     getCharactersList(state) {
@@ -29,10 +30,13 @@ export const store = createStore<State>({
     setSearchedCharactersName(state, name) {
       state.searchedCharactersName = name;
     },
+    setCurrentPage(state, page) {
+      state.currentListPage = page;
+    },
   },
   actions: {
     async fetchFirstData({ commit, state }) {
-      const page = 1;
+      const page = state.currentListPage;
       const name = state.searchedCharactersName;
       try {
         const { data } = await axios.get(`https://rickandmortyapi.com/api/character?name=${name}&page=${page}`);
@@ -43,11 +47,19 @@ export const store = createStore<State>({
       }
     },
     async fetchExtraData({ commit, state }) {
-      const page = 2;
+      let page = state.currentListPage;
       const name = state.searchedCharactersName;
-      const res = await fetch(`https://rickandmortyapi.com/api/character?name=${name}&page=${page}`);
-      const { results } = await res.json();
-      commit('addCharactersList', results);
+      try {
+        // eslint-disable-next-line
+        page++;
+        const { data } = await axios.get(`https://rickandmortyapi.com/api/character?name=${name}&page=${page}`);
+        const results = await data.results;
+        commit('setCurrentPage', page);
+        commit('addCharactersList', results);
+      } catch {
+        commit('setCurrentPage', 1);
+        throw new Error('There is no more characters by this name!');
+      }
     },
   },
   modules: {},

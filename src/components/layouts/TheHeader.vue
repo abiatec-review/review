@@ -13,7 +13,7 @@ export default defineComponent({
   components: { InputSearch },
   name: 'TheHeader',
   setup() {
-    return { imagePath: 'logo192.png' };
+    return { imagePath: 'spinner.png' };
   },
 });
 </script>
@@ -28,7 +28,8 @@ header {
   left: 0px;
   width: 100%;
   padding: 3rem;
-  background-color: #fff;
+  z-index: 10;
+  background-color: rgb(215, 215, 215);
   box-shadow: rgba(149, 157, 165, 0.4) 0 8px 24px;
 }
 </style>

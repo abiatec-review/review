@@ -1,12 +1,14 @@
 <template>
-  <user-alert :open="alertIsVisible" :title="name" @close="hideAlert">
-    <p>Some characters imformation...</p>
+  <user-alert :open="alertIsVisible" :title="'Profile'" @close="hideAlert">
+    <characters-card :characterProfile="selectedItem" />
   </user-alert>
   <section class="container">
     <transition-group mode="out-in" tag="ul" name="user-list">
       <li v-for="item in items" :key="item.id">
-        <p>{{ item.name }}</p>
-        <base-image :imagePath="item.image" :alt="item.name" @click="showAlert(item.name, item.image)" />
+        <div class="card">
+          <p>{{ item.name }}</p>
+          <base-image :imagePath="item.image" :alt="item.name" @click="showAlert(item)" />
+        </div>
       </li>
     </transition-group>
     <div v-if="items.length < 1">There are no characters yet. Try to input any name above!</div>
@@ -15,23 +17,27 @@
 
 <script lang="ts">
 import UserAlert from '@/components/UserAlert.vue';
+import { Item } from '@/modules/types';
 import { useStore } from '@/store';
 import { computed, defineComponent, ref } from 'vue';
+import CharactersCard from './CharactersCard.vue';
 
 export default defineComponent({
-  name: 'MainPage',
+  name: 'ContentList',
   components: {
     UserAlert,
+    CharactersCard,
   },
   setup() {
     const store = useStore();
 
     const alertIsVisible = ref(false);
-    const name = ref('');
+    const selectedItem = ref({});
 
-    function showAlert(charactersName: string) {
+    function showAlert(item: Item) {
       alertIsVisible.value = true;
-      name.value = charactersName;
+      selectedItem.value = item;
+      console.log(item);
     }
 
     function hideAlert() {
@@ -52,7 +58,7 @@ export default defineComponent({
       showAlert,
       hideAlert,
       alertIsVisible,
-      name,
+      selectedItem,
     };
   },
 });
@@ -70,12 +76,16 @@ ul {
   // flex-wrap: wrap;
   justify-content: center;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
   li {
     list-style: none;
     padding: 10px 20px;
   }
+}
+
+p {
+  text-transform: uppercase;
 }
 
 .user-list-enter-active,

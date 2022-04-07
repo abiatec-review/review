@@ -15,7 +15,7 @@ export default defineComponent({
 <style scoped lang="scss">
 button {
   height: 2.325rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   background: #767676;
   border-radius: 0.25rem;
   padding: 0 1rem;

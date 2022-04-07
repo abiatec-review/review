@@ -1,6 +1,6 @@
 <template>
-  <base-input type="text" placeholder="Enter a character's name" v-model="modelValue" />
-  <base-button @fetchNamedSearch="submit">Submit</base-button>
+  <base-input type="text" placeholder="Enter a character's name" v-model.trim="modelValue" />
+  <base-button @fetchNamedSearch="submit" :disabled="!modelValue">Submit</base-button>
 </template>
 
 <script lang="ts">
@@ -17,6 +17,9 @@ export default defineComponent({
     const modelValue = ref('');
 
     function submit() {
+      if (modelValue.value === '') {
+        return;
+      }
       store.commit('setSearchedCharactersName', modelValue.value);
       store.dispatch('fetchFirstData');
       modelValue.value = '';

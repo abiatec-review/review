@@ -22,4 +22,5 @@ export interface Item {
 export interface State {
   characterList: Array<Item>;
   searchedCharactersName: string;
+  currentListPage: number;
 }
