@@ -1,0 +1,24 @@
+@import 'styles/mixins.module.scss';
+
+.gallery {
+  @include flex(flex, center, center, wrap);
+  gap: 20px;
+
+  figure img {
+    border-radius: 50%;
+  }
+
+  .figcaptionCont{
+    @include flex(flex, center, center, );
+    flex-direction: column;
+
+    figcaption {
+      margin-top: 10px;
+      color: darkslateblue;
+      font-size: 26px;
+    }
+  }
+}
+
+
+

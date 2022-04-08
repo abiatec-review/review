@@ -1,10 +1,15 @@
+
 // @ts-ignore
 import styles from './style.module.scss';
 
-interface IProps{};
+interface IProps{onSubmit: () => void};
 
-export const Button:React.FC<IProps> = ({}) => {
+
+// @ts-ignore
+export const Button:React.FC<IProps> = ({onSubmit}) => {
+
+
     return (
-        <button className={styles.button}>Button</button>
+        <button className={styles.button} onClick={onSubmit}>Button</button>
     )
 }

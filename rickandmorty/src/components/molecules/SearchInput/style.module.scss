@@ -3,3 +3,10 @@
 .searchInput {
     @include flex(flex, center, center, );
 }
+
+@media screen and (max-width: 500px) {
+    .searchInput {
+        flex-direction: column;
+
+    }
+}

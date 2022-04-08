@@ -1,10 +1,12 @@
 // @ts-ignore
 import styles from './style.module.scss';
 
-interface IProps{}
+interface IProps{value: string,
+    onChange:any}
 
-export const Input:React.FC<IProps> = ({}) => {
+export const Input:React.FC<IProps> = ({value, onChange}) => {
+
     return (
-        <input className={styles.input}/>
+        <input value={value} onChange={onChange} className={styles.input}/>
     )
 }

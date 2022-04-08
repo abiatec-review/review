@@ -5,13 +5,11 @@ import styles from './style.module.scss';
 
 interface IProps{}
 
-export const Header:React.FC<IProps> = ({}) => {
+export const Header:React.FC<IProps> = ({init, setVisible}) => {
     return (
-        // <div className={styles.Header_fixed}>
         <header className={styles.Header}>
             <Image type={'list'} className={styles.Header_logo}/>
-            <SearchInput/>
+            <SearchInput init={init} setVisible={setVisible}/>
         </header>
-    //     </div>
     )
 }

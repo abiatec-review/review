@@ -1,4 +1,13 @@
-h1 {
+body {
     text-align: center;
+    background-color: aqua;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+h1 {
     padding-top: 200px;
+    color: darkslateblue;
 }
