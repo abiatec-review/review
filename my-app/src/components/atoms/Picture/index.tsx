@@ -6,9 +6,10 @@ import animations from '../../../styles/animations.module.scss'
 interface IProps {
   type: constants
   srcImage: string
+  click?: (event:any)=>void
 }
 
-export const Picture: React.FC<IProps> = ( {type, srcImage} ) => {
+export const Picture: React.FC<IProps> = ( {type, srcImage, click} ) => {
   switch (type) {
     case constants.HEADER_PICTURE: 
     return (
@@ -100,8 +101,12 @@ export const Picture: React.FC<IProps> = ( {type, srcImage} ) => {
     )
     case constants.CARD_PICTURE:
       return (
-        <img src={srcImage} alt="cardPicture" />
+        <img src={srcImage} alt="cardPicture" className={styles.cardPicture} onClick={click}/>
       )
+    case constants.MAIN_MODAL_PICTURE: 
+      return (
+        <img src={srcImage} alt="CharacterPic" className={styles.modalMainPicture} />
+      ) 
     default: return null
   }
   

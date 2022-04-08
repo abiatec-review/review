@@ -1,5 +1,5 @@
 interface IProps {
-  titleText: string
+  titleText: any
   className: any;
 }
 

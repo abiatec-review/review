@@ -1,6 +1,7 @@
+import { Modal } from "components/molecules/Modal";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getCharacters } from "redux/actions/characters";
+import { getCharacters, getCharactersSuccess } from "redux/actions/characters";
 import { Header, Main} from "../components/organisms";
 
 interface IProps {
@@ -8,9 +9,7 @@ interface IProps {
 }
 
 export const Sitelayout: React.FC<IProps> = ( {} ) => {
-
   const dispatch = useDispatch();
-
   const [inputValue, setInputValue] = useState('');
 
   const onChangeHandler = (event: any) => {
@@ -18,7 +17,8 @@ export const Sitelayout: React.FC<IProps> = ( {} ) => {
     console.log(inputValue)
   }
 
-  const getCharactersHandler = () => {
+  const getCharactersHandler = (event: any) => {
+    event.preventDefault();
     if (inputValue !== '') {
       dispatch(getCharacters(inputValue))
     }

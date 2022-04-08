@@ -1,23 +1,28 @@
 import {all, fork, put, takeEvery} from "redux-saga/effects";
 import {AxiosResponse} from "axios"
 import { getFoundCharacters } from "../../api/api";
-import { GET_FIND_CHARACTERS, GET_FIND_CHARACTERS_SUCCESS } from "redux/actionTypes";
+import { GET_CHARACTERS } from "redux/actionTypes";
+import { getCharactersFailed, getCharactersSuccess } from "redux/actions/characters";
+import { RootStateOrAny, useSelector } from "react-redux";
 
 
-function* getCharactersSaga(payload: any) {
+function* getCharactersSaga(charName: any) {
+    console.log(charName)
     try {
-        const response:AxiosResponse<any> = yield getFoundCharacters(payload.payload);
+        const response:AxiosResponse<any> = yield getFoundCharacters(charName.payload);
         const {data: {results}} = response
         console.log(results)
+        
 
-        yield put({type: GET_FIND_CHARACTERS_SUCCESS, payload: results});
+        yield put(getCharactersSuccess(results));
     } catch (err) {
-    console.log(err)
+        console.log(err)
+        yield put(getCharactersFailed())
     }
 }
 
 export function* getCharactersFork() {
-    yield takeEvery(GET_FIND_CHARACTERS, getCharactersSaga);
+    yield takeEvery(GET_CHARACTERS, getCharactersSaga);
 };
 
 export default function* rootSaga() {

@@ -9,5 +9,14 @@
 }
 
 .cardPicture {
-  max-width: 100%;
+  width: fit-content;
+  height: fit-content;
+}
+
+.modalMainPicture {
+  width: 250px;
+  height: 250px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 50%;
 }

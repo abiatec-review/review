@@ -7,11 +7,15 @@ const instance = axios.create({
       }
   });
 
-  export const getFoundCharacters = async (name:string) => {
+  export const getFoundCharacters = async (name: string) => {
       const response = await instance.get(`character/?name=${name}`)
       return response
   }
 
+  export const getSelectEpisode =async (episode: string) => {
+      const response = await instance.get(`episode/${episode}`)
+      return response
+  }
 
 
 

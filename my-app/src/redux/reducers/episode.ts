@@ -1,31 +1,31 @@
-import { GET_CHARACTERS, GET_CHARACTERS_SUCCESS, GET_CHARACTERS_FAILED } from '../actionTypes' 
+import { GET_EPISODE, GET_EPISODE_FAILD, GET_EPISODE_SUCCESS } from '../actionTypes' 
 
 const initialState = {
-    charName: '',
-    charactersList: [],
+    episodeId: '',
+    episodeInfo: [],
     loader: false,
     error: false
     
 };
 
-const CharactersReducer = (state = initialState, action: any) => {
+const EpisodeReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case GET_CHARACTERS: {
+        case GET_EPISODE: {
             return {
                 ...state,
-                charName: action.payload,
+                episodeId: action.payload,
                 loader: true
             }
         }
-        case GET_CHARACTERS_SUCCESS: {
+        case GET_EPISODE_SUCCESS: {
             return {
                 ...state,
-                charactersList: action.payload,
+                episodeInfo: action.payload,
                 loader: false,
                 error: false
             }
         }
-        case GET_CHARACTERS_FAILED: {
+        case GET_EPISODE_FAILD: {
             return {
                 ...state,
                 loader: false,
@@ -36,4 +36,4 @@ const CharactersReducer = (state = initialState, action: any) => {
     }
 }
 
-export default CharactersReducer;
+export default EpisodeReducer;

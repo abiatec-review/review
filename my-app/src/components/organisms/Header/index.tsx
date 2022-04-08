@@ -6,7 +6,7 @@ import {constants} from '../../../utils/constants'
 interface IProps {
   inputValue: string
   onChangeHandler: any
-  getCharactersHandler: any
+  getCharactersHandler: (event:any)=>void
 }
 
 export const Header: React.FC<IProps> = ( {inputValue, onChangeHandler,getCharactersHandler} ) => {
