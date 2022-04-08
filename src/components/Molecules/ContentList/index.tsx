@@ -1,49 +1,43 @@
-import { IContentItem } from 'redux/reducers/HeroesReducer/types';
-
-import {Button, ContentItem, LoginForm, Modal} from 'components/Atoms'
-
-import styles from './index.module.scss'
 import { useState } from 'react';
+import { IHeroesState } from 'redux/reducers/HeroesReducer/types';
+
+import {ErrorComponent, Loader} from 'components/Atoms'
 import ModalSignIn from '../ModalSignIn';
-interface IProps {
-  characters: IContentItem[];
-  setSelectedHeroId: (id: string) => () => void;
+import { ContentElements } from './ContentElements';
+
+import { IProps as IPropsContentElement} from './ContentElements';
+
+import styles from './styles.module.scss'
+
+interface IProps extends IPropsContentElement {
   userMail: string;
-  isShowFetchButton: boolean;
-  fetchMore: () => void
+  heroes: IHeroesState;
 }
 
-const ContentList: React.FC<IProps>= ({characters, setSelectedHeroId, userMail, isShowFetchButton, fetchMore}) => {
+const ContentList: React.FC<IProps>= ({heroes, characters, setSelectedHeroId, userMail, isShowFetchButton, fetchMore}) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   
-  const fetchButton = isShowFetchButton && <Button className={styles.button} onClick={fetchMore}>Fetch more</Button>
-
-  const contentElement = <>
-  <ul className={styles.list}>
-      {characters?.map((character: IContentItem) => {
-        return <ContentItem 
-                  key={character.id} 
-                  image={character.image}
-                  name={character.name}
-                  id={character.id}
-                  setSelectedHeroId={setSelectedHeroId}
-                />
-    })}
-    
-  </ul>
-  {fetchButton}
-  </>
-
   const render = () => {
     switch(true) {
-      case !!userMail: {
-        return contentElement
+      case !!userMail && !heroes.isError && !heroes?.isLoading: {
+        return <ContentElements  isShowFetchButton={isShowFetchButton} characters={characters} setSelectedHeroId={setSelectedHeroId} fetchMore={fetchMore}/>
+      }
+      case !!userMail && heroes?.isLoading: {
+        return <Loader />
+      }
+      case !!userMail && heroes.isError && !heroes?.isLoading: {
+        return <ErrorComponent />
       }
       case isModalOpen: {
         return <ModalSignIn closeModal={ () => setIsModalOpen(false)} />
       }
       case !isModalOpen: {
-        return <div className={styles.link} onClick={() => setIsModalOpen(true)}>Open registration</div>
+        return (
+          <div className={styles.textBlock}>
+            <div>For using Rick&Morty App you need to authorize</div>
+            <div className={styles.link} onClick={() => setIsModalOpen(true)}>Open authorization</div> 
+          </div> 
+        )
       }
     }
   }

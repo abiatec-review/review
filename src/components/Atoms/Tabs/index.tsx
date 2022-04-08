@@ -12,7 +12,6 @@ export const Tabs: React.FC<IProps>= ({isSelectedTab, openEpisode, openHero}) =>
   return (
     <div>
       <span 
-        // className={classNames(!isSelectedTab && styles.active, styles.tab)} 
         className={classNames(styles.tab, {[styles.active]: !isSelectedTab})}
         onClick={openHero}
       >

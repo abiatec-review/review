@@ -8,11 +8,9 @@ interface IProps {
 
 export const Loader: React.FC<IProps> = ({className}) => {
   return (
-    <>
-      <div className={classNames(styles.loader, className)}>
-        <div />
-        <div />
-      </div>
-    </>
+    <div className={classNames(styles.loader, className)}>
+      <div className={classNames(styles.firstChild)}/>
+      <div className={classNames(styles.secondChild)}/>
+    </div>
   )
 }

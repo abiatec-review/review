@@ -15,7 +15,7 @@ export const Image: React.FC<IProps> = ({type, className, img}) => {
       return <img className={className} src={img} alt="cat"/>
     }
     default: {
-      return <img className={className} src={img} alt="default"/>
+      return null;
     }
   }
 }

@@ -21,8 +21,15 @@
   }
 
   @include phone() {
-    height: 5rem;
+    @include size(65vw, 5rem);
+    
     font-size: 3.5rem;
-    width: 65vw;
+  }
+}
+
+.disable {
+  &:hover {
+    background: $button-color;
+    cursor:auto;
   }
 }

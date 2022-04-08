@@ -1,8 +1,7 @@
 @import "styles/mixins.module.scss";
 
 .item {
-  margin: 50px;
-
+  margin: 50px 35px;
   @include flex(column, center, center);
 
 
@@ -20,6 +19,8 @@
   
   &:hover {
     cursor: pointer;
+    transform: scale(1.1);
+    transition-duration: 500ms;
   }
 }
 

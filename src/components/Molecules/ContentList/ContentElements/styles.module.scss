@@ -1,0 +1,13 @@
+@import "styles/mixins.module.scss";
+
+.list {
+  @include flex('', center, center, wrap);
+}
+.header {
+  font-size: 24pt;
+}
+
+.button {
+  background-color: $tab-color;
+  margin-bottom: 20px;
+}

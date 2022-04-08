@@ -1,12 +1,18 @@
 import { Button } from "components/Atoms"
 
+import { isAcceptedCookiesLS } from "utils/constants";
+
 import styles from "./index.module.scss"
 
-export const AcceptSnack = ({setIsAccepted}:any) => {
+interface IProps {
+  setIsAccepted: (isAccepted: string) => void;
+}
+
+export const AcceptSnack: React.FC<IProps> = ({setIsAccepted}) => {
 
   const acceptCookies = (isAccepted: string) => () => {
-    localStorage.setItem('isAccepted', isAccepted);
-    setIsAccepted('isAccepted')
+    localStorage.setItem(isAcceptedCookiesLS, isAccepted);
+    setIsAccepted(isAcceptedCookiesLS)
   }
 
   return (

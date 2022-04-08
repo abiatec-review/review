@@ -27,3 +27,10 @@ export const logoutAC = () => {
     type: LOG_OUT_REQUEST
    }
 }
+
+export const loadUserAC = (user: any) => {
+  return { 
+    type: LOAD_USER_REQUEST, 
+    payload: user
+  }
+}

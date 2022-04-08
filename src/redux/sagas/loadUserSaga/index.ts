@@ -1,8 +1,12 @@
-import { LOAD_USER_REQUEST,SIGN_IN_REQUEST, LOAD_USER_SUCCESS, SIGN_UP_REQUEST, LOG_OUT_REQUEST, LOAD_ANY_ERROR, LOAD_USER_LOADING } from './../../actions/UserActions/index';
+import { LOAD_USER_REQUEST, SIGN_IN_REQUEST, LOAD_USER_SUCCESS, SIGN_UP_REQUEST, LOG_OUT_REQUEST, LOAD_ANY_ERROR, LOAD_USER_LOADING } from './../../actions/UserActions/index';
 import { call, put, takeEvery } from "redux-saga/effects";
-import { login, logout, signup } from './api';
+import { IPayloadArguments, login, logout, signup } from './api';
 
-function* signIn({payload}: any): Generator<any, any, any> {
+interface IPayload {
+  payload: IPayloadArguments
+}
+
+function* signIn({payload}: IPayload): Generator<any, any, any> {
   try {
     yield call(login, payload);
    
@@ -20,7 +24,7 @@ function* logOut(): Generator<any, any, any> {
     console.log(e)
   }
 }
-function* signUp({payload}: any): Generator<any, any, any> {
+function* signUp({payload}: IPayload): Generator<any, any, any> {
   try {
     yield call(signup, payload);
   } catch (e: any) {
@@ -31,7 +35,7 @@ function* signUp({payload}: any): Generator<any, any, any> {
   }
 }
 
-function* loadUser({payload}: any): Generator<any, any, any> {
+function* loadUser({payload}: { payload: {email: string}}): Generator<any, any, any> {
   try {
     yield put({
       type: LOAD_USER_LOADING

@@ -2,6 +2,7 @@
 
 .item {
   @include flex(column, center);
+  width: 33%;
 }
 .name {
   font-size: $font-span;

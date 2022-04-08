@@ -12,7 +12,11 @@ import { defineNextPage } from 'utils/validator';
 
 import  styles from './index.module.scss'
 
-const SearchBlock = () => {
+interface IProps {
+  userMail: string;
+}
+
+const SearchBlock: React.FC<IProps> = ({userMail}) => {
   
   const name = useSelector(getHeroNameSelector)
   const nextPage = useSelector(getNextPageSelector)
@@ -39,8 +43,13 @@ const SearchBlock = () => {
 
   return (
     <div className={styles.searchBlock}>
-      <SearchInput value={name} onSearchChange={onSearchChange} onKeyPressHandler={onKeyPressHandler}/>
-      <Button onClick={onSubmit}>{buttonText?.buttonTitle || "Find character"}</Button>
+      <SearchInput 
+        value={name} 
+        onSearchChange={onSearchChange} 
+        onKeyPressHandler={onKeyPressHandler} 
+        userMail={userMail}
+      />
+      <Button isDisabled={!userMail} onClick={onSubmit}>{buttonText?.buttonTitle || "Find character"}</Button>
     </div>
   )
 }
