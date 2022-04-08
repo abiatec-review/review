@@ -6,12 +6,15 @@ import { ActionType } from 'redux/actions/actionType';
 import App from 'App';
 
 import 'index.css';
+import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
     <BrowserRouter>
-        <Provider store={store}>
-            <App />
-        </Provider>
+        <CookiesProvider>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </CookiesProvider>
     </BrowserRouter>
     ,
     document.getElementById('root')
