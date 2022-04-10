@@ -2,10 +2,10 @@ import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
 import {
-  getCharacterFailedAction,
-  getCharacterListFailedAction,
-  getCharacterListSuccessAction,
-  getCharacterSuccessAction,
+  getCharactersFailedAction,
+  getCharactersSuccessAction,
+  getFilteredCharactersFailedAction,
+  getFilteredCharactersSuccessAction,
   startLoadingAction,
   stopLoadingAction
 } from "@redux/actions";
@@ -19,26 +19,28 @@ import { Character } from "@redux/models/entities";
 
 const mockStore = configureMockStore([thunk]);
 
-const character: Character = {
-  id: 1,
-  name: "test",
-  type: "test",
-  gender: "test",
-  status: "test",
-  species: "test",
-  origin: {
+const characters: Array<Character> = [
+  {
+    id: 1,
     name: "test",
-    url: "test"
-  },
-  location: {
-    name: "test",
-    url: "test"
-  },
-  image: "test",
-  episode: ["test"],
-  url: "test",
-  created: "test"
-};
+    type: "test",
+    gender: "test",
+    status: "test",
+    species: "test",
+    origin: {
+      name: "test",
+      url: "test"
+    },
+    location: {
+      name: "test",
+      url: "test"
+    },
+    image: "test",
+    episode: ["test"],
+    url: "test",
+    created: "test"
+  }
+];
 
 const error = "test error";
 
@@ -52,16 +54,17 @@ describe("Character reducer", () => {
   });
 
   test("set character: success", () => {
-    store.dispatch(getCharacterSuccessAction(character));
+    const page = 1;
+    store.dispatch(getFilteredCharactersSuccessAction(characters, page));
     const actions = store.getActions();
     expect(actions[1]).toEqual<CharacterAction>({
       type: CharacterActionType.GET_FILTERED_CHARACTERS_SUCCESS,
-      payload: { data: character }
+      payload: { data: { characters, page } }
     });
   });
 
   test("set character: failure", () => {
-    store.dispatch(getCharacterFailedAction(error));
+    store.dispatch(getFilteredCharactersFailedAction(error));
     const actions = store.getActions();
     expect(actions[2]).toEqual<CharacterAction>({
       type: CharacterActionType.GET_FILTERED_CHARACTERS_FAILED,
@@ -82,8 +85,7 @@ describe("Character reducer", () => {
   });
 
   test("set character list: success", () => {
-    const characters = [character];
-    store.dispatch(getCharacterListSuccessAction(characters));
+    store.dispatch(getCharactersSuccessAction(characters));
     const actions = store.getActions();
     expect(actions[5]).toEqual<CharacterAction>({
       type: CharacterActionType.GET_CHARACTERS_SUCCESS,
@@ -92,7 +94,7 @@ describe("Character reducer", () => {
   });
 
   test("set character list: failure", () => {
-    store.dispatch(getCharacterListFailedAction(error));
+    store.dispatch(getCharactersFailedAction(error));
     const actions = store.getActions();
     expect(actions[6]).toEqual<CharacterAction>({
       type: CharacterActionType.GET_CHARACTERS_FAILED,
