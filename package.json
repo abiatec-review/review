@@ -14,7 +14,7 @@
     "preset": "react-native"
   },
   "dependencies": {
-    "@react-navigation/material-bottom-tabs": "^6.1.1",
+    "@react-navigation/material-bottom-tabs": "^6.2.1",
     "@react-navigation/native": "^6.0.8",
     "axios": "^0.26.1",
     "bluebird": "^3.7.2",

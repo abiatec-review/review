@@ -2,7 +2,7 @@ import React from "react";
 
 import { StyleSheet, Text, View } from "react-native";
 
-import { FontSize, Indent } from "@utils";
+import { Colors, FontSize, Indent } from "@utils";
 
 interface Props {
   field: string;
@@ -26,12 +26,14 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   field: {
+    color: Colors.BLACK,
     fontSize: FontSize.DEFAULT,
     marginRight: Indent.EXTRA_HUGE
   },
   data: {
     flex: 1,
     fontWeight: "bold",
+    color: Colors.BLACK,
     fontSize: FontSize.DEFAULT
   }
 });

@@ -1,59 +1,53 @@
 import React, { useState } from "react";
 
-import { StyleSheet, TextInput, View } from "react-native";
+import { SafeAreaView, StyleSheet, TextInput, View } from "react-native";
 
-import { InfiniteScroll, Spinner } from "@components/atoms";
-import { Screen } from "@components/atoms";
-import { FullCharacterCard, ReducedCharacterCard } from "@components/moleculas/cards";
+import { InfiniteScroll } from "@components/atoms";
+import { ReducedCharacterCard } from "@components/moleculas/cards";
 import { ErrorModal } from "@components/moleculas/modals";
-import { getCharacter, getCharacterList, scrollCharacters } from "@redux/services";
+import { getCharactersByName, getCharacterList, scrollCharacters } from "@redux/services";
 import { useDispatch, useSelector } from "@redux/store";
 import { Colors, FontSize, Indent, Radius } from "@utils";
 
 export function CharactersScreen() {
-  const [id, setId] = useState<number>();
+  const [name, setName] = useState<string>();
   const dispatch = useDispatch();
 
   const state = useSelector(({ character }) => character);
-  const { character, characterList, isLoading, error } = state;
+  const { filteredCharacters, characters, isLoading, error } = state;
 
   const offset = useSelector(({ scroll }) => scroll.characterOffset);
 
-  const fetchCharacter = (id: number) => {
-    setId(id);
-    id && dispatch(getCharacter(id));
+  const fetchCharacter = (name: string) => {
+    setName(name);
+    name && dispatch(getCharactersByName(name));
   };
 
-  const getData = () => {
-    if (id) {
-      return isLoading ? <Spinner /> : <FullCharacterCard character={character} />;
-    } else {
-      return (
-        <InfiniteScroll
-          offset={offset}
-          data={characterList}
-          isLoading={isLoading}
-          numColumns={{ portrait: 2, landscape: 4 }}
-          load={(page) => dispatch(getCharacterList(page))}
-          onScroll={(offset) => dispatch(scrollCharacters(offset))}
-          renderItem={({ item }) => <ReducedCharacterCard character={item} />}
-        />
-      );
-    }
+  const loadMore = (page: number) => {
+    return name ? dispatch(getCharactersByName(name, page)) : dispatch(getCharacterList(page));
   };
 
   return (
-    <Screen>
+    <SafeAreaView>
       <View style={styles.header}>
         <TextInput
           placeholder="Search"
           style={styles.input}
-          onChangeText={(text) => fetchCharacter(Number(text))}
+          onChangeText={fetchCharacter}
+          placeholderTextColor={Colors.GRAY}
         />
       </View>
-      {getData()}
+      <InfiniteScroll
+        offset={offset}
+        load={loadMore}
+        isLoading={isLoading}
+        numColumns={{ portrait: 2, landscape: 4 }}
+        data={name ? filteredCharacters : characters}
+        onScroll={(offset) => dispatch(scrollCharacters(offset))}
+        renderItem={({ item }) => <ReducedCharacterCard character={item} />}
+      />
       <ErrorModal errorText={error} />
-    </Screen>
+    </SafeAreaView>
   );
 }
 
@@ -65,10 +59,11 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    color: Colors.BLACK,
     padding: Indent.HUGE,
     fontSize: FontSize.DEFAULT,
     borderRadius: Radius.MEDIUM,
     marginHorizontal: Indent.DEFAULT,
-    backgroundColor: Colors.CYAN_LIGHT,
+    backgroundColor: Colors.CYAN_LIGHT
   }
 });

@@ -47,7 +47,7 @@ export function InfiniteScroll<T>(props: DefaultProps<T> & Props) {
   return (
     <FlatList
       ref={listRef}
-      style={{padding: 10}}
+      style={{ padding: 10 }}
       onEndReached={getData}
       scrollEventThrottle={16}
       key={Number(isPortrait)}

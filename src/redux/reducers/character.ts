@@ -1,34 +1,38 @@
 import { CharacterAction, CharacterActionType, LoadingActionType } from "@redux/models/actions";
-import { Character } from "@redux/models/entities";
 import { CharacterReducer } from "@redux/models/reducers";
 
 const initialState: CharacterReducer = {
+  characters: [],
   isLoading: false,
-  characterList: [],
-  character: {} as Character
+  filteredCharacters: []
 };
 
 export function characterReducer(state = initialState, action: CharacterAction): CharacterReducer {
   const { type } = action;
 
   switch (type) {
-    case CharacterActionType.GET_CHARACTER_SUCCESS: {
+    case CharacterActionType.GET_FILTERED_CHARACTERS_SUCCESS: {
       const { payload } = action;
-      return { ...state, error: undefined, character: payload.data };
+      const { characters, page } = payload.data;
+      return {
+        ...state,
+        error: undefined,
+        filteredCharacters: page === 1 ? characters : [...state.filteredCharacters, ...characters]
+      };
     }
-    case CharacterActionType.GET_CHARACTER_FAILED: {
+    case CharacterActionType.GET_FILTERED_CHARACTERS_FAILED: {
       const { payload } = action;
       return { ...state, error: payload.error };
     }
-    case CharacterActionType.GET_CHARACTER_LIST_SUCCESS: {
+    case CharacterActionType.GET_CHARACTERS_SUCCESS: {
       const { payload } = action;
       return {
         ...state,
         error: undefined,
-        characterList: [...state.characterList, ...payload.data]
+        characters: [...state.characters, ...payload.data]
       };
     }
-    case CharacterActionType.GET_CHARACTER_LIST_FAILED: {
+    case CharacterActionType.GET_CHARACTERS_FAILED: {
       const { payload } = action;
       return { ...state, error: payload.error };
     }

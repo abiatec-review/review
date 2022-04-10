@@ -1,8 +1,8 @@
 export {
-  getCharacterSuccessAction,
-  getCharacterFailedAction,
-  getCharacterListSuccessAction,
-  getCharacterListFailedAction
+  getFilteredCharactersSuccessAction,
+  getFilteredCharactersFailedAction,
+  getCharactersSuccessAction,
+  getCharactersFailedAction
 } from "./character";
 export { getLocationListSuccessAction, getLocationListFailedAction } from "./location";
 export { getEpisodeListSuccessAction, getEpisodeListFailedAction } from "./episode";

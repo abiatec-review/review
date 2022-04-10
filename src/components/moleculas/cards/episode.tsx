@@ -20,7 +20,7 @@ export function EpisodeCard(props: Props) {
 
   return (
     <>
-      <Pressable style={[styles.container]} onPress={toggleModal}>
+      <Pressable style={container} onPress={toggleModal}>
         <TextRow field="Name" data={episode.name} />
         <TextRow field="Air Date" data={episode.air_date} />
         <TextRow field="Code" data={episode.episode} />
@@ -38,9 +38,10 @@ export function EpisodeCard(props: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const { container } = StyleSheet.create({
   container: {
-    height: 140,
+    flex: 1,
+    height: 160,
     padding: Indent.HUGE,
     margin: Indent.DEFAULT,
     borderRadius: Radius.DEFAULT,

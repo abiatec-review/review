@@ -6,7 +6,7 @@ import { TextRow } from "@components/atoms";
 import { Modal } from "@components/atoms";
 import { useOrientation } from "@hooks";
 import { Character } from "@redux/models/entities";
-import { FontSize, Indent, Radius } from "@utils";
+import { Colors, FontSize, Indent, Radius } from "@utils";
 
 interface Props {
   character: Character;
@@ -39,6 +39,7 @@ export function CharacterDetailsModal(props: Props) {
 const baseStyles = StyleSheet.create({
   name: {
     fontWeight: "bold",
+    color: Colors.BLACK,
     textAlign: "center",
     fontSize: FontSize.MEDIUM
   },
@@ -49,16 +50,12 @@ const baseStyles = StyleSheet.create({
   infoBlock: {
     flex: 1
   },
-  textBlock: {
-    flex: 0.9,
-    justifyContent: "space-evenly"
-  }
 });
 
 const portraitStyles = StyleSheet.create({
   ...baseStyles,
   modal: {
-    flex: Platform.select({ ios: 0.65, android: 0.85 })
+    flex: Platform.select({ ios: 0.65, android: 0.75 })
   },
   name: {
     ...baseStyles.name,
@@ -67,6 +64,11 @@ const portraitStyles = StyleSheet.create({
   image: {
     ...baseStyles.image,
     width: "100%"
+  },
+  textBlock: {
+    height: 170,
+    marginTop: Indent.DEFAULT,
+    justifyContent: "space-between"
   }
 });
 
@@ -86,8 +88,8 @@ const landscapeStyles = StyleSheet.create({
     flex: 0.5
   },
   textBlock: {
-    ...baseStyles.textBlock,
     flex: 1,
-    height: "80%"
+    height: 170,
+    justifyContent: "space-between"
   }
 });

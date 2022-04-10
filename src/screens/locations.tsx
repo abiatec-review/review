@@ -1,7 +1,8 @@
 import React from "react";
 
+import { SafeAreaView } from "react-native";
+
 import { InfiniteScroll } from "@components/atoms";
-import { Screen } from "@components/atoms";
 import { LocationCard } from "@components/moleculas/cards";
 import { ErrorModal } from "@components/moleculas/modals";
 import { getLocations, scrollLocations } from "@redux/services";
@@ -16,7 +17,7 @@ export function LocationsScreen() {
   const offset = useSelector(({ scroll }) => scroll.locationOffset);
 
   return (
-    <Screen>
+    <SafeAreaView>
       <InfiniteScroll
         offset={offset}
         data={locations}
@@ -27,6 +28,6 @@ export function LocationsScreen() {
         renderItem={({ item }) => <LocationCard location={item} />}
       />
       <ErrorModal errorText={error} />
-    </Screen>
+    </SafeAreaView>
   );
 }

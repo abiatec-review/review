@@ -3,6 +3,7 @@ import { Character } from "@redux/models/entities";
 export interface CharacterReducer {
   error?: string;
   isLoading: boolean;
-  character: Character;
-  characterList: Array<Character>;
+  filterName?: string;
+  characters: Array<Character>;
+  filteredCharacters: Array<Character>;
 }

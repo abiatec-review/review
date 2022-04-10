@@ -34,19 +34,23 @@ export function FullCharacterCard(props: Props) {
 const baseStyles = StyleSheet.create({
   container: {
     padding: Indent.HUGE,
-    backgroundColor: Colors.GRAY,
-    borderRadius: Radius.DEFAULT
+    borderRadius: Radius.DEFAULT,
+    marginHorizontal: Indent.HUGE,
+    backgroundColor: Colors.TRANSPARENT_CYAN
   },
   image: {
     aspectRatio: 1,
     borderRadius: Radius.DEFAULT
-  },
-  textBlock: {}
+  }
 });
 
 const portraitStyles = StyleSheet.create({
   ...baseStyles,
-  image: { ...baseStyles.image, marginBottom: Indent.DEFAULT }
+  image: { ...baseStyles.image, marginBottom: Indent.DEFAULT },
+  textBlock: {
+    height: 160,
+    justifyContent: "space-between"
+  }
 });
 
 const landscapeStyles = StyleSheet.create({
@@ -61,5 +65,9 @@ const landscapeStyles = StyleSheet.create({
     flex: 0.4,
     marginRight: Indent.DEFAULT
   },
-  textBlock: { ...baseStyles.textBlock, flex: 1 }
+  textBlock: {
+    flex: 1,
+    height: 180,
+    justifyContent: "space-between"
+  }
 });

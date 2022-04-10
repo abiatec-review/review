@@ -2,10 +2,10 @@ import { map } from "bluebird";
 import { Dispatch } from "redux";
 
 import {
-  getCharacterFailedAction,
-  getCharacterListFailedAction,
-  getCharacterListSuccessAction,
-  getCharacterSuccessAction,
+  getCharactersFailedAction,
+  getCharactersSuccessAction,
+  getFilteredCharactersFailedAction,
+  getFilteredCharactersSuccessAction,
   startLoadingAction,
   stopLoadingAction
 } from "@redux/actions";
@@ -14,15 +14,22 @@ import { Character, ReducedCharacter, ResultList } from "@redux/models/entities"
 
 import requests, { fixDate } from "./base";
 
-export function getCharacter(id: number) {
+export function getCharactersByName(name: string, page = 1) {
   return async function (dispatch: Dispatch<CharacterAction>) {
     dispatch(startLoadingAction());
     try {
-      const result = await requests.get<Character>(`/character/${id}`);
-      const character = fixDate(result);
-      dispatch(getCharacterSuccessAction(character));
+      const { info, results } = await requests.get<ResultList<Character>>(
+        `/character/?name=${name}&page=${page}`
+      );
+      // .catch((s:Error) => );
+      const characters = results.map(fixDate);
+      dispatch(getFilteredCharactersSuccessAction(characters, page));
+      return info.pages !== page;
     } catch (error) {
-      dispatch(getCharacterFailedAction(String(error)));
+      if (error instanceof Error) {
+        error.message !== "Request failed with status code 404" &&
+          dispatch(getFilteredCharactersFailedAction(String(error)));
+      }
     } finally {
       dispatch(stopLoadingAction());
     }
@@ -37,10 +44,10 @@ export function getCharacterList(page: number) {
         `/character/?page=${page}`
       );
       const characters = results.map(fixDate);
-      dispatch(getCharacterListSuccessAction(characters));
-      return info.next !== null;
+      dispatch(getCharactersSuccessAction(characters));
+      return info.pages !== page;
     } catch (error) {
-      dispatch(getCharacterListFailedAction(String(error)));
+      dispatch(getCharactersFailedAction(String(error)));
     } finally {
       dispatch(stopLoadingAction());
     }

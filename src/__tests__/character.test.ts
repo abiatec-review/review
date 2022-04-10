@@ -55,7 +55,7 @@ describe("Character reducer", () => {
     store.dispatch(getCharacterSuccessAction(character));
     const actions = store.getActions();
     expect(actions[1]).toEqual<CharacterAction>({
-      type: CharacterActionType.GET_CHARACTER_SUCCESS,
+      type: CharacterActionType.GET_FILTERED_CHARACTERS_SUCCESS,
       payload: { data: character }
     });
   });
@@ -64,7 +64,7 @@ describe("Character reducer", () => {
     store.dispatch(getCharacterFailedAction(error));
     const actions = store.getActions();
     expect(actions[2]).toEqual<CharacterAction>({
-      type: CharacterActionType.GET_CHARACTER_FAILED,
+      type: CharacterActionType.GET_FILTERED_CHARACTERS_FAILED,
       payload: { error }
     });
   });
@@ -86,7 +86,7 @@ describe("Character reducer", () => {
     store.dispatch(getCharacterListSuccessAction(characters));
     const actions = store.getActions();
     expect(actions[5]).toEqual<CharacterAction>({
-      type: CharacterActionType.GET_CHARACTER_LIST_SUCCESS,
+      type: CharacterActionType.GET_CHARACTERS_SUCCESS,
       payload: { data: characters }
     });
   });
@@ -95,7 +95,7 @@ describe("Character reducer", () => {
     store.dispatch(getCharacterListFailedAction(error));
     const actions = store.getActions();
     expect(actions[6]).toEqual<CharacterAction>({
-      type: CharacterActionType.GET_CHARACTER_LIST_FAILED,
+      type: CharacterActionType.GET_CHARACTERS_FAILED,
       payload: { error }
     });
   });

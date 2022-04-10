@@ -7,7 +7,7 @@ import { Modal } from "@components/atoms";
 import { useOrientation } from "@hooks";
 import { ReducedCharacter } from "@redux/models/entities";
 import { getCharactersByUrls } from "@redux/services";
-import { FontSize, Indent, Radius } from "@utils";
+import { Colors, FontSize, Indent, Radius } from "@utils";
 
 interface Props {
   title: string;
@@ -37,16 +37,17 @@ export function CharactersModal(props: Props) {
 
   const getHeight = () => {
     const length = charactersUrls.length;
-    const multiplier = length % 10;
-    if (length > 10) return { height: isPortrait ? 270 : 180 };
-    if (isPortrait) return { height: multiplier > 3 ? 270 : multiplier * 90 };
-    else return { height: multiplier > 2 ? 180 : multiplier * 90 };
+    if (length >= 4) return { height: isPortrait ? 270 : 180 };
+    else {
+      const multiplier = isPortrait ? length % 10 : Math.ceil(length / 2);
+      return { height: multiplier * 90 };
+    }
   };
 
   const character = ({ item }: ListRenderItemInfo<ReducedCharacter>) => {
     const text = { ...styles.text, ...(isPortrait ? { flex: 1 } : { width: 120 }) };
     return (
-      <View style={styles.character}>
+      <View onStartShouldSetResponder={() => true} style={styles.character}>
         <Image source={{ uri: item.image }} style={styles.image} />
         <Text style={text}>{item.name}</Text>
       </View>
@@ -62,6 +63,7 @@ export function CharactersModal(props: Props) {
         renderItem={character}
         key={Number(isPortrait)}
         numColumns={isPortrait ? 1 : 2}
+        keyExtractor={(_, i) => i.toString()}
         ListFooterComponent={isLoading ? <Spinner /> : null}
         columnWrapperStyle={!isPortrait && styles.columnWrapper}
         contentContainerStyle={isLoading && styles.contentContainer}
@@ -73,6 +75,7 @@ export function CharactersModal(props: Props) {
 const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
+    color: Colors.BLACK,
     textAlign: "center",
     fontSize: FontSize.MEDIUM,
     paddingBottom: Indent.DEFAULT
@@ -99,6 +102,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "600",
+    color: Colors.BLACK,
     fontSize: FontSize.MEDIUM
   }
 });
