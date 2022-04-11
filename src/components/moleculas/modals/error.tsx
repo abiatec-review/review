@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text } from "react-native";
 
 import { Modal } from "@components/atoms";
-import { Colors, FontSize } from "@utils";
+import { Color, FontSize } from "@utils";
 
 interface Props {
   errorText?: string;
@@ -28,7 +28,7 @@ export function ErrorModal(props: Props) {
 
 const { error } = StyleSheet.create({
   error: {
-    color: Colors.RED,
+    color: Color.RED,
     fontWeight: "bold",
     textAlign: "center",
     fontSize: FontSize.HUGE

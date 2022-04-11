@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import { useOrientation } from "@hooks";
-import { Colors, Indent, Radius } from "@utils";
+import { Color, Indent, Radius } from "@utils";
 
 interface Props {
   isShown: boolean;
@@ -46,12 +46,12 @@ const baseStyles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: Colors.TRANSPARENT_DARK
+    backgroundColor: Color.TRANSPARENT_DARK
   },
   content: {
     borderRadius: Radius.DEFAULT,
     paddingVertical: Indent.DEFAULT,
-    backgroundColor: Colors.CYAN_LIGHT,
+    backgroundColor: Color.CYAN_LIGHT,
     paddingHorizontal: Indent.EXTRA_HUGE
   }
 });

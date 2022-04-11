@@ -1,3 +1,4 @@
-export { Colors, Indent, FontSize, Radius } from "./styles";
+export { Color, Indent, FontSize, Radius } from "./styles";
 export { DarkTheme, LightTheme } from "./themes";
-export { Urls } from "./urls";
+export { Screen } from "./screens";
+export { Url } from "./urls";

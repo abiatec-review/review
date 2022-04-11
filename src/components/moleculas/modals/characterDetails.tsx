@@ -6,7 +6,7 @@ import { TextRow } from "@components/atoms";
 import { Modal } from "@components/atoms";
 import { useOrientation } from "@hooks";
 import { Character } from "@redux/models/entities";
-import { Colors, FontSize, Indent, Radius } from "@utils";
+import { Color, FontSize, Indent, Radius } from "@utils";
 
 interface Props {
   character: Character;
@@ -39,7 +39,7 @@ export function CharacterDetailsModal(props: Props) {
 const baseStyles = StyleSheet.create({
   name: {
     fontWeight: "bold",
-    color: Colors.BLACK,
+    color: Color.BLACK,
     textAlign: "center",
     fontSize: FontSize.MEDIUM
   },

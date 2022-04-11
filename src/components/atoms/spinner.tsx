@@ -2,10 +2,10 @@ import React from "react";
 
 import { ActivityIndicator, StyleSheet } from "react-native";
 
-import { Colors, Indent } from "@utils";
+import { Color, Indent } from "@utils";
 
 export function Spinner() {
-  return <ActivityIndicator style={spinner} animating size="large" color={Colors.BLUE_LIGHT} />;
+  return <ActivityIndicator style={spinner} animating size="large" color={Color.BLUE_LIGHT} />;
 }
 
 const { spinner } = StyleSheet.create({

@@ -5,7 +5,7 @@ import { Pressable, StyleSheet } from "react-native";
 import { TextRow } from "@components/atoms";
 import { CharactersModal } from "@components/moleculas/modals";
 import { Episode } from "@redux/models/entities";
-import { Colors, Indent, Radius } from "@utils";
+import { Color, Indent, Radius } from "@utils";
 
 interface Props {
   episode: Episode;
@@ -46,6 +46,6 @@ const { container } = StyleSheet.create({
     margin: Indent.DEFAULT,
     borderRadius: Radius.DEFAULT,
     justifyContent: "space-between",
-    backgroundColor: Colors.TRANSPARENT_CYAN
+    backgroundColor: Color.TRANSPARENT_CYAN
   }
 });

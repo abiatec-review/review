@@ -1,4 +1,4 @@
-export const enum Colors {
+export const enum Color {
   GRAY = "gray",
   RED = "#e91e63",
   BLACK = "black",

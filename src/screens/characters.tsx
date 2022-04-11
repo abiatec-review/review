@@ -8,7 +8,7 @@ import { CharacterCard } from "@components/moleculas/cards";
 import { ErrorModal } from "@components/moleculas/modals";
 import { getCharactersByName, getCharacters, scrollCharacters } from "@redux/services";
 import { useDispatch, useSelector } from "@redux/store";
-import { Colors, FontSize, Indent, Radius } from "@utils";
+import { Color, FontSize, Indent, Radius } from "@utils";
 
 export function CharactersScreen() {
   const [name, setName] = useState<string>();
@@ -35,7 +35,7 @@ export function CharactersScreen() {
           placeholder="Search"
           style={styles.input}
           onChangeText={fetchCharacter}
-          placeholderTextColor={Colors.GRAY}
+          placeholderTextColor={Color.GRAY}
         />
       </View>
       <InfiniteScroll
@@ -59,11 +59,11 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    color: Colors.BLACK,
+    color: Color.BLACK,
     padding: Indent.HUGE,
     fontSize: FontSize.DEFAULT,
     borderRadius: Radius.MEDIUM,
     marginHorizontal: Indent.DEFAULT,
-    backgroundColor: Colors.CYAN_LIGHT
+    backgroundColor: Color.TRANSPARENT_CYAN
   }
 });

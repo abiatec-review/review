@@ -4,7 +4,7 @@ import { Image, Pressable, StyleSheet, Text } from "react-native";
 
 import { CharacterDetailsModal } from "@components/moleculas/modals";
 import { Character } from "@redux/models/entities";
-import { Colors, FontSize, Indent, Radius } from "@utils";
+import { Color, FontSize, Indent, Radius } from "@utils";
 
 interface Props {
   character: Character;
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     padding: Indent.MEDIUM,
     flexDirection: "column",
     borderRadius: Radius.DEFAULT,
-    backgroundColor: Colors.TRANSPARENT_CYAN
+    backgroundColor: Color.TRANSPARENT_CYAN
   },
   image: {
     width: "100%",
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "bold",
-    color: Colors.BLACK,
+    color: Color.BLACK,
     textAlign: "center",
     fontSize: FontSize.DEFAULT
   }

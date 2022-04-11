@@ -7,7 +7,7 @@ import { Modal } from "@components/atoms";
 import { useOrientation } from "@hooks";
 import { ReducedCharacter } from "@redux/models/entities";
 import { getCharactersByUrls } from "@redux/services";
-import { Colors, FontSize, Indent, Radius } from "@utils";
+import { Color, FontSize, Indent, Radius } from "@utils";
 
 interface Props {
   title: string;
@@ -75,7 +75,7 @@ export function CharactersModal(props: Props) {
 const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
-    color: Colors.BLACK,
+    color: Color.BLACK,
     textAlign: "center",
     fontSize: FontSize.MEDIUM,
     paddingBottom: Indent.DEFAULT
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "600",
-    color: Colors.BLACK,
+    color: Color.BLACK,
     fontSize: FontSize.MEDIUM
   }
 });

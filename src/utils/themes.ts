@@ -1,4 +1,4 @@
-import { Colors } from "@utils";
+import { Color } from "@utils";
 
 interface Theme {
   navbar: string;
@@ -9,17 +9,17 @@ interface Theme {
 }
 
 export const LightTheme: Theme = {
-  navbar: Colors.WHITE,
+  navbar: Color.WHITE,
   navbarIcon: {
-    active: Colors.RED,
-    inactive: Colors.BLACK
+    active: Color.RED,
+    inactive: Color.BLACK
   }
 };
 
 export const DarkTheme: Theme = {
-  navbar: Colors.BLACK,
+  navbar: Color.BLACK,
   navbarIcon: {
-    active: Colors.CYAN,
-    inactive: Colors.WHITE
+    active: Color.CYAN,
+    inactive: Color.WHITE
   }
 };

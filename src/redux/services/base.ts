@@ -1,9 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 
 import { Entity, PagedData, ResultList } from "@redux/models/entities";
-import { Urls } from "@utils";
+import { Url } from "@utils";
 
-axios.defaults.baseURL = Urls.AXIOS;
+axios.defaults.baseURL = Url.AXIOS;
 
 const responseData = <T>(response: AxiosResponse<T>) => response.data;
 

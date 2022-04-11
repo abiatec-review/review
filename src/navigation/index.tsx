@@ -1,66 +1,55 @@
 import React from "react";
 
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { NavigationContainer, DefaultTheme, Theme } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
 import { ImageBackground, Platform, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import { useTheme } from "@hooks";
-import { CharactersScreen, EpisodesScreen, LocationsScreen } from "@screens";
-import { Colors, Indent } from "@utils";
+import { CharactersScreen, EpisodesScreen, LocationsScreen, LoginScreen } from "@screens";
+import { Color, Indent, Screen } from "@utils";
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
 function Navigation() {
-  const icon = (name: string, color: string) => {
+  const icon = (route: Screen, color: string) => {
+    let name = "";
+    if (route === Screen.Characters) name = "group";
+    else if (route === Screen.Locations) name = "photo";
+    else if (route === Screen.Episopdes) name = "video-camera";
+    else return;
     return <Icon name={name} color={color} size={23} />;
   };
 
   const { colors } = useTheme();
   const { navbar, navbarIcon } = colors;
 
-  const theme: Theme = {
-    ...DefaultTheme,
-    colors: { ...DefaultTheme.colors, background: "transparent" }
-  };
-
   return (
-    <NavigationContainer theme={theme}>
+    <NavigationContainer>
       <ImageBackground
         blurRadius={5}
         style={{ height: "100%" }}
         source={require("@assets/background.jpeg")}
       >
         <Tab.Navigator
-          initialRouteName="Characters"
-          activeColor={navbarIcon.active}
-          inactiveColor={navbarIcon.inactive}
-          barStyle={[style.bar, { backgroundColor: navbar }]}
+          initialRouteName={Screen.Login}
+          sceneContainerStyle={{ backgroundColor: "transparent" }}
+          screenOptions={({ route }) => ({
+            headerShown: false,
+            tabBarActiveTintColor: navbarIcon.active,
+            tabBarInactiveTintColor: navbarIcon.inactive,
+            tabBarIcon: ({ color }) => icon(route.name as Screen, color),
+            tabBarStyle: { backgroundColor: navbar, ...style.bar }
+          })}
         >
           <Tab.Screen
-            name="Characters"
-            component={CharactersScreen}
-            options={{
-              tabBarLabel: "Characters",
-              tabBarIcon: ({ color }) => icon("group", color)
-            }}
+            name={Screen.Login}
+            component={LoginScreen}
+            options={{ tabBarItemStyle: { display: "none" } }}
           />
-          <Tab.Screen
-            name="Locations"
-            component={LocationsScreen}
-            options={{
-              tabBarLabel: "Locations",
-              tabBarIcon: ({ color }) => icon("photo", color)
-            }}
-          />
-          <Tab.Screen
-            name="Episodes"
-            component={EpisodesScreen}
-            options={{
-              tabBarLabel: "Episodes",
-              tabBarIcon: ({ color }) => icon("video-camera", color)
-            }}
-          />
+          <Tab.Screen name={Screen.Characters} component={CharactersScreen} />
+          <Tab.Screen name={Screen.Locations} component={LocationsScreen} />
+          <Tab.Screen name={Screen.Episopdes} component={EpisodesScreen} />
         </Tab.Navigator>
       </ImageBackground>
     </NavigationContainer>
@@ -71,10 +60,10 @@ export default Navigation;
 
 const baseStyles = StyleSheet.create({
   bar: {
-    shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 1,
-    shadowRadius: 10,
-    shadowColor: Colors.BLACK
+    shadowColor: Color.BLACK,
+    shadowRadius: Indent.DEFAULT,
+    shadowOffset: { width: 0, height: 0 }
   }
 });
 
