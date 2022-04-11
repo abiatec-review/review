@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
+import { Entity, PagedData, ResultList } from "@redux/models/entities";
 import { Urls } from "@utils";
 
 axios.defaults.baseURL = Urls.AXIOS;
@@ -14,8 +15,15 @@ const requests = {
   delete: <T>(url: string, params: {}) => axios.delete<T>(url, { params }).then(responseData)
 };
 
-export function fixDate<T extends { created: string }>(obj: T) {
+function fixDate<T extends Entity>(obj: T) {
   return { ...obj, created: new Date(obj.created).toLocaleDateString("en-Us") };
+}
+
+export function getPagedData<T extends Entity>(page: number, list: ResultList<T>): PagedData<T> {
+  const nextPage = page + 1;
+  const items = list.results.map(fixDate);
+  const hasMore = list.info.pages !== page;
+  return { nextPage, items, hasMore };
 }
 
 export default requests;

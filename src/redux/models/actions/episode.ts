@@ -1,7 +1,6 @@
-import { Episode } from "@redux/models/entities";
+import { Episode, PagedData } from "@redux/models/entities";
 
 import { FailedAction, SuccessAction } from "./action";
-import { LoadingAction } from "./loading";
 
 export const enum EpisodeActionType {
   GET_EPISODE_LIST_SUCCESS = "GET_EPISODE_LIST_SUCCESS",
@@ -10,12 +9,9 @@ export const enum EpisodeActionType {
 
 type GetEpisodeListSuccessAction = SuccessAction<
   EpisodeActionType.GET_EPISODE_LIST_SUCCESS,
-  Array<Episode>
+  PagedData<Episode>
 >;
 
 type GetEpisodeListFailedAction = FailedAction<EpisodeActionType.GET_EPISODE_LIST_FAILED>;
 
-export type EpisodeAction =
-  | GetEpisodeListSuccessAction
-  | GetEpisodeListFailedAction
-  | LoadingAction;
+export type EpisodeAction = GetEpisodeListSuccessAction | GetEpisodeListFailedAction;

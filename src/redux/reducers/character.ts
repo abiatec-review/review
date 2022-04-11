@@ -1,10 +1,9 @@
-import { CharacterAction, CharacterActionType, LoadingActionType } from "@redux/models/actions";
+import { CharacterAction, CharacterActionType } from "@redux/models/actions";
 import { CharacterReducer } from "@redux/models/reducers";
 
 const initialState: CharacterReducer = {
-  characters: [],
-  isLoading: false,
-  filteredCharacters: []
+  characters: { nextPage: 1, hasMore: true, items: [] },
+  filteredCharacters: { nextPage: 1, hasMore: true, items: [] }
 };
 
 export function characterReducer(state = initialState, action: CharacterAction): CharacterReducer {
@@ -13,11 +12,14 @@ export function characterReducer(state = initialState, action: CharacterAction):
   switch (type) {
     case CharacterActionType.GET_FILTERED_CHARACTERS_SUCCESS: {
       const { payload } = action;
-      const { characters, page } = payload.data;
+      const pagedData = payload.data;
       return {
         ...state,
         error: undefined,
-        filteredCharacters: page === 1 ? characters : [...state.filteredCharacters, ...characters]
+        filteredCharacters: {
+          ...pagedData,
+          items: [...state.filteredCharacters.items, ...pagedData.items]
+        }
       };
     }
     case CharacterActionType.GET_FILTERED_CHARACTERS_FAILED: {
@@ -26,21 +28,16 @@ export function characterReducer(state = initialState, action: CharacterAction):
     }
     case CharacterActionType.GET_CHARACTERS_SUCCESS: {
       const { payload } = action;
+      const pagedData = payload.data;
       return {
         ...state,
         error: undefined,
-        characters: [...state.characters, ...payload.data]
+        characters: { ...pagedData, items: [...state.characters.items, ...pagedData.items] }
       };
     }
     case CharacterActionType.GET_CHARACTERS_FAILED: {
       const { payload } = action;
       return { ...state, error: payload.error };
-    }
-    case LoadingActionType.START: {
-      return { ...state, isLoading: true };
-    }
-    case LoadingActionType.STOP: {
-      return { ...state, isLoading: false };
     }
     default:
       return state;

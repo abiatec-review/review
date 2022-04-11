@@ -10,7 +10,7 @@ interface Props {
   character: Character;
 }
 
-export function ReducedCharacterCard(props: Props) {
+export function CharacterCard(props: Props) {
   const { character } = props;
 
   const [isModalShown, setIsModalShown] = useState(false);

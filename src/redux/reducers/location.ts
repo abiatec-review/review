@@ -1,9 +1,8 @@
-import { LoadingActionType, LocationAction, LocationActionType } from "@redux/models/actions";
+import { LocationAction, LocationActionType } from "@redux/models/actions";
 import { LocationReducer } from "@redux/models/reducers";
 
 const initialState: LocationReducer = {
-  locations: [],
-  isLoading: false
+  locations: { nextPage: 1, hasMore: true, items: [] }
 };
 
 export function locationReducer(state = initialState, action: LocationAction): LocationReducer {
@@ -12,21 +11,16 @@ export function locationReducer(state = initialState, action: LocationAction): L
   switch (type) {
     case LocationActionType.GET_LOCATION_LIST_SUCCESS: {
       const { payload } = action;
+      const pagedData = payload.data;
       return {
         ...state,
         error: undefined,
-        locations: [...state.locations, ...payload.data]
+        locations: { ...pagedData, items: [...state.locations.items, ...pagedData.items] }
       };
     }
     case LocationActionType.GET_LOCATION_LIST_FAILED: {
       const { payload } = action;
       return { ...state, error: payload.error };
-    }
-    case LoadingActionType.START: {
-      return { ...state, isLoading: true };
-    }
-    case LoadingActionType.STOP: {
-      return { ...state, isLoading: false };
     }
     default:
       return state;

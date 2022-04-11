@@ -12,7 +12,7 @@ export function EpisodesScreen() {
   const dispatch = useDispatch();
 
   const state = useSelector(({ episode }) => episode);
-  const { episodes, isLoading, error } = state;
+  const { episodes, error } = state;
 
   const offset = useSelector(({ scroll }) => scroll.episodeOffset);
 
@@ -21,7 +21,6 @@ export function EpisodesScreen() {
       <InfiniteScroll
         offset={offset}
         data={episodes}
-        isLoading={isLoading}
         numColumns={{ portrait: 1, landscape: 2 }}
         load={(page) => dispatch(getEpisodes(page))}
         onScroll={(offset) => dispatch(scrollEpisodes(offset))}

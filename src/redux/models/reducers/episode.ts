@@ -1,7 +1,6 @@
-import { Episode } from "@redux/models/entities";
+import { Episode, PagedData } from "@redux/models/entities";
 
 export interface EpisodeReducer {
   error?: string;
-  isLoading: boolean;
-  episodes: Array<Episode>;
+  episodes: PagedData<Episode>;
 }

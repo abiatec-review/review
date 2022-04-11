@@ -12,7 +12,7 @@ export function LocationsScreen() {
   const dispatch = useDispatch();
 
   const locationState = useSelector(({ location }) => location);
-  const { locations, isLoading, error } = locationState;
+  const { locations, error } = locationState;
 
   const offset = useSelector(({ scroll }) => scroll.locationOffset);
 
@@ -21,7 +21,6 @@ export function LocationsScreen() {
       <InfiniteScroll
         offset={offset}
         data={locations}
-        isLoading={isLoading}
         numColumns={{ portrait: 1, landscape: 2 }}
         load={(page) => dispatch(getLocations(page))}
         onScroll={(offset) => dispatch(scrollLocations(offset))}

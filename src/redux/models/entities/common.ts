@@ -1,3 +1,7 @@
+import { Character } from "./character";
+import { Episode } from "./episode";
+import { Location } from "./location";
+
 export interface ResponseObject {
   name: string;
   url: string;
@@ -12,3 +16,11 @@ export interface ResultList<T> {
   };
   results: Array<T>;
 }
+
+export interface PagedData<T> {
+  nextPage: number;
+  hasMore: boolean;
+  items: Array<T>;
+}
+
+export type Entity = Character | Location | Episode;

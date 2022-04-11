@@ -1,28 +1,19 @@
 import { Dispatch } from "redux";
 
-import {
-  getEpisodeListFailedAction,
-  getEpisodeListSuccessAction,
-  startLoadingAction,
-  stopLoadingAction
-} from "@redux/actions";
+import { getEpisodeListFailedAction, getEpisodeListSuccessAction } from "@redux/actions";
 import { EpisodeAction } from "@redux/models/actions";
 import { Episode, ResultList } from "@redux/models/entities";
 
-import requests, { fixDate } from "./base";
+import requests, { getPagedData } from "./base";
 
-export function getEpisodes(page: number) {
+export function getEpisodes(page = 1) {
   return async function (dispatch: Dispatch<EpisodeAction>) {
     try {
-      dispatch(startLoadingAction());
-      const { info, results } = await requests.get<ResultList<Episode>>(`/episode?page=${page}`);
-      const episodes = results.map(fixDate);
-      dispatch(getEpisodeListSuccessAction(episodes));
-      return info.next !== null;
+      const result = await requests.get<ResultList<Episode>>(`/episode?page=${page}`);
+      const data = getPagedData(page, result);
+      dispatch(getEpisodeListSuccessAction(data));
     } catch (error) {
       dispatch(getEpisodeListFailedAction(String(error)));
-    } finally {
-      dispatch(stopLoadingAction());
     }
   };
 }

@@ -1,33 +1,43 @@
 import React, { useEffect, useRef, useState } from "react";
 
+import debounce from "lodash.debounce";
 import { FlatList, FlatListProps, NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 
 import { Spinner } from "@components/atoms";
 import { useOrientation } from "@hooks";
+import { PagedData } from "@redux/models/entities";
+import { Entity } from "@redux/models/entities";
 
-interface Props {
+interface Props<T extends Entity> {
   offset?: number;
-  isLoading: boolean;
+  data: PagedData<T>;
   onScroll?: (offset: number) => void;
+  load: (page: number) => Promise<void>;
   numColumns?: { portrait: number; landscape: number };
-  load: (page: number) => Promise<boolean | undefined>;
 }
 
-type DefaultProps<T> = Omit<FlatListProps<T>, "numColumns" | "onScroll">;
+type DefaultProps<T extends Entity> = Omit<FlatListProps<T>, "numColumns" | "onScroll" | "data">;
 
-export function InfiniteScroll<T>(props: DefaultProps<T> & Props) {
-  const { load, numColumns, isLoading, offset, onScroll, ...rest } = props;
+export function InfiniteScroll<T extends Entity>(props: DefaultProps<T> & Props<T>) {
+  const { load, numColumns, offset, onScroll, data, ...rest } = props;
+  const { nextPage, hasMore, items } = data;
 
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState<boolean>();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const getData = () => {
-    !isLoading && hasMore && setPage((page) => page + 1);
+  const fetchData = () => {
+    setIsLoading(true);
+    debounce(() => {
+      load(nextPage).then(() => setIsLoading(false));
+    }, 2000)();
+  };
+
+  const onEndReached = () => {
+    !isLoading && hasMore && fetchData();
   };
 
   useEffect(() => {
-    load(page).then(setHasMore);
-  }, [page]);
+    fetchData();
+  }, []);
 
   const { isPortrait } = useOrientation();
 
@@ -46,13 +56,15 @@ export function InfiniteScroll<T>(props: DefaultProps<T> & Props) {
 
   return (
     <FlatList
+      data={items}
       ref={listRef}
       style={{ padding: 10 }}
-      onEndReached={getData}
       scrollEventThrottle={16}
       key={Number(isPortrait)}
       onScroll={scrollHandler}
+      onEndReached={onEndReached}
       keyExtractor={(_, i) => i.toString()}
+      contentContainerStyle={{ paddingBottom: 70 }}
       ListFooterComponent={isLoading ? <Spinner /> : null}
       numColumns={isPortrait ? numColumns?.portrait : numColumns?.landscape}
       {...rest}

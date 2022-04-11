@@ -1,7 +1,7 @@
 import { LocationAction, LocationActionType } from "@redux/models/actions";
-import { Location } from "@redux/models/entities";
+import { Location, PagedData } from "@redux/models/entities";
 
-export function getLocationListSuccessAction(data: Array<Location>): LocationAction {
+export function getLocationListSuccessAction(data: PagedData<Location>): LocationAction {
   return {
     type: LocationActionType.GET_LOCATION_LIST_SUCCESS,
     payload: { data }

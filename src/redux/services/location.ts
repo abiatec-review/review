@@ -1,28 +1,19 @@
 import { Dispatch } from "redux";
 
-import {
-  getLocationListFailedAction,
-  getLocationListSuccessAction,
-  startLoadingAction,
-  stopLoadingAction
-} from "@redux/actions";
+import { getLocationListFailedAction, getLocationListSuccessAction } from "@redux/actions";
 import { LocationAction } from "@redux/models/actions";
 import { Location, ResultList } from "@redux/models/entities";
 
-import requests, { fixDate } from "./base";
+import requests, { getPagedData } from "./base";
 
-export function getLocations(page: number) {
+export function getLocations(page = 1) {
   return async function (dispatch: Dispatch<LocationAction>) {
     try {
-      dispatch(startLoadingAction());
-      const { info, results } = await requests.get<ResultList<Location>>(`/location?page=${page}`);
-      const locations = results.map(fixDate);
-      dispatch(getLocationListSuccessAction(locations));
-      return info.next !== null;
+      const result = await requests.get<ResultList<Location>>(`/location?page=${page}`);
+      const data = getPagedData(page, result);
+      dispatch(getLocationListSuccessAction(data));
     } catch (error) {
       dispatch(getLocationListFailedAction(String(error)));
-    } finally {
-      dispatch(stopLoadingAction());
     }
   };
 }

@@ -1,13 +1,10 @@
 import { CharacterAction, CharacterActionType } from "@redux/models/actions";
-import { Character } from "@redux/models/entities";
+import { Character, PagedData } from "@redux/models/entities";
 
-export function getFilteredCharactersSuccessAction(
-  characters: Array<Character>,
-  page: number
-): CharacterAction {
+export function getFilteredCharactersSuccessAction(data: PagedData<Character>): CharacterAction {
   return {
     type: CharacterActionType.GET_FILTERED_CHARACTERS_SUCCESS,
-    payload: { data: { characters, page } }
+    payload: { data }
   };
 }
 
@@ -18,7 +15,7 @@ export function getFilteredCharactersFailedAction(error: string): CharacterActio
   };
 }
 
-export function getCharactersSuccessAction(data: Array<Character>): CharacterAction {
+export function getCharactersSuccessAction(data: PagedData<Character>): CharacterAction {
   return {
     type: CharacterActionType.GET_CHARACTERS_SUCCESS,
     payload: { data }

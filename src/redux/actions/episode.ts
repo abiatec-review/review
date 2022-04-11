@@ -1,7 +1,7 @@
 import { EpisodeAction, EpisodeActionType } from "@redux/models/actions";
-import { Episode } from "@redux/models/entities";
+import { Episode, PagedData } from "@redux/models/entities";
 
-export function getEpisodeListSuccessAction(data: Array<Episode>): EpisodeAction {
+export function getEpisodeListSuccessAction(data: PagedData<Episode>): EpisodeAction {
   return {
     type: EpisodeActionType.GET_EPISODE_LIST_SUCCESS,
     payload: { data }

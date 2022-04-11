@@ -1,7 +1,6 @@
-import { Character } from "@redux/models/entities";
+import { Character, PagedData } from "@redux/models/entities";
 
 import { FailedAction, SuccessAction } from "./action";
-import { LoadingAction } from "./loading";
 
 export const enum CharacterActionType {
   GET_FILTERED_CHARACTERS_SUCCESS = "GET_CHARACTER_SUCCESS",
@@ -12,7 +11,7 @@ export const enum CharacterActionType {
 
 type GetFilteredCharactersSuccessAction = SuccessAction<
   CharacterActionType.GET_FILTERED_CHARACTERS_SUCCESS,
-  { page: number; characters: Array<Character> }
+  PagedData<Character>
 >;
 
 type GetFilteredCharactersFailedAction =
@@ -20,7 +19,7 @@ type GetFilteredCharactersFailedAction =
 
 type GetCharacterListSuccessAction = SuccessAction<
   CharacterActionType.GET_CHARACTERS_SUCCESS,
-  Array<Character>
+  PagedData<Character>
 >;
 
 type GetCharacterListFailedAction = FailedAction<CharacterActionType.GET_CHARACTERS_FAILED>;
@@ -29,5 +28,4 @@ export type CharacterAction =
   | GetFilteredCharactersSuccessAction
   | GetFilteredCharactersFailedAction
   | GetCharacterListSuccessAction
-  | GetCharacterListFailedAction
-  | LoadingAction;
+  | GetCharacterListFailedAction;

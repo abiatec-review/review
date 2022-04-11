@@ -49,13 +49,13 @@ const baseStyles = StyleSheet.create({
   },
   infoBlock: {
     flex: 1
-  },
+  }
 });
 
 const portraitStyles = StyleSheet.create({
   ...baseStyles,
   modal: {
-    flex: Platform.select({ ios: 0.65, android: 0.75 })
+    height: Platform.select({ ios: "68%", android: "75%" })
   },
   name: {
     ...baseStyles.name,
