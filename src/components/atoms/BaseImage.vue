@@ -11,6 +11,7 @@ export default defineComponent({
     imagePath: String,
     logo: Boolean,
     alt: String,
+    iconOpacity: Boolean,
   },
   setup(props) {
     const getImgUrl = computed(() => {
@@ -21,17 +22,24 @@ export default defineComponent({
       return props.imagePath;
     });
 
-    return { getImgUrl };
+    const cssIconOpacity = computed(() => {
+      if (props.iconOpacity) {
+        return Number(0.6);
+      }
+      return Number(1);
+    });
+
+    return { getImgUrl, cssIconOpacity };
   },
 });
 </script>
 
 <style scoped lang="scss">
 .icon {
-  width: 200px;
+  width: 250px;
   border-radius: 40%;
   &:hover {
-    opacity: 0.6;
+    opacity: v-bind(cssIconOpacity);
     transition: opacity 100ms ease-in-out;
   }
 }

@@ -5,10 +5,16 @@
   <transition name="modal">
     <dialog open v-if="open">
       <header>
-        <h2>{{ title }} | Episods</h2>
+        <a @click="profile = true" @keyup="profile = true">Profile</a>
+        <a @click="profile = false" @keyup="profile = false">Episods</a>
       </header>
       <div>
-        <slot></slot>
+        <characters-card :characterProfile="characterProfile" v-if="profile" />
+        <ul v-else>
+          <li v-for="episode in threeEpisodes" :key="threeEpisodes[episode]">
+            <p>{{ episode }}</p>
+          </li>
+        </ul>
       </div>
       <menu>
         <button @click="closeDialog">Close</button>
@@ -18,14 +24,29 @@
 </template>
 
 <script>
+import { computed, ref } from 'vue';
+import CharactersCard from './CharactersCard.vue';
+
 export default {
+  components: { CharactersCard },
   name: 'UserDialog',
-  props: ['title', 'open'],
+  props: ['title', 'open', 'characterProfile'],
   emits: ['close'],
-  methods: {
-    closeDialog() {
-      this.$emit('close');
-    },
+  setup(props, { emit }) {
+    function closeDialog() {
+      emit('close');
+    }
+
+    const profile = ref(true);
+
+    const episodes = computed(() => props.characterProfile.episode);
+    const threeEpisodes = computed(() => episodes.value.slice(0, 3));
+
+    return {
+      closeDialog,
+      threeEpisodes,
+      profile,
+    };
   },
 };
 </script>
@@ -41,8 +62,17 @@ export default {
   z-index: 10;
 }
 
-h2 {
-  text-align: center;
+a {
+  font: inherit;
+  font-size: large;
+  font-weight: 900;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+}
+
+a:hover,
+a:active {
+  color: black;
 }
 
 dialog {
@@ -61,6 +91,9 @@ dialog {
 }
 
 header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
   padding: 1rem;
   background-color: #767676;

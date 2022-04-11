@@ -1,13 +1,11 @@
 <template>
-  <user-alert :open="alertIsVisible" :title="'Profile'" @close="hideAlert">
-    <characters-card :characterProfile="selectedItem" />
-  </user-alert>
+  <user-alert :open="alertIsVisible" @close="hideAlert" :characterProfile="selectedItem"> </user-alert>
   <section class="container">
     <transition-group mode="out-in" tag="ul" name="user-list">
       <li v-for="item in items" :key="item.id">
         <div class="card">
           <p>{{ item.name }}</p>
-          <base-image :imagePath="item.image" :alt="item.name" @click="showAlert(item)" />
+          <base-image :imagePath="item.image" iconOpacity :alt="item.name" @click="showAlert(item)" />
         </div>
       </li>
     </transition-group>
@@ -16,17 +14,15 @@
 </template>
 
 <script lang="ts">
+import { computed, defineComponent, ref } from 'vue';
 import UserAlert from '@/components/UserAlert.vue';
 import { Item } from '@/modules/types';
 import { useStore } from '@/store';
-import { computed, defineComponent, ref } from 'vue';
-import CharactersCard from './CharactersCard.vue';
 
 export default defineComponent({
   name: 'ContentList',
   components: {
     UserAlert,
-    CharactersCard,
   },
   setup() {
     const store = useStore();
