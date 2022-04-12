@@ -14,9 +14,9 @@ const Tab = createBottomTabNavigator();
 function Navigation() {
   const icon = (route: Screen, color: string) => {
     let name = "";
-    if (route === Screen.Characters) name = "group";
-    else if (route === Screen.Locations) name = "photo";
-    else if (route === Screen.Episopdes) name = "video-camera";
+    if (route === Screen.CHARACTERS) name = "group";
+    else if (route === Screen.LOCATIONS) name = "photo";
+    else if (route === Screen.EPISODES) name = "video-camera";
     else return;
     return <Icon name={name} color={color} size={23} />;
   };
@@ -32,8 +32,8 @@ function Navigation() {
         source={require("@assets/background.jpeg")}
       >
         <Tab.Navigator
-          initialRouteName={Screen.Login}
-          sceneContainerStyle={{ backgroundColor: "transparent" }}
+          initialRouteName={Screen.LOGIN}
+          sceneContainerStyle={{ backgroundColor: Color.NONE }}
           screenOptions={({ route }) => ({
             headerShown: false,
             tabBarActiveTintColor: navbarIcon.active,
@@ -43,13 +43,13 @@ function Navigation() {
           })}
         >
           <Tab.Screen
-            name={Screen.Login}
+            name={Screen.LOGIN}
             component={LoginScreen}
             options={{ tabBarItemStyle: { display: "none" }, tabBarStyle: { display: "none" } }}
           />
-          <Tab.Screen name={Screen.Characters} component={CharactersScreen} />
-          <Tab.Screen name={Screen.Locations} component={LocationsScreen} />
-          <Tab.Screen name={Screen.Episopdes} component={EpisodesScreen} />
+          <Tab.Screen name={Screen.CHARACTERS} component={CharactersScreen} />
+          <Tab.Screen name={Screen.LOCATIONS} component={LocationsScreen} />
+          <Tab.Screen name={Screen.EPISODES} component={EpisodesScreen} />
         </Tab.Navigator>
       </ImageBackground>
     </NavigationContainer>

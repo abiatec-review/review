@@ -1,31 +1,29 @@
 import React, { useState } from "react";
 
-import { firebase, FirebaseAuthTypes } from "@react-native-firebase/auth";
-import { useNavigation } from "@react-navigation/native";
+import { FirebaseAuthTypes } from "@react-native-firebase/auth";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { ParamListBase } from "@react-navigation/native";
 import { useFormik } from "formik";
 import { Text, SafeAreaView, View, StyleSheet, Pressable } from "react-native";
 import * as Yup from "yup";
 
 import { FormInput } from "@components/atoms";
 import { useOrientation } from "@hooks";
-import { Color, FontSize, Indent, Radius, Screen } from "@utils";
+import { Color, FontSize, Indent, Radius, Screen, signIn, signUp } from "@utils";
 
-interface SignInModel {
+interface FormModel {
   email: string;
   password: string;
-}
-
-interface SignUpModel extends SignInModel {
   userName: string;
 }
 
-type FormModel = SignInModel & SignUpModel;
-
-const initialValues = { userName: "", email: "", password: "" };
+const initialValues: FormModel = { userName: "", email: "", password: "" };
 
 const placeholders = ["Username", "Email", "Password"];
 
-export function LoginScreen() {
+export function LoginScreen(props: BottomTabScreenProps<ParamListBase, Screen.LOGIN>) {
+  const { navigation } = props;
+
   const [model, setModel] = useState<FormModel>(initialValues);
   const updateModel = (field: keyof FormModel, data: string) => {
     setModel({ ...model, [field]: data });
@@ -52,34 +50,19 @@ export function LoginScreen() {
 
   const [error, setError] = useState<string>();
 
-  const { navigate } = useNavigation();
-
-  const handleSignIn = ({ email, password }: SignInModel) => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => navigate(Screen.Characters))
-      .catch((e: FirebaseAuthTypes.NativeFirebaseAuthError) => setError(e.nativeErrorMessage));
-  };
-
-  const handleSignUp = (model: SignUpModel) => {
-    const { email, password, userName: displayName } = model;
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(({ user }) => {
-        user.updateProfile({ displayName });
-        navigate(Screen.Characters);
-      })
+  const onSubmit = (model: FormModel) => {
+    const { userName, email, password } = model;
+    (isLogin ? signIn(email, password) : signUp(userName, email, password))
+      .then(() => navigation.navigate(Screen.CHARACTERS))
       .catch((e: FirebaseAuthTypes.NativeFirebaseAuthError) => setError(e.nativeErrorMessage));
   };
 
   const { handleChange, handleSubmit, errors, resetForm } = useFormik({
+    onSubmit,
     initialValues,
     validateOnBlur: false,
     validateOnMount: false,
     validateOnChange: false,
-    onSubmit: isLogin ? handleSignIn : handleSignUp,
     validationSchema: isLogin ? signInSchema : signInSchema.concat(signUpSchema)
   });
 

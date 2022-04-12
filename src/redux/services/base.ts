@@ -16,7 +16,7 @@ const requests = {
 };
 
 function fixDate<T extends Entity>(obj: T) {
-  return { ...obj, created: new Date(obj.created).toLocaleDateString("en-Us") };
+  return { ...obj, created: new Date(obj.created).toLocaleDateString() };
 }
 
 export function getPagedData<T extends Entity>(page: number, list: ResultList<T>): PagedData<T> {

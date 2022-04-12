@@ -1,6 +1,6 @@
 export const enum Screen {
-  Login = "Login",
-  Characters = "Characters",
-  Locations = "Locations",
-  Episopdes = "Episodes"
+  LOGIN = "LOGIN",
+  CHARACTERS = "CHARACTERS",
+  LOCATIONS = "LOCATIONS",
+  EPISODES = "EPISODES"
 }
