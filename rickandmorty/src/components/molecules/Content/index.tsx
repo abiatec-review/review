@@ -1,22 +1,49 @@
-// @ts-ignore
+
 import styles from './style.module.scss';
-import {useSelector} from "react-redux";
+import { ContentItem } from "../../atoms/ContentItem";
+import {FetchMoreButton} from "../../atoms/FetchMoreButton";
+import React, {useState} from "react";
+import {Modal} from "../../atoms";
 
+interface IProps{
+    data: any;
+    visible: number;
+    setVisible: (visible: number) => void
+}
 
-import {ContentOne} from "../../atoms/ContentItem";
+export const Content:React.FC<IProps> = ({data, visible, setVisible}) => {
 
-interface IProps{}
+    const [modalVisible, setModalVisible] = useState(false);
+    const [id, setId] = useState('');
+    const foundPerson = data?.characters?.find((item: any) => item.id === id)
 
-export const ContentList:React.FC<IProps> = ({visible, setVisible}) => {
-
-    // @ts-ignore
-    const data = useSelector(state => state.characters)
-
-    const ContentItems = data === 0 ? null :  <ContentOne data={data} visible={visible} setVisible={setVisible} />
+    const showModal = () => {
+        setModalVisible(prev => !prev);
+    }
 
     return (
-       <>
-           {ContentItems}
-       </>
+        <>
+            <div className={styles.gallery}>
+                { data.characters.slice(0, visible).map((item:any) => (
+                    <ContentItem showModal={() => setModalVisible(true)} setId={setId} item={item} />
+                ))}
+            </div>
+            {visible < data.characters.length &&
+                <FetchMoreButton visible={visible} setVisible={setVisible}/>
+            }
+            {modalVisible &&
+                <Modal showModal={showModal}>
+                    <figure>
+                        <img src={foundPerson?.image} alt={foundPerson?.name}/>
+                        <figcaption>Name: {foundPerson?.name}</figcaption>
+                        <figcaption>Status: {foundPerson?.status}</figcaption>
+                        <figcaption>Species: {foundPerson?.species}</figcaption>
+                        <figcaption>Gender: {foundPerson?.gender}</figcaption>
+                        <figcaption>Origin name: {foundPerson?.origin?.name}</figcaption>
+                        <figcaption>Location name: {foundPerson?.location?.name}</figcaption>
+                    </figure>
+                </Modal>
+            }
+        </>
     )
 }

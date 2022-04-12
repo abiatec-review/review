@@ -15,7 +15,6 @@ export const charactersReducer = (state = initialState, action) => {
             }
         }
         case SET_CHARACTERS: {
-            console.log(action)
             return {
                 ...state,
                 charactersLoader: false,

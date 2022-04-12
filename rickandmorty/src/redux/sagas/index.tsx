@@ -1,5 +1,5 @@
 import {takeEvery, put} from 'redux-saga/effects';
-import axios from "axios";
+
 //@ts-ignore
 import {GET_CHARACTERS, SET_CHARACTERS, setCharacters} from '../actions';
 
@@ -18,11 +18,6 @@ const getData = async (value:string) => {
             }
         )
 }
-
-// const getData = async (characterName:string) => {
-//     return await axios.get(`https://rickandmortyapi.com/api/character/?name=${characterName}`)
-// }
-
 
 //@ts-ignore
 function* getCharactersSaga({payload}) {

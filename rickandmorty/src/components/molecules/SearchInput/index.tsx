@@ -7,9 +7,11 @@ import styles from './style.module.scss';
 import {getCharacters} from 'redux/actions';
 import {useDispatch} from "react-redux";
 
-interface IProps{}
+interface IProps{
+    setVisible: (init: number) => void
+}
 
-export const SearchInput:React.FC<IProps> = ({init, setVisible}) => {
+export const SearchInput:React.FC<IProps> = ({setVisible}: any) => {
 
     const [value, setValue] = useState<string>('');
 
@@ -22,7 +24,7 @@ export const SearchInput:React.FC<IProps> = ({init, setVisible}) => {
     }, [])
 
     const onSubmit = useCallback(() => {
-        setVisible(init)
+        setVisible(8)
         //@ts-ignore
         dispatch(getCharacters({characterName: value}))
     }, [value])

@@ -10,10 +10,10 @@ export const getCharacters = (payload) => {
 }
 // @ts-ignore
 export const setCharacters = (payload) => {
-    // debugger
     return {
         type: SET_CHARACTERS,
         payload
     }
 }
+
 

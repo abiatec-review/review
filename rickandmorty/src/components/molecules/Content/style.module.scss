@@ -1,0 +1,7 @@
+@import 'styles/mixins.module.scss';
+
+.gallery {
+  @include flex(flex, center, center, wrap);
+  gap: 20px;
+  }
+

@@ -1,35 +1,28 @@
-// @ts-ignore
+import React from 'react';
 import styles from './style.module.scss';
-// @ts-ignore
-import {FetchMoreButton} from '../FetchMoreButton'
-import React from "react";
-import { Link } from 'react-router-dom';
-// @ts-ignore
-interface IProps{data: array};
+interface IProps{
+    item: any;
+    showModal: () => void;
+    setId: (arg: string) => void
+};
 
-// @ts-ignore
-export const ContentOne:React.FC<IProps> = ({data, visible, setVisible}) => {
+export const ContentItem:React.FC<IProps> = ({item, setId, showModal }) => {
 
-
+    const propId = () => {
+        showModal();
+        setId(item?.id)
+    }
 
     return (
           <>
-              <div className={styles.gallery}>
-                  { data.characters.slice(0, visible).map((item:any) => {
-                          return (
-                              <figure key={item.id}>
-                                  <img src={item.image} alt={item.name}/>
-                                  <div className={styles.figcaptionCont}>
-                                      <figcaption><Link to={`/${item.id}`}>{item.name}</Link></figcaption>
-                                  </div>
-                              </figure>
-                          )
-                      }
-                  )}
-              </div>
-              {visible < data.characters.length &&
-                  <FetchMoreButton visible={visible} setVisible={setVisible}/>
-              }
+              <figure className={styles.figureCont} key={item?.id} onClick={propId}>
+                  <img src={item?.image} alt={item?.name}/>
+                  <div className={styles.figcaptionCont}>
+                      <figcaption>
+                          {item?.name}
+                      </figcaption>
+                  </div>
+              </figure>
           </>
     )
 }

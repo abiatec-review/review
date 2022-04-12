@@ -1,11 +1,10 @@
-
-// @ts-ignore
 import styles from './style.module.scss';
 
-interface IProps{};
+interface IProps{
+    visible: number;
+    setVisible: (visible: number) => void
+};
 
-
-// @ts-ignore
 export const FetchMoreButton:React.FC<IProps> = ({visible, setVisible}) => {
 
     const fetchMore = () => {

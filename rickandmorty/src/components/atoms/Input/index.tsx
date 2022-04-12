@@ -1,4 +1,3 @@
-// @ts-ignore
 import styles from './style.module.scss';
 
 interface IProps{value: string,

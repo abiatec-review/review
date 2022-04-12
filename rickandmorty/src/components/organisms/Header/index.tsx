@@ -1,15 +1,16 @@
 import { SearchInput } from "components/molecules"
 import { Image } from "components/atoms"
-// @ts-ignore
 import styles from './style.module.scss';
 
-interface IProps{}
+interface IProps{
+    setVisible: (init: number) => void
+}
 
-export const Header:React.FC<IProps> = ({init, setVisible}) => {
+export const Header:React.FC<IProps> = ({setVisible}) => {
     return (
         <header className={styles.Header}>
             <Image type={'list'} className={styles.Header_logo}/>
-            <SearchInput init={init} setVisible={setVisible}/>
+            <SearchInput setVisible={setVisible}/>
         </header>
     )
 }
