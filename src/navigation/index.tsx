@@ -45,7 +45,7 @@ function Navigation() {
           <Tab.Screen
             name={Screen.Login}
             component={LoginScreen}
-            options={{ tabBarItemStyle: { display: "none" } }}
+            options={{ tabBarItemStyle: { display: "none" }, tabBarStyle: { display: "none" } }}
           />
           <Tab.Screen name={Screen.Characters} component={CharactersScreen} />
           <Tab.Screen name={Screen.Locations} component={LocationsScreen} />

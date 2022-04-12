@@ -25,6 +25,7 @@ export const enum Radius {
 }
 
 export const enum FontSize {
+  SMALL = 14,
   DEFAULT = 18,
   MEDIUM = 20,
   HUGE = 24
