@@ -12,10 +12,19 @@ const instance = axios.create({
       return response
   }
 
-  export const getSelectEpisode =async (episode: string) => {
+  export const getSelectEpisode = async (episode: string) => {
       const response = await instance.get(`episode/${episode}`)
       return response
   }
+
+  export const getCharacterByIdApi = async (id: any) => {
+      const response = await instance.get(`character/${id}`)
+      return response
+  }
+
+//   export const getData = async (url:string) =>{
+//     return await axios.get(url)
+//   }
 
 
 

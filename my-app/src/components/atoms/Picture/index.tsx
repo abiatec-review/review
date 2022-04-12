@@ -106,7 +106,11 @@ export const Picture: React.FC<IProps> = ( {type, srcImage, click} ) => {
     case constants.MAIN_MODAL_PICTURE: 
       return (
         <img src={srcImage} alt="CharacterPic" className={styles.modalMainPicture} />
-      ) 
+      )
+      case constants.CHARS_MODAL_PICTURE:
+        return (
+          <img src={srcImage} alt="CharacterPic" className={styles.modalCharPicture} />
+        ) 
     default: return null
   }
   

@@ -1,4 +1,4 @@
-import { GET_EPISODE, GET_EPISODE_FAILD, GET_EPISODE_SUCCESS } from "redux/actionTypes";
+import { GET_EPISODE, GET_EPISODE_FAILED, GET_EPISODE_SUCCESS } from "redux/actionTypes";
 
 export const getEpisode = (episodeId: string) => {
     return {
@@ -16,6 +16,6 @@ export const getEpisodeSuccess = (episodeInfo: any) => {
 
 export const getEpisodeFailed = () => {
     return {
-        type: GET_EPISODE_FAILD
+        type: GET_EPISODE_FAILED
     }
 }

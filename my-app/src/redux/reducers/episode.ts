@@ -1,10 +1,11 @@
-import { GET_EPISODE, GET_EPISODE_FAILD, GET_EPISODE_SUCCESS } from '../actionTypes' 
+import { GET_EPISODE, GET_EPISODE_FAILED, GET_EPISODE_SUCCESS } from '../actionTypes' 
 
 const initialState = {
     episodeId: '',
     episodeInfo: [],
     loader: false,
-    error: false
+    error: false,
+    message: ''
     
 };
 
@@ -22,14 +23,16 @@ const EpisodeReducer = (state = initialState, action: any) => {
                 ...state,
                 episodeInfo: action.payload,
                 loader: false,
-                error: false
+                error: false,
+                message: 'Success'
             }
         }
-        case GET_EPISODE_FAILD: {
+        case GET_EPISODE_FAILED: {
             return {
                 ...state,
                 loader: false,
-                error: true
+                error: true,
+                message: "Failed"
             }
         }
         default: return state; 

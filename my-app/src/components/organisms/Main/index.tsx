@@ -7,9 +7,8 @@ interface IProps {
 
 }
 
-export const Main: React.FC<IProps> = ( {} ) => {
+export const Main: React.FC<IProps> = () => {
   const {characters} = useSelector((state: RootStateOrAny) => state)
-  console.log(characters)
   return ( 
     <div className={styles.mainContaier}>
       <TitleText className={styles.mainTitle} titleText='Result list'/>
