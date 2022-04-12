@@ -19,7 +19,6 @@ function* getCharactersSaga(charName: any) {
 
 function* getCharacterByIdSaga(id: any) {
     try {
-        console.log(id.payload)
         const response:AxiosResponse<any> = yield getCharacterByIdApi(id.payload);
         const {data} = response;
 

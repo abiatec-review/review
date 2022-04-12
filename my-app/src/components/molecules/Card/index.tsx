@@ -6,6 +6,7 @@ import { Modal } from '../Modal'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
 import { getEpisode } from 'redux/actions/episode'
+import { setCharacter, setEpisode } from 'redux/actions/modalType'
 
 
 interface IProps {
@@ -16,10 +17,10 @@ interface IProps {
 export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
 
   const {characters} = useSelector((state: RootStateOrAny) => state);
-  const {episode: {episodeInfo, loader, message}} = useSelector((state: RootStateOrAny) => state);
+  const {episode: {episodeInfo, episodeId}} = useSelector((state: RootStateOrAny) => state);
+  const {modalType} = useSelector((state: RootStateOrAny) => state.modalType);
   const [isOpen, setIsOpen] = useState(false);
   const [char, setChar] = useState(characters.charactersList[0]);
-  const [modalType, setModalType] = useState('character');
   const dispatch = useDispatch();
 
   const openModal = (event: any) => {
@@ -30,23 +31,26 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
 
   const closeModal = () => {
     setIsOpen(false);
-    setModalType('character')
+    dispatch(setCharacter('character'))
   }
 
   const modalEpisodeRequest = (event:any) => {
     event?.preventDefault();
-    setModalType('episode');
     const current = document.getElementById('episode') as HTMLSelectElement;
     dispatch(getEpisode(current.value));
+
+    setTimeout(() => {
+      dispatch(setEpisode('episode'))
+    }, 450)
   }
 
   const modalCharsRequest = () => {
-
+    dispatch(getEpisode(episodeId))
   }
 
   function modalLayout() {
     switch (modalType) {
-      case 'character':
+      case "character":
         return (
           <>
             <Picture type={constants.MAIN_MODAL_PICTURE} srcImage={char.image} />
@@ -62,20 +66,20 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
             </form>
           </>
         )
-      case 'episode':
+      case "episode":
         return (
           <>
             <TitleText titleText={episodeInfo.name} className={styles.modalEpisodeName} />
             <p className={styles.modalDescription}>Characters in this episode:</p>
             <div className={styles.charsInEpisodeBox}>
-              {episodeInfo.randomCharsList.map((ep: any) => {
+              {episodeInfo.randomCharsList.map((ep:any) => {
                 return <div key={ep.id} className={styles.charInEpisode}>
                 <Picture type={constants.CHARS_MODAL_PICTURE} srcImage={ep.image} />
-                <p>{ep.name}</p>
+                <p className={styles.modalDescription} style={{margin: 0}}>{ep.name}</p>
               </div>
               })}
+              <Button className={styles.modalSubmit} type={'button'} buttonName={'Another characters'} handleClick={modalCharsRequest}/>
             </div>
-            <Button className={styles.modalSubmit} type={'button'} buttonName={'Another characters'} handleClick={modalCharsRequest}/>
           </>
         )
     }
@@ -87,9 +91,9 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
               <div className={styles.modalInside}>
                 <Button className={styles.closeButton} handleClick={closeModal} type={'button'}></Button>
                 <div className={styles.modalTabs}>
-                  <Button className={modalType === 'character' ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
-                          handleClick={()=>{setModalType('character')}} type={'button'} buttonName={'About Character'}/>
-                  <Button className={modalType === 'episode' ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
+                  <Button className={modalType === "character" ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
+                          handleClick={()=>{dispatch(setCharacter('character'))}} type={'button'} buttonName={'About Character'}/>
+                  <Button className={modalType === "episode" ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
                           handleClick={modalEpisodeRequest} type={'button'} buttonName={'About Episode'}/>
                 </div>
                 {modalLayout()}

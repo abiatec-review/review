@@ -13,21 +13,14 @@ function* getEpisodeSaga(episodeId: any) {
         const charsId = characters.map((url: string) => {
             return Number(url.split('/').slice(-1))
         })
-        let randomArr = []
-        for (let i = 0; i < 3; i++) {
-            randomArr.push(charsId[Math.floor(Math.random() * charsId.length)]); 
+        let randomArr: any = []
+        while(randomArr.length <= 2) {
+            let choosenId = charsId[Math.floor(Math.random() * charsId.length)];
+            if(!randomArr.includes(choosenId)) {
+                randomArr.push(choosenId)
+            }
+            
         }
-
-        // let randomCharsList: AxiosResponse<any>[] = [];
-
-        //     for (let item of randomArr) {
-        //     const character:AxiosResponse<any> = await getCharacterByIdApi(item);
-        //     const {data} = character
-
-        //     randomCharsList.push(data)
-
-
-        // console.log(randomCharsList);
 
         let randomCharsList: any = []
 
@@ -36,17 +29,8 @@ function* getEpisodeSaga(episodeId: any) {
             const {data} = character
 
             randomCharsList.push(data)
-
-            console.log(data)
         }
-
-        // const character:AxiosResponse<any> = yield getCharacterByIdApi(1);
-        // const {data} = character
-
-        console.log(randomCharsList)
             
-
-
         yield put(getEpisodeSuccess({id, name, air_date, episode, url, created, randomCharsList}));
 
     } catch (err) {
@@ -61,3 +45,7 @@ export function* getEpisodeFork() {
 export default function* rootSaga() {
     yield all([fork(getEpisodeFork)])
 };
+
+function dispatch(arg0: any) {
+    throw new Error("Function not implemented.");
+}

@@ -5,7 +5,7 @@ const initialState = {
     episodeInfo: [],
     loader: false,
     error: false,
-    message: ''
+    message: '',
     
 };
 
@@ -15,7 +15,7 @@ const EpisodeReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 episodeId: action.payload,
-                loader: true
+                loader: true,
             }
         }
         case GET_EPISODE_SUCCESS: {
@@ -24,7 +24,7 @@ const EpisodeReducer = (state = initialState, action: any) => {
                 episodeInfo: action.payload,
                 loader: false,
                 error: false,
-                message: 'Success'
+                message: 'Success',
             }
         }
         case GET_EPISODE_FAILED: {

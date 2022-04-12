@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCharacters } from "redux/actions/characters";
+import { setCharacter } from "redux/actions/modalType";
 import { Header, Main} from "../components/organisms";
 
 interface IProps {
@@ -19,6 +20,7 @@ export const Sitelayout: React.FC<IProps> = ( {} ) => {
     event.preventDefault();
     if (inputValue !== '') {
       dispatch(getCharacters(inputValue))
+      dispatch(setCharacter('character'))
     }
   }
 
