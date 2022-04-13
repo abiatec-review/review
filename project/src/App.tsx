@@ -1,15 +1,17 @@
 import React from 'react';
+
 import './App.css';
-import CardList from './components/organisms/Cardlist';
-import MainLayout from './components/layouts/MainLayout';
 import { Provider } from 'react-redux';
+
+import MainLayout from './components/layouts/MainLayout';
+import CardList from './components/organisms/Cardlist';
 import { store } from './redux';
 
 function App() {
   return (
-    <Provider store={store}>  
+    <Provider store={store}>
       <MainLayout>
-        <CardList/>
+        <CardList />
       </MainLayout>
     </Provider>
 

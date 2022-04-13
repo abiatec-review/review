@@ -1,13 +1,12 @@
-import React, { FC } from "react";
-import Header from "../../moleculs/Header";
+import React, { FC } from 'react';
 
-const MainLayout: FC = ({ children }) => {
-    return(
-        <>
-            <Header/>
-            {children}
-        </>
-    );
-}
+import Header from '../../moleculs/Header';
+
+const MainLayout: FC = ({ children }) => (
+  <>
+    <Header />
+    {children}
+  </>
+);
 
 export default MainLayout;

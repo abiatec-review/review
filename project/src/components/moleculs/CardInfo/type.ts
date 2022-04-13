@@ -1,10 +1,10 @@
-import { IResults } from "../../../models/responseTypes";
+import { IResults } from '../../../models/responseTypes';
 
 export interface CardInfoProps {
-    cardData: IResults,
+  cardData: IResults,
 }
 
 export interface IRequireData {
-    name: string,
-    gender?: string,
+  name: string,
+  gender?: string,
 }

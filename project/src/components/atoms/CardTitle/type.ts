@@ -1,3 +1,3 @@
 export interface CardTitleProps {
-    title: string,
+  title: string,
 }

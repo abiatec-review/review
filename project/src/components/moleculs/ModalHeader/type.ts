@@ -1,4 +1,4 @@
 export interface ModalHeaderProps {
-    title: string,
-    closeModal: () => void,
+  title: string,
+  closeModal: () => void,
 }

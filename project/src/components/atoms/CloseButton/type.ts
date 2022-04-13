@@ -1,3 +1,3 @@
 export interface CloseButtonProps {
-    closeModal: () => void,
+  closeModal: () => void,
 }

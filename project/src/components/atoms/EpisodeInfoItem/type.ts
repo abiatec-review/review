@@ -1,5 +1,5 @@
 export interface EpisodeInfoItemProps {
-    name: string,
-    air_date: string,
-    links: string[],
+  name: string,
+  air_date: string,
+  links: string[],
 }

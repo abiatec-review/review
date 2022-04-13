@@ -1,4 +1,4 @@
 export interface ImageProps {
-    link: string,
-    alt: string,
+  link: string,
+  alt: string,
 }

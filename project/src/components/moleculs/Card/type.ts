@@ -1,5 +1,5 @@
-import { IResults } from "../../../models/responseTypes";
+import { IResults } from '../../../models/responseTypes';
 
 export interface CardProps {
-    cardData: IResults,
+  cardData: IResults,
 }

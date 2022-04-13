@@ -1,6 +1,6 @@
-import { IResults } from "../../../models/responseTypes";
+import { IResults } from '../../../models/responseTypes';
 
 export interface ModalProps {
-    closeModal: () => void,
-    cardData: IResults
+  closeModal: () => void,
+  cardData: IResults
 }
