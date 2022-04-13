@@ -2,11 +2,12 @@ import React from "react";
 
 import {
   Modal as RnModal,
-  FlexStyle,
   View,
   StyleSheet,
   TouchableWithoutFeedback,
-  TouchableOpacity
+  TouchableOpacity,
+  StyleProp,
+  ViewStyle
 } from "react-native";
 
 import { useOrientation } from "@hooks";
@@ -15,7 +16,7 @@ import { Color, Indent, Radius } from "@utils";
 interface Props {
   isShown: boolean;
   toggle: () => void;
-  style?: FlexStyle;
+  style?: StyleProp<ViewStyle>;
 }
 
 export function Modal(props: React.PropsWithChildren<Props>) {

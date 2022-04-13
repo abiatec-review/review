@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigationContainerRef } from "@react-navigation/native";
 import { ImageBackground, Platform, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import { useTheme } from "@hooks";
-import { CharactersScreen, EpisodesScreen, LocationsScreen, LoginScreen } from "@screens";
-import { Color, Indent, Screen } from "@utils";
+import {
+  CharactersScreen,
+  EpisodesScreen,
+  LocationsScreen,
+  LoginScreen,
+  ProfileScreen
+} from "@screens";
+import { Color, Indent, onAuthStateChanged, Screen } from "@utils";
 
 const Tab = createBottomTabNavigator();
+
+type RootTabParams = { [key in Screen]: undefined };
 
 function Navigation() {
   const icon = (route: Screen, color: string) => {
@@ -17,6 +25,7 @@ function Navigation() {
     if (route === Screen.CHARACTERS) name = "group";
     else if (route === Screen.LOCATIONS) name = "photo";
     else if (route === Screen.EPISODES) name = "video-camera";
+    else if (route === Screen.PROFILE) name = "user";
     else return;
     return <Icon name={name} color={color} size={23} />;
   };
@@ -24,15 +33,28 @@ function Navigation() {
   const { colors } = useTheme();
   const { navbar, navbarIcon } = colors;
 
+  const navigationRef = useNavigationContainerRef<RootTabParams>();
+
+  useEffect(() => {
+    const { navigate } = navigationRef;
+    const subscriber = onAuthStateChanged((user) => {
+      if (!user) navigate(Screen.LOGIN);
+      user?.getIdTokenResult().then(({ expirationTime }) => {
+        navigate(new Date(expirationTime) < new Date() ? Screen.LOGIN : Screen.CHARACTERS);
+      });
+    });
+
+    return () => subscriber();
+  }, []);
+
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <ImageBackground
         blurRadius={5}
         style={{ height: "100%" }}
         source={require("@assets/background.jpeg")}
       >
         <Tab.Navigator
-          initialRouteName={Screen.LOGIN}
           sceneContainerStyle={{ backgroundColor: Color.NONE }}
           screenOptions={({ route }) => ({
             headerShown: false,
@@ -50,6 +72,7 @@ function Navigation() {
           <Tab.Screen name={Screen.CHARACTERS} component={CharactersScreen} />
           <Tab.Screen name={Screen.LOCATIONS} component={LocationsScreen} />
           <Tab.Screen name={Screen.EPISODES} component={EpisodesScreen} />
+          <Tab.Screen name={Screen.PROFILE} component={ProfileScreen} />
         </Tab.Navigator>
       </ImageBackground>
     </NavigationContainer>
@@ -64,10 +87,17 @@ const baseStyles = StyleSheet.create({
     shadowColor: Color.BLACK,
     shadowRadius: Indent.DEFAULT,
     shadowOffset: { width: 0, height: 0 }
+  },
+  loader: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Color.TRANSPARENT_DARK
   }
 });
 
 const style = StyleSheet.create({
+  ...baseStyles,
   bar: {
     ...Platform.select({
       ios: {

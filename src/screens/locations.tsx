@@ -1,8 +1,6 @@
 import React from "react";
 
-import { SafeAreaView } from "react-native";
-
-import { InfiniteScroll } from "@components/atoms";
+import { InfiniteScroll, SafeAreaView } from "@components/atoms";
 import { LocationCard } from "@components/moleculas/cards";
 import { ErrorModal } from "@components/moleculas/modals";
 import { getLocations, scrollLocations } from "@redux/services";

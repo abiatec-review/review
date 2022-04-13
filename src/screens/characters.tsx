@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 import debounce from "lodash.debounce";
-import { SafeAreaView, StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 
-import { InfiniteScroll } from "@components/atoms";
+import { InfiniteScroll, SafeAreaView } from "@components/atoms";
 import { CharacterCard } from "@components/moleculas/cards";
 import { ErrorModal } from "@components/moleculas/modals";
 import { getCharactersByName, getCharacters, scrollCharacters } from "@redux/services";

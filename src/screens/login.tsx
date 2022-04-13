@@ -4,10 +4,10 @@ import { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { ParamListBase } from "@react-navigation/native";
 import { useFormik } from "formik";
-import { Text, SafeAreaView, View, StyleSheet, Pressable } from "react-native";
+import { Text, SafeAreaView, View, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
-import { FormInput } from "@components/atoms";
+import { Button, FormInput } from "@components/atoms";
 import { useOrientation } from "@hooks";
 import { Color, FontSize, Indent, Radius, Screen, signIn, signUp } from "@utils";
 
@@ -30,11 +30,15 @@ export function LoginScreen(props: BottomTabScreenProps<ParamListBase, Screen.LO
   };
 
   const [isLogin, setIsLogin] = useState(true);
-  const toggle = () => {
-    setIsLogin(!isLogin);
+  const reset = () => {
     setModel(initialValues);
     setError(undefined);
     resetForm();
+  };
+
+  const toggle = () => {
+    setIsLogin(!isLogin);
+    reset();
   };
 
   const signInSchema = Yup.object().shape({
@@ -53,7 +57,10 @@ export function LoginScreen(props: BottomTabScreenProps<ParamListBase, Screen.LO
   const onSubmit = (model: FormModel) => {
     const { userName, email, password } = model;
     (isLogin ? signIn(email, password) : signUp(userName, email, password))
-      .then(() => navigation.navigate(Screen.CHARACTERS))
+      .then(() => {
+        navigation.navigate(Screen.CHARACTERS);
+        reset();
+      })
       .catch((e: FirebaseAuthTypes.NativeFirebaseAuthError) => setError(e.nativeErrorMessage));
   };
 
@@ -96,9 +103,11 @@ export function LoginScreen(props: BottomTabScreenProps<ParamListBase, Screen.LO
           {isLogin ? "Don't have an account?" : "Already have an account?"}
         </Text>
         {error && <Text style={styles.error}>{error}</Text>}
-        <Pressable style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>{isLogin ? "Sign In" : "Sign Up"}</Text>
-        </Pressable>
+        <Button
+          style={styles.button}
+          onPress={handleSubmit}
+          text={isLogin ? "Sign In" : "Sign Up"}
+        />
       </View>
     </SafeAreaView>
   );
@@ -133,18 +142,7 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline"
   },
   button: {
-    height: 40,
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: Indent.MEDIUM,
-    borderRadius: Radius.DEFAULT,
-    backgroundColor: Color.BLUE_LIGHT
-  },
-  buttonText: {
-    fontWeight: "500",
-    color: Color.WHITE,
-    fontSize: FontSize.DEFAULT
+    marginTop: Indent.MEDIUM
   },
   error: {
     color: Color.RED,
