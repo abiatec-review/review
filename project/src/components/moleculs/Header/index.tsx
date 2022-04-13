@@ -4,7 +4,7 @@ import React, {
 
 import { useDispatch } from 'react-redux';
 
-import { CardActionTypes } from '../../../redux/actions/card';
+import { fetchCardsAction } from '../../../redux/actions/card';
 import { useDebouncing } from '../../../utils/hooks/useDebounce';
 import Input from '../../atoms/Input';
 
@@ -19,10 +19,7 @@ const Header: FC = () => {
 
   useEffect(() => {
     if (debouncedValue) {
-      dispatch({
-        type: CardActionTypes.FETCH_CARDS,
-        payload: debouncedValue,
-      });
+      dispatch(fetchCardsAction(debouncedValue));
     }
   }, [debouncedValue]);
 

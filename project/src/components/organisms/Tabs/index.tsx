@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { EpisodesActionTypes } from '../../../redux/actions/episodes';
+import { fetchEpisodesAction } from '../../../redux/actions/episodes';
 import CardInfo from '../../moleculs/CardInfo';
 import EpisodeInfo from '../../moleculs/EpisodeInfo';
 import TabsButtonBlock from '../../moleculs/TabsButtonBlock';
@@ -22,10 +22,7 @@ const Tabs: FC<TabsProps> = ({ cardData }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({
-      type: EpisodesActionTypes.FETCH_EPISODES,
-      payload: cardData.episode,
-    });
+    dispatch(fetchEpisodesAction(cardData.episode));
   }, []);
 
   const openTabHandler = (id: number) => {

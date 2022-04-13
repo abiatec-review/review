@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useDispatch } from 'react-redux';
 
-import { CardActionTypes } from '../../../redux/actions/card';
+import { fetchMoreCardsAction } from '../../../redux/actions/card';
 import { useTypedSelector } from '../../../utils/hooks/useTypedSelector';
 import Loading from '../../atoms/Loading';
 import Card from '../../moleculs/Card';
@@ -24,10 +24,7 @@ const CardList: FC = () => {
   const fetchMore = () => {
     if (info.next) {
       setTimeout(() => {
-        dispatch({
-          type: CardActionTypes.FETCH_MORE_CARDS,
-          payload: info.next,
-        });
+        dispatch(fetchMoreCardsAction(info.next));
       }, 1000);
     }
   };

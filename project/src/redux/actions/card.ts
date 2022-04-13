@@ -41,3 +41,13 @@ interface FetchCardsErrorAction {
 }
 
 export type CardAction = FetchCardsAction | FetchCardsSuccessAction | FetchCardsErrorAction | FetchMoreCardsAction | FetchMoreCardsSuccessAction;
+
+export const fetchCardsAction = (value: string) => ({
+  type: CardActionTypes.FETCH_CARDS,
+  payload: value,
+});
+
+export const fetchMoreCardsAction = (nextLink: string | undefined | null) => ({
+  type: CardActionTypes.FETCH_MORE_CARDS,
+  payload: nextLink,
+});

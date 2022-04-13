@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { CharacterActionTypes } from '../../../redux/actions/character';
+import { fetchCharacterAction } from '../../../redux/actions/character';
 import CharactersModal from '../../organisms/CharactersModal';
 import { EpisodeInfoItemProps } from './type';
 
@@ -15,10 +15,7 @@ const EpisodeInfoItem: FC<EpisodeInfoItemProps> = ({ name, air_date, links }) =>
   const dispatch = useDispatch();
 
   const clickHandler = () => {
-    dispatch({
-      type: CharacterActionTypes.FETCH_CHARACTER,
-      payload: links,
-    });
+    dispatch(fetchCharacterAction(links));
     setIsOpenModal(true);
   };
 

@@ -28,3 +28,8 @@ interface FetchCharacterErrorAction {
 }
 
 export type CharacterAction = FetchCharacterAction | FetchCharacterSuccessAction | FetchCharacterErrorAction;
+
+export const fetchCharacterAction = (links: string[]) => ({
+  type: CharacterActionTypes.FETCH_CHARACTER,
+  payload: links,
+});

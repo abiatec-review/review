@@ -28,3 +28,8 @@ interface FetchEpisodesErrorAction {
 }
 
 export type EpisodesAction = FetchEpisodesAction | FetchEpisodesSuccessAction | FetchEpisodesErrorAction;
+
+export const fetchEpisodesAction = (episode: string[]) => ({
+  type: EpisodesActionTypes.FETCH_EPISODES,
+  payload: episode,
+});
