@@ -2,7 +2,8 @@ import {
   CharacterReducer,
   EpisodeReducer,
   LocationReducer,
-  ScrollReducer
+  ScrollReducer,
+  UserReducer
 } from "@redux/models/reducers";
 
 export default interface Store {
@@ -10,4 +11,5 @@ export default interface Store {
   location: LocationReducer;
   episode: EpisodeReducer;
   scroll: ScrollReducer;
+  user: UserReducer;
 }

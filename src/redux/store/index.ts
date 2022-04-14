@@ -10,16 +10,17 @@ import {
   CharacterAction,
   EpisodeAction,
   LocationAction,
-  ScrollAction
+  ScrollAction,
+  UserAction
 } from "@redux/models/actions";
 import Store from "@redux/models/store";
-import { character, episode, location, scroll } from "@redux/reducers";
+import { character, episode, location, scroll, user } from "@redux/reducers";
 
-const rootReducer = combineReducers({ character, location, episode, scroll });
+const rootReducer = combineReducers({ character, location, episode, scroll, user });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
-type Action = CharacterAction | LocationAction | EpisodeAction | ScrollAction;
+type Action = CharacterAction | LocationAction | EpisodeAction | ScrollAction | UserAction;
 
 export const useDispatch = () => reduxDispatch<ThunkDispatch<Store, unknown, Action>>();
 

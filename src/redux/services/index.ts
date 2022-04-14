@@ -2,3 +2,4 @@ export { getCharactersByName, getCharacters, getCharactersByUrls } from "./chara
 export { getLocations } from "./location";
 export { getEpisodes } from "./episode";
 export { scrollCharacters, scrollLocations, scrollEpisodes } from "./scroll";
+export { setUser } from "./user";

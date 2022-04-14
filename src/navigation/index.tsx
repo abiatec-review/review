@@ -6,6 +6,8 @@ import { ImageBackground, Platform, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import { useTheme } from "@hooks";
+import { setUser } from "@redux/services";
+import { useDispatch } from "@redux/store";
 import {
   CharactersScreen,
   EpisodesScreen,
@@ -13,7 +15,7 @@ import {
   LoginScreen,
   ProfileScreen
 } from "@screens";
-import { Color, Indent, onAuthStateChanged, Screen } from "@utils";
+import { Color, getUser, Indent, onAuthStateChanged, Screen } from "@utils";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,17 +36,15 @@ function Navigation() {
   const { navbar, navbarIcon } = colors;
 
   const navigationRef = useNavigationContainerRef<RootTabParams>();
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const { navigate } = navigationRef;
-    const subscriber = onAuthStateChanged((user) => {
-      if (!user) navigate(Screen.LOGIN);
-      user?.getIdTokenResult().then(({ expirationTime }) => {
-        navigate(new Date(expirationTime) < new Date() ? Screen.LOGIN : Screen.CHARACTERS);
-      });
+    const unsubscribe = onAuthStateChanged((user) => {
+      dispatch(setUser(getUser()));
+      navigate(user ? Screen.CHARACTERS : Screen.LOGIN);
     });
 
-    return () => subscriber();
+    return unsubscribe;
   }, []);
 
   return (

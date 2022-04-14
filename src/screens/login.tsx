@@ -8,6 +8,7 @@ import { Text, SafeAreaView, View, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import { Button, FormInput } from "@components/atoms";
+import { LoadingModal } from "@components/moleculas/modals";
 import { useOrientation } from "@hooks";
 import { Color, FontSize, Indent, Radius, Screen, signIn, signUp } from "@utils";
 
@@ -52,16 +53,22 @@ export function LoginScreen(props: BottomTabScreenProps<ParamListBase, Screen.LO
     userName: Yup.string().required("Username is required")
   });
 
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>();
 
   const onSubmit = (model: FormModel) => {
     const { userName, email, password } = model;
+    setIsLoading(true);
     (isLogin ? signIn(email, password) : signUp(userName, email, password))
       .then(() => {
+        setIsLoading(false);
         navigation.navigate(Screen.CHARACTERS);
         reset();
       })
-      .catch((e: FirebaseAuthTypes.NativeFirebaseAuthError) => setError(e.nativeErrorMessage));
+      .catch(({ nativeErrorMessage }: FirebaseAuthTypes.NativeFirebaseAuthError) => {
+        setIsLoading(false);
+        setError(nativeErrorMessage);
+      });
   };
 
   const { handleChange, handleSubmit, errors, resetForm } = useFormik({
@@ -109,6 +116,7 @@ export function LoginScreen(props: BottomTabScreenProps<ParamListBase, Screen.LO
           text={isLogin ? "Sign In" : "Sign Up"}
         />
       </View>
+      {isLoading && <LoadingModal />}
     </SafeAreaView>
   );
 }

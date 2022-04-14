@@ -5,29 +5,32 @@ import { Alert, Image, Pressable, SafeAreaView, StyleSheet, View } from "react-n
 import { ImagePickerResponse } from "react-native-image-picker";
 import * as Yup from "yup";
 
-import { Button, FormInput, Spinner } from "@components/atoms";
-import { PhotoModal } from "@components/moleculas/modals";
+import { Button, FormInput } from "@components/atoms";
+import { LoadingModal, PhotoModal } from "@components/moleculas/modals";
 import { useOrientation } from "@hooks";
-import { Color, FontSize, getUser, Indent, signOut, updateUser } from "@utils";
+import { setUser } from "@redux/services";
+import { useDispatch, useSelector } from "@redux/store";
+import { Color, FontSize, Indent, signOut, updateUser } from "@utils";
 
 export function ProfileScreen() {
-  const user = getUser();
-
-  if (!user) return <Spinner />;
+  const dispatch = useDispatch();
+  const user = useSelector(({ user }) => user.user);
 
   const [isModalShown, setIsModalShown] = useState(false);
   const toggleModal = () => setIsModalShown(!isModalShown);
 
-  const [photo, setPhoto] = useState(user.photoURL);
+  const [photo, setPhoto] = useState<string>();
   const choosePhoto = (photo: ImagePickerResponse) => {
     const { assets } = photo;
-    assets && setPhoto(assets[0].uri || null);
+    assets && setPhoto(assets[0].uri);
   };
 
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = ({ displayName }: { displayName: string | null }) => {
     setIsLoading(true);
-    updateUser({ displayName, photoURL: photo })?.then(() => {
+    const photoURL = photo?.slice(7) || null;
+    updateUser({ displayName, photoURL })?.then(() => {
+      user && dispatch(setUser({ ...user, displayName, photoURL }));
       Alert.alert("Data successfully updated");
       setIsLoading(false);
     });
@@ -43,19 +46,21 @@ export function ProfileScreen() {
     validateOnBlur: false,
     validateOnMount: false,
     validateOnChange: false,
-    initialValues: { displayName: user.displayName }
+    initialValues: { displayName: user?.displayName || null }
   });
 
   const { isPortrait } = useOrientation();
   const styles = isPortrait ? baseStyles : landscapeStyles;
 
+  const getPhoto = () => {
+    if (photo) return { uri: photo };
+    return user?.photoURL ? { uri: user.photoURL } : require("@assets/placeholder.png");
+  };
+
   return (
     <SafeAreaView style={styles.screen}>
       <Pressable onPress={toggleModal} style={styles.image}>
-        <Image
-          source={photo ? { uri: photo } : require("@assets/placeholder.png")}
-          style={styles.image}
-        />
+        <Image source={getPhoto()} style={styles.image} />
       </Pressable>
       <View style={styles.form}>
         <FormInput
@@ -64,7 +69,7 @@ export function ProfileScreen() {
           error={errors.displayName}
           placeholderTextColor={Color.GRAY}
           onChangeText={handleChange("displayName")}
-          defaultValue={user.displayName || undefined}
+          defaultValue={user?.displayName || undefined}
           inputStyle={{ backgroundColor: Color.TRANSPARENT_CYAN }}
         />
         <View style={styles.buttons}>
@@ -77,11 +82,7 @@ export function ProfileScreen() {
         </View>
       </View>
       <PhotoModal isShown={isModalShown} toggle={toggleModal} choosePhoto={choosePhoto} />
-      {isLoading && (
-        <View style={styles.loader}>
-          <Spinner />
-        </View>
-      )}
+      {isLoading && <LoadingModal />}
     </SafeAreaView>
   );
 }
@@ -124,16 +125,6 @@ const baseStyles = StyleSheet.create({
   updateButton: {
     marginRight: Indent.DEFAULT,
     backgroundColor: Color.GRAY
-  },
-  loader: {
-    flex: 1,
-    bottom: 0,
-    width: "100%",
-    height: "100%",
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Color.TRANSPARENT_DARK
   }
 });
 
