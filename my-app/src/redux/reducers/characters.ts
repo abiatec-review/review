@@ -1,4 +1,4 @@
-import { GET_CHARACTERS, GET_CHARACTERS_SUCCESS, GET_CHARACTERS_FAILED, GET_CHARACTER_BY_ID, GET_CHARACTER_BY_ID_SUCCESS, GET_CHARACTER_BY_ID_FAILED } from '../actionTypes' 
+import { GET_CHARACTERS, GET_CHARACTERS_SUCCESS, GET_CHARACTERS_FAILED, GET_CHARACTER_BY_ID, GET_CHARACTER_BY_ID_SUCCESS, GET_CHARACTER_BY_ID_FAILED, GET_CHARACTERS_PAGES_INFO, GET_CHARACTERS_PAGE } from '../actionTypes' 
 
 const initialState = {
     charName: '',
@@ -6,7 +6,8 @@ const initialState = {
     characterById: [],
     charactersList: [],
     loader: false,
-    error: false
+    error: false,
+    pagesInfo: ''
     
 };
 
@@ -55,6 +56,12 @@ const CharactersReducer = (state = initialState, action: any) => {
                 ...state,
                 loader: false,
                 error: true
+            }
+        }
+        case GET_CHARACTERS_PAGES_INFO: {
+            return {
+                ...state,
+                pagesInfo: action.payload
             }
         }
         default: return state; 

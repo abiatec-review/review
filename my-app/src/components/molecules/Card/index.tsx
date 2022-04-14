@@ -21,31 +21,39 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
   const {modalType} = useSelector((state: RootStateOrAny) => state.modalType);
   const [isOpen, setIsOpen] = useState(false);
   const [char, setChar] = useState(characters.charactersList[0]);
+  const [selectedValue, setSelectedValue] = useState(0);
   const dispatch = useDispatch();
+  
 
   const openModal = (event: any) => {
     setIsOpen(true);
-    const targetChar = characters.charactersList.find((char: { image: any }) => char.image === event.target.src)
-    setChar(targetChar)
+    const targetChar = characters.charactersList.find((char: { image: any }) => char.image === event.target.src);
+    setChar(targetChar);
+    setSelectedValue(Number(targetChar.episode[0].split('/').slice(-1)))
+    document.body.style.overflow = "hidden"
+    document.body.style.paddingRight = "15px"
   }
 
   const closeModal = () => {
+    document.body.style.overflow = ""
+    document.body.style.paddingRight = "0px"
     setIsOpen(false);
     dispatch(setCharacter('character'))
   }
 
   const modalEpisodeRequest = (event:any) => {
     event?.preventDefault();
-    const current = document.getElementById('episode') as HTMLSelectElement;
-    dispatch(getEpisode(current.value));
+    dispatch(getEpisode(selectedValue));
 
-    setTimeout(() => {
-      dispatch(setEpisode('episode'))
-    }, 450)
+    dispatch(setEpisode('episode'));
   }
 
   const modalCharsRequest = () => {
     dispatch(getEpisode(episodeId))
+  }
+
+  const onChangeSelect = (event: any) => {
+    setSelectedValue(event?.target.value)
   }
 
   function modalLayout() {
@@ -57,7 +65,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
             <TitleText titleText={char.name} className={styles.modalCharName} />
             <p className={styles.modalDescription}>Status: {char.status}</p>
             <form className={styles.modalForm}>
-              <select id={'episode'} className={styles.episodeList}>
+              <select id={'episode'} className={styles.episodeList} onChange={onChangeSelect}>
                 {char.episode.map((e: any) => {
                   return <option key={e} value={Number(e.split('/').slice(-1))}>Episode № {Number(e.split('/').slice(-1))}</option>
                 })}
@@ -72,7 +80,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
             <TitleText titleText={episodeInfo.name} className={styles.modalEpisodeName} />
             <p className={styles.modalDescription}>Characters in this episode:</p>
             <div className={styles.charsInEpisodeBox}>
-              {episodeInfo.randomCharsList.map((ep:any) => {
+              {episodeInfo.randomCharsList?.map((ep:any) => {
                 return <div key={ep.id} className={styles.charInEpisode}>
                 <Picture type={constants.CHARS_MODAL_PICTURE} srcImage={ep.image} />
                 <p className={styles.modalDescription} style={{margin: 0}}>{ep.name}</p>
@@ -94,7 +102,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
                   <Button className={modalType === "character" ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
                           handleClick={()=>{dispatch(setCharacter('character'))}} type={'button'} buttonName={'About Character'}/>
                   <Button className={modalType === "episode" ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
-                          handleClick={modalEpisodeRequest} type={'button'} buttonName={'About Episode'}/>
+                          handleClick={modalType !== "episode" ? modalEpisodeRequest : () => {}} type={'button'} buttonName={'About Episode'}/>
                 </div>
                 {modalLayout()}
              </div>

@@ -1,4 +1,11 @@
-import { GET_CHARACTERS_FAILED, GET_CHARACTERS, GET_CHARACTERS_SUCCESS, GET_CHARACTER_BY_ID, GET_CHARACTER_BY_ID_SUCCESS, GET_CHARACTER_BY_ID_FAILED } from "redux/actionTypes";
+import { GET_CHARACTERS_FAILED, 
+         GET_CHARACTERS, 
+         GET_CHARACTERS_SUCCESS, 
+         GET_CHARACTER_BY_ID, 
+         GET_CHARACTER_BY_ID_SUCCESS, 
+         GET_CHARACTER_BY_ID_FAILED, 
+         GET_CHARACTERS_PAGES_INFO, 
+         GET_CHARACTERS_PAGE } from "redux/actionTypes";
 
 export const getCharacters = (char: string) => {
     return {
@@ -37,5 +44,12 @@ export const getCharacterByIdSuccess = (charById: any) => {
 export const getCharacterByIdFailed = () => {
     return {
         type: GET_CHARACTER_BY_ID_FAILED
+    }
+}
+
+export const getCharactersPageInfo = (info: any) => {
+    return {
+        type: GET_CHARACTERS_PAGES_INFO,
+        payload: info
     }
 }

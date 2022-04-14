@@ -5,26 +5,27 @@ const instance = axios.create({
     headers: {
         "Content-Type": "application/json",
       }
-  });
+});
 
-  export const getFoundCharacters = async (name: string) => {
-      const response = await instance.get(`character/?name=${name}`)
-      return response
-  }
+export const getFoundCharacters = async (name: string) => {
+    const response = await instance.get(`character/?name=${name}`)
+    return response
+}
 
-  export const getSelectEpisode = async (episode: string) => {
-      const response = await instance.get(`episode/${episode}`)
-      return response
-  }
+export const getSelectEpisode = async (episode: string) => {
+    const response = await instance.get(`episode/${episode}`)
+    return response
+}
 
-  export const getCharacterByIdApi = async (id: any) => {
-      const response = await instance.get(`character/${id}`)
-      return response
-  }
+export const getCharacterByIdApi = async (id: any) => {
+    const response = await instance.get(`character/${id}`)
+    return response
+}
 
-//   export const getData = async (url:string) =>{
-//     return await axios.get(url)
-//   }
+export const getCharactersPageApi = async (page: any, name: string) => {
+    const response = await instance.get(`character/?page=${page}&name=${name}`)
+    return response
+}
 
 
 

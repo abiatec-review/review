@@ -26,17 +26,11 @@ export const Sitelayout: React.FC<IProps> = ( {} ) => {
 
   return ( 
     <>
-      <header>
-        <Header inputValue={inputValue}
-                onChangeHandler={onChangeHandler}
-                getCharactersHandler={getCharactersHandler}/>
-      </header>
-      <main>
-        <Main />
-      </main>
-      <footer>
-
-      </footer>
+      <Header inputValue={inputValue}
+              onChangeHandler={onChangeHandler}
+              getCharactersHandler={getCharactersHandler}/>
+      <Main />
+      <footer></footer>
     </>
   )
 }
