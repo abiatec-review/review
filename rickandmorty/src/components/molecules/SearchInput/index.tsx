@@ -24,7 +24,7 @@ export const SearchInput:React.FC<IProps> = ({setVisible}: any) => {
     }, [])
 
     const onSubmit = useCallback(() => {
-        setVisible(8)
+        setVisible(10)
         //@ts-ignore
         dispatch(getCharacters({characterName: value}))
     }, [value])

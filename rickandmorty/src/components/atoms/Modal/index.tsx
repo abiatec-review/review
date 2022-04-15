@@ -10,6 +10,5 @@ export const Modal = ({ showModal, children}) => {
             </div>
             <div className={styles.modalShadow} onClick={showModal}/>
         </div>
-
         )
 }

@@ -8,7 +8,7 @@ interface IProps{
 export const FetchMoreButton:React.FC<IProps> = ({visible, setVisible}) => {
 
     const fetchMore = () => {
-        setVisible(visible + 8)
+        setVisible(visible + 10)
     }
 
     return (

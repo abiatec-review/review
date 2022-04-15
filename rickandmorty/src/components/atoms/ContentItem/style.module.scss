@@ -1,19 +1,18 @@
 @import 'styles/mixins.module.scss';
+@import 'styles/variables.module.scss';
 
 .figureCont:hover {
   cursor: pointer;
 }
 
-
 .figcaptionCont {
   @include flex(flex, center, center,);
   flex-direction: column;
-
 }
 
 figcaption {
   margin-top: 10px;
-  color: darkslateblue;
+  color: $darkslateblue;
   font-size: 26px;
 }
 

@@ -1,7 +1,46 @@
 @import 'styles/mixins.module.scss';
+@import 'styles/variables.module.scss';
 
 .gallery {
   @include flex(flex, center, center, wrap);
   gap: 20px;
   }
 
+.episodes {
+  max-height: 50%;
+  overflow: auto;
+  padding: 15px;
+  font-size: 26px;
+  color: indianred;
+
+  p {
+    font-size: 20px;
+    color: $darkslateblue;
+  }
+}
+
+.tabs {
+  @include flex(flex, center, center,);
+
+  .modalTab {
+    margin: 10px;
+    padding: 10px;
+    background-color: aquamarine;
+    font-size: 26px;
+    width: 200px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.character {
+  @include flex(flex, flex-start, center);
+}
+
+.characterImage > img {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+}
