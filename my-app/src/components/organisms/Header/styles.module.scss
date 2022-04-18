@@ -1,6 +1,12 @@
 @import '../../../styles/mixins.module.scss';
 
 .header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  opacity: 0.97;
+  background-color: white; 
   @include Flex(center, center, row);
   box-sizing: border-box;
   margin: 0;

@@ -22,11 +22,21 @@ export const getCharacterByIdApi = async (id: any) => {
     return response
 }
 
-export const getCharactersPageApi = async (page: any, name: string) => {
+export const getCharactersByPageApi = async (url: any) => {
+    const response = await axios.get(url)
+    return response
+}
+
+export const getCharactersByPageAndNameApi = async (name: string, page: any) => {
     const response = await instance.get(`character/?page=${page}&name=${name}`)
     return response
 }
 
+export const getThreeRandomChars = async (episodes: number[]) => {
+    return await Promise.all(episodes.map(async(ep: number) => {
+        return await (await instance.get(`character/${ep}`)).data
+    }))
+}
 
 
 

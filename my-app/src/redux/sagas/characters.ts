@@ -1,8 +1,13 @@
 import {all, fork, put, takeEvery} from "redux-saga/effects";
 import {AxiosResponse} from "axios"
-import { getFoundCharacters, getCharacterByIdApi, getCharactersPageApi } from "../../api/api";
-import { GET_CHARACTERS, GET_CHARACTERS_PAGE, GET_CHARACTER_BY_ID } from "redux/actionTypes";
-import { getCharacterByIdFailed, getCharacterByIdSuccess, getCharactersFailed, getCharactersPageInfo, getCharactersSuccess } from "redux/actions/characters";
+import { getFoundCharacters, getCharacterByIdApi, getCharactersByPageApi, getCharactersByPageAndNameApi } from "../../api/api";
+import { GET_CHARACTERS, GET_CHARACTERS_BY_PAGE, GET_CHARACTERS_BY_PAGE_AND_NAME, GET_CHARACTER_BY_ID } from "redux/actionTypes";
+import { getCharacterByIdFailed, 
+         getCharacterByIdSuccess, 
+         getCharactersByPageSuccess, 
+         getCharactersFailed, 
+         getCharactersPageInfo, 
+         getCharactersSuccess } from "redux/actions/characters";
 
 
 function* getCharactersSaga(charName: any) {
@@ -30,6 +35,32 @@ function* getCharacterByIdSaga(id: any) {
     }
 }
 
+function* getCharactersByPageSaga(url: any) {
+    try {
+        const response:AxiosResponse<any> = yield getCharactersByPageApi(url.payload);
+        const {data: {results, info}} = response;
+        
+        yield put(getCharactersByPageSuccess(results));
+        yield put(getCharactersPageInfo(info));
+    } catch (err) {
+        console.log(err)
+        yield put(getCharactersFailed())
+    }
+}
+
+function* getCharactersByPageAndNameSaga(payload: any) {
+    try {
+        const response:AxiosResponse<any> = yield getCharactersByPageAndNameApi(payload.payload.name, payload.payload.page)
+        const {data:{results, info}} = response
+
+        yield put(getCharactersByPageSuccess(results));
+        yield put(getCharactersPageInfo(info));
+    } catch (err) {
+        console.log(err)
+        yield put(getCharactersFailed())
+    }
+}
+
 export function* getCharactersFork() {
     yield takeEvery(GET_CHARACTERS, getCharactersSaga);
 };
@@ -38,9 +69,19 @@ export function* getCharacterByIdFork() {
     yield takeEvery(GET_CHARACTER_BY_ID, getCharacterByIdSaga)
 };
 
+export function* getCharactersByPageFork() {
+    yield takeEvery(GET_CHARACTERS_BY_PAGE, getCharactersByPageSaga)
+}
+
+export function* getCharactersByPageAndNameFork() {
+    yield takeEvery(GET_CHARACTERS_BY_PAGE_AND_NAME, getCharactersByPageAndNameSaga)
+}
+
 export default function* rootSaga() {
     yield all([
         fork(getCharactersFork),
         fork(getCharacterByIdFork),
+        fork(getCharactersByPageFork),
+        fork(getCharactersByPageAndNameFork)
     ])
 };

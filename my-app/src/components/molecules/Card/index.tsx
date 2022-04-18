@@ -7,11 +7,12 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
 import { getEpisode } from 'redux/actions/episode'
 import { setCharacter, setEpisode } from 'redux/actions/modalType'
+import { selectEpisode } from 'utils/helpers'
 
 
 interface IProps {
   srcImage: string
-  titleText: any
+  titleText: string
 }
 
 export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
@@ -21,22 +22,18 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
   const {modalType} = useSelector((state: RootStateOrAny) => state.modalType);
   const [isOpen, setIsOpen] = useState(false);
   const [char, setChar] = useState(characters.charactersList[0]);
-  const [selectedValue, setSelectedValue] = useState(0);
+  const [selectedValue, setSelectedValue] = useState<number>(0);
   const dispatch = useDispatch();
   
 
   const openModal = (event: any) => {
     setIsOpen(true);
-    const targetChar = characters.charactersList.find((char: { image: any }) => char.image === event.target.src);
+    const targetChar = characters.charactersList.find((char: { image: string }) => char.image === event.target.src);
     setChar(targetChar);
     setSelectedValue(Number(targetChar.episode[0].split('/').slice(-1)))
-    document.body.style.overflow = "hidden"
-    document.body.style.paddingRight = "15px"
   }
 
   const closeModal = () => {
-    document.body.style.overflow = ""
-    document.body.style.paddingRight = "0px"
     setIsOpen(false);
     dispatch(setCharacter('character'))
   }
@@ -56,6 +53,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
     setSelectedValue(event?.target.value)
   }
 
+  
   function modalLayout() {
     switch (modalType) {
       case "character":
@@ -67,7 +65,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
             <form className={styles.modalForm}>
               <select id={'episode'} className={styles.episodeList} onChange={onChangeSelect}>
                 {char.episode.map((e: any) => {
-                  return <option key={e} value={Number(e.split('/').slice(-1))}>Episode № {Number(e.split('/').slice(-1))}</option>
+                  return <option key={e} value={selectEpisode(e)!}>Episode № {selectEpisode(e)}</option>
                 })}
               </select>
               <Button className={styles.modalSubmit} handleClick={modalEpisodeRequest} type={'submit'} buttonName={'Show me this episode'} />

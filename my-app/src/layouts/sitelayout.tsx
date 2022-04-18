@@ -1,3 +1,5 @@
+import { PagesBox } from "components/molecules/PagesBox";
+import { Footer } from "components/organisms/Footer";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCharacters } from "redux/actions/characters";
@@ -24,13 +26,15 @@ export const Sitelayout: React.FC<IProps> = ( {} ) => {
     }
   }
 
+
+
   return ( 
     <>
       <Header inputValue={inputValue}
               onChangeHandler={onChangeHandler}
               getCharactersHandler={getCharactersHandler}/>
       <Main />
-      <footer></footer>
+      <Footer />
     </>
   )
 }

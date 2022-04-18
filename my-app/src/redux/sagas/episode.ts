@@ -1,8 +1,9 @@
 import {all, fork, put, takeEvery} from "redux-saga/effects";
 import {AxiosResponse} from "axios"
-import { getCharacterByIdApi, getSelectEpisode } from "../../api/api";
+import { getSelectEpisode, getThreeRandomChars } from "../../api/api";
 import { GET_EPISODE } from "redux/actionTypes";
 import { getEpisodeFailed, getEpisodeSuccess } from "redux/actions/episode";
+import { selectEpisode } from "utils/helpers";
 
 
 function* getEpisodeSaga(episodeId: any) {
@@ -11,7 +12,7 @@ function* getEpisodeSaga(episodeId: any) {
         const {data: {id, name, air_date, episode, url, created, characters}} = response
         
         const charsId = characters.map((url: string) => {
-            return Number(url.split('/').slice(-1))
+            return selectEpisode(url)
         })
         let randomArr: any = []
         while(randomArr.length <= 2) {
@@ -21,20 +22,8 @@ function* getEpisodeSaga(episodeId: any) {
             }
         }
 
-        let randomCharsList: any = []
-
-        // Promise.all(randomArr.map(async (elem: any) => {
-        //     const character:any = await getCharacterByIdApi(elem);
-        //     return await  randomCharsList.push(character.data) 
-        //   })) 
-
-        for (let id of randomArr) {
-            const character:AxiosResponse<any> = yield getCharacterByIdApi(id);
-            const {data} = character
-
-            randomCharsList.push(data)
-        }
-            
+        const randomCharsList:AxiosResponse<any> = yield getThreeRandomChars(randomArr);
+           
         yield put(getEpisodeSuccess({id, name, air_date, episode, url, created, randomCharsList}));
 
     } catch (err) {

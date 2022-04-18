@@ -29,3 +29,14 @@
   overflow: hidden;
   border-radius: 50%;
 }
+
+.footerLogo {
+  @include Size(85px, 85px);
+  box-sizing: border-box;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 60px;
+  opacity: 0.5;
+}

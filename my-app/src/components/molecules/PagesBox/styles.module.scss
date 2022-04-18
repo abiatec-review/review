@@ -1,0 +1,35 @@
+@import '../../../styles/mixins.module.scss';
+
+.pageNumberButton {
+  @include Size(40px, 40px);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid #999898;
+  color: #858585;
+  background: white;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  margin: 0 15px 0 0;
+  padding: 0;
+  outline: none;
+  transition: .1s;
+}
+
+.pageNumberButton:last-child {
+  margin: 0;
+}
+
+.pageNumberButton:hover {
+  background: #dddddd;
+  transition: .1s;
+}
+.pageNumberButton:active {
+  background: #cecece;
+  @include Size(38px, 38px);
+  margin: 1px 16px 1px 1px;
+}   
+
+.pageNumberButton:last-child:active {
+    margin: 1px;
+  }
