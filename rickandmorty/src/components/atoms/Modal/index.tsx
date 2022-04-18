@@ -1,7 +1,12 @@
 import styles from './style.module.scss';
 import React from "react";
-// @ts-ignore
-export const Modal = ({ showModal, children}) => {
+
+interface IProps {
+    showModal: () => void;
+    children: React.ReactNode
+}
+
+export const Modal:React.FC<IProps> = ({ showModal, children}) => {
 
     return (
         <div className={styles.modalBlock}>

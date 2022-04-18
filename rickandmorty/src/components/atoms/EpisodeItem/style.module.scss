@@ -1,6 +1,6 @@
 @import 'styles/variables.module.scss';
 
-p:hover {
+.episodeItem:hover {
   cursor: pointer;
   text-decoration: underline;
   color: $darkslateblue;

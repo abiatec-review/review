@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './style.module.scss';
+import {TCharacter} from "../../../models/character";
 interface IProps{
-    item: any;
+    item: TCharacter<string>;
     showModal: () => void;
-    setId: (arg: string) => void
+    setId: (arg: number) => void
 };
 
 export const ContentItem:React.FC<IProps> = ({item, setId, showModal }) => {
@@ -12,6 +13,7 @@ export const ContentItem:React.FC<IProps> = ({item, setId, showModal }) => {
         showModal();
         setId(item?.id)
     }
+
 
     return (
           <>

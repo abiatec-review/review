@@ -1,22 +1,18 @@
 import React, {useState} from 'react';
-
-// @ts-ignore
 import styles from './App.scss';
 import {useSelector} from 'react-redux';
-
 import { Header } from 'components/organisms';
 import {Content} from "./components/molecules/Content";
 
-function App() {
 
-  const [visible, setVisible] = useState(10)
 
-  // @ts-ignore
+function App () {
+
+  const [visible, setVisible] = useState(8)
+  //@ts-ignore
   const data = useSelector(state => state.characters)
-  // @ts-ignore
+  //@ts-ignore
   const dataEpisodes = useSelector(state => state.episodes)
-
-
 
 
   return (

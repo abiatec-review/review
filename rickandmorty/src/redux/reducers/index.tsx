@@ -1,11 +1,8 @@
 import charactersReducer from "./charReducer";
 import {episodesReducer} from "./episodeReducer";
-//@ts-ignore
-
+// @ts-ignore
 import {combineReducers} from "redux";
-
-
-//@ts-ignore
+// @ts-ignore
 const rootReducer = combineReducers({
     characters: charactersReducer,
     episodes: episodesReducer

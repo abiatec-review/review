@@ -1,4 +1,3 @@
-//@ts-ignore
 import {GET_EPISODES, SET_EPISODES, GET_EPISODES_CHARACTER, SET_EPISODES_CHARACTER, DELETE_EPISODES_CHARACTER} from '../actions';
 
 const initialState = {
@@ -7,8 +6,8 @@ const initialState = {
     episodeImages: []
 }
 
-//@ts-ignore
-export const episodesReducer = (state = initialState, action) => {
+
+export const episodesReducer = (state = initialState, action: { type: string; payload: string; }) => {
     switch(action.type) {
         case GET_EPISODES:{
             return {
@@ -21,7 +20,6 @@ export const episodesReducer = (state = initialState, action) => {
                 ...state,
                 episodesLoader: false,
                 episodes: action.payload,
-                // episodeImages:
             }
         }
         case GET_EPISODES_CHARACTER:{
@@ -31,7 +29,6 @@ export const episodesReducer = (state = initialState, action) => {
             }
         }
         case SET_EPISODES_CHARACTER: {
-            console.log((action.payload))
             return {
                 ...state,
                 episodesLoader: false,

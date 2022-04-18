@@ -1,7 +1,7 @@
 import styles from './style.module.scss';
 
 interface IProps{value: string,
-    onChange:any}
+    onChange:(e: any) => void}
 
 export const Input:React.FC<IProps> = ({value, onChange}) => {
 

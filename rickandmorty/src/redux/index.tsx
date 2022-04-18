@@ -7,7 +7,7 @@ import  rootReducer  from "./reducers";
 import rootSaga from "./sagas";
 import thunk from 'redux-thunk';
 
-// const sagaMiddleware = createSagaMiddleware({});
+
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [thunk,sagaMiddleware];
 
@@ -22,3 +22,6 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(...middl
 sagaMiddleware.run(rootSaga);
 
 export default store;
+
+export class combineReducers {
+}

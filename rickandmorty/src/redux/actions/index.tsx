@@ -6,49 +6,42 @@ export const GET_EPISODES_CHARACTER = 'GET_EPISODES_CHARACTER';
 export const SET_EPISODES_CHARACTER = 'SET_EPISODES_CHARACTER';
 export const DELETE_EPISODES_CHARACTER = 'DELETE_EPISODES_CHARACTER';
 
-// @ts-ignore
-export const getCharacters = (payload) => {
+
+export const getCharacters = (payload: {characterName: string}) => {
     return {
         type: GET_CHARACTERS,
         payload
     }
 }
-// @ts-ignore
-export const setCharacters = (payload) => {
+
+export const setCharacters = (payload: string) => {
     return {
         type: SET_CHARACTERS,
         payload
     }
 }
-// @ts-ignore
-export const getEpisodes = (payload) => {
+
+export const getEpisodes = (payload: {episodeName: string}) => {
     return {
         type: GET_EPISODES,
         payload
     }
 }
-// @ts-ignore
-export const setEpisodes = (payload) => {
+
+export const setEpisodes = (payload: string) => {
     return {
         type: SET_EPISODES,
         payload
     }
 }
-// @ts-ignore
-export const getEpisodesCharacter = (payload) => {
-    return {
-        type: GET_EPISODES_CHARACTER,
-        payload
-    }
-}
-// @ts-ignore
-export const setEpisodesCharacter = (payload) => {
+
+export const setEpisodesCharacter = (payload: string) => {
     return {
         type: SET_EPISODES_CHARACTER,
         payload
     }
 }
-// @ts-ignore
+
 export const deleteEpisodesCharacter = () => {
     return {
         type: DELETE_EPISODES_CHARACTER,

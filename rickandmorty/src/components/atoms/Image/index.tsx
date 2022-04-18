@@ -1,16 +1,13 @@
-// @ts-ignore
-import { type } from "os";
-// @ts-ignore
-import styles from './style.module.scss';
 
-interface IProps{ 
+
+interface IProps{
     type: string
-    className: any
+    className: string
 }
 
 export const Image:React.FC<IProps> = ({type, className}) => {
 switch(type) {
-    case 'list': 
+    case 'list':
     return <svg id="outline" className={className} viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
         <path d="m440 496a8.00039 8.00039 0 0 0 8-8v-464a8.00039 8.00039 0 0 0 -8-8h-360a8.00039 8.00039 0 0 0 -8 8v464a8.00039 8.00039 0 0 0 8 8zm-352-464h344v448h-344z"/>
         <path d="m136 112a32 32 0 1 0 -32-32 32.03667 32.03667 0 0 0 32 32zm0-48a16 16 0 1 1 -16 16 16.01833 16.01833 0 0 1 16-16z"/>

@@ -1,29 +1,42 @@
-
+import React, {useState} from "react";
 import styles from './style.module.scss';
 import { ContentItem } from "../../atoms/ContentItem";
 import { EpisodeItem } from "../../atoms/EpisodeItem";
 import {FetchMoreButton} from "../../atoms/FetchMoreButton";
-import React, {useState} from "react";
 import {Modal} from "../../atoms";
 import {useDispatch} from "react-redux";
-import {deleteEpisodesCharacter, getEpisodes, getEpisodesCharacter} from "../../../redux/actions";
+import {deleteEpisodesCharacter, getEpisodes } from "../../../redux/actions";
+import {TEpisode} from "../../../models/episode";
+import {TCharacter} from "../../../models/character";
+
+interface IDataEpisodes{
+    episodeImages: TCharacter<string>[];
+    episodes: TEpisode<string>;
+    episodesLoader: boolean
+}
+
+interface IData{
+    characters: TCharacter<string>[];
+    charactersLoader: boolean
+}
 
 interface IProps{
-    data: any;
+    data: IData;
     visible: number;
-    dataEpisodes: [];
-    setVisible: (visible: number) => void
+    dataEpisodes: IDataEpisodes;
+    setVisible: (visible: number) => void;
 }
 
 export const Content:React.FC<IProps> = ({data, dataEpisodes, visible, setVisible}) => {
 
-    const [modalVisible, setModalVisible] = useState(false);
 
-    const [id, setId] = useState('');
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-    const [isHeroPartOpen, setIsHeroPartOpen] = useState(true)
+    const [id, setId] = useState<number>(0);
 
-    const foundPerson = data?.characters?.find((item: any) => item.id === id);
+    const [isHeroPartOpen, setIsHeroPartOpen] = useState<boolean>(true)
+
+    const foundPerson = data?.characters?.find((item: TCharacter<string>) => item.id === +id);
 
     const dispatch = useDispatch();
 
@@ -47,19 +60,19 @@ export const Content:React.FC<IProps> = ({data, dataEpisodes, visible, setVisibl
         }
     }
 
-    console.log(dataEpisodes)
+
     return (
         <>
             <div className={styles.gallery}>
-                { data.characters.slice(0, visible).map((item:any) => (
-                    <ContentItem showModal={() => setModalVisible(true)} setId={setId} item={item} />
+                { data.characters.slice(0, visible).map((item: TCharacter<string>) => (
+                    <ContentItem key={item.id} showModal={() => setModalVisible(true)} setId={setId} item={item} />
                 ))}
             </div>
             {visible < data.characters.length &&
                 <FetchMoreButton visible={visible} setVisible={setVisible}/>
             }
             {modalVisible &&
-                <Modal showModal={showModal} setIsHeroPartOpen={setIsHeroPartOpen}>
+                <Modal showModal={showModal}>
                     <div className={styles.tabs}>
                         <div className={styles.modalTab} onClick={openToggle(false)}>
                             Episode
@@ -76,19 +89,23 @@ export const Content:React.FC<IProps> = ({data, dataEpisodes, visible, setVisibl
                             <figcaption>Status: {foundPerson?.status}</figcaption>
                             <figcaption>Species: {foundPerson?.species}</figcaption>
                             <figcaption>Gender: {foundPerson?.gender}</figcaption>
-                            <figcaption>Origin name: {foundPerson?.origin?.name}</figcaption>
-                            <figcaption>Location name: {foundPerson?.location?.name}</figcaption>
                         </figure>
-                        <div className={styles.episodes}>Episodes: {foundPerson?.episode.map((item: any) => (
-                            <EpisodeItem item={item} fetchEpisodeInfo={fetchEpisodeInfo} setIsHeroPartOpen={setIsHeroPartOpen} />
+                        <div className={styles.episodes}>Episodes: {foundPerson?.episode.map((item: string) => (
+                            <EpisodeItem item={item} fetchEpisodeInfo={fetchEpisodeInfo} />
                         ))}</div>
                         </div>
                     </> :
-                        <div className={styles.characterImage}>
-                            {dataEpisodes.episodes.name}
-                            {dataEpisodes.episodeImages.map(el => (
-                                    <img src={el} />
+                        <div className={styles.episodeCard}>
+                            <p>{dataEpisodes.episodes.name}</p>
+                            <p>{dataEpisodes.episodes.air_date}</p>
+                            <div className={styles.episodeCardImages}>
+                            {dataEpisodes.episodeImages.map((el: {name: string, image: string}) => (
+                                <figure>
+                                    <img src={el.image} />
+                                    <figcaption>{el.name}</figcaption>
+                                </figure>
                                 ))}
+                            </div>
                     </div>
                     }
                 </Modal>
