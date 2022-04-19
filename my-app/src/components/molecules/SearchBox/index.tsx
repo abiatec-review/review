@@ -5,7 +5,7 @@ import { Button, Input } from '../../atoms'
 
 interface IProps {
   inputValue: string
-  onChangeHandler: any
+  onChangeHandler: ()=>void
   getCharactersHandler: (event: any)=>void
 }
 
@@ -13,11 +13,11 @@ export const SearchBox: React.FC<IProps> = ( {inputValue, onChangeHandler, getCh
 
   return ( 
     <form className={styles.headerSearchBox}>
-      <Input inputValue={inputValue} onChangeHandler={onChangeHandler}/>
+      <Input inputValue={inputValue} onChangeHandler={onChangeHandler} name={'name'} placeholder={'Enter the character name'}/>
       <Button buttonName='Find!'
               handleClick={getCharactersHandler}
               className={styles.submitButton}
-              type={'submit'}/>
+              type={'submit'} />
     </form>
   )
 } 

@@ -1,6 +1,6 @@
 import { GET_EPISODE, GET_EPISODE_FAILED, GET_EPISODE_SUCCESS } from "redux/actionTypes";
 
-export const getEpisode = (episodeId: any) => {
+export const getEpisode = (episodeId: number) => {
     return {
         type: GET_EPISODE,
         payload: episodeId

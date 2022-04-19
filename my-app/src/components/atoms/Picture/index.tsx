@@ -1,5 +1,7 @@
-import { constants } from '../../../utils/constants'
 import classnames from 'classnames'
+
+import { constants } from '../../../utils/constants'
+
 import styles from './styles.module.scss'
 import animations from '../../../styles/animations.module.scss'
 

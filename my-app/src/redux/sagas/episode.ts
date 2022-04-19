@@ -14,7 +14,7 @@ function* getEpisodeSaga(episodeId: any) {
         const charsId = characters.map((url: string) => {
             return selectEpisode(url)
         })
-        let randomArr: any = []
+        let randomArr: number[] = []
         while(randomArr.length <= 2) {
             let choosenId = charsId[Math.floor(Math.random() * charsId.length)];
             if(!randomArr.includes(choosenId)) {

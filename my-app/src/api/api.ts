@@ -8,7 +8,9 @@ const instance = axios.create({
 });
 
 export const getFoundCharacters = async (name: string) => {
-    const response = await instance.get(`character/?name=${name}`)
+    const response = await instance.get(`character/`,{params:{
+        name
+    }})
     return response
 }
 
@@ -17,18 +19,20 @@ export const getSelectEpisode = async (episode: string) => {
     return response
 }
 
-export const getCharacterByIdApi = async (id: any) => {
-    const response = await instance.get(`character/${id}`)
+export const getCharacterByIdApi = async (id: string) => {
+    const response = await instance.get(`character/`, {params: 
+        id
+    })
     return response
 }
 
-export const getCharactersByPageApi = async (url: any) => {
+export const getCharactersByPageApi = async (url: string) => {
     const response = await axios.get(url)
     return response
 }
 
-export const getCharactersByPageAndNameApi = async (name: string, page: any) => {
-    const response = await instance.get(`character/?page=${page}&name=${name}`)
+export const getCharactersByPageAndNameApi = async (name: string, page: string) => {
+    const response = await instance.get(`character/`,{params: {page, name}})
     return response
 }
 

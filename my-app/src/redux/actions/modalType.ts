@@ -7,7 +7,7 @@ export const setCharacter = (modalType: string) => {
     };
 };
 
-export const setEpisode = (modalType: any) => {
+export const setEpisode = (modalType: string) => {
     return {
         type: SET_EPISODE,
         payload: modalType

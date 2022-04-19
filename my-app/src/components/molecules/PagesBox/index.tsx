@@ -5,7 +5,7 @@ import { Button } from '../../atoms'
 
 interface IProps {
   selectPage: any
-  number: any
+  number: number
 }
 
 export const PagesBox: React.FC<IProps> = ({selectPage, number})=> {
@@ -15,7 +15,7 @@ export const PagesBox: React.FC<IProps> = ({selectPage, number})=> {
   }
   
   return ( 
-    <div className={styles.PagesBox}>
+    <div className={styles.pagesBox}>
       {pages.lenght !== 0 && pages.map((page: any) => {
         return <Button key={page} className={styles.pageNumberButton} handleClick={selectPage} type={'button'} buttonName={page}/>
       })}

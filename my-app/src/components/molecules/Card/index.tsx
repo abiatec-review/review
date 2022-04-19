@@ -1,13 +1,17 @@
-import styles from './styles.module.scss'
-import { Button, Picture, TitleText } from "components/atoms"
-import { constants } from 'utils/constants'
-import { useEffect, useState } from 'react'
-import { Modal } from '../Modal'
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
+import { useState } from 'react'
+
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 import { getEpisode } from 'redux/actions/episode'
 import { setCharacter, setEpisode } from 'redux/actions/modalType'
+
+import { Modal } from '../Modal'
+import { Button, Picture, TitleText } from "components/atoms"
+
 import { selectEpisode } from 'utils/helpers'
+import { constants } from 'utils/constants'
+
+import styles from './styles.module.scss'
 
 
 interface IProps {
@@ -20,7 +24,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
   const {characters} = useSelector((state: RootStateOrAny) => state);
   const {episode: {episodeInfo, episodeId}} = useSelector((state: RootStateOrAny) => state);
   const {modalType} = useSelector((state: RootStateOrAny) => state.modalType);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [char, setChar] = useState(characters.charactersList[0]);
   const [selectedValue, setSelectedValue] = useState<number>(0);
   const dispatch = useDispatch();
@@ -64,7 +68,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
             <p className={styles.modalDescription}>Status: {char.status}</p>
             <form className={styles.modalForm}>
               <select id={'episode'} className={styles.episodeList} onChange={onChangeSelect}>
-                {char.episode.map((e: any) => {
+                {char.episode.map((e: string) => {
                   return <option key={e} value={selectEpisode(e)!}>Episode № {selectEpisode(e)}</option>
                 })}
               </select>
@@ -98,9 +102,13 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
                 <Button className={styles.closeButton} handleClick={closeModal} type={'button'}></Button>
                 <div className={styles.modalTabs}>
                   <Button className={modalType === "character" ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
-                          handleClick={()=>{dispatch(setCharacter('character'))}} type={'button'} buttonName={'About Character'}/>
+                          handleClick={()=>{dispatch(setCharacter('character'))}} 
+                          type={'button'} 
+                          buttonName={'About Character'}/>
                   <Button className={modalType === "episode" ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
-                          handleClick={modalType !== "episode" ? modalEpisodeRequest : () => {}} type={'button'} buttonName={'About Episode'}/>
+                          handleClick={modalType !== "episode" ? modalEpisodeRequest : null} 
+                          type={'button'} 
+                          buttonName={'About Episode'}/>
                 </div>
                 {modalLayout()}
              </div>

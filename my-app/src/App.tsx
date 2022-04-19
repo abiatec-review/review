@@ -1,8 +1,10 @@
-import { useEffect } from "react";
-import { Provider, useDispatch } from "react-redux";
-import { getCharacters } from "redux/actions/characters";
-import { Sitelayout } from "./layouts/sitelayout"; 
 import configureStore from './redux/store'
+
+import { Provider} from "react-redux";
+
+import { Main } from "components/organisms";
+import { Sitelayout } from "./layouts/sitelayout"; 
+
 
 const store = configureStore();
  
@@ -11,7 +13,7 @@ const store = configureStore();
   return (
     <Provider store={store}>
       <Sitelayout>
-        <div></div>
+        <Main/>
       </Sitelayout>
     </Provider>  
   );

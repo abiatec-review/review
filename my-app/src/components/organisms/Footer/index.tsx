@@ -1,16 +1,16 @@
-import styles from './styles.module.scss'
-import { PagesBox } from 'components/molecules/PagesBox'
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
+
 import { getCharactersByPageAndName } from 'redux/actions/characters';
+
+import { PagesBox } from 'components/molecules/PagesBox'
 import { Picture } from 'components/atoms';
+
 import { constants } from 'utils/constants';
 import footerLogo from '../../../images/footer_logo.jpg'
 
-interface IProps {
-  
-}
+import styles from './styles.module.scss'
 
-export const Footer: React.FC<IProps> = ( ) => {
+export const Footer: React.FC = ( ) => {
   const {pagesInfo, charName, message} = useSelector((state: RootStateOrAny) => state.characters);
   const dispatch = useDispatch();
 

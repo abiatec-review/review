@@ -13,9 +13,9 @@
   outline: none;
   font-size: 12px;
   transition: .5s;
-}
 
-.submitButton:hover {
-  background: #959595;
-  transition: .5s;
+  &:hover {
+    background: #959595;
+    transition: .5s;
+  }
 }

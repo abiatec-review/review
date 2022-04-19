@@ -7,5 +7,5 @@ export enum constants {
 }
 
 export const regExps = {
-  getDigital: /[^0-9\']+/g
+  getDigital: /[^0-9']+/g
 }

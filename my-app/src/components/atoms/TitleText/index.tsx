@@ -1,6 +1,6 @@
 interface IProps {
-  titleText: any
-  className: any;
+  titleText: string
+  className: string
 }
 
 export const TitleText: React.FC<IProps> = ( { titleText, className } ) => {

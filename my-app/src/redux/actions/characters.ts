@@ -16,7 +16,7 @@ export const getCharacters = (char: string) => {
     };
 };
 
-export const getCharactersByPage = (url: any) => {
+export const getCharactersByPage = (url: string) => {
     return {
         type: GET_CHARACTERS_BY_PAGE,
         payload: url
@@ -50,7 +50,7 @@ export const getCharactersFailed = () => {
     }
 }
 
-export const getCharacterById = (id: any) => {
+export const getCharacterById = (id: string) => {
     return {
         type: GET_CHARACTER_BY_ID,
         payload: id
