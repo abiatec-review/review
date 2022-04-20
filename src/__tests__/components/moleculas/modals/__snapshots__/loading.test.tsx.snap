@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingModal render 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgba(0, 0, 0, 0.5)",
+      "bottom": 0,
+      "flex": 1,
+      "height": "100%",
+      "justifyContent": "center",
+      "position": "absolute",
+      "width": "100%",
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#2196F3"
+    size="large"
+    style={
+      Object {
+        "margin": 20,
+      }
+    }
+  />
+</View>
+`;

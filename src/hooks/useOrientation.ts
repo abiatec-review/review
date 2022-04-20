@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 
 import { Dimensions, ScaledSize } from "react-native";
 
-export function useOrientation(onChange?: (width: number, height: number) => void) {
+export function useOrientation() {
   const [window, setWindow] = useState(Dimensions.get("window"));
 
   const handleChange = (window: ScaledSize) => {
     setWindow(window);
-    onChange && onChange(window.width, window.height);
   };
 
   useEffect(() => {

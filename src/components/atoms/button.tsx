@@ -11,6 +11,7 @@ import {
 } from "react-native";
 
 import { Color, FontSize, Indent, Radius } from "@utils";
+
 interface Props {
   text: string;
   textStyle?: TextStyle;

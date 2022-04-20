@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharactersModal render landscape 1`] = `
+<Modal
+  animationType="fade"
+  hardwareAccelerated={false}
+  onRequestClose={[Function]}
+  supportedOrientations={
+    Array [
+      "portrait",
+      "landscape",
+    ]
+  }
+  transparent={true}
+  visible={true}
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 0.5)",
+        "flex": 1,
+        "justifyContent": "center",
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "rgb(175, 224, 209)",
+            "borderRadius": 20,
+            "paddingHorizontal": 20,
+            "paddingVertical": 10,
+            "width": "70%",
+          },
+          undefined,
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "paddingBottom": 10,
+            "textAlign": "center",
+          }
+        }
+      >
+        test
+      </Text>
+      <RCTScrollView
+        ListFooterComponent={<Spinner />}
+        contentContainerStyle={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+        data={Array []}
+        getItem={[Function]}
+        getItemCount={[Function]}
+        keyExtractor={[Function]}
+        onContentSizeChange={[Function]}
+        onLayout={[Function]}
+        onMomentumScrollBegin={[Function]}
+        onMomentumScrollEnd={[Function]}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onScrollEndDrag={[Function]}
+        removeClippedSubviews={false}
+        renderItem={[Function]}
+        scrollEventThrottle={50}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "height": 0,
+          }
+        }
+        viewabilityConfigCallbackPairs={Array []}
+      >
+        <View>
+          <View
+            onLayout={[Function]}
+          >
+            <ActivityIndicator
+              animating={true}
+              color="#2196F3"
+              size="large"
+              style={
+                Object {
+                  "margin": 20,
+                }
+              }
+            />
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</Modal>
+`;
+
+exports[`CharactersModal render portrait 1`] = `
+<Modal
+  animationType="fade"
+  hardwareAccelerated={false}
+  onRequestClose={[Function]}
+  supportedOrientations={
+    Array [
+      "portrait",
+      "landscape",
+    ]
+  }
+  transparent={true}
+  visible={true}
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 0.5)",
+        "flex": 1,
+        "justifyContent": "center",
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "rgb(175, 224, 209)",
+            "borderRadius": 20,
+            "paddingHorizontal": 20,
+            "paddingVertical": 10,
+            "width": "91%",
+          },
+          undefined,
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 20,
+            "fontWeight": "bold",
+            "paddingBottom": 10,
+            "textAlign": "center",
+          }
+        }
+      >
+        test
+      </Text>
+      <RCTScrollView
+        ListFooterComponent={<Spinner />}
+        contentContainerStyle={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+        data={Array []}
+        getItem={[Function]}
+        getItemCount={[Function]}
+        keyExtractor={[Function]}
+        onContentSizeChange={[Function]}
+        onLayout={[Function]}
+        onMomentumScrollBegin={[Function]}
+        onMomentumScrollEnd={[Function]}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onScrollEndDrag={[Function]}
+        removeClippedSubviews={false}
+        renderItem={[Function]}
+        scrollEventThrottle={50}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "height": 0,
+          }
+        }
+        viewabilityConfigCallbackPairs={Array []}
+      >
+        <View>
+          <View
+            onLayout={[Function]}
+          >
+            <ActivityIndicator
+              animating={true}
+              color="#2196F3"
+              size="large"
+              style={
+                Object {
+                  "margin": 20,
+                }
+              }
+            />
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</Modal>
+`;

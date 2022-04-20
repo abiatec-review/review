@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextRow render 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "black",
+        "fontSize": 18,
+        "marginRight": 20,
+      }
+    }
+  >
+    test:
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "black",
+        "flex": 1,
+        "fontSize": 18,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    test
+  </Text>
+</View>
+`;

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { FlatList, Image, ListRenderItemInfo, StyleSheet, Text, View } from "react-native";
 
-import { Spinner } from "@components/atoms";
-import { Modal } from "@components/atoms";
+import { Modal, Spinner } from "@components/atoms";
 import { useOrientation } from "@hooks";
 import { ReducedCharacter } from "@redux/models/entities";
 import { getCharactersByUrls } from "@redux/services";

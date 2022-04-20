@@ -17,6 +17,7 @@
     "sourceType": "module"
   },
   "plugins": ["react", "react-native", "eslint-plugin-import", "@typescript-eslint"],
+  "ignorePatterns": ["node_modules/**"],
   "rules": {
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "quotes": ["error", "double"],
@@ -49,6 +50,7 @@
           "{}": false
         }
       }
-    ]
+    ],
+    "@typescript-eslint/no-empty-function": ["error", { "allow": ["arrowFunctions"] }]
   }
 }

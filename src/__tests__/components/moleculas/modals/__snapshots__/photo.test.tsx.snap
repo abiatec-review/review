@@ -1,0 +1,262 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoModal landscape 1`] = `
+<Modal
+  animationType="fade"
+  hardwareAccelerated={false}
+  onRequestClose={[Function]}
+  supportedOrientations={
+    Array [
+      "portrait",
+      "landscape",
+    ]
+  }
+  transparent={true}
+  visible={true}
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 0.5)",
+        "flex": 1,
+        "justifyContent": "center",
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "rgb(175, 224, 209)",
+            "borderRadius": 20,
+            "paddingHorizontal": 20,
+            "paddingVertical": 10,
+            "width": "70%",
+          },
+          Array [
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": "50%",
+            },
+            Object {
+              "width": "50%",
+            },
+          ],
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "black",
+              "fontSize": 18,
+            }
+          }
+        >
+          Take a photo
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "black",
+              "fontSize": 18,
+            }
+          }
+        >
+          Choose from photos
+        </Text>
+      </View>
+    </View>
+  </View>
+</Modal>
+`;
+
+exports[`PhotoModal portrait 1`] = `
+<Modal
+  animationType="fade"
+  hardwareAccelerated={false}
+  onRequestClose={[Function]}
+  supportedOrientations={
+    Array [
+      "portrait",
+      "landscape",
+    ]
+  }
+  transparent={true}
+  visible={true}
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 0.5)",
+        "flex": 1,
+        "justifyContent": "center",
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "rgb(175, 224, 209)",
+            "borderRadius": 20,
+            "paddingHorizontal": 20,
+            "paddingVertical": 10,
+            "width": "91%",
+          },
+          Array [
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            },
+            false,
+          ],
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "black",
+              "fontSize": 18,
+            }
+          }
+        >
+          Take a photo
+        </Text>
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "black",
+              "fontSize": 18,
+            }
+          }
+        >
+          Choose from photos
+        </Text>
+      </View>
+    </View>
+  </View>
+</Modal>
+`;
