@@ -1,17 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
 import { getCharacters } from "redux/actions/characters";
 import { setCharacter } from "redux/actions/modalType";
 
 import { Footer } from "components/organisms/Footer";
-import { Header} from "../components/organisms";
+import {Header, Main} from "../components/organisms";
+import {SearchBox} from "../components/molecules/SearchBox";
 
-interface IProps {
-  children: JSX.Element
-}
-
-export const Sitelayout: React.FC<IProps> = ( {children} ) => {
+export const Sitelayout: React.FC = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>('');
 
@@ -31,8 +28,11 @@ export const Sitelayout: React.FC<IProps> = ( {children} ) => {
     <>
       <Header inputValue={inputValue}
               onChangeHandler={onChangeHandler}
-              getCharactersHandler={getCharactersHandler}/>
-      {children}
+              getCharactersHandler={getCharactersHandler}
+              children={<SearchBox inputValue={inputValue}
+                                   onChangeHandler={onChangeHandler}
+                                   getCharactersHandler={getCharactersHandler}/>}/>
+      <Main />
       <Footer />
     </>
   )

@@ -1,0 +1,17 @@
+@import '../styles/mixins.module.scss';
+
+.signInBox {
+  @include Flex(center, center, column);
+  margin: 0;
+  padding: 50px 20px 0;
+}
+
+.title {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.toSignUpButton {
+
+}

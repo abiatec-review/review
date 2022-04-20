@@ -1,12 +1,14 @@
+import React from "react";
+
 import styles from './styles.module.scss'
 
 import { Button, Input } from '../../atoms'
 
 
 interface IProps {
-  inputValue: string
-  onChangeHandler: ()=>void
-  getCharactersHandler: (event: any)=>void
+  inputValue?: string
+  onChangeHandler?: any
+  getCharactersHandler?: (event: any)=>void
 }
 
 export const SearchBox: React.FC<IProps> = ( {inputValue, onChangeHandler, getCharactersHandler})=> {

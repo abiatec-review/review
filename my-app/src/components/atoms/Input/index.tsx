@@ -3,13 +3,14 @@ import React from 'react'
 import styles from './styles.module.scss'
 
 interface IProps {
-  inputValue: string
+  inputValue?: string
   onChangeHandler: any
   name: string
   placeholder: string
+  rest?: any
 }
 
-export const Input: React.FC<IProps> = ( { inputValue, onChangeHandler, name, placeholder } ) => {
+export const Input: React.FC<IProps> & React.HTMLProps<HTMLInputElement> = ( { inputValue, onChangeHandler, name, placeholder, ...rest } ) => {
 
   return ( 
     <input className={styles.headerInputField}
@@ -17,7 +18,7 @@ export const Input: React.FC<IProps> = ( { inputValue, onChangeHandler, name, pl
             onChange={onChangeHandler}
             name={name}
             placeholder={placeholder}
-            >
+            {...rest}>
     </input>
   )
 }
