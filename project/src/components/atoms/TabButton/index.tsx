@@ -6,15 +6,13 @@ const styles = {
   tabButtonStyle: 'text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal',
 };
 
-const TabButton: FC<TabButtonProps> = ({
+export const TabButton: FC<TabButtonProps> = ({
   tabName, id, openTab, openTabHandler,
 }) => (
   <button
     className={`${styles.tabButtonStyle} ${(id === openTab ? 'bg-card-color' : 'bg-white')}`}
-    onClick={() => openTabHandler(id)}
+    onClick={openTabHandler(id)}
   >
     {tabName}
   </button>
 );
-
-export default TabButton;

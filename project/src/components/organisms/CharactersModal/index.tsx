@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 
 import { useTypedSelector } from '../../../utils/hooks/useTypedSelector';
-import Image from '../../atoms/Image';
-import Loading from '../../atoms/Loading';
+import { Image, Loading } from '../../atoms';
 import ModalLayout from '../../layouts/ModalLayout';
 import ModalHeader from '../../moleculs/ModalHeader';
 import { CharacterModalProps } from './type';
@@ -15,25 +14,24 @@ const styles = {
 
 const CharactersModal: FC<CharacterModalProps> = ({ closeModal }) => {
   const { characters, loading } = useTypedSelector((state) => state.character);
-  console.log(loading);
+
+  if (loading) {
+    return (
+      <Loading />
+    );
+  }
+
   return (
     <ModalLayout>
       <div className={styles.modalWrapperStyle}>
         <ModalHeader closeModal={closeModal} title="Characters of Episode" />
-        {loading
-          ? (
-            <Loading />
-          )
-          : (
-            <ul className={styles.charactersListStyle}>
-              {characters.map((item) => (
-                <li className={styles.charactersItemStyle} key={item.id}>
-                  <Image link={item.image} alt={item.name} />
-                </li>
-              ))}
-            </ul>
-          )}
-
+        <ul className={styles.charactersListStyle}>
+          {characters.map((item) => (
+            <li className={styles.charactersItemStyle} key={item.id}>
+              <Image link={item.image} alt={item.name} />
+            </li>
+          ))}
+        </ul>
       </div>
     </ModalLayout>
   );

@@ -6,7 +6,7 @@ const styles = {
   buttonStyle: 'bg-card-color p-1 rounded-md',
 };
 
-const CloseButton: FC<CloseButtonProps> = ({ closeModal }) => (
+export const CloseButton: FC<CloseButtonProps> = ({ closeModal }) => (
   <button
     onClick={closeModal}
     className={styles.buttonStyle}
@@ -14,5 +14,3 @@ const CloseButton: FC<CloseButtonProps> = ({ closeModal }) => (
     Close
   </button>
 );
-
-export default CloseButton;

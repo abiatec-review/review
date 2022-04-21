@@ -1,7 +1,7 @@
 import { apiUrl } from './apiUrl';
 
 export const fetchCards = async (value: string) => {
-  const res = await fetch(`${apiUrl}${value}`);
+  const res = await fetch(`${apiUrl}/character/?${new URLSearchParams({ name: value })}`);
   const data = await res.json();
   return data;
 };

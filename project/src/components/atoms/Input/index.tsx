@@ -6,14 +6,12 @@ const styles = {
   inputStyle: 'outline-none border-input-color border-2 rounded-md p-1 text-2xl',
 };
 
-const Input: FC<InputProps> = ({ value, changeHandler }) => (
+export const Input: FC<InputProps> = ({ value, changeHandler, ...rest }) => (
   <input
     className={styles.inputStyle}
-    type="text"
+    type={rest.type}
     value={value}
     onChange={changeHandler}
-    placeholder="Search Rick or Morty"
+    placeholder={rest.placeholder}
   />
 );
-
-export default Input;

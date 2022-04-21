@@ -14,7 +14,6 @@ function App() {
         <CardList />
       </MainLayout>
     </Provider>
-
   );
 }
 

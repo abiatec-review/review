@@ -10,8 +10,8 @@ const styles = {
   episodeInfoItemStyle: 'grid justify-center grid-rows-1 grid-cols-2 gap-2 border-b-2 border-input-color p-1 cursor-pointer',
 };
 
-const EpisodeInfoItem: FC<EpisodeInfoItemProps> = ({ name, air_date, links }) => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+export const EpisodeInfoItem: FC<EpisodeInfoItemProps> = ({ name, air_date, links }) => {
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const clickHandler = () => {
@@ -25,9 +25,7 @@ const EpisodeInfoItem: FC<EpisodeInfoItemProps> = ({ name, air_date, links }) =>
         <span>{name}</span>
         <span>{air_date}</span>
       </li>
-      {isOpenModal ? (<CharactersModal closeModal={() => setIsOpenModal(false)} />) : null}
+      {isOpenModal && (<CharactersModal closeModal={() => setIsOpenModal(false)} />)}
     </>
   );
 };
-
-export default EpisodeInfoItem;

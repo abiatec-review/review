@@ -6,5 +6,5 @@ export interface ITabsInfo {
 export interface TabsButtonBlockProps {
   tabsInfo: ITabsInfo[],
   openTab: number,
-  openTabHandler: (id: number) => void,
+  openTabHandler: (id: number) => () => void,
 }

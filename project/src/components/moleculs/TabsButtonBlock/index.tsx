@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import TabButton from '../../atoms/TabButton';
+import { TabButton } from '../../atoms';
 import { TabsButtonBlockProps } from './type';
 
 const styles = {

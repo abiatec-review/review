@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import CardTitle from '../../atoms/CardTitle';
-import Image from '../../atoms/Image';
+import { CardTitle, Image } from '../../atoms';
 import Modal from '../../organisms/Modal';
 import { CardProps } from './type';
 
@@ -10,7 +9,7 @@ const styles = {
 };
 
 const Card: FC<CardProps> = ({ cardData }) => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   return (
     <>
@@ -18,7 +17,7 @@ const Card: FC<CardProps> = ({ cardData }) => {
         <Image alt={cardData.name} link={cardData.image} />
         <CardTitle title={cardData.name} />
       </li>
-      {isOpenModal ? <Modal closeModal={() => setIsOpenModal(false)} cardData={cardData} /> : null}
+      {isOpenModal && <Modal closeModal={() => setIsOpenModal(false)} cardData={cardData} />}
     </>
   );
 };

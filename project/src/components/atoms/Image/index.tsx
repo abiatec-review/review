@@ -6,7 +6,7 @@ const styles = {
   imageStyle: 'rounded-2xl mb-2',
 };
 
-const Image: FC<ImageProps> = ({ link, alt }) => (
+export const Image: FC<ImageProps> = ({ link, alt }) => (
   <img
     src={link}
     alt={alt}
@@ -14,5 +14,3 @@ const Image: FC<ImageProps> = ({ link, alt }) => (
   />
 
 );
-
-export default Image;

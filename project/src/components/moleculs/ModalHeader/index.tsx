@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
-import CardTitle from '../../atoms/CardTitle';
-import CloseButton from '../../atoms/CloseButton';
+import { CardTitle, CloseButton } from '../../atoms';
 import { ModalHeaderProps } from './type';
 
 const styles = {

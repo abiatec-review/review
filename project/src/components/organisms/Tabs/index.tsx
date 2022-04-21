@@ -1,4 +1,6 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, {
+  FC, useCallback, useEffect, useState,
+} from 'react';
 
 import { useDispatch } from 'react-redux';
 
@@ -25,14 +27,27 @@ const Tabs: FC<TabsProps> = ({ cardData }) => {
     dispatch(fetchEpisodesAction(cardData.episode));
   }, []);
 
-  const openTabHandler = (id: number) => {
-    setOpenTab(id);
-  };
+  const openTabHandler = (id: number) => () => setOpenTab(id);
+
+  const chooseTabInfo = useCallback(() => {
+    switch (openTab) {
+      case 1: {
+        return (
+          <CardInfo cardData={cardData} />
+        );
+      }
+      case 2: {
+        return (
+          <EpisodeInfo />
+        );
+      }
+    }
+  }, [openTab]);
 
   return (
     <div className={styles.tabsStyle}>
       <TabsButtonBlock tabsInfo={tabsInfo} openTab={openTab} openTabHandler={openTabHandler} />
-      {(openTab === 1) ? (<CardInfo cardData={cardData} />) : (<EpisodeInfo />)}
+      {chooseTabInfo()}
     </div>
   );
 };

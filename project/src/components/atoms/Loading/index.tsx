@@ -4,8 +4,6 @@ const styles = {
   loadingStyle: 'text-center text-2xl',
 };
 
-const Loading: FC = () => (
+export const Loading: FC = () => (
   <div className={styles.loadingStyle}>Loading...</div>
 );
-
-export default Loading;

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { useTypedSelector } from '../../../utils/hooks/useTypedSelector';
-import EpisodeInfoItem from '../../atoms/EpisodeInfoItem';
+import { EpisodeInfoItem } from '../../atoms';
 
 const styles = {
   episodeInfoStyle: 'overflow-auto w-1/2 h-40',

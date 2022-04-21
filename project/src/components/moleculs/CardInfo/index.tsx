@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import CardInfoItem from '../../atoms/CardInfoItem';
+import { CardInfoItem } from '../../atoms';
 import { CardInfoProps } from './type';
 
 const styles = {
@@ -21,12 +21,12 @@ const CardInfo: FC<CardInfoProps> = ({ cardData }) => {
       {requireFields.map((item) => (
         <CardInfoItem
           key={item}
-          field={item}
+          field={item.toUpperCase()}
           data={cardData[item as keyof typeof cardData]}
         />
       ))}
       <CardInfoItem
-        field="location"
+        field={'location'.toUpperCase()}
         data={name}
       />
     </ul>

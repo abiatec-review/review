@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import ReactDOM from 'react-dom';
 
-import Image from '../../atoms/Image';
+import { Image } from '../../atoms';
 import ModalLayout from '../../layouts/ModalLayout';
 import ModalHeader from '../../moleculs/ModalHeader';
 import Tabs from '../Tabs';

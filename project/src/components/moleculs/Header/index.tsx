@@ -6,14 +6,14 @@ import { useDispatch } from 'react-redux';
 
 import { fetchCardsAction } from '../../../redux/actions/card';
 import { useDebouncing } from '../../../utils/hooks/useDebounce';
-import Input from '../../atoms/Input';
+import { Input } from '../../atoms';
 
 const styles = {
   headerStyles: 'p-12 flex justify-center items-center fixed top-0 left-0 right-0 rounded-3xl bg-header-color shadow-header-shadow',
 };
 
 const Header: FC = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string>('');
   const debouncedValue = useDebouncing(value, 1000);
   const dispatch = useDispatch();
 
@@ -29,7 +29,7 @@ const Header: FC = () => {
 
   return (
     <header className={styles.headerStyles}>
-      <Input value={value} changeHandler={changeHandler} />
+      <Input value={value} changeHandler={changeHandler} type="text" placeholder="Search Rick or Morty" />
     </header>
   );
 };
