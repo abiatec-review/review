@@ -9,12 +9,13 @@
         <a @click="profile = false" @keyup="profile = false">Episods</a>
       </header>
       <div>
-        <characters-card :characterProfile="characterProfile" v-if="profile" />
-        <ul v-else>
-          <li v-for="episode in threeEpisodes" :key="threeEpisodes[episode]">
-            <p>{{ episode }}</p>
-          </li>
-        </ul>
+        <CharactersCard v-if="profile" :characterProfile="characterProfile" />
+        <EpisodesCard
+          v-else
+          :profile="profile"
+          :currentEpisodeData="currentEpisodeData"
+          :charsImagesFromCurrentEpisode="charsImagesFromCurrentEpisode"
+        />
       </div>
       <menu>
         <button @click="closeDialog">Close</button>
@@ -24,34 +25,56 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
+// eslint-disable-next-line
+import { computed, defineComponent, ref, watch } from 'vue';
+import axios from 'axios';
 import CharactersCard from './CharactersCard.vue';
+import EpisodesCard from './EpisodesCard.vue';
 
-export default {
-  components: { CharactersCard },
+export default defineComponent({
   name: 'UserDialog',
-  props: ['title', 'open', 'characterProfile'],
+  components: { CharactersCard, EpisodesCard },
+  props: { title: String, open: Boolean, characterProfile: Object },
   emits: ['close'],
   setup(props, { emit }) {
+    const profile = ref(true);
+
+    const allCharProfileEpisodes = computed(() => props.characterProfile.episode);
+    const threeCharEpisodes = computed(() => allCharProfileEpisodes.value?.slice(0, 3));
+    const currentEpisodeData = ref([]);
+    const charsImagesFromCurrentEpisode = ref([]);
+
+    watch(threeCharEpisodes, () => {
+      currentEpisodeData.value = [];
+      threeCharEpisodes.value.forEach(async (episode) => {
+        const { data } = await axios.get(episode);
+        currentEpisodeData.value.push(data);
+        charsImagesFromCurrentEpisode.value = [];
+        const episodeProfileChars = data.characters?.slice(0, 3);
+        episodeProfileChars.forEach(async (char) => {
+          const res = await axios.get(char);
+          const charImage = res.data.image;
+          charsImagesFromCurrentEpisode.value.push(charImage);
+        });
+      });
+      console.log(currentEpisodeData.value);
+    });
+
     function closeDialog() {
       emit('close');
     }
 
-    const profile = ref(true);
-
-    const episodes = computed(() => props.characterProfile.episode);
-    const threeEpisodes = computed(() => episodes.value.slice(0, 3));
-
     return {
       closeDialog,
-      threeEpisodes,
       profile,
+      currentEpisodeData,
+      charsImagesFromCurrentEpisode,
     };
   },
-};
+});
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .backdrop {
   position: fixed;
   top: 0;
@@ -71,7 +94,8 @@ a {
 }
 
 a:hover,
-a:active {
+a:active,
+a:focus {
   color: black;
 }
 
@@ -84,7 +108,7 @@ dialog {
   position: fixed;
   top: 30vh;
   left: calc(50% - 15rem);
-  width: 30rem;
+  width: 45rem;
   background-color: white;
   z-index: 100;
   overflow: hidden;
@@ -128,20 +152,24 @@ button:active {
   border-color: #767676c0;
 }
 
-.modal-enter-active {
-  animation: modal 0.3s ease-out;
+.modal {
+  &-enter-active {
+    animation: modal 0.3s ease-out;
+  }
+
+  &-leave-active {
+    animation: modal 0.3s ease-in reverse;
+  }
 }
 
-.modal-leave-active {
-  animation: modal 0.3s ease-in reverse;
-}
+.backdrop {
+  &-enter-active {
+    animation: backdrop 0.3s ease-out;
+  }
 
-.backdrop-enter-active {
-  animation: backdrop 0.3s ease-out;
-}
-
-.backdrop-leave-active {
-  animation: backdrop 0.3s ease-in reverse;
+  &-leave-active {
+    animation: backdrop 0.3s ease-in reverse;
+  }
 }
 
 @keyframes backdrop {
