@@ -1,6 +1,6 @@
 <template>
   <section>
-    <base-image class="img" :imagePath="characterProfile.image" :alt="characterProfile.name" />
+    <BaseImage class="img" :imagePath="characterProfile.image" :alt="characterProfile.name" />
     <p>
       {{ characterProfile.name }}
     </p>
@@ -18,17 +18,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import BaseImage from './atoms/BaseImage.vue';
 
 export default defineComponent({
-  components: { BaseImage },
   props: {
     characterProfile: {
       type: Object,
       required: true,
     },
   },
-  name: 'CharactersCard',
 });
 </script>
 

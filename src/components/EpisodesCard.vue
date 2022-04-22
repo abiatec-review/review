@@ -10,7 +10,7 @@
       </ul>
       <ul v-if="!profile" class="display-images">
         <li class="display-image" v-for="charImg in charsImagesFromCurrentEpisode" :key="charImg">
-          <base-image class="image" :imagePath="charImg" :alt="'image'" />
+          <BaseImage class="image" :imagePath="charImg" :alt="'image'" />
         </li>
       </ul>
     </div>
@@ -33,7 +33,6 @@ export default defineComponent({
     },
     profile: Boolean,
   },
-  name: 'CharactersCard',
 });
 </script>
 

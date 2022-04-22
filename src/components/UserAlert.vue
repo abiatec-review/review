@@ -32,7 +32,6 @@ import CharactersCard from './CharactersCard.vue';
 import EpisodesCard from './EpisodesCard.vue';
 
 export default defineComponent({
-  name: 'UserDialog',
   components: { CharactersCard, EpisodesCard },
   props: { title: String, open: Boolean, characterProfile: Object },
   emits: ['close'],

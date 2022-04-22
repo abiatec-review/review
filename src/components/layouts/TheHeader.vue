@@ -1,7 +1,7 @@
 <template>
   <header>
-    <base-image :imagePath="imagePath" logo alt="logo" />
-    <input-search></input-search>
+    <BaseImage :imagePath="imagePath" logo alt="logo" />
+    <InputSearch />
   </header>
 </template>
 
@@ -11,7 +11,6 @@ import InputSearch from '../molecules/InputSearch.vue';
 
 export default defineComponent({
   components: { InputSearch },
-  name: 'TheHeader',
   setup() {
     return { imagePath: 'spinner.png' };
   },

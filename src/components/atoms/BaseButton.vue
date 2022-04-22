@@ -4,14 +4,6 @@
   </button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'BaseButton',
-});
-</script>
-
 <style scoped lang="scss">
 button {
   height: 2.325rem;

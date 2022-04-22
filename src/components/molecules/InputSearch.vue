@@ -1,17 +1,13 @@
 <template>
-  <base-input type="text" placeholder="Enter a character's name" v-model.trim="modelValue" />
-  <base-button @fetchNamedSearch="submit" :disabled="!modelValue">Submit</base-button>
+  <BaseInput type="text" placeholder="Enter a character's name" v-model.trim="modelValue" />
+  <BaseButton @fetchNamedSearch="submit" :disabled="!modelValue">Submit</BaseButton>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import BaseButton from '../atoms/BaseButton.vue';
-import BaseInput from '../atoms/BaseInput.vue';
 import { useStore } from '../../store';
 
 export default defineComponent({
-  components: { BaseInput, BaseButton },
-  name: 'InputSearch',
   setup() {
     const store = useStore();
     const modelValue = ref('');
@@ -29,5 +25,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang="scss"></style>

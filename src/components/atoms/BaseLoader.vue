@@ -11,14 +11,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'BaseLoader',
-});
-</script>
-
 <style lang="scss" scoped>
 .lds-roller {
   display: inline-block;

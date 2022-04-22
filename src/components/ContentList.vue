@@ -5,7 +5,7 @@
       <li v-for="item in orderedByCharNamesItems" :key="item.id">
         <div class="card">
           <p>{{ item.name }}</p>
-          <base-image :imagePath="item.image" iconOpacity :alt="item.name" @click="showAlert(item)" />
+          <BaseImage :imagePath="item.image" iconOpacity :alt="item.name" @click="showAlert(item)" />
         </div>
       </li>
     </transition-group>
@@ -25,7 +25,6 @@ import { useStore } from '@/store';
 const BaseLoader = defineAsyncComponent(() => import('@/components/atoms/BaseLoader.vue'));
 
 export default defineComponent({
-  name: 'ContentList',
   components: {
     UserAlert,
     BaseLoader,

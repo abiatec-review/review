@@ -1,7 +1,7 @@
 <template>
   <div>
-    <the-header />
-    <content-list />
+    <TheHeader />
+    <ContentList />
   </div>
 </template>
 
@@ -11,7 +11,6 @@ import TheHeader from '@/components/layouts/TheHeader.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'MainPage',
   components: {
     TheHeader,
     ContentList,
