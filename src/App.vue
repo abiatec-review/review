@@ -38,12 +38,14 @@ nav {
   }
 }
 
-.route-enter-active {
-  animation: opacity 1s;
-}
+.route {
+  &-enter-active {
+    animation: opacity 1s;
+  }
 
-.route-leave-active {
-  animation: opacity 1s ease-in;
+  &-leave-active {
+    animation: opacity 1s ease-in;
+  }
 }
 
 @keyframes opacity {

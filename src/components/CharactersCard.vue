@@ -22,7 +22,12 @@ import BaseImage from './atoms/BaseImage.vue';
 
 export default defineComponent({
   components: { BaseImage },
-  props: { characterProfile: Object },
+  props: {
+    characterProfile: {
+      type: Object,
+      required: true,
+    },
+  },
   name: 'CharactersCard',
 });
 </script>
