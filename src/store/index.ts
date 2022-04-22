@@ -1,7 +1,7 @@
 import { InjectionKey } from 'vue';
 import { createStore, Store, useStore as baseUseStore } from 'vuex';
-import axios from 'axios';
 import { State } from '../modules/types';
+import fetchCharactersList from '../composables/fetchCharactersList';
 
 // eslint-disable-next-line
 export const key: InjectionKey<Store<State>> = Symbol();
@@ -43,13 +43,12 @@ export const store = createStore<State>({
   },
   actions: {
     async fetchFirstData({ commit, state }) {
-      const page = state.currentListPage;
+      const page = 1;
       const name = state.searchedCharactersName;
       try {
         commit('switchFetchingData', true);
-        const { data } = await axios.get(`https://rickandmortyapi.com/api/character?name=${name}&page=${page}`);
-        const results = await data.results;
-        commit('setCharactersList', results);
+        const charactersList = await fetchCharactersList(page, name);
+        commit('setCharactersList', charactersList);
         commit('switchFetchingData');
       } catch {
         throw new Error('There is on such an characher. Try another one!');
@@ -62,10 +61,9 @@ export const store = createStore<State>({
         // eslint-disable-next-line
         page++;
         commit('switchFetchingData', true);
-        const { data } = await axios.get(`https://rickandmortyapi.com/api/character?name=${name}&page=${page}`);
-        const results = await data.results;
+        const charactersList = await fetchCharactersList(page, name);
         commit('setCurrentPage', page);
-        commit('addCharactersList', results);
+        commit('addCharactersList', charactersList);
         commit('switchFetchingData');
       } catch {
         commit('setCurrentPage', 1);
