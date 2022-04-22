@@ -18,8 +18,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import BaseImage from './atoms/BaseImage.vue';
 
 export default defineComponent({
+  components: { BaseImage },
   props: {
     characterProfile: {
       type: Object,

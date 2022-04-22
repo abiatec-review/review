@@ -6,8 +6,11 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useStore } from '../../store';
+import BaseButton from '../atoms/BaseButton.vue';
+import BaseInput from '../atoms/BaseInput.vue';
 
 export default defineComponent({
+  components: { BaseButton, BaseInput },
   setup() {
     const store = useStore();
     const modelValue = ref('');

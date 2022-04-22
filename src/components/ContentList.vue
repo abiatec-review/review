@@ -21,6 +21,7 @@ import { computed, defineAsyncComponent, defineComponent, onMounted, ref } from 
 import UserAlert from '@/components/UserAlert.vue';
 import { Item } from '@/modules/types';
 import { useStore } from '@/store';
+import BaseImage from './atoms/BaseImage.vue';
 
 const BaseLoader = defineAsyncComponent(() => import('@/components/atoms/BaseLoader.vue'));
 
@@ -28,6 +29,7 @@ export default defineComponent({
   components: {
     UserAlert,
     BaseLoader,
+    BaseImage,
   },
   setup() {
     const store = useStore();

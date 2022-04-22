@@ -7,10 +7,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import BaseImage from '../atoms/BaseImage.vue';
 import InputSearch from '../molecules/InputSearch.vue';
 
 export default defineComponent({
-  components: { InputSearch },
+  components: { InputSearch, BaseImage },
   setup() {
     return { imagePath: 'spinner.png' };
   },

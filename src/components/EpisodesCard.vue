@@ -20,8 +20,10 @@
 <script lang="ts">
 import { Episode } from '@/modules/types';
 import { defineComponent, PropType } from 'vue';
+import BaseImage from './atoms/BaseImage.vue';
 
 export default defineComponent({
+  components: { BaseImage },
   props: {
     currentEpisodeData: {
       type: Array as PropType<Episode[]>,
