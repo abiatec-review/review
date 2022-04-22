@@ -1,34 +1,42 @@
 <template>
-  <user-alert :open="alertIsVisible" @close="hideAlert" :characterProfile="selectedItem"> </user-alert>
+  <UserAlert :open="alertIsVisible" @close="hideAlert" :characterProfile="selectedItem"> </UserAlert>
   <section class="container">
     <transition-group mode="out-in" tag="ul" name="user-list">
-      <li v-for="item in items" :key="item.id">
+      <li v-for="item in orderedByCharNamesItems" :key="item.id">
         <div class="card">
           <p>{{ item.name }}</p>
           <base-image :imagePath="item.image" iconOpacity :alt="item.name" @click="showAlert(item)" />
         </div>
       </li>
     </transition-group>
-    <div v-if="items.length < 1">There are no characters yet. Try to input any name above!</div>
+    <BaseLoader v-if="isFetching" />
+    <div v-if="items.length < 1 && !isFetching">There are no characters yet. Try to input any name above!</div>
+    <div class="infinite-scroll" ref="infiniteScroll"></div>
   </section>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue';
+// eslint-disable-next-line
+import { computed, defineAsyncComponent, defineComponent, onMounted, ref } from 'vue';
 import UserAlert from '@/components/UserAlert.vue';
 import { Item } from '@/modules/types';
 import { useStore } from '@/store';
+
+const BaseLoader = defineAsyncComponent(() => import('@/components/atoms/BaseLoader.vue'));
 
 export default defineComponent({
   name: 'ContentList',
   components: {
     UserAlert,
+    BaseLoader,
   },
   setup() {
     const store = useStore();
 
     const alertIsVisible = ref(false);
     const selectedItem = ref({});
+    const infiniteScroll = ref(null);
+    const isFetching = computed(() => store.state.isFetchingData);
 
     function showAlert(item: Item) {
       alertIsVisible.value = true;
@@ -40,14 +48,23 @@ export default defineComponent({
       alertIsVisible.value = false;
     }
 
-    const items = computed(() => store.getters.getCharactersList);
+    const items = computed<Item[]>(() => store.getters.getCharactersList);
+    const orderedByCharNamesItems = computed(() => [...items.value].sort((a, b) => (a.name > b.name ? 1 : -1)));
 
-    window.onscroll = () => {
-      const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
-      if (bottomOfWindow) {
-        store.dispatch('fetchExtraData');
-      }
-    };
+    onMounted(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && items.value.length) {
+            console.log('Have watched');
+            store.dispatch('fetchExtraData');
+          } else {
+            console.log('I am out');
+          }
+        });
+      });
+
+      observer.observe(infiniteScroll.value!);
+    });
 
     return {
       items,
@@ -55,6 +72,9 @@ export default defineComponent({
       hideAlert,
       alertIsVisible,
       selectedItem,
+      infiniteScroll,
+      isFetching,
+      orderedByCharNamesItems,
     };
   },
 });
@@ -64,12 +84,9 @@ export default defineComponent({
 .container {
   text-align: center;
   padding-top: 150px;
-  padding-bottom: 50px;
 }
 
 ul {
-  // display: flex;
-  // flex-wrap: wrap;
   justify-content: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -84,20 +101,28 @@ p {
   text-transform: uppercase;
 }
 
-.user-list-enter-active,
-.user-list-leave-active {
-  transition: opacity 0.5s;
-}
-.user-list-enter-from,
-.user-list-leave-to {
-  opacity: 0;
-}
-.user-list-leave-from,
-.user-list-enter-to {
-  opacity: 1;
+.infinite-scroll {
+  height: 50px;
 }
 
-.user-list-move {
-  transition: trasform 0.8s ease;
+.user-list {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 0.5s;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+  }
+
+  &-leave-from,
+  &-enter-to {
+    opacity: 1;
+  }
+
+  &-move {
+    transition: trasform 0.8s ease;
+  }
 }
 </style>

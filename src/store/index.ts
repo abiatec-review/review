@@ -11,6 +11,7 @@ export const store = createStore<State>({
     characterList: [],
     searchedCharactersName: '',
     currentListPage: 1,
+    isFetchingData: false,
   },
   getters: {
     getCharactersList(state) {
@@ -18,6 +19,9 @@ export const store = createStore<State>({
     },
     getSearchedCharactersName(state) {
       return state.searchedCharactersName;
+    },
+    getIsFetchingData(state) {
+      return state.isFetchingData;
     },
   },
   mutations: {
@@ -33,15 +37,20 @@ export const store = createStore<State>({
     setCurrentPage(state, page) {
       state.currentListPage = page;
     },
+    switchFetchingData(state, switcher = false) {
+      state.isFetchingData = switcher;
+    },
   },
   actions: {
     async fetchFirstData({ commit, state }) {
       const page = state.currentListPage;
       const name = state.searchedCharactersName;
       try {
+        commit('switchFetchingData', true);
         const { data } = await axios.get(`https://rickandmortyapi.com/api/character?name=${name}&page=${page}`);
         const results = await data.results;
         commit('setCharactersList', results);
+        commit('switchFetchingData');
       } catch {
         throw new Error('There is on such an characher. Try another one!');
       }
@@ -52,10 +61,12 @@ export const store = createStore<State>({
       try {
         // eslint-disable-next-line
         page++;
+        commit('switchFetchingData', true);
         const { data } = await axios.get(`https://rickandmortyapi.com/api/character?name=${name}&page=${page}`);
         const results = await data.results;
         commit('setCurrentPage', page);
         commit('addCharactersList', results);
+        commit('switchFetchingData');
       } catch {
         commit('setCurrentPage', 1);
         throw new Error('There is no more characters by this name!');
