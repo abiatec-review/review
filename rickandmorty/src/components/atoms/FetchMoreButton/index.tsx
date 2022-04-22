@@ -1,17 +1,13 @@
 import styles from './style.module.scss';
 
 interface IProps{
-    visible: number;
-    setVisible: (visible: number) => void
+    clickHandler: () => void
 };
 
-export const FetchMoreButton:React.FC<IProps> = ({visible, setVisible}) => {
+export const FetchMoreButton:React.FC<IProps> = ({clickHandler}) => {
 
-    const fetchMore = () => {
-        setVisible(visible + 8)
-    }
 
     return (
-        <button className={styles.button} onClick={fetchMore}>Fetch More</button>
+        <button className={styles.button} onClick={clickHandler}>Fetch More</button>
     )
 }

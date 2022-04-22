@@ -1,3 +1,4 @@
+import {TCharacter} from "../../models/character";
 export const GET_CHARACTERS = 'GET_CHARACTERS';
 export const SET_CHARACTERS = 'SET_CHARACTERS';
 export const GET_EPISODES = 'GET_EPISODES';
@@ -14,7 +15,7 @@ export const getCharacters = (payload: {characterName: string}) => {
     }
 }
 
-export const setCharacters = (payload: string) => {
+export const setCharacters = (payload: {results: Array<TCharacter<string>>, info: {}}) => {
     return {
         type: SET_CHARACTERS,
         payload

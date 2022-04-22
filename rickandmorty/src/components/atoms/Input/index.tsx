@@ -1,11 +1,14 @@
 import styles from './style.module.scss';
+import {RefObject} from "react";
 
-interface IProps{value: string,
-    onChange:(e: any) => void}
+interface IProps{
+    inputRef: RefObject<HTMLInputElement>
+}
 
-export const Input:React.FC<IProps> = ({value, onChange}) => {
+
+export const Input:React.FC<IProps> = ({inputRef}) => {
 
     return (
-        <input value={value} onChange={onChange} className={styles.input}/>
+        <input ref={inputRef} className={styles.input}/>
     )
 }

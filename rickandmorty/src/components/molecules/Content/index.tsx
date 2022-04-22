@@ -5,7 +5,7 @@ import { EpisodeItem } from "../../atoms/EpisodeItem";
 import {FetchMoreButton} from "../../atoms/FetchMoreButton";
 import {Modal} from "../../atoms";
 import {useDispatch} from "react-redux";
-import {deleteEpisodesCharacter, getEpisodes } from "../../../redux/actions";
+import {deleteEpisodesCharacter, getCharacters, getEpisodes} from "../../../redux/actions";
 import {TEpisode} from "../../../models/episode";
 import {TCharacter} from "../../../models/character";
 
@@ -21,13 +21,12 @@ interface IData{
 }
 
 interface IProps{
+    inputRef: React.RefObject<HTMLInputElement>
     data: IData;
-    visible: number;
     dataEpisodes: IDataEpisodes;
-    setVisible: (visible: number) => void;
 }
 
-export const Content:React.FC<IProps> = ({data, dataEpisodes, visible, setVisible}) => {
+export const Content:React.FC<IProps> = ({data, info, dataEpisodes, inputRef}) => {
 
 
     const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -60,17 +59,23 @@ export const Content:React.FC<IProps> = ({data, dataEpisodes, visible, setVisibl
         }
     }
 
+    const fetchMoreCharacters = () => {
+        dispatch(getCharacters( {characterName: inputRef?.current?.value as string}  ))
+    }
+
 
     return (
         <>
             <div className={styles.gallery}>
-                { data.characters.slice(0, visible).map((item: TCharacter<string>) => (
+                { data.map((item: TCharacter<string>) => (
                     <ContentItem key={item.id} showModal={() => setModalVisible(true)} setId={setId} item={item} />
                 ))}
             </div>
-            {visible < data.characters.length &&
-                <FetchMoreButton visible={visible} setVisible={setVisible}/>
+
+            {data.length > 0 && info !== null &&
+                <FetchMoreButton clickHandler={fetchMoreCharacters}/>
             }
+
             {modalVisible &&
                 <Modal showModal={showModal}>
                     <div className={styles.tabs}>

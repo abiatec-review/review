@@ -1,4 +1,4 @@
-import {takeEvery, put, all} from 'redux-saga/effects';
+import {takeEvery, put, all, select} from 'redux-saga/effects';
 
 import {
     GET_CHARACTERS,
@@ -9,8 +9,9 @@ import {
 } from '../actions';
 
 
-const getData = async (value:string) => {
-    return await fetch(`https://rickandmortyapi.com/api/character/?name=${value}`)
+const getData = async (value:string, page:number) => {
+
+    return await fetch(`https://rickandmortyapi.com/api/character/?page=${page}&name=${value}`)
         .then(res => (res.ok)
            ? res.json()
         : Promise.reject(res.status))
@@ -49,9 +50,11 @@ const getImages = async (value:string[]) => {
 function* getCharactersSaga({payload}: {payload: {characterName: string}} ): Generator<any, any, any> {
 
     try {
-        const characters = yield getData(payload.characterName);
+        const {page, characters} = yield select((state: any) => state.characters);
 
-        yield put(setCharacters(characters.results))
+        const newCharacters = yield getData(payload.characterName, page);
+
+        yield put(setCharacters({results: [...characters, ...newCharacters.results], info: newCharacters.info}))
 
     } catch(err: any) {
         console.log(err.message)

@@ -18,7 +18,7 @@ export const ContentItem:React.FC<IProps> = ({item, setId, showModal }) => {
     return (
           <>
               <figure className={styles.figureCont} key={item?.id} onClick={propId}>
-                  <img src={item?.image} alt={item?.name}/>
+                  <img className={styles.figureContImg} src={item?.image} alt={item?.name}/>
                   <div className={styles.figcaptionCont}>
                       <figcaption>
                           {item?.name}
