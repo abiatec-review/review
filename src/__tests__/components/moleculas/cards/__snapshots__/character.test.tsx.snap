@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharacterCard render 1`] = `
+Array [
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "rgba(175, 224, 209, 0.8)",
+        "borderRadius": 20,
+        "flex": 1,
+        "flexDirection": "column",
+        "margin": 10,
+        "padding": 12,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "test",
+        }
+      }
+      style={
+        Object {
+          "aspectRatio": 1,
+          "borderRadius": 20,
+          "marginBottom": 10,
+          "width": "100%",
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "black",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      test
+    </Text>
+  </View>,
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  />,
+]
+`;

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner render 1`] = `
+<ActivityIndicator
+  animating={true}
+  color="#2196F3"
+  size="large"
+  style={
+    Object {
+      "margin": 20,
+    }
+  }
+/>
+`;

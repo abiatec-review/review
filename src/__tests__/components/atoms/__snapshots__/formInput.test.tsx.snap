@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormInput render with error 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderRadius": 20,
+      },
+      undefined,
+    ]
+  }
+>
+  <TextInput
+    style={
+      Array [
+        Object {
+          "borderRadius": 20,
+          "borderWidth": 2,
+          "color": "black",
+          "fontSize": 18,
+          "padding": 10,
+        },
+        Object {
+          "borderColor": "#e91e63",
+        },
+        undefined,
+      ]
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#e91e63",
+        "textAlign": "right",
+      }
+    }
+  >
+    test
+  </Text>
+</View>
+`;
+
+exports[`FormInput render without error 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderRadius": 20,
+      },
+      undefined,
+    ]
+  }
+>
+  <TextInput
+    style={
+      Array [
+        Object {
+          "borderRadius": 20,
+          "borderWidth": 2,
+          "color": "black",
+          "fontSize": 18,
+          "padding": 10,
+        },
+        Object {
+          "borderColor": "#2196F3",
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
+`;

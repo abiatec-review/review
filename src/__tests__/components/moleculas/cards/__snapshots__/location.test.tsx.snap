@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocationCard render 1`] = `
+Array [
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(175, 224, 209, 0.8)",
+        "borderRadius": 20,
+        "flex": 1,
+        "height": 170,
+        "justifyContent": "space-between",
+        "margin": 10,
+        "padding": 15,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 18,
+            "marginRight": 20,
+          }
+        }
+      >
+        Name:
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        test
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 18,
+            "marginRight": 20,
+          }
+        }
+      >
+        Type:
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        test
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 18,
+            "marginRight": 20,
+          }
+        }
+      >
+        Dimension:
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        test
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 18,
+            "marginRight": 20,
+          }
+        }
+      >
+        Created:
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        test
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 18,
+            "marginRight": 20,
+          }
+        }
+      >
+        Residents:
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "flex": 1,
+            "fontSize": 18,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        1
+      </Text>
+    </View>
+  </View>,
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  />,
+]
+`;
