@@ -1,0 +1,43 @@
+@import "styles/mixins.module.scss";
+
+.block {
+  @include size(200px, 150px);
+  @include position(absolute, 110px);
+  @include flex(column, center);
+
+  background-color: $white-color;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px 6px $box-shadow;
+}
+
+.button {
+  background-color:$loader-color;
+  width: 30%;
+  position: relative;
+  margin: 5px;
+  font-size: 10pt;
+  padding: 4px 0;
+}
+.ButtonBlock {
+  @include flex(row, center, flex-end);
+  width: 100%;
+}
+
+.field {
+  margin: 5px;
+  font-size: 12pt;
+  word-break: break-all;
+}
+
+.input {
+  border: none;
+  outline: 1px solid $blue-color;
+  border-radius: 4px;
+  padding-left: 5px;
+  font-size: 10pt;
+  height: 20px;
+
+  &::placeholder {
+    color: $blue-color-hover;
+  }
+}

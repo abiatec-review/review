@@ -1,0 +1,20 @@
+@import "styles/mixins.module.scss";
+.content {
+  @include flex(column, center, space-around);
+  @include size(300px, 100px);
+  @include position(relative, '', '', '', -400px, 20);
+
+  margin: auto;
+  background-color: $white-color;
+  border-radius: 5px;
+  border: 1px solid $gray-color;
+  font-size: 12pt;
+  button {
+    margin-left: 10px;
+    font-size: 12pt;
+  }
+
+  animation-duration: 0.55s;  
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+}

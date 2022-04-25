@@ -1,0 +1,19 @@
+@import "styles/mixins.module.scss";
+
+.active {
+  color: $tab-color;
+  text-decoration: underline;
+}
+.tab {
+  font-size: $font-h3;
+  margin-right: 20px;
+  
+  &:hover {
+    cursor: pointer;
+    color: $tab-color;
+  }
+
+  @include phone() {
+    font-size: 4rem;
+  }
+}

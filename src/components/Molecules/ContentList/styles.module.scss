@@ -1,0 +1,17 @@
+@import "styles/mixins.module.scss";
+
+.link {
+  margin: 35px 0;
+  font-size: 20pt;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: $links-color;
+  }
+}
+
+.textBlock {
+  @include flex(column, center);
+  font-size: 20pt;
+}

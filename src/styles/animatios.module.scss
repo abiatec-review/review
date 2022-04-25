@@ -1,0 +1,43 @@
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+@keyframes Header-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInDown { 
+  0% {       
+      opacity: 0;
+      transform: translate3d(0px, 100%, 0px);
+  }
+  100% {
+      opacity: 1;
+      transform: none;
+  }
+}
+
+@keyframes blinker {
+  0% { opacity: 1.0; }
+  25% { opacity: 0.7; }
+  50% { opacity: 0.5; }
+  75% {opacity: 0.7;}
+  100% { opacity: 1; }
+}

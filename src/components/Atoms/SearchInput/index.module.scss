@@ -1,0 +1,31 @@
+@import "styles/mixins.module.scss";
+
+.SearchInput {
+  @include flex('', center, center);
+}
+
+.input {
+  
+
+  width: 40vw;
+  font-size: 1.5rem;
+  border-radius: 0.25rem;
+  outline: 0;
+  border: 0.1rem solid $button-color;
+  margin-right: 1rem;
+
+  @include phone() {
+    @include size(65vw, 5rem);
+
+    margin: 0 0 15px 0;
+    font-size: 3.5rem;
+    border-radius: 0.25rem;
+    outline: 0;
+    border: 0.1rem solid $button-color;
+    margin-right: 1rem;
+  }
+}
+
+.disabledInput {
+  background-color: $disabled-input-color;
+}

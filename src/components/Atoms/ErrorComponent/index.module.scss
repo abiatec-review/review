@@ -1,0 +1,16 @@
+@import "styles/mixins.module.scss";
+
+.image {
+  @include size(300px, 300px);
+  
+  margin: 50px 0;
+  border-radius: 50%;
+}
+
+.text {
+  font-size: $font-h1;
+ }
+
+.block {
+  @include flex(column, center);
+}

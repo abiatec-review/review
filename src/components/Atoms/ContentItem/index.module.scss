@@ -1,0 +1,36 @@
+@import "styles/mixins.module.scss";
+
+.item {
+  margin: 50px 35px;
+  @include flex(column, center, center);
+
+
+  @include phone() {
+    margin: 10px;
+  }
+}
+
+.image {
+  border-radius: 50%;
+
+  @include phone() {
+    width: 22vw;
+  }
+  
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition-duration: 500ms;
+  }
+}
+
+.itemName {
+  margin-top: 30px;
+  font-size: $font-header;
+  text-align: center;
+
+  @include phone() {
+    margin-top: 10px;
+    width: 100px;
+  }
+}

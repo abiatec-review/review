@@ -1,0 +1,35 @@
+@import "../../../styles/mixins.module.scss";
+
+.button {
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  outline: 0;
+  border: 0;
+  background: $button-color;
+  color: $white-color;
+  font-size: $font-span;
+  
+  &:focus {
+    outline: 0;
+    border: 0;
+  }
+
+  &:hover {
+    background: $button-color-hover;
+    cursor: pointer;
+    transition: background-color 200ms ease-in-out;
+  }
+
+  @include phone() {
+    @include size(65vw, 5rem);
+    
+    font-size: 3.5rem;
+  }
+}
+
+.disable {
+  &:hover {
+    background: $button-color;
+    cursor:auto;
+  }
+}

@@ -1,0 +1,36 @@
+@import './variables.module.scss';
+@import './animatios.module.scss';
+
+@mixin flex ($direction: '', $align: '', $justify: '', $wrap: '') {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  flex-wrap: $wrap;
+}
+
+@mixin size($width: 100%, $height: 100%) {
+  width: $width;
+  height: $height;
+}
+
+@mixin position($position: '', $top: '', $left: '', $right: '', $bottom: '', $z-index: '') {
+  position: $position;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+  z-index: $z-index;
+}
+
+@mixin phone() {
+  @media (max-width: $phone-width) {
+    @content;
+  }
+}
+
+@mixin small-phone() {
+  @media (max-width: $small-phone-width) {
+    @content;
+  }
+}
