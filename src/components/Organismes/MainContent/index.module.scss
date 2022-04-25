@@ -2,8 +2,9 @@
 
 .content {
   margin-top: 11vw;
-
-  @include flex(column, center, center);
+  min-height: 75vh;
+  height: auto;
+  @include flex(column, center);
 
   @include phone() {
     margin-top: 50vw;

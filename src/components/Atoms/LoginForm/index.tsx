@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useCookies } from 'react-cookie';
 import classNames from "classnames"
@@ -39,7 +39,7 @@ export const LoginForm: React.FC<IProps> = ({isSignIn, setIsSignIn}) => {
   const [validPassword, setValidPassword] = useState<string>('');
 
   const submitForm = (callback: callbackType) => () =>{ 
-    if (name && surname && age) {
+    if (name || surname || age) {
       setCookie(loginField, {name, surname, age})
     }
     dispatch(callback);
@@ -59,9 +59,8 @@ export const LoginForm: React.FC<IProps> = ({isSignIn, setIsSignIn}) => {
     if(callbackValidation) {
       callbackValidation('')
     }
-
     callback(e.currentTarget.value);
-    
+
     if (error) {
       dispatch({
         type: LOAD_ANY_ERROR,
@@ -88,11 +87,11 @@ export const LoginForm: React.FC<IProps> = ({isSignIn, setIsSignIn}) => {
 
   const checkPasswordValidation = () => {
     switch (true) {
-      case !!passwordField: {
+      case !passwordField: {
         setValidPassword(validationErrorsText.EMPTY_FIELD);
         break;
       }
-      case passwordField.length < minimalPasswordLength: {
+      case passwordField.length < minimalPasswordLength && !isSignIn: {
         setValidPassword(validationErrorsText.INVALID_PASSWORD);
         break;
       }

@@ -20,7 +20,12 @@ const ContentList: React.FC<IProps>= ({heroes, characters, setSelectedHeroId, us
   const render = () => {
     switch(true) {
       case !!userMail && !heroes.isError && !heroes?.isLoading: {
-        return <ContentElements  isShowFetchButton={isShowFetchButton} characters={characters} setSelectedHeroId={setSelectedHeroId} fetchMore={fetchMore}/>
+        return <ContentElements
+            isShowFetchButton={isShowFetchButton}
+            characters={characters}
+            setSelectedHeroId={setSelectedHeroId}
+            fetchMore={fetchMore}
+        />
       }
       case !!userMail && heroes?.isLoading: {
         return <Loader />

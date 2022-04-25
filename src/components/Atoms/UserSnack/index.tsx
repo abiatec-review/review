@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { Button } from '../Button';
 
@@ -24,9 +24,9 @@ export const UserSnack: React.FC<IProps>= ({userMail, user, setCookie, setIsUser
   const [isSurnameChange, setIsSurnameChange] = useState<boolean>(false)
   const [isAgeChange, setIsAgeChange] = useState<boolean>(false)
 
-  const [name, setName] = useState<string>(user?.name || '')
-  const [surname, setSurname] = useState<string>(user?.surname || '')
-  const [age, setAge] = useState<string>(user?.age || '')
+  const [name, setName] = useState<string>(user?.name!)
+  const [surname, setSurname] = useState<string>(user?.surname!)
+  const [age, setAge] = useState<string>(user?.age!)
 
   const changeOnBlur = (callback: (value: boolean) => void) => () => {
     setCookie(userMail, {name, surname, age});
@@ -34,7 +34,7 @@ export const UserSnack: React.FC<IProps>= ({userMail, user, setCookie, setIsUser
   }
 
   return (
-    <div className={styles.block}>
+    <div className={styles.block} onClick={(e) => e.stopPropagation()}>
       <div className={styles.ButtonBlock}>
         <Button className={styles.button} onClick={() => setIsUserSlackOpen(false)}>Close</Button>
       </div>
