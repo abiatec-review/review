@@ -1,36 +1,45 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { loadMoreHeroesAC } from "redux/actions/heroActions";
 import { getEpisodeSelector } from "redux/selectors/episodeSelectors";
 import { getUserMail } from "redux/selectors/userSelectors";
 import { IContentItem } from "redux/reducers/HeroesReducer/types";
-import { getHeroesSelector, getHeroNameSelector, getNextPageSelector } from "redux/selectors/heroesSelectors";
+import {
+  getFilteredHeroesSelector,
+  getHeroesSelector,
+  getHeroNameSelector,
+  getNextPageSelector,
+  getSortedHeroesSelector
+} from "redux/selectors/heroesSelectors";
 
 import { ContentList, HeaderBlock, ModalHero } from "components/Molecules";
+import {Button, SortBlock, FilterBlock} from "components/Atoms";
 
 import { defineNextPage } from "utils/validator";
 
 import styles from './index.module.scss';
+import {overflowHidden} from "../../../utils/helpers";
+import {useCharacterModal} from "../../../utils/hooks";
 
 const MainContent = () => {
 
   const heroes = useSelector(getHeroesSelector)
+
+  const allHeroes = useSelector(getFilteredHeroesSelector)
   const episode = useSelector(getEpisodeSelector)
   const nextPage = useSelector(getNextPageSelector)
   const name = useSelector(getHeroNameSelector)
   const userMail = useSelector(getUserMail)
-
   const dispatch = useDispatch();
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [selectedHeroId, setSelectedHeroId] = useState<string>('');
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState<boolean>(false)
+  const {openModal, selectedHeroId, isModalOpen, setIsModalOpen } = useCharacterModal()
 
-  const openModal = (id:string) => () => {
-    setSelectedHeroId(id)
-    setIsModalOpen(true)
-  }
-    
+  useEffect(() => {
+    overflowHidden(isFilterModalOpen)
+  }, [isFilterModalOpen])
+
   const fetchMore = () => {
     dispatch(loadMoreHeroesAC({
       name: name || '', 
@@ -38,7 +47,7 @@ const MainContent = () => {
     }))
   }
 
-  const isShowFetchButton = !heroes?.isLoading && !heroes.isError && heroes?.heroes?.length > 19 && nextPage;
+  const isShowFetchButton = !heroes?.isLoading && !heroes?.isError && !!allHeroes?.length && nextPage;
   
   return (
     <div>
@@ -46,14 +55,20 @@ const MainContent = () => {
         {isModalOpen && 
         <ModalHero 
           episode={episode} 
-          hero={heroes.heroes.find((hero: IContentItem) => hero.id === selectedHeroId)} 
+          hero={allHeroes.find((hero: IContentItem) => hero.id === selectedHeroId)}
           setIsModalOpen={() => setIsModalOpen(false)} 
         />}
         <div className={styles.content}>
+          <SortBlock />
+          {isFilterModalOpen && <FilterBlock closeFilterModal={() => setIsFilterModalOpen(false)}/>}
+          {!isFilterModalOpen
+            && <Button
+                className={styles.buttonFilter}
+                onClick={() => setIsFilterModalOpen(true)}>Open filtration</Button>}
           <ContentList 
             heroes={heroes} 
             userMail={userMail} 
-            characters={heroes?.heroes} 
+            characters={allHeroes}
             setSelectedHeroId={openModal} 
             fetchMore={fetchMore} 
             isShowFetchButton={isShowFetchButton}

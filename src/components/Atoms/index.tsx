@@ -11,3 +11,5 @@ export {Tabs} from './Tabs';
 export {LoginForm} from './LoginForm'
 export {AcceptSnack} from './AcceptSnack';
 export {UserSnack} from './UserSnack';
+export {SortBlock} from './SortBlock';
+export {FilterBlock} from './FilterBlock';

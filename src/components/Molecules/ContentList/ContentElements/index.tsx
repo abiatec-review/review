@@ -1,4 +1,7 @@
+import React from "react";
+
 import { Button, ContentItem } from "components/Atoms"
+
 import { IContentItem } from "redux/reducers/HeroesReducer/types"
 
 import styles from './styles.module.scss'
@@ -11,12 +14,12 @@ export interface IProps {
 }
 
 export const ContentElements: React.FC<IProps> = ({isShowFetchButton, characters, setSelectedHeroId, fetchMore}) => {
-
   const fetchButton = isShowFetchButton && <Button className={styles.button} onClick={fetchMore}>Fetch more</Button>
   return (
     <>
       <div className={styles.header}>Rick and Morty</div>
       <ul className={styles.list}>
+          {!characters.length && <div className={styles.nobodyText}>Nobody found</div> }
           {characters?.map((character: IContentItem) => {
             return <ContentItem 
                       key={character.id} 

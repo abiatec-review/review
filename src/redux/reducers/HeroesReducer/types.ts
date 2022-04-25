@@ -3,7 +3,10 @@ export interface IContentItem {
   id: string;
   image: string;
   status?: string;
-  episode?: string[]
+  episode?: string[];
+  location?: {
+    name: string
+  }
 }
 
 export interface IHeroesState {
@@ -11,5 +14,11 @@ export interface IHeroesState {
   isError: boolean,
   isLoading: boolean,
   heroName: string,
-  nextPage: string
+  nextPage: string,
+  isSortedByLocation: boolean,
+  isSortedByName: boolean,
+  allFilters: {
+    gender: string,
+    status: string,
+  }
 }

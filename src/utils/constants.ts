@@ -14,3 +14,8 @@ export enum validationErrorsText {
 export const minimalPasswordLength = 6;
 
 export const isAcceptedCookiesLS = 'isAccepted';
+
+export const LOCAL_STORAGE_FILTERS = {
+  SEX: 'SEX_FILTER',
+  STATUS: 'STATUS_FILTER'
+}

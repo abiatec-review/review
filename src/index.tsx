@@ -8,12 +8,11 @@ import store from './redux';
 import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
-  <React.StrictMode>
       <CookiesProvider>
         <Provider store={store}>
           <App />
         </Provider>
       </CookiesProvider>
-  </React.StrictMode>,
+  ,
   document.getElementById('root')
 );

@@ -10,7 +10,7 @@ import MainContent from "./components/Organismes/MainContent";
 import { AcceptSnack, Loader } from "components/Atoms";
 
 import { auth } from "./firebase";
-import { isAcceptedCookiesLS } from "utils/constants";
+import {isAcceptedCookiesLS, LOCAL_STORAGE_FILTERS} from "utils/constants";
 
 import styles from './App.module.scss';
 
@@ -20,6 +20,11 @@ const App: React.FC= () => {
 
   useEffect(() => {
     dispatch(loadContentfulAC())
+  }, [])
+
+  useEffect(() => {
+    localStorage.removeItem(LOCAL_STORAGE_FILTERS.SEX);
+    localStorage.removeItem(LOCAL_STORAGE_FILTERS.STATUS);
   }, [])
 
   useEffect(() => {
