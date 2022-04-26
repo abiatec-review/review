@@ -16,6 +16,7 @@ button {
   color: #fff;
   transition: background-color 100ms ease-in-out;
   cursor: pointer;
+  margin-right: 1rem;
 }
 
 button:hover {
