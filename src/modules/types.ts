@@ -34,4 +34,5 @@ export interface State {
   searchedCharactersName: string;
   currentListPage: number;
   isFetchingData: boolean;
+  errorMessage: string;
 }
