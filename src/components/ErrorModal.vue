@@ -16,7 +16,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line
 import { defineComponent } from 'vue';
 
 export default defineComponent({

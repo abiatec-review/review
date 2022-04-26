@@ -1,5 +1,5 @@
 <template>
-  <UserAlert :open="alertIsVisible" @close="hideAlert" :characterProfile="selectedItem"> </UserAlert>
+  <CharactersModal :open="isCharsModalVisible" @close="hideCharsModal" :characterProfile="selectedItem" />
   <ErrorModal v-if="errorMessage" :errorMessage="errorMessage" @close="closeErrorModal" :open="!!errorMessage" />
   <section class="container">
     <transition-group
@@ -12,7 +12,7 @@
       <li v-for="item in items" :key="item.id">
         <div v-if="item" class="card">
           <p>{{ item.name }}</p>
-          <BaseImage :imagePath="item.image" iconOpacity :alt="item.name" @click="showAlert(item)" />
+          <BaseImage :imagePath="item.image" iconOpacity :alt="item.name" @click="showCharsModal(item)" />
         </div>
       </li>
     </transition-group>
@@ -25,25 +25,25 @@
 <script lang="ts">
 // eslint-disable-next-line
 import { computed, defineAsyncComponent, defineComponent, onMounted, ref } from 'vue';
-import UserAlert from '@/components/UserAlert.vue';
 import { Item } from '@/modules/types';
 import { useStore } from '@/store';
 import BaseImage from './atoms/BaseImage.vue';
 import ErrorModal from './ErrorModal.vue';
+import CharactersModal from './CharactersModal.vue';
 
 const BaseLoader = defineAsyncComponent(() => import('@/components/atoms/BaseLoader.vue'));
 
 export default defineComponent({
   components: {
-    UserAlert,
     BaseLoader,
     BaseImage,
     ErrorModal,
+    CharactersModal,
   },
   setup() {
     const store = useStore();
 
-    const alertIsVisible = ref(false);
+    const isCharsModalVisible = ref(false);
     const selectedItem = ref({});
     const infiniteScroll = ref(null);
     const isFetching = computed(() => store.state.isFetchingData);
@@ -53,14 +53,14 @@ export default defineComponent({
       store.commit('resetErrorMessage');
     }
 
-    function showAlert(item: Item) {
-      alertIsVisible.value = true;
+    function showCharsModal(item: Item) {
+      isCharsModalVisible.value = true;
       selectedItem.value = item;
       console.log(item);
     }
 
-    function hideAlert() {
-      alertIsVisible.value = false;
+    function hideCharsModal() {
+      isCharsModalVisible.value = false;
     }
 
     const items = computed<Item[]>(() => store.getters.getCharactersList);
@@ -84,9 +84,9 @@ export default defineComponent({
 
     return {
       items,
-      showAlert,
-      hideAlert,
-      alertIsVisible,
+      showCharsModal,
+      hideCharsModal,
+      isCharsModalVisible,
       selectedItem,
       infiniteScroll,
       isFetching,
