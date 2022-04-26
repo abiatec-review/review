@@ -1,10 +1,11 @@
 @import 'styles/variables.module.scss';
 @import 'styles/animations.module.scss';
 
-@mixin flex ($dir:'', $ai: '', $jc: '', $wrap: '') {
+@mixin flex ($dir:'', $ai: '', $jc: '', $fd: '', $wrap: '') {
     display: flex;
     align-items: $ai;
     justify-content: $jc;
+    flex-direction: $fd;
     flex-wrap: $wrap;
 }
 

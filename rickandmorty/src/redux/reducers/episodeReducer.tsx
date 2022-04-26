@@ -6,7 +6,6 @@ const initialState = {
     episodeImages: []
 }
 
-
 export const episodesReducer = (state = initialState, action: { type: string; payload: string; }) => {
     switch(action.type) {
         case GET_EPISODES:{

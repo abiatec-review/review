@@ -4,23 +4,26 @@
 .figureCont {
 
   &:hover {
+    box-shadow: 2px 2px 15px;
+    transform: scale(1.02);
     cursor: pointer;
   }
 
   .figureContImg {
     width: 300px;
-    height: 300px
+    height: 300px;
   }
 
   .figcaptionCont {
-    @include flex(flex, center, center,);
+    @include flex(flex, center, center);
     flex-direction: column;
   }
 
   figcaption {
-    margin-top: 10px;
+    margin: 10px 0;
+    max-width: 300px;
     color: $darkslateblue;
-    font-size: 26px;
+    font-size: 20px;
   }
 
 }

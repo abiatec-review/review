@@ -1,5 +1,5 @@
-import styles from './style.module.scss';
 import React from "react";
+import styles from './style.module.scss';
 
 interface IProps {
     showModal: () => void;

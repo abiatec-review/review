@@ -23,5 +23,3 @@ sagaMiddleware.run(rootSaga);
 
 export default store;
 
-export class combineReducers {
-}

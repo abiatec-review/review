@@ -2,6 +2,7 @@ import charactersReducer from "./charReducer";
 import {episodesReducer} from "./episodeReducer";
 // @ts-ignore
 import {combineReducers} from "redux";
+
 // @ts-ignore
 const rootReducer = combineReducers({
     characters: charactersReducer,
@@ -9,5 +10,6 @@ const rootReducer = combineReducers({
 })
 
 export default rootReducer;
+export type RootReducer = ReturnType<typeof rootReducer>
 
 

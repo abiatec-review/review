@@ -1,7 +1,7 @@
+import React from "react";
 import { SearchInput } from "components/molecules"
 import { Image } from "components/atoms"
 import styles from './style.module.scss';
-import React from "react";
 
 interface IProps{
     inputRef: React.RefObject<HTMLInputElement>
