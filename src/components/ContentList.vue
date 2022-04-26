@@ -1,9 +1,16 @@
 <template>
   <UserAlert :open="alertIsVisible" @close="hideAlert" :characterProfile="selectedItem"> </UserAlert>
+  <ErrorModal v-if="errorMessage" :errorMessage="errorMessage" @close="closeErrorModal" :open="!!errorMessage" />
   <section class="container">
-    <transition-group mode="out-in" tag="ul" name="user-list">
-      <li v-for="item in orderedByCharNamesItems" :key="item.id">
-        <div class="card">
+    <transition-group
+      mode="out-in"
+      tag="ul"
+      name="user-list"
+      enter-active-class="animate__animated animate__tada"
+      leave-active-class="animate__animated animate__bounceOutRight"
+    >
+      <li v-for="item in items" :key="item.id">
+        <div v-if="item" class="card">
           <p>{{ item.name }}</p>
           <BaseImage :imagePath="item.image" iconOpacity :alt="item.name" @click="showAlert(item)" />
         </div>
@@ -22,6 +29,7 @@ import UserAlert from '@/components/UserAlert.vue';
 import { Item } from '@/modules/types';
 import { useStore } from '@/store';
 import BaseImage from './atoms/BaseImage.vue';
+import ErrorModal from './ErrorModal.vue';
 
 const BaseLoader = defineAsyncComponent(() => import('@/components/atoms/BaseLoader.vue'));
 
@@ -30,6 +38,7 @@ export default defineComponent({
     UserAlert,
     BaseLoader,
     BaseImage,
+    ErrorModal,
   },
   setup() {
     const store = useStore();
@@ -38,6 +47,11 @@ export default defineComponent({
     const selectedItem = ref({});
     const infiniteScroll = ref(null);
     const isFetching = computed(() => store.state.isFetchingData);
+    const errorMessage = computed(() => store.state.errorMessage);
+
+    function closeErrorModal() {
+      store.commit('resetErrorMessage');
+    }
 
     function showAlert(item: Item) {
       alertIsVisible.value = true;
@@ -50,12 +64,13 @@ export default defineComponent({
     }
 
     const items = computed<Item[]>(() => store.getters.getCharactersList);
+    // const orderedByCharNamesItems = computed(() => [...items.value].sort((a, b) => (a.name > b.name ? 1 : -1)));
     const orderedByCharNamesItems = computed(() => [...items.value].sort((a, b) => (a.name > b.name ? 1 : -1)));
 
     onMounted(() => {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && items.value.length) {
+          if (entry.isIntersecting && items.value.length && !errorMessage.value) {
             console.log('Have watched');
             store.dispatch('fetchExtraData');
           } else {
@@ -76,6 +91,8 @@ export default defineComponent({
       infiniteScroll,
       isFetching,
       orderedByCharNamesItems,
+      errorMessage,
+      closeErrorModal,
     };
   },
 });
@@ -106,24 +123,11 @@ p {
   height: 50px;
 }
 
+@import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css';
+
 .user-list {
-  &-enter-active,
-  &-leave-active {
-    transition: opacity 0.5s;
-  }
-
-  &-enter-from,
-  &-leave-to {
-    opacity: 0;
-  }
-
-  &-leave-from,
-  &-enter-to {
-    opacity: 1;
-  }
-
   &-move {
-    transition: trasform 0.8s ease;
+    transition: trasform 1s;
   }
 }
 </style>
