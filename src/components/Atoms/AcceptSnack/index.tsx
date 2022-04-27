@@ -1,3 +1,4 @@
+import React from "react";
 import { Button } from "components/Atoms"
 
 import { isAcceptedCookiesLS } from "utils/constants";
@@ -17,10 +18,10 @@ export const AcceptSnack: React.FC<IProps> = ({setIsAccepted}) => {
 
   return (
     <div className={styles.content}>
-      <div>Please, click "Yes" to accept all cookies</div>
+      <div className={styles.header}>Please, click "Yes" to accept all cookies</div>
       <div> 
-        <Button onClick={acceptCookies('accepted')}>Yes</Button>
-        <Button onClick={acceptCookies('')}>No</Button>
+        <Button className={styles.button} onClick={acceptCookies('accepted')}>Yes</Button>
+        <Button className={styles.button} onClick={acceptCookies('')}>No</Button>
       </div>
     </div>
   )

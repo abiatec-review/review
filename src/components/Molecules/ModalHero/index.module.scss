@@ -5,12 +5,12 @@
   margin-top: 20px;
 }
 .button {
-  @include position(absolute, 10px, 335px);
-  
+  @include position(absolute, 20px, 35vw);
+
   background-color: $tab-color;
   border: none;
   color: $white-color;
-  padding: 5px 10px;
+  padding: 0.4vw;
   text-align: center;
   border-radius:5px;
   text-decoration: none;

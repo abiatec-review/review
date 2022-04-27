@@ -1,5 +1,8 @@
+import React from "react";
 import classNames from 'classnames';
+
 import styles from './index.module.scss'
+
 interface IProps {
   value: string;
   onSearchChange: (e: React.FormEvent<HTMLInputElement>) => void;

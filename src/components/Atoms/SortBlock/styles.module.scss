@@ -1,0 +1,18 @@
+@import "styles/mixins.module.scss";
+
+.checkbox {
+  width: 1vw;
+  height: 1vw;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.label {
+  @include flex(row, center, center);
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.sortBlock {
+  @include flex(row);
+}

@@ -1,5 +1,4 @@
-
-import { useCallback, KeyboardEvent } from 'react';
+import React, { useCallback, KeyboardEvent } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { loadHeroesAC, saveHeroNameAC } from "redux/actions/heroActions";

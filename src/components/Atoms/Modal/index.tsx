@@ -12,7 +12,7 @@ export const Modal: React.FC<IProps> = ({closeModal, children}) => {
       <div className={styles.pop} >
         {children}
       </div>  
-      <div onClick={closeModal} className={styles.overlay}></div>    
+      <div onClick={closeModal} className={styles.overlay} />
     </div>
   )
 }

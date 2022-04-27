@@ -1,4 +1,4 @@
-import { LOAD_USER_REQUEST, SIGN_IN_REQUEST, LOAD_USER_SUCCESS, SIGN_UP_REQUEST, LOG_OUT_REQUEST, LOAD_ANY_ERROR, LOAD_USER_LOADING } from './../../actions/UserActions/index';
+import { LOAD_USER_REQUEST, SIGN_IN_REQUEST, LOAD_USER_SUCCESS, SIGN_UP_REQUEST, LOG_OUT_REQUEST, LOAD_ANY_ERROR, LOAD_USER_LOADING } from 'redux/actions/UserActions/index';
 import { call, put, takeEvery } from "redux-saga/effects";
 import { IPayloadArguments, login, logout, signup } from './api';
 

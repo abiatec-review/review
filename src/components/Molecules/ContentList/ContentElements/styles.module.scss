@@ -4,7 +4,7 @@
   @include flex('', center, center, wrap);
 }
 .header {
-  font-size: 24pt;
+  font-size: 2rem;
 }
 
 .button {
@@ -13,6 +13,6 @@
 }
 
 .nobodyText {
-  margin-top: 30px;
-  font-size: 20pt;
+  margin-top: 10vw;
+  font-size: 2rem;
 }

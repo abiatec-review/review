@@ -3,8 +3,6 @@
 .item {
   margin: 50px 35px;
   @include flex(column, center, center);
-
-
   @include phone() {
     margin: 10px;
   }
@@ -12,7 +10,7 @@
 
 .image {
   border-radius: 50%;
-
+  width: 17vw;
   @include phone() {
     width: 22vw;
   }
@@ -28,7 +26,7 @@
   margin-top: 30px;
   font-size: $font-header;
   text-align: center;
-
+  width: 13vw;
   @include phone() {
     margin-top: 10px;
     width: 100px;

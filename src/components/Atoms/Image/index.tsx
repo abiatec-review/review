@@ -1,3 +1,5 @@
+import React from "react";
+
 import { ImageTypes } from "utils/constants";
 
 interface IProps {

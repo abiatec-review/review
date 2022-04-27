@@ -1,4 +1,5 @@
 import {call, spawn, all} from 'redux-saga/effects'
+
 import findHeroSaga from './findHeroSaga';
 import loadContentfulSaga from './loadContentful';
 import loadEpisodeSaga from './loadEpisodeSaga';

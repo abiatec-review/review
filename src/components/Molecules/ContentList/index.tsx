@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 import { IHeroesState } from 'redux/reducers/HeroesReducer/types';
 
-import {ErrorComponent, Loader} from 'components/Atoms'
+import { ErrorComponent, Loader } from 'components/Atoms'
 import ModalSignIn from '../ModalSignIn';
 import { ContentElements } from './ContentElements';
 

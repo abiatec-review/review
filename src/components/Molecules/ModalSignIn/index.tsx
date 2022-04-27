@@ -11,9 +11,7 @@ const ModalSignIn: React.FC<IProps>= ({closeModal}) => {
   
   return (
     <Modal closeModal={closeModal}>
-      <>
-        <LoginForm isSignIn={isSignIn} setIsSignIn={setIsSignIn}/>
-      </>
+      <LoginForm isSignIn={isSignIn} setIsSignIn={setIsSignIn}/>
     </Modal>
   )
 }

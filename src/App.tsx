@@ -33,7 +33,7 @@ const App: React.FC= () => {
     })
 
     return unsubscribe
-  }, [dispatch])
+  }, [])
 
   const isLoading = useSelector(getUserLoading);
 

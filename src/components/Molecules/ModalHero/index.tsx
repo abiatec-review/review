@@ -35,7 +35,7 @@ const ModalHero: React.FC<IProps> = ({setIsModalOpen, hero, episode}) => {
         return <Loader className={styles.loader}/>
       }
       case !episode?.isLoading && isEpisodePartOpen: {
-        return <ModalEpisodePart episode={episode} setIsModalOpen={setIsModalOpen}/>
+        return <ModalEpisodePart episode={episode}/>
       }
       case !episode?.isLoading && !isEpisodePartOpen: {
         return <ModalHeroPart setIsModalOpen={setIsModalOpen} hero={hero} openEpisode={openEpisode}/>

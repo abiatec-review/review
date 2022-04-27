@@ -1,6 +1,3 @@
-
-
-
 export const getContentful = async () => {
   const contentful = require("contentful");
   const client = contentful.createClient({
@@ -8,8 +5,6 @@ export const getContentful = async () => {
     space: process.env.REACT_APP_SPACE_ID,
     // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
     accessToken: process.env.REACT_APP_TOKEN_CONTENTFUL
-    
-    
   });
 
   return await client.getEntries({content_type: 'page'})

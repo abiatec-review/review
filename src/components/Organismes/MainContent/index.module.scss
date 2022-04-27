@@ -2,7 +2,7 @@
 
 .content {
   margin-top: 11vw;
-  min-height: 75vh;
+  min-height: 28vw;
   height: auto;
   @include flex(column, center);
 
@@ -23,8 +23,8 @@
 }
 
 .buttonFilter {
-  height: 50px;
-  font-size: 12pt;
+  height: 3vw;
+  font-size: 1rem;
   position: fixed;
   top: 50%;
   left: 0;

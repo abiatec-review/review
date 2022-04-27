@@ -1,4 +1,3 @@
-
 import { LOAD_CONTENTFUL_SUCCESS } from "redux/actions/ContentfulActions"
 import { IContentfulAction } from "redux/actions/ContentfulActions/types"
 

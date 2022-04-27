@@ -1,9 +1,10 @@
+import React from "react";
 import { useCookies } from "react-cookie";
-import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getImageSelector } from "redux/selectors/contentfulSelectors";
 import { logoutAC } from "redux/actions/UserActions";
+import {saveHeroNameAC} from "redux/actions/heroActions";
 
 import SearchBlock from "../SearchBlock";
 import {Button, Image, UserSnack} from "components/Atoms";
@@ -22,11 +23,11 @@ const HeaderBlock: React.FC<IProps> = ({userMail, setIsUserSlackOpen, isUserSlac
   const dispatch = useDispatch()
 
   const [cookies, setCookie] = useCookies([userMail]);
-  // const [isUserSlackOpen, setIsUserSlackOpen] = useState<boolean>(false)
   const img = useSelector(getImageSelector)
 
   const logout = () => {
-    dispatch(logoutAC())
+    dispatch(saveHeroNameAC(''));
+    dispatch(logoutAC());
   }
   
   return (

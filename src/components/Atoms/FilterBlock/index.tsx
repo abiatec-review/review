@@ -2,12 +2,12 @@ import {useDispatch} from "react-redux";
 import React, {useState} from "react";
 import classNames from "classnames";
 
-import {clearAllFilters, filterHeroesBySex, filterHeroesByStatus} from "../../../redux/actions/heroActions";
+import {clearAllFilters, filterHeroesBySex, filterHeroesByStatus} from "redux/actions/heroActions";
 
 import {Button} from "../Button";
 
 import {genderConfig, statusConfig} from "./config";
-import {LOCAL_STORAGE_FILTERS} from "../../../utils/constants";
+import {LOCAL_STORAGE_FILTERS} from "utils/constants";
 
 import styles from './style.module.scss';
 
@@ -50,7 +50,7 @@ export const FilterBlock: React.FC<IProps> = ({closeFilterModal}) => {
                 <div className={styles.block}>
                     <h1 className={styles.header}>{title}</h1>
                     {fields.map(elem => {
-                        return   <label key={elem.value} className={classNames(styles.label, {
+                        return <label key={elem.value} className={classNames(styles.label, {
                             [styles.activeRadio]: radioSex === elem.value}
                         )} >{elem.label}
                             <input

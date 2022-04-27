@@ -1,3 +1,5 @@
+import React from "react";
+
 import { IEpisodeState, IHeroFromEpisode } from 'redux/reducers/EpisodesReducer/types'
 
 import { HeroIcon } from 'components/Atoms'
@@ -5,11 +7,10 @@ import { HeroIcon } from 'components/Atoms'
 import styles from './index.module.scss'
 
 interface IProps {
-  setIsModalOpen: () => void,
   episode?: IEpisodeState
 }
 
-const ModalEpisodePart: React.FC<IProps> = ({setIsModalOpen, episode})  => {
+const ModalEpisodePart: React.FC<IProps> = ({ episode})  => {
   return ( 
     <>
       <div className={styles.name}>{episode?.name}</div>
