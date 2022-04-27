@@ -8,11 +8,12 @@ import {
     useColorScheme,
     View,
 } from 'react-native';
+import {CharacterList} from './components';
 
 const App = () => {
     return (
         <View style={styles.appContainer}>
-            <Text>Hello World</Text>
+            <CharacterList />
         </View>
     );
 };
