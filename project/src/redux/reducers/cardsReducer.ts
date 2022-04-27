@@ -7,6 +7,8 @@ const initialState: CardState = {
   },
   loading: false,
   error: null,
+  filters: {},
+  sort: 'nameA',
 };
 
 export const cardReducer = (state = initialState, action: CardAction): CardState => {
@@ -14,6 +16,7 @@ export const cardReducer = (state = initialState, action: CardAction): CardState
     case CardActionTypes.FETCH_CARDS: {
       return {
         ...state,
+        filters: action.payload,
         loading: true,
       };
     }
@@ -29,6 +32,7 @@ export const cardReducer = (state = initialState, action: CardAction): CardState
     }
     case CardActionTypes.FETCH_CARDS_SUCCESS: {
       return {
+        ...state,
         error: null,
         cards: action.payload.results,
         info: action.payload.info,
@@ -40,6 +44,12 @@ export const cardReducer = (state = initialState, action: CardAction): CardState
         ...state,
         error: action.payload,
         loading: false,
+      };
+    }
+    case CardActionTypes.SORT_CARDS: {
+      return {
+        ...state,
+        sort: action.payload,
       };
     }
     default: {

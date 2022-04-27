@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import Header from '../../moleculs/Header';
+import Header from '../../organisms/Header';
 
 const MainLayout: FC = ({ children }) => (
   <>

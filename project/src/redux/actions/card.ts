@@ -1,10 +1,19 @@
 import { IInfo, IResponse, IResults } from '../../models/responseTypes';
 
+export interface IFilters {
+  name?: string,
+  status?: string,
+  gender?: string,
+  species?: string,
+}
+
 export interface CardState {
   cards: IResults[],
   info: IInfo,
   loading: boolean,
   error: null | string,
+  filters: IFilters,
+  sort: string,
 }
 
 export enum CardActionTypes {
@@ -13,11 +22,12 @@ export enum CardActionTypes {
   FETCH_CARDS_SUCCESS = 'FETCH_CARDS_SUCCESS',
   FETCH_CARDS_ERROR = 'FETCH_CARDS_ERROR',
   FETCH_MORE_CARDS_SUCCESS = 'FETCH_MORE_CARDS_SUCCESS',
+  SORT_CARDS = 'SORT_CARDS',
 }
 
 interface FetchCardsAction {
   type: CardActionTypes.FETCH_CARDS,
-  payload: string,
+  payload: IFilters,
 }
 
 interface FetchMoreCardsAction {
@@ -40,9 +50,19 @@ interface FetchCardsErrorAction {
   payload: string,
 }
 
-export type CardAction = FetchCardsAction | FetchCardsSuccessAction | FetchCardsErrorAction | FetchMoreCardsAction | FetchMoreCardsSuccessAction;
+interface SortCardsAction {
+  type: CardActionTypes.SORT_CARDS,
+  payload: string,
+}
 
-export const fetchCardsAction = (value: string) => ({
+export type CardAction = FetchCardsAction |
+FetchCardsSuccessAction |
+FetchCardsErrorAction |
+FetchMoreCardsAction |
+FetchMoreCardsSuccessAction |
+SortCardsAction;
+
+export const fetchCardsAction = (value: IFilters) => ({
   type: CardActionTypes.FETCH_CARDS,
   payload: value,
 });
@@ -50,4 +70,9 @@ export const fetchCardsAction = (value: string) => ({
 export const fetchMoreCardsAction = (nextLink: string | undefined | null) => ({
   type: CardActionTypes.FETCH_MORE_CARDS,
   payload: nextLink,
+});
+
+export const sortCardsAction = (value: string) => ({
+  type: CardActionTypes.SORT_CARDS,
+  payload: value,
 });

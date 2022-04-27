@@ -1,9 +1,11 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 
+import moment from 'moment';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useDispatch } from 'react-redux';
 
+import { IResults } from '../../../models/responseTypes';
 import { fetchMoreCardsAction } from '../../../redux/actions/card';
 import { useTypedSelector } from '../../../utils/hooks/useTypedSelector';
 import { Loading } from '../../atoms';
@@ -15,12 +17,30 @@ const styles = {
   loadingText: 'text-center text-2xl ',
 };
 
+const sorting = (type: string, a: IResults, b: IResults): number => {
+  switch (type) {
+    case 'nameA': {
+      if (a.name > b.name) return -1;
+      if (a.name < b.name) return 1;
+      return 0;
+    }
+    case 'nameD': {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    }
+    default: return 0;
+  }
+};
+
 const CardList: FC = () => {
   const {
-    cards, info, loading, error,
+    cards, info, loading, error, sort,
   } = useTypedSelector((state) => state.cards);
   const dispatch = useDispatch();
-  
+
+  const sortCards = useMemo(() => cards.sort((a, b) => sorting(sort, a, b)), [sort, cards]);
+
   const fetchMore = () => {
     if (info.next) {
       setTimeout(() => {
@@ -36,7 +56,7 @@ const CardList: FC = () => {
           <ul className={styles.gridStyle}>
             {!loading
               ? (
-                cards?.map((item) => (
+                sortCards?.map((item) => (
                   <Card
                     cardData={item}
                     key={item.id}

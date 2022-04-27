@@ -25,7 +25,6 @@ export function* fetchCardsSaga(action: any): Generator<any, any, any> {
 export function* fetchMoreCardsSaga(action: any): Generator<any, any, any> {
   try {
     const response = yield call(fetchMoreCards, action.payload);
-    console.log(response);
     if (response.hasOwnProperty('error')) {
       yield put({
         type: CardActionTypes.FETCH_CARDS_ERROR,
