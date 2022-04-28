@@ -4,17 +4,26 @@ import {FlatList} from 'react-native';
 
 import {Character} from '@utils/types';
 import CharacterItem from './characterItem';
-import {getAllCharacters} from '@api/services/Character';
+import {API_ENDPOINT} from '@utils/consts';
+
+const characterEndpoint = API_ENDPOINT + '/character';
 
 const CharacterList = () => {
     const [characters, setCharacters] = useState<Character[]>([]);
     useEffect(() => {
-        getAllCharacters().then(characters => setCharacters(characters));
+        const getAllCharacters = async () => {
+            const res = await fetch(characterEndpoint);
+            const data = await res.json();
+            setCharacters(data.results);
+        };
+        getAllCharacters().catch(console.error);
     }, []);
     return (
         <FlatList
             data={characters}
-            renderItem={itemData => <CharacterItem item={itemData.item} />}
+            renderItem={itemData => {
+                return <CharacterItem item={itemData.item} />;
+            }}
             keyExtractor={item => String(item.id)}
         />
     );

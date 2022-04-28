@@ -1,6 +1,6 @@
+import {Character} from '@utils/types';
 import * as React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import {Character} from '@utils/types';
 
 interface CharacterItemProps {
     item: Character;
@@ -9,7 +9,7 @@ interface CharacterItemProps {
 const CharacterItem = ({item}: CharacterItemProps) => {
     return (
         <View style={styles.characterItem}>
-            <Text style={styles.characterText}>{item.name}</Text>;
+            <Text style={styles.characterText}>{item.name}</Text>
         </View>
     );
 };

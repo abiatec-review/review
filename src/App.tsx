@@ -1,19 +1,12 @@
 import * as React from 'react';
-import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    useColorScheme,
-    View,
-} from 'react-native';
-import {CharacterList} from './components';
+import {StyleSheet, View} from 'react-native';
+
+import {CharacterScreen} from '@features';
 
 const App = () => {
     return (
         <View style={styles.appContainer}>
-            <CharacterList />
+            <CharacterScreen />
         </View>
     );
 };
