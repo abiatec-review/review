@@ -1,5 +1,7 @@
 import React from 'react';
+
 import {TCharacter} from "../../../models/character";
+
 import styles from './style.module.scss';
 
 interface IProps{

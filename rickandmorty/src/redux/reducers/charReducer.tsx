@@ -1,5 +1,6 @@
 import {DELETE_CHARACTERS, SET_CHARACTERS, SET_ERROR, SET_LOADER} from '../actions';
 import {TCharacter} from "../../models/character";
+
 const initialState = {
     characters: [],
     charactersLoader: false,

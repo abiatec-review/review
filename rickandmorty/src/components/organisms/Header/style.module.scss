@@ -1,4 +1,5 @@
 @import 'styles/mixins.module.scss';
+@import 'styles/variables.module.scss';
 
 .Header {
   @include flex(flex, center, center, );

@@ -1,0 +1,59 @@
+@import 'styles/mixins.module.scss';
+@import 'styles/variables.module.scss';
+
+.authenticationCont {
+  @include flex(flex, center, center, column);
+  background-color: $white;
+  width: 500px;
+  height: 500px;
+  position: fixed;
+  top: 20%;
+  left: 36%;
+
+  .title {
+    font-size: 30px;
+    color: $darkslateblue
+  }
+
+  .inputCont {
+    @include flex(flex, center, center, column);
+  }
+
+  .input {
+    margin: 5px 5px 20px 5px;
+    background: none;
+
+    border-radius: 30px;
+    outline: 1px solid $darkslateblue;
+    border: none;
+    width: 300px;
+    height: 30px;
+
+    &:focus {
+      outline: 2px solid $darkslateblue;
+    }
+  }
+
+  }
+
+.error {
+  color: $red;
+}
+
+  .signInButton {
+    margin-top: 15px;
+    font-size: 20px;
+  }
+
+  .signUpButton {
+    margin-top: 15px;
+    background-color: transparent;
+    color: $darkslateblue;
+    font-size: 20px;
+    width: 100%;
+  }
+
+
+
+
+

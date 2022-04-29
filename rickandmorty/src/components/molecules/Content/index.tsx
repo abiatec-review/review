@@ -1,14 +1,18 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
+//@ts-ignore
+import Loader from "react-js-loader";
+
 import {deleteEpisodesCharacter, getCharacters, getEpisodes} from "../../../redux/actions";
+
 import { ContentItem } from "../../atoms/ContentItem";
 import { EpisodeItem } from "../../atoms/EpisodeItem";
 import {FetchMoreButton} from "../../atoms/FetchMoreButton";
 import {Modal} from "../../atoms";
+
 import {TEpisode} from "../../../models/episode";
 import {TCharacter} from "../../../models/character";
-//@ts-ignore
-import Loader from "react-js-loader";
+
 import styles from './style.module.scss';
 
 interface IDataEpisodes{
@@ -21,20 +25,18 @@ interface IProps {
     inputRef: React.RefObject<HTMLInputElement>
     data:  TCharacter<string>[];
     dataEpisodes: IDataEpisodes;
-    info: {count: number
+    info: {
+        count: number
         next: string,
         pages: number,
-        prev: string}
+        prev: string
+    }
 }
-
 
 export const Content:React.FC<IProps> = ({data, info, dataEpisodes, inputRef}) => {
 
-
     const [modalVisible, setModalVisible] = useState<boolean>(false);
-
     const [id, setId] = useState<number>(0);
-
     const [isHeroPartOpen, setIsHeroPartOpen] = useState<boolean>(true)
 
     const foundPerson = data?.find((item: TCharacter<string>) => item.id === +id);
@@ -64,7 +66,6 @@ export const Content:React.FC<IProps> = ({data, info, dataEpisodes, inputRef}) =
     const fetchMoreCharacters = () => {
         dispatch(getCharacters( {characterName: inputRef?.current?.value as string}  ))
     }
-
 
     return (
         <>
@@ -106,20 +107,20 @@ export const Content:React.FC<IProps> = ({data, info, dataEpisodes, inputRef}) =
                     </> :
                         <>
                         {dataEpisodes.episodesLoader ?
-                                <Loader type="spinner-cub" bgColor={"#FFFFFF"} color={'aquamarine'} size={100}/>
-                                :
-                        <div className={styles.episodeCard}>
-                            <p>{dataEpisodes.episodes.name}</p>
-                            <p>{dataEpisodes.episodes.air_date}</p>
-                            <div className={styles.episodeCardImages}>
-                            {dataEpisodes.episodeImages.map((el: {name: string, image: string}) => (
-                                <figure key={el.name} className={styles.figure}>
-                                    <img className={styles.episodeImg} src={el.image} />
-                                    <figcaption className={styles.figcaptionImg}>{el.name}</figcaption>
-                                </figure>
-                                ))}
+                             <Loader type="spinner-cub" bgColor={"#FFFFFF"} color={'aquamarine'} size={100}/>
+                             :
+                            <div className={styles.episodeCard}>
+                                <p>{dataEpisodes.episodes.name}</p>
+                                <p>{dataEpisodes.episodes.air_date}</p>
+                                <div className={styles.episodeCardImages}>
+                                    {dataEpisodes.episodeImages.map((el: {name: string, image: string}) => (
+                                        <figure key={el.name} className={styles.figure}>
+                                            <img className={styles.episodeImg} src={el.image} />
+                                            <figcaption className={styles.figcaptionImg}>{el.name}</figcaption>
+                                        </figure>
+                                    ))}
+                                </div>
                             </div>
-                    </div>
                         }
                         </>
                     }

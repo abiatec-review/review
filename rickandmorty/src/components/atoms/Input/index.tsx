@@ -1,5 +1,5 @@
-import React from 'react';
-import {RefObject} from "react";
+import React, {RefObject} from 'react';
+
 import styles from './style.module.scss';
 
 interface IProps {

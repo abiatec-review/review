@@ -1,0 +1,21 @@
+@import 'styles/mixins.module.scss';
+@import 'styles/variables.module.scss';
+
+.authenticationButtonCont {
+
+  .email {
+    position: fixed;
+    top: 3.5rem;
+    right: 15rem;
+    font-size: 20px;
+    color: $darkslateblue;
+  }
+
+  .authenticationButton {
+    position: fixed;
+    top: 3rem;
+    right: 3rem;
+  }
+}
+
+

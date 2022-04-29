@@ -1,13 +1,15 @@
 import React from 'react';
-import { Button, Input } from "components/atoms";
-import {deleteCharacters, getCharacters, setError} from 'redux/actions';
 import {useDispatch} from "react-redux";
+
+import {deleteCharacters, getCharacters, setError} from 'redux/actions';
+
+import { Button, Input } from "components/atoms";
+
 import styles from './style.module.scss';
 
 interface IProps{
     inputRef: React.RefObject<HTMLInputElement>
 }
-
 
 export const SearchInput:React.FC<IProps> = ({inputRef}) => {
 
@@ -21,8 +23,8 @@ export const SearchInput:React.FC<IProps> = ({inputRef}) => {
 
     return (
         <div className={styles.searchInput}>
-        <Input inputRef={inputRef}/>
-        <Button onSubmit={onSubmit} />
+            <Input inputRef={inputRef}/>
+            <Button onSubmit={onSubmit} />
         </div>
     )
 }

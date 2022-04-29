@@ -13,3 +13,16 @@ h1 {
     padding-top: 200px;
     color: $darkslateblue;
 }
+
+button {
+    height: 2.325rem;
+    width: 8.325rem;
+    background: $darkslateblue;
+    border-radius: 0.25rem;
+    padding: 0 1rem;
+    outline: 0;
+    border: 0;
+    color: $white;
+    transition: background-color 100ms ease-in-out;
+    cursor: pointer;
+}

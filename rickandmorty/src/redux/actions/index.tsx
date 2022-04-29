@@ -9,6 +9,8 @@ export const SET_EPISODES_CHARACTER = 'SET_EPISODES_CHARACTER';
 export const DELETE_EPISODES_CHARACTER = 'DELETE_EPISODES_CHARACTER';
 export const SET_LOADER = 'SET_LOADER';
 export const SET_ERROR = 'SET_ERROR';
+export const SIGN_UP = 'SIGN_UP';
+export const SIGN_IN = 'SIGN_IN';
 
 
 export const getCharacters = (payload: {characterName: string}) => {
@@ -76,6 +78,21 @@ export const deleteEpisodesCharacter = () => {
         type: DELETE_EPISODES_CHARACTER,
     }
 }
+
+export const signUpAuth = (payload: {email: string, password: string, name: string, surname: string, login: boolean}) => {
+    return {
+        type: SIGN_UP,
+        payload
+    }
+}
+
+export const signInAuth = (payload: {email: string}) => {
+    return {
+        type: SIGN_IN,
+        payload
+    }
+}
+
 
 
 
