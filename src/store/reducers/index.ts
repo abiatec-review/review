@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import characters from './characters';
+import charactersReducer from './characters';
 
-const createRootReducer = () => combineReducers({
-  characters,
+const rootReducerOfStore = combineReducers({
+  characters: charactersReducer,
 });
 
-export default createRootReducer;
+export default rootReducerOfStore;
+
+export type RootReducer = ReturnType<typeof rootReducerOfStore>;
