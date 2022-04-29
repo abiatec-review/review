@@ -1,13 +1,14 @@
 import React from 'react';
 
-interface IImageProps {
+interface ImageProps {
   textAlt: string,
   sourceToImg: string,
-  className?: string
+  className?: string,
+  handleClick?: () => void
 }
 
-const Image: React.FC<IImageProps> = ({ textAlt, sourceToImg, className }) => (
-  <img alt={textAlt || 'image'} src={sourceToImg} className={className} />
+const Image: React.FC<ImageProps> = ({ textAlt, sourceToImg, className, handleClick }) => (
+  <img alt={textAlt || 'image'} src={sourceToImg} className={className} onClick={handleClick} />
 );
 
 export default Image;
