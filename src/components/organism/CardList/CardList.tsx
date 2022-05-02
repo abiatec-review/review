@@ -5,6 +5,7 @@ import { initialPageNumber } from '../../../utils/constants';
 // import { RootReducer } from '../../../store/reducers';
 import Card from '../../molecules/Card/Card';
 import Modal from '../../molecules/Modal/Modal';
+import CharacterInfo from '../CharacterInfo/CharacterInfo';
 import styles from './CardList.module.scss';
 
 const CardList = (props: any) => { // TODO: FIX types
@@ -56,7 +57,7 @@ const CardList = (props: any) => { // TODO: FIX types
         }
       })}
       <Modal setIsActive={setIsModalActive} isActive={isModalActive}>
-        some text
+        <CharacterInfo />
       </Modal>
     </div>
   );

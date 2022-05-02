@@ -1,0 +1,24 @@
+.tabsWrapper {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+@mixin defaultTabStyles {
+  font-size: large;
+  font-weight: bold;
+  width: 150px;
+  height: 30px;
+  text-align: center;
+}
+
+.tab {
+  @include defaultTabStyles();
+  color: cornflowerblue;
+  border-bottom: 1px solid cornflowerblue;
+}
+
+.active {
+  @include defaultTabStyles();
+  color: black;
+}
