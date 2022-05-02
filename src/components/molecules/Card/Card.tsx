@@ -1,22 +1,31 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { forwardRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { Character } from '../../../models/CharacterReducer';
+import { FetchSingleCharacterSuccess } from '../../../store/actions/CharacterActions';
 import Image from '../../atoms/Image/Image';
 import styles from './Card.module.scss';
 
 interface CardProps {
-  imgUrl: string,
-  name: string,
-  setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>
+  setIsModalActive: React.Dispatch<React.SetStateAction<boolean>>,
+  data: Character
 }
 
 // eslint-disable-next-line react/display-name
 const Card = forwardRef((props: CardProps, ref: any) => {
 
-  const { imgUrl, name, setIsModalActive } = props;
+  const { setIsModalActive, data } = props;
+  const { name, image } = data;
+
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(FetchSingleCharacterSuccess(data));
+    setIsModalActive(true);
+  };
 
   return (
     <div ref={ref} className={styles.cardWrapper}>
-      <Image textAlt='Hero Image' sourceToImg={imgUrl} handleClick={() => setIsModalActive(true)} className={styles.imgCard} />
+      <Image textAlt='Hero Image' sourceToImg={image} handleClick={handleClick} className={styles.imgCard} />
       <p>{name}</p>
     </div>
   );

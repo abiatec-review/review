@@ -1,4 +1,4 @@
-import { PageInfo } from '../models/CharacterReducer';
+import { Character, PageInfo } from '../models/CharacterReducer';
 
 export enum CharacterActionTypes {
   FETCH_CHARACTERS = 'FETCH_CHARACTERS',
@@ -6,6 +6,7 @@ export enum CharacterActionTypes {
   FETCH_CHARACTERS_ERROR = 'FETCH_CHARACTERS_ERROR',
   FETCH_CHARACTERS_MORE = 'FETCH_CHARACTERS_MORE',
   FETCH_CHARACTERS_MORE_SUCCESS = 'FETCH_CHARACTERS_MORE_SUCCESS',
+  FETCH_SINGLE_CHARACTER_SUCCESS = 'FETCH_SINGLE_CHARACTER_SUCCESS',
   SAVE_CHARACTER_NAME = 'SAVE_CHARACTER_NAME',
   SAVE_PAGE_INFO = 'SAVE_PAGE_INFO',
 }
@@ -26,12 +27,17 @@ interface FetchCharactersAction {
 
 interface FetchCharactersSuccessAction {
   type: CharacterActionTypes.FETCH_CHARACTERS_SUCCESS,
-  payload: any[], // TODO: Fix type
+  payload: Character[],
 }
 
 interface FetchCharactersMoreAction {
   type: CharacterActionTypes.FETCH_CHARACTERS_MORE_SUCCESS,
-  payload: any[], // TODO: Fix type
+  payload: Character[],
+}
+
+interface FetchSingleCharacter {
+  type: CharacterActionTypes.FETCH_SINGLE_CHARACTER_SUCCESS,
+  payload: Character,
 }
 
 interface FetchCharactersErrorAction {
@@ -45,4 +51,5 @@ export type CharacterAction =
   FetchCharactersErrorAction |
   SaveNameAction |
   SavePageInfo |
+  FetchSingleCharacter |
   FetchCharactersMoreAction;

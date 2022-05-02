@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Character } from '../../../models/CharacterReducer';
 import { FetchCharactersMore } from '../../../store/actions/CharacterActions';
 import { initialPageNumber } from '../../../utils/constants';
 // import { RootReducer } from '../../../store/reducers';
@@ -38,27 +39,25 @@ const CardList = (props: any) => { // TODO: FIX types
 
   return (
     <div className={styles.cardListWrapper}>
-      {listOfCharacters.map(({ id, name, image }: any, index: number) => { // TODO: fix types
+      {listOfCharacters.map((character: Character, index: number) => {
         if (index === listOfCharacters.length - 1) {
           return <Card
             ref={lastCharacterCardRef}
-            key={id}
-            imgUrl={image}
-            name={name}
+            key={character.id}
+            data={character}
             setIsModalActive={setIsModalActive}
           />;
         } else {
           return <Card
-            key={id}
-            imgUrl={image}
-            name={name}
+            key={character.id}
+            data={character}
             setIsModalActive={setIsModalActive}
           />;
         }
       })}
-      <Modal setIsActive={setIsModalActive} isActive={isModalActive}>
+      {isModalActive && <Modal setIsActive={setIsModalActive} isActive={isModalActive}>
         <CharacterInfo />
-      </Modal>
+      </Modal>}
     </div>
   );
 };

@@ -8,6 +8,7 @@ const {
   FETCH_CHARACTERS_SUCCESS,
   FETCH_CHARACTERS_MORE,
   FETCH_CHARACTERS_MORE_SUCCESS,
+  FETCH_SINGLE_CHARACTER_SUCCESS,
 } = CharacterActionTypes;
 
 export const FetchCharacters = ( payload: { searchString: string, pageNumber: number } ) => ({
@@ -37,5 +38,10 @@ export const FetchCharactersSuccess = (payload: { characters: Character[] }) => 
 
 export const FetchCharactersMoreSuccess = (payload: { characters: Character[] }) => ({
   type: FETCH_CHARACTERS_MORE_SUCCESS,
+  payload,
+});
+
+export const FetchSingleCharacterSuccess = (payload: Character ) => ({
+  type: FETCH_SINGLE_CHARACTER_SUCCESS,
   payload,
 });

@@ -1,4 +1,4 @@
-import React, { SetStateAction } from 'react';
+import React, { SetStateAction, useEffect } from 'react';
 import styles from './Tabs.module.scss';
 
 interface TabsProps {
@@ -15,6 +15,10 @@ const Tabs = (props: TabsProps) => {
   const handleClick = (name: string) => {
     tabsControl(name);
   };
+
+  useEffect(() => {
+    tabsControl('Info');
+  }, []);
 
   return (
     <div className={styles.tabsWrapper}>

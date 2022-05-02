@@ -13,12 +13,12 @@ export interface PageInfo {
 }
 
 export interface Character extends BaseModel {
-  status: 'Dead' | 'Alive' | 'unknown';
+  status: string;
   species: string;
   type: string;
-  gender: 'Female' | 'Male' | 'Genderless' | 'unknown';
-  origin: CharacterLocation;
-  location: CharacterLocation;
+  gender: string;
+  origin: CharacterLocation | null;
+  location: CharacterLocation | null;
   image: string;
   episode: string[];
 }
@@ -26,6 +26,7 @@ export interface Character extends BaseModel {
 export interface CharacterState {
   characterName: string;
   characters: Character[];
+  currentCharacter: Character;
   page: number;
   info: PageInfo;
 }

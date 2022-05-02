@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { defaultActiveCharacterTab } from '../../../utils/constants';
 import CharacterDescription from '../../molecules/CharacterDescription/CharacterDescription';
 import CharacterMoments from '../../molecules/CharacterMoments/CharacterMoments';
@@ -11,6 +11,11 @@ const CharacterInfo = () => {
     { name: 'Info' },
     { name: 'Episodes' },
   ];
+
+  useEffect(() => {
+    console.log(currentActiveTab);
+    setCurrentActiveTab(defaultActiveCharacterTab);
+  }, []);
 
   return (
     <div>

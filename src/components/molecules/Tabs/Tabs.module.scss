@@ -1,6 +1,6 @@
 .tabsWrapper {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 15px;
 }
 
@@ -12,13 +12,14 @@
   text-align: center;
 }
 
-.tab {
+.active {
   @include defaultTabStyles();
   color: cornflowerblue;
   border-bottom: 1px solid cornflowerblue;
 }
 
-.active {
+.tab {
   @include defaultTabStyles();
   color: black;
+  cursor: pointer;
 }
