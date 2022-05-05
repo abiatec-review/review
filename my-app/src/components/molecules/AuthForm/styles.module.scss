@@ -4,20 +4,54 @@
   @include Size(400px, 400px);
   @include Flex(center, center, column);
   padding: 0;
-  margin: 0;
+  margin: 140px 0 0;
+
+  @media screen and (max-width: 420px) {
+    @include Size(300px, 300px);
+    margin: 220px 0 0;
+  }
 
   .authFormText {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
+    font-size: 24px;
+    margin: 0 0 20px;
   }
 
   .authForm {
-    @include Flex(center, center, column)
+    @include Size(220px, 100%);
+    @include Flex(center, center, column);
+    box-sizing: border-box;
+    border: 1px solid rgba(#999898, 0.5);
+    border-radius: 20px;
   }
 
   .authFormButton {
-    @include Size(30px, 100%);
+    @include Size(30px, 85%);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #767676;
+    color: white;
+    background: #767676;
+    text-align: center;
+    transition: .2s;
+
+    &:hover {
+      background: #626262;
+      transition: .2s;
+    }
+  }
+
+  .authInput {
+    @include Size(36px, 90%);
+    margin: 0 auto 25px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border: solid 1px #767676;
+    border-radius: 8px;
+    background: white;
+    outline: none;
+    font-size: 14px;
   }
 }

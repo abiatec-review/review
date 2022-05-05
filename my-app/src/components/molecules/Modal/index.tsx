@@ -1,8 +1,9 @@
 import styles from './styles.module.scss'
+import React from "react";
 
 interface IProps {
     children: JSX.Element
-    onClose: ()=>void
+    onClose: () => void
 }
   
   export const Modal: React.FC<IProps> = ( {children, onClose} )=> {

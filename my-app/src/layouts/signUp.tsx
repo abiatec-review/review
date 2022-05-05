@@ -1,18 +1,29 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import { Footer } from "components/organisms/Footer";
 import {TitleText} from "../components/atoms/TitleText";
 import styles from './styles.module.scss'
 import {AuthForm} from "../components/molecules/AuthForm";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Header} from "../components/organisms/Header";
+import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
+import {signUp} from "../redux/actions/auth";
 
-export const SignInlayout: React.FC = () => {
+export const SignUp: React.FC = () => {
+    const dispatch = useDispatch()
+    const {aboutUser} = useSelector((state: RootStateOrAny) => state.auth);
+
     const [values, setValues] = React.useState<any>({
         email: '',
         password: ''
     })
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(aboutUser) {
+            navigate('/signin')
+        }
+    }, [aboutUser, navigate])
 
     const onChange = (event: any) => {
         const {name, value} = event.target;
@@ -21,7 +32,6 @@ export const SignInlayout: React.FC = () => {
             ...v,
             [name]: value,
         }))
-        console.log(values)
     };
 
     const handleSubmit = (event: any) => {
@@ -30,12 +40,7 @@ export const SignInlayout: React.FC = () => {
         if(!values.email || !values.password) {
             return;
         }
-
-        console.log(values)
-    }
-
-    const toSignUpButton = () => {
-        navigate('/signup')
+        dispatch(signUp(values.email, values.password))
     }
 
     return (
@@ -47,9 +52,10 @@ export const SignInlayout: React.FC = () => {
                       handleClick={handleSubmit}
                       placeholder={{firstField: 'your eMail', secondField: 'your password'}}
                       name={{firstField: 'email', secondField: 'password'}}
-                      titleText={'Sign In'}
+                      titleText={'Sign Up'}
                       values={values}
-            buttonName={'Start the adventure for 20 min'}/>
+                      buttonText={'Become a new variation of reality'}/>
+            <Link className={styles.linkText} to={'/signin'} target={'_self'}>Already registered? Let's Sign in</Link>
             <Footer />
         </div>
     )

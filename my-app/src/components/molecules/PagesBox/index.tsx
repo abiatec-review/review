@@ -1,3 +1,5 @@
+import React from "react";
+
 import styles from './styles.module.scss'
 
 import { Button } from '../../atoms'
@@ -16,8 +18,8 @@ export const PagesBox: React.FC<IProps> = ({selectPage, number})=> {
   
   return ( 
     <div className={styles.pagesBox}>
-      {pages.lenght !== 0 && pages.map((page: any) => {
-        return <Button key={page} className={styles.pageNumberButton} handleClick={selectPage} type={'button'} buttonName={page}/>
+      {pages.length > 1  && pages.map((page: any) => {
+        return <Button key={page} className={styles.pageNumberButton} handleClick={selectPage} type={'button'} buttonText={page}/>
       })}
     </div>
   )

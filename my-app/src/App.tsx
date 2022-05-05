@@ -1,28 +1,42 @@
-import React from "react";
-import configureStore from './redux/store'
+import React, {useEffect} from "react";
+import {onAuthStateChanged} from "firebase/auth";
 
-import { Provider} from "react-redux";
+import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
 
-import { Sitelayout } from "./layouts/sitelayout";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {SignInlayout} from "./layouts/signinlayout";
-import {SignUplayout} from "./layouts/signuplayout";
+import {Site} from "./layouts/site";
+import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import {SignIn} from "./layouts/signIn";
+import {SignUp} from "./layouts/signUp";
+import {auth} from "./utils/firebase";
+import {signInSuccess} from "./redux/actions/auth";
 
 
-const store = configureStore();
- 
- const App = () =>  {
+const App = () =>  {
+     const dispatch = useDispatch()
+     const location = useLocation()
+     const navigate = useNavigate()
+     const aboutUser = useSelector((state: RootStateOrAny) => state.auth.aboutUser);
+
+     useEffect(()=> {
+             return onAuthStateChanged(auth, (user) => {
+                 dispatch(signInSuccess(user))
+             });
+     }, [])
+
+     useEffect(() => {
+         if(!aboutUser) {
+             navigate('/signin')
+         } else {
+             navigate('/')
+         }
+     }, [aboutUser])
 
   return (
-    <BrowserRouter>
-        <Provider store={store}>
             <Routes>
-                <Route path={'/signin'} element={<SignInlayout />}/>
-                <Route path={'/signup'} element={<SignUplayout />}/>
-                <Route path={'/'} element={<Sitelayout />}/>
+                <Route path={'/signup'} element={<SignUp />}/>
+                <Route path={'/signin'} element={<SignIn />}/>
+                <Route path={'/'} element={<Site />}/>
             </Routes>
-        </Provider>
-    </BrowserRouter>
   );
 }
 

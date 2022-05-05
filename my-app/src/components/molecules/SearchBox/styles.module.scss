@@ -24,3 +24,19 @@
   @include Flex(center, center, row);
   max-width: fit-content;
 }
+
+.headerInputField {
+  @include Size(32px, 295px);
+  padding: 0 10px;
+  margin: 0 20px 0 0;
+  box-sizing: border-box;
+  border: solid 1px #767676;
+  border-radius: 5px;
+  background: white;
+  outline: none;
+  font-size: 18px;
+
+  @media screen and (max-width: 375px) {
+    @include Size(32px, 190px)
+  }
+}

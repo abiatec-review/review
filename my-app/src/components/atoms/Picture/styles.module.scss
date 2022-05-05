@@ -4,30 +4,46 @@
 .headerPicture {
   @include Size(70px, 70px);
   position: absolute;
-  top: 35px;
+  top: 25%;
   left: 75px;
+
+  @media screen and (max-width: 725px) {
+    @include Size(80px, 80px);
+    position: relative;
+    top: -20px;
+    left: 0;
+  }
 }
 
 .cardPicture {
-  width: fit-content;
-  height: fit-content;
+  @include Size(fit-content, fit-content);
+
+  @media screen and (max-width: 400px) {
+    @include Size(250px, 250px);
+  }
 }
 
 .modalMainPicture {
-  width: 250px;
-  height: 250px;
+  @include Size(250px, 250px);
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 50%;
+
+  @media screen and (max-width: 420px) {
+    @include Size(150px, 150px);
+  }
 }
 
 .modalCharPicture {
   margin: 5px 30px 5px 5px;
-  width: 90px;
-  height: 90px;
+  @include Size(90px, 90px);
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 50%;
+
+  @media screen and (max-width: 420px) {
+    @include Size(65px, 65px);
+  }
 }
 
 .footerLogo {
@@ -39,4 +55,9 @@
   position: absolute;
   right: 38px;
   opacity: 0.5;
+
+  @media screen and (max-width: 725px) {
+    position: relative;
+    right: 0;
+  }
 }

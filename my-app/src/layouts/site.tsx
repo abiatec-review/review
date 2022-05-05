@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 
-import { useDispatch } from "react-redux";
+import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
 import { getCharacters } from "redux/actions/characters";
 import { setCharacter } from "redux/actions/modalType";
 
 import { Footer } from "components/organisms/Footer";
 import {Header, Main} from "../components/organisms";
 import {SearchBox} from "../components/molecules/SearchBox";
+import {useNavigate} from "react-router-dom";
+import {auth} from "../utils/firebase";
 
-export const Sitelayout: React.FC = () => {
+export const Site: React.FC = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>('');
 

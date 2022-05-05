@@ -22,18 +22,20 @@
 
 
 .modalInside {
+  @include Size(520px, 380px);
   position: relative;
   z-index: 2;
   box-sizing: border-box;
   border-radius: 10px;
-  width: 380px;
-  height: 520px;
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include Flex(center, '', column);
   margin: 0;
   padding: 20px;
+
+  @media screen and (max-width: 420px) {
+    @include Size(450px, 300px);
+    padding: 25px;
+  }
 }
 
 .closeButton {
@@ -41,10 +43,7 @@
   position: absolute;
   top: 5px;
   right: 4px;
-  background: url(../../../images/close_button.svg);
-  background-color: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: transparent url(../../../images/close_button.svg) no-repeat center;
   width: 32px;
   height: 32px;
   margin: 0;
@@ -75,6 +74,10 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   text-align: center;
+
+  @media screen and (max-width: 420px) {
+    font-size: 14px;
+  }
 }
 
 .modalDescription {
@@ -83,6 +86,10 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   text-align: center;
+
+  @media screen and (max-width: 420px) {
+    font-size: 14px;
+  }
 }
 
 .episodeList {
@@ -91,8 +98,7 @@
   border-radius: 5px;
   border: 1px solid rgba(#999898, 0.5);
   background-color: white;
-  width: 100%;
-  height: 30px;
+  @include Size(30px, 100%);
   text-align: center;
   outline: none;
   font-family: Arial, Helvetica, sans-serif;
@@ -101,9 +107,11 @@
 
 .modalForm {
   width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include Flex(center, '', column);
+
+  @media screen and (max-width: 420px) {
+    width: 70%;
+  }
 }
 
 .modalSubmit {
@@ -120,6 +128,10 @@
   font-size: 16px;
   transition: .5s;
 
+  @media screen and (max-width: 420px) {
+    font-size: 14px;
+  }
+
   &:hover {
     background: #959595;
     transition: .5s;
@@ -127,11 +139,13 @@
 }
 
 .modalTabs {
-  margin: 10px 0 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  margin: 10px 0;
+  @include Flex('', space-between, row);
   width: 260px;
+
+  @media screen and (max-width: 420px) {
+    width: 245px;
+  }
 }
 
 .modalNavButton {
@@ -165,10 +179,7 @@
   width: 100%;
   margin: 0 0 10px 0;
   padding: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  @include Flex(center, flex-start, row);
   transition: 0.5s;
 
   &:hover {

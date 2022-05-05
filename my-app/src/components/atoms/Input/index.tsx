@@ -1,19 +1,22 @@
 import React from 'react'
 
-import styles from './styles.module.scss'
-
 interface IProps {
   inputValue?: string
   onChangeHandler: any
   name: string
   placeholder: string
   rest?: any
+  className: any
 }
 
-export const Input: React.FC<IProps> & React.HTMLProps<HTMLInputElement> = ( { inputValue, onChangeHandler, name, placeholder, ...rest } ) => {
+export const Input: React.FC<IProps> & React.HTMLProps<HTMLInputElement> = ( { inputValue,
+                                                                               onChangeHandler, name,
+                                                                               placeholder,
+                                                                               className,
+                                                                               ...rest } ) => {
 
   return ( 
-    <input className={styles.headerInputField}
+    <input className={className}
             value={inputValue}
             onChange={onChangeHandler}
             name={name}

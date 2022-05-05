@@ -3,7 +3,12 @@
 .pagesBox {
   margin: 0 auto;
   padding: 0 60px;
-  width: fit-content
+  width: fit-content;
+  text-align: center;
+
+  @media screen and (max-width: 725px) {
+    padding: 0;
+  }
 }
 
 .pageNumberButton {

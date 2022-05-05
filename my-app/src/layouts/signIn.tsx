@@ -4,15 +4,17 @@ import { Footer } from "components/organisms/Footer";
 import {TitleText} from "../components/atoms/TitleText";
 import styles from './styles.module.scss'
 import {AuthForm} from "../components/molecules/AuthForm";
-import {Link, useNavigate} from "react-router-dom";
 import {Header} from "../components/organisms/Header";
+import {useDispatch} from "react-redux";
+import {signIn} from "../redux/actions/auth";
 
-export const SignUplayout: React.FC = () => {
+export const SignIn: React.FC = () => {
+
+    const dispatch = useDispatch();
     const [values, setValues] = React.useState<any>({
-        firstField: '',
-        secondField: ''
+        email: '',
+        password: ''
     })
-    const navigate = useNavigate();
 
     const onChange = (event: any) => {
         const {name, value} = event.target;
@@ -26,9 +28,10 @@ export const SignUplayout: React.FC = () => {
     const handleSubmit = (event: any) => {
         event.preventDefault();
 
-        if(!values.firstField || !values.secondField) {
+        if(!values.email || !values.password) {
             return;
         }
+        dispatch(signIn(values.email, values.password))
     }
 
     return (
@@ -40,10 +43,9 @@ export const SignUplayout: React.FC = () => {
                       handleClick={handleSubmit}
                       placeholder={{firstField: 'your eMail', secondField: 'your password'}}
                       name={{firstField: 'email', secondField: 'password'}}
-                      titleText={'Sign Up'}
+                      titleText={'Sign In'}
                       values={values}
-                      buttonName={'Become a new variation of reality'}/>
-            <Link to={'/signin'} target={'_self'}>Already registered? Let's Sign in</Link>
+                      buttonText={'Start the adventure for 20 min'}/>
             <Footer />
         </div>
     )
