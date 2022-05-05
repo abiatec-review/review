@@ -13,7 +13,6 @@ const CharacterInfo = () => {
   ];
 
   useEffect(() => {
-    console.log(currentActiveTab);
     setCurrentActiveTab(defaultActiveCharacterTab);
   }, []);
 

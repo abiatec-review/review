@@ -9,6 +9,7 @@ function* fetchCharactersWorker({ payload }: AnyAction): Generator<any, any, any
 
   try {
     const response = yield call(fetchCharactersBySearchQuery, searchString, pageNumber);
+    console.log(response.info);
     yield put(FetchCharactersSuccess(response.results));
     yield put(SavePageInfo(response.info));
   } catch (error) {

@@ -3,13 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Character } from '../../../models/CharacterReducer';
 import { FetchCharactersMore } from '../../../store/actions/CharacterActions';
 import { initialPageNumber } from '../../../utils/constants';
-// import { RootReducer } from '../../../store/reducers';
+import { RootReducer } from '../../../store/reducers';
 import Card from '../../molecules/Card/Card';
 import Modal from '../../molecules/Modal/Modal';
 import CharacterInfo from '../CharacterInfo/CharacterInfo';
 import styles from './CardList.module.scss';
 
-const CardList = (props: any) => { // TODO: FIX types
+interface CardListProps {
+  listOfCharacters: Character[];
+}
+
+const CardList = (props: CardListProps) => {
   const { listOfCharacters } = props;
 
   const [currentPage, setCurrentPage] = useState(initialPageNumber);
@@ -17,21 +21,21 @@ const CardList = (props: any) => { // TODO: FIX types
 
   const dispatch = useDispatch();
 
-  const requestPayload = useSelector(({ characters }: any) => characters); // TODO: Fix types
+  const requestPayload = useSelector(({ characters }: RootReducer) => characters);
   const { characterName, info } = requestPayload;
 
   const observer = useRef<IntersectionObserver | null>();
   const lastCharacterCardRef = useCallback((node: any) => {
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver(entries => {
+      console.log(currentPage, entries[0].isIntersecting, info.pages);
       if (entries[0].isIntersecting && currentPage <= info.pages) {
-        console.log(currentPage);
         dispatch(FetchCharactersMore({ searchString: characterName, pageNumber: currentPage }));
         setCurrentPage((prev) => prev + 1);
       }
     });
     if (node) observer.current.observe(node);
-  }, [currentPage]);
+  }, [currentPage, info]);
 
   useEffect(() => {
     setCurrentPage(initialPageNumber);
