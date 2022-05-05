@@ -15,7 +15,7 @@ const CharacterDescription = () => {
     image,
     name,
   } = info;
-
+  // TODO: Replace markup logic
   return (
     <div className={styles.infoWrapper}>
       <div className={styles.contentLeft}>

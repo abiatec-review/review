@@ -39,7 +39,7 @@ const CardList = (props: any) => { // TODO: FIX types
 
   return (
     <div className={styles.cardListWrapper}>
-      {listOfCharacters.map((character: Character, index: number) => {
+      {listOfCharacters && listOfCharacters.map((character: Character, index: number) => {
         if (index === listOfCharacters.length - 1) {
           return <Card
             ref={lastCharacterCardRef}

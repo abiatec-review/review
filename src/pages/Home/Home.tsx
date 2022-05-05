@@ -15,7 +15,7 @@ function Home() {
   return (
     <div>
       <Header />
-      {!!charactersList.length && <CardsList listOfCharacters={charactersList}/> }
+      {Array.isArray(charactersList) && <CardsList listOfCharacters={charactersList}/> }
     </div>
   );
 }

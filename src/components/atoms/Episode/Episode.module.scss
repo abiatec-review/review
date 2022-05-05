@@ -1,0 +1,21 @@
+@mixin flexContainer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.imgsWrapper {
+  @include flexContainer();
+  margin-bottom: 20px;
+}
+
+.episodeInfo {
+  @include flexContainer();
+  font-size: large;
+  font-weight: bold;
+}
+
+.characterImg {
+  border-radius: 50%;
+  width: 75px;
+}
