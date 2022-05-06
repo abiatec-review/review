@@ -25,7 +25,7 @@ const Card = forwardRef((props: CardProps, ref: any) => {
 
   return (
     <div ref={ref} className={styles.cardWrapper}>
-      <Image textAlt='Hero Image' sourceToImg={image} handleClick={handleClick} className={styles.imgCard} />
+      <Image textAlt={name} sourceToImg={image} handleClick={handleClick} className={styles.imgCard} />
       <p>{name}</p>
     </div>
   );
