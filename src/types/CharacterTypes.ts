@@ -9,6 +9,8 @@ export enum CharacterActionTypes {
   FETCH_SINGLE_CHARACTER_SUCCESS = 'FETCH_SINGLE_CHARACTER_SUCCESS',
   SAVE_CHARACTER_NAME = 'SAVE_CHARACTER_NAME',
   SAVE_PAGE_INFO = 'SAVE_PAGE_INFO',
+  SET_GENDER_FILTER = 'SET_GENDER_FILTER',
+  SET_STATUS_FILTER = 'SET_STATUS_FILTER',
 }
 
 interface SaveNameAction {
@@ -45,6 +47,16 @@ interface FetchCharactersErrorAction {
   payload: string
 }
 
+interface SetGenderFilterAction {
+  type: CharacterActionTypes.SET_GENDER_FILTER,
+  payload: string,
+}
+
+interface SetStatusFilterAction {
+  type: CharacterActionTypes.SET_STATUS_FILTER,
+  payload: string,
+}
+
 export type CharacterAction =
   FetchCharactersAction |
   FetchCharactersSuccessAction |
@@ -52,4 +64,6 @@ export type CharacterAction =
   SaveNameAction |
   SavePageInfo |
   FetchSingleCharacter |
-  FetchCharactersMoreAction;
+  FetchCharactersMoreAction |
+  SetGenderFilterAction |
+  SetStatusFilterAction;

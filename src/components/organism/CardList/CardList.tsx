@@ -19,9 +19,12 @@ const CardList = (props: CardListProps) => {
   const [currentPage, setCurrentPage] = useState(initialPageNumber);
   const [isModalActive, setIsModalActive] = useState(false);
 
+  const genderFilterState = useSelector((state: RootReducer) => state.characters.genderFilter);
+  const statusFilterState = useSelector((state: RootReducer) => state.characters.statusFilter);
+  const requestPayload = useSelector(({ characters }: RootReducer) => characters);
+
   const dispatch = useDispatch();
 
-  const requestPayload = useSelector(({ characters }: RootReducer) => characters);
   const { characterName, info } = requestPayload;
 
   const observer = useRef<IntersectionObserver | null>();
@@ -30,7 +33,7 @@ const CardList = (props: CardListProps) => {
     observer.current = new IntersectionObserver(entries => {
       console.log(currentPage, entries[0].isIntersecting, info.pages);
       if (entries[0].isIntersecting && currentPage <= info.pages) {
-        dispatch(FetchCharactersMore({ searchString: characterName, pageNumber: currentPage }));
+        dispatch(FetchCharactersMore({ searchString: characterName, pageNumber: currentPage, statusFilterState, genderFilterState }));
         setCurrentPage((prev) => prev + 1);
       }
     });
@@ -39,7 +42,7 @@ const CardList = (props: CardListProps) => {
 
   useEffect(() => {
     setCurrentPage(initialPageNumber);
-  }, [characterName]);
+  }, [characterName, genderFilterState, statusFilterState]);
 
   return (
     <div className={styles.cardListWrapper}>

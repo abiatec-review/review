@@ -11,9 +11,6 @@ const app = initializeApp({
   measurementId: 'G-ENE41GJCH7',
 });
 
-//@ts-ignore
-// export const auth = app.auth();
-
 export const auth = getAuth(app);
 
 export default app;

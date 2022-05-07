@@ -19,7 +19,7 @@ const CharacterDescription = () => {
   return (
     <div className={styles.infoWrapper}>
       <div className={styles.contentLeft}>
-        <Image textAlt={name} sourceToImg={image} />
+        <Image textAlt={name} sourceToImg={image} className={styles.modalImg} />
       </div>
       <div className={styles.contentRight}>
         <div>

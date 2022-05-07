@@ -29,4 +29,6 @@ export interface CharacterState {
   currentCharacter: Character;
   page: number;
   info: PageInfo;
+  genderFilter: string,
+  statusFilter: string,
 }

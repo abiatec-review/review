@@ -7,6 +7,8 @@ const {
   FETCH_CHARACTERS_MORE_SUCCESS,
   SAVE_PAGE_INFO,
   FETCH_SINGLE_CHARACTER_SUCCESS,
+  SET_GENDER_FILTER,
+  SET_STATUS_FILTER,
 } = CharacterActionTypes;
 
 const initialState = {
@@ -33,6 +35,8 @@ const initialState = {
     prev: '',
     next: '',
   },
+  genderFilter: '',
+  statusFilter: '',
 };
 
 const charactersReducer = (state: CharacterState = initialState, action: CharacterAction): CharacterState => {
@@ -58,6 +62,14 @@ const charactersReducer = (state: CharacterState = initialState, action: Charact
     case FETCH_CHARACTERS_MORE_SUCCESS:
       return {
         ...state, characters: [...state.characters, ...action.payload],
+      };
+    case SET_GENDER_FILTER:
+      return {
+        ...state, genderFilter: action.payload,
+      };
+    case SET_STATUS_FILTER:
+      return {
+        ...state, statusFilter: action.payload,
       };
     default: return state;
   }

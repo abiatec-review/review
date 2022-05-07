@@ -5,10 +5,10 @@ import { fetchCharactersBySearchQuery } from '../../services/Characters.service'
 import { AnyAction } from 'redux';
 
 function* fetchCharactersWorker({ payload }: AnyAction): Generator<any, any, any> {
-  const { searchString, pageNumber } = payload;
+  const { searchString, pageNumber, statusFilterState, genderFilterState } = payload;
 
   try {
-    const response = yield call(fetchCharactersBySearchQuery, searchString, pageNumber);
+    const response = yield call(fetchCharactersBySearchQuery, searchString, pageNumber, statusFilterState, genderFilterState);
     console.log(response.info);
     yield put(FetchCharactersSuccess(response.results));
     yield put(SavePageInfo(response.info));
@@ -18,10 +18,10 @@ function* fetchCharactersWorker({ payload }: AnyAction): Generator<any, any, any
 }
 
 function* fetchCharactersMoreWorker({ payload }: AnyAction): Generator<any, any, any> {
-  const { searchString, pageNumber } = payload;
+  const { searchString, pageNumber, statusFilterState, genderFilterState } = payload;
 
   try {
-    const response = yield call(fetchCharactersBySearchQuery, searchString, pageNumber);
+    const response = yield call(fetchCharactersBySearchQuery, searchString, pageNumber, statusFilterState, genderFilterState);
     yield put(FetchCharactersMoreSuccess(response.results));
   } catch (error) {
     console.log(error);

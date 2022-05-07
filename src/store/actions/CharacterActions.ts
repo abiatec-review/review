@@ -9,14 +9,16 @@ const {
   FETCH_CHARACTERS_MORE,
   FETCH_CHARACTERS_MORE_SUCCESS,
   FETCH_SINGLE_CHARACTER_SUCCESS,
+  SET_STATUS_FILTER,
+  SET_GENDER_FILTER,
 } = CharacterActionTypes;
 
-export const FetchCharacters = ( payload: { searchString: string, pageNumber: number } ) => ({
+export const FetchCharacters = ( payload: { searchString: string, pageNumber: number, statusFilterState: string, genderFilterState: string } ) => ({
   type: FETCH_CHARACTERS,
   payload,
 });
 
-export const FetchCharactersMore = ( payload: { searchString: string, pageNumber: number } ) => ({
+export const FetchCharactersMore = ( payload: { searchString: string, pageNumber: number, statusFilterState: string, genderFilterState: string } ) => ({
   type: FETCH_CHARACTERS_MORE,
   payload,
 });
@@ -41,7 +43,17 @@ export const FetchCharactersMoreSuccess = (payload: { characters: Character[] })
   payload,
 });
 
-export const FetchSingleCharacterSuccess = (payload: Character ) => ({
+export const FetchSingleCharacterSuccess = (payload: Character) => ({
   type: FETCH_SINGLE_CHARACTER_SUCCESS,
+  payload,
+});
+
+export const SetGenderFilter = (payload: string) => ({
+  type: SET_GENDER_FILTER,
+  payload,
+});
+
+export const SetStatusFilter = (payload: string) => ({
+  type: SET_STATUS_FILTER,
   payload,
 });
