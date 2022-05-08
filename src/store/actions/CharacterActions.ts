@@ -11,6 +11,7 @@ const {
   FETCH_SINGLE_CHARACTER_SUCCESS,
   SET_STATUS_FILTER,
   SET_GENDER_FILTER,
+  SET_SORT_STATE,
 } = CharacterActionTypes;
 
 export const FetchCharacters = ( payload: { searchString: string, pageNumber: number, statusFilterState: string, genderFilterState: string } ) => ({
@@ -55,5 +56,10 @@ export const SetGenderFilter = (payload: string) => ({
 
 export const SetStatusFilter = (payload: string) => ({
   type: SET_STATUS_FILTER,
+  payload,
+});
+
+export const SetSortState = (payload: string) => ({
+  type: SET_SORT_STATE,
   payload,
 });

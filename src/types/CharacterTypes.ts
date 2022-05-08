@@ -11,6 +11,7 @@ export enum CharacterActionTypes {
   SAVE_PAGE_INFO = 'SAVE_PAGE_INFO',
   SET_GENDER_FILTER = 'SET_GENDER_FILTER',
   SET_STATUS_FILTER = 'SET_STATUS_FILTER',
+  SET_SORT_STATE = 'SET_SORT_STATE',
 }
 
 interface SaveNameAction {
@@ -57,6 +58,11 @@ interface SetStatusFilterAction {
   payload: string,
 }
 
+interface SetSortStateAction {
+  type: CharacterActionTypes.SET_SORT_STATE,
+  payload: string,
+}
+
 export type CharacterAction =
   FetchCharactersAction |
   FetchCharactersSuccessAction |
@@ -66,4 +72,5 @@ export type CharacterAction =
   FetchSingleCharacter |
   FetchCharactersMoreAction |
   SetGenderFilterAction |
-  SetStatusFilterAction;
+  SetStatusFilterAction |
+  SetSortStateAction;

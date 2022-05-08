@@ -1,5 +1,6 @@
 import { CharacterState } from '../../models/CharacterReducer';
 import { CharacterAction, CharacterActionTypes } from '../../types/CharacterTypes';
+import { sortByNames } from '../../utils/utils';
 
 const {
   SAVE_CHARACTER_NAME,
@@ -9,6 +10,7 @@ const {
   FETCH_SINGLE_CHARACTER_SUCCESS,
   SET_GENDER_FILTER,
   SET_STATUS_FILTER,
+  SET_SORT_STATE,
 } = CharacterActionTypes;
 
 const initialState = {
@@ -37,6 +39,7 @@ const initialState = {
   },
   genderFilter: '',
   statusFilter: '',
+  sortByNameState: null,
 };
 
 const charactersReducer = (state: CharacterState = initialState, action: CharacterAction): CharacterState => {
@@ -70,6 +73,10 @@ const charactersReducer = (state: CharacterState = initialState, action: Charact
     case SET_STATUS_FILTER:
       return {
         ...state, statusFilter: action.payload,
+      };
+    case SET_SORT_STATE:
+      return {
+        ...state, characters: sortByNames(state.characters, action.payload),
       };
     default: return state;
   }

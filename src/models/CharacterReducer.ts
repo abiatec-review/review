@@ -31,4 +31,5 @@ export interface CharacterState {
   info: PageInfo;
   genderFilter: string,
   statusFilter: string,
+  sortByNameState: string | null;
 }
