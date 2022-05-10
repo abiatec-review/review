@@ -10,7 +10,12 @@ module.exports = {
         'input-color': '#767676',
         'card-color': 'rgb(224 242 254)',
         'modal-color': 'rgba(0, 0, 0, .6)',
-      }
+        'error-color': 'rgb(239 68 68)',
+      },
+      animation: {
+        bounce200: 'bounce 1s infinite 200ms',
+        bounce400: 'bounce 1s infinite 400ms',
+      },
     },
   },
   plugins: [],

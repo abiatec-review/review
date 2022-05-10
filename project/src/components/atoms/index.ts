@@ -12,3 +12,4 @@ export { TabButton } from './TabButton';
 export { SideBarManageButton } from './SideBarManageButton';
 export { Label } from './Label';
 export { Button } from './Button';
+export { InitialLoader } from './InitialLoader';

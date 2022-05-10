@@ -1,4 +1,5 @@
 export interface ButtonProps {
   title: string,
-  clickHandler: () => void,
+  clickHandler: (e: React.MouseEvent<HTMLElement>) => void,
+  isDisabled?: boolean,
 }
