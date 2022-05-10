@@ -13,7 +13,7 @@ function Home() {
   return (
     <div>
       <Header />
-      {Array.isArray(charactersList) && !!charactersList.length &&
+      {Array.isArray(charactersList) &&
         <>
           <FiltersBlock />
           <SortBlock />

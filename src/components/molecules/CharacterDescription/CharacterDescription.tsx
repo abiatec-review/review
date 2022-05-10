@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootReducer } from '../../../store/reducers';
 import Image from '../../atoms/Image/Image';
+import TextDiv from '../../atoms/TextDiv/TextDiv';
 import styles from './CharacterDescription.module.scss';
 
 const CharacterDescription = () => {
@@ -15,28 +16,17 @@ const CharacterDescription = () => {
     image,
     name,
   } = info;
-  // TODO: Replace markup logic
   return (
     <div className={styles.infoWrapper}>
       <div className={styles.contentLeft}>
         <Image textAlt={name} sourceToImg={image} className={styles.modalImg} />
       </div>
       <div className={styles.contentRight}>
-        <div>
-          Name: { name }
-        </div>
-        <div>
-          Status: { status }
-        </div>
-        <div>
-          Location: { location!.name }
-        </div>
-        <div>
-          Gender: { gender }
-        </div>
-        <div>
-          Species: { species }
-        </div>
+        <TextDiv name='Name' text={name} />
+        <TextDiv name='Status' text={status} />
+        <TextDiv name='Location' text={location!.name} />
+        <TextDiv name='Gender' text={gender} />
+        <TextDiv name='Species' text={species} />
       </div>
     </div>
   );

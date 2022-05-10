@@ -11,7 +11,7 @@ const SearchInput = () => {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [isAuth, setIsAuth] = useState(false);
-  const searchString = useDebounce(searchQuery, 500); // TODO: Change that custom hook to useDeferredValue
+  const searchString = useDebounce(searchQuery, 500);
   const isMounted = useRef(false);
   const pageNumber = useSelector((state: RootReducer) => state.characters.page);
   const genderFilterState = useSelector((state: RootReducer) => state.characters.genderFilter);
@@ -28,7 +28,7 @@ const SearchInput = () => {
   };
 
   useEffect(() => {
-    if (isMounted.current) {
+    if (isMounted.current && searchString) {
       dispatch(FetchCharacters({ searchString, pageNumber, statusFilterState, genderFilterState }));
       dispatch(SaveCharacterName(searchQuery));
     } else {

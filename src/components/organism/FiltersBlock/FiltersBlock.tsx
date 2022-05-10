@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { genderFilterValues, statusFilterValues } from './FilterValues';
 import styles from './FiltersBlock.module.scss';
 import { useDispatch } from 'react-redux';
@@ -19,6 +19,11 @@ const FiltersBlock = () => {
     setStatusFilter(evt.target.value);
     dispatch(SetStatusFilter(evt.target.value));
   };
+
+  useEffect(() => {
+    dispatch(SetGenderFilter(''));
+    dispatch(SetStatusFilter(''));
+  }, []);
 
   return (
     <div className={styles.filtersWrapper}>

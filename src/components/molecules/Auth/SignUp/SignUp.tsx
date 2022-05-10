@@ -7,6 +7,7 @@ import styles from './SignUp.module.scss';
 const SignUp = (props: { modalControl: React.Dispatch<SetStateAction<boolean>> }) => {
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const { modalControl } = props;
 
@@ -19,7 +20,7 @@ const SignUp = (props: { modalControl: React.Dispatch<SetStateAction<boolean>> }
       );
       modalControl(false);
     } catch (error) {
-      console.log(error);
+      setIsError(true);
     }
   };
 
@@ -45,6 +46,9 @@ const SignUp = (props: { modalControl: React.Dispatch<SetStateAction<boolean>> }
         <button className={styles.formField} onClick={register}>
           Register
         </button>
+        {isError && (
+          <span className={styles.error}>Login or password are invalid</span>
+        )}
       </div>
     </div>
   );

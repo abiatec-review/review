@@ -31,7 +31,6 @@ const CardList = (props: CardListProps) => {
   const lastCharacterCardRef = useCallback((node: any) => {
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver(entries => {
-      console.log(currentPage, entries[0].isIntersecting, info.pages);
       if (entries[0].isIntersecting && currentPage <= info.pages) {
         dispatch(FetchCharactersMore({ searchString: characterName, pageNumber: currentPage, statusFilterState, genderFilterState }));
         setCurrentPage((prev) => prev + 1);

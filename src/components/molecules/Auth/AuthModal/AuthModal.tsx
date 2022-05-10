@@ -1,9 +1,14 @@
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
+import { defaultActiveLoginTab } from '../../../../utils/constants';
 import Tabs from '../../Tabs/Tabs';
 import SignIn from '../SignIn/SignIn';
 import SignUp from '../SignUp/SignUp';
 
-const AuthModal = (props: { modalControl: React.Dispatch<SetStateAction<boolean>> }) => {
+interface AuthModalProps {
+  modalControl: React.Dispatch<SetStateAction<boolean>>,
+}
+
+const AuthModal = (props: AuthModalProps) => {
   const { modalControl } = props;
   const [currentActiveTab, setCurrentActiveTab] = useState<string>('');
 
@@ -11,6 +16,10 @@ const AuthModal = (props: { modalControl: React.Dispatch<SetStateAction<boolean>
     { name: 'Sign In' },
     { name: 'Sign Up' },
   ];
+
+  useEffect(() => {
+    setCurrentActiveTab(defaultActiveLoginTab);
+  }, []);
 
   return (
     <div>

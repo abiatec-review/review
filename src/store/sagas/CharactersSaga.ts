@@ -9,11 +9,15 @@ function* fetchCharactersWorker({ payload }: AnyAction): Generator<any, any, any
 
   try {
     const response = yield call(fetchCharactersBySearchQuery, searchString, pageNumber, statusFilterState, genderFilterState);
-    console.log(response.info);
-    yield put(FetchCharactersSuccess(response.results));
-    yield put(SavePageInfo(response.info));
+    if (response.error) {
+      throw new Error();
+    } else {
+      yield put(FetchCharactersSuccess(response.results));
+      yield put(SavePageInfo(response.info));
+    }
   } catch (error) {
-    console.log(error);
+    const a: any = [];
+    yield put(FetchCharactersSuccess(a));
   }
 }
 
