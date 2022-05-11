@@ -4,6 +4,7 @@ import CardsList from '../../components/organism/CardList/CardList';
 import FiltersBlock from '../../components/organism/FiltersBlock/FiltersBlock';
 import Header from '../../components/organism/Header/Header';
 import SortBlock from '../../components/organism/SortBlock/SortBlock';
+import MainLayout from '../../layout/MainLayout';
 import { RootReducer } from '../../store/reducers/index';
 
 function Home() {
@@ -12,14 +13,16 @@ function Home() {
 
   return (
     <div>
-      <Header />
-      {Array.isArray(charactersList) &&
-        <>
-          <FiltersBlock />
-          <SortBlock />
-          <CardsList listOfCharacters={charactersList}/>
-        </>
-      }
+      <MainLayout>
+        <Header />
+        {Array.isArray(charactersList) &&
+          <>
+            <FiltersBlock />
+            <SortBlock />
+            <CardsList listOfCharacters={charactersList}/>
+          </>
+        }
+      </MainLayout>
     </div>
   );
 }

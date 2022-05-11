@@ -1,16 +1,12 @@
-@mixin flexContainer {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
+@import '../../../styles/mixins.module.scss';
 
 .imgsWrapper {
-  @include flexContainer();
+  @include flex('', '', center, '', 15px);
   margin-bottom: 20px;
 }
 
 .episodeInfo {
-  @include flexContainer();
+  @include flex('', '', center, '', 15px);
   font-size: large;
   font-weight: bold;
 }

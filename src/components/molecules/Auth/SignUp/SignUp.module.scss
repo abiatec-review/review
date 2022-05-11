@@ -1,8 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import '../../../../styles/variables.module.scss';
 
 .formContainer {
   width: 360px;
-  background-color: white;
+  background-color: $white-color;
   margin: auto;
   padding: 10px;
 }
@@ -16,9 +17,9 @@
 
 .successMessage {
   font-family: "Roboto", sans-serif;
-  background-color: #3f89f8;
+  background-color: $blue-color;
   padding: 15px;
-  color: white;
+  color: $white-color;
 }
 
 .formField {
@@ -30,10 +31,10 @@
 }
 
 input {
-  background: #f2f2f2;
+  background: $white-input-color;
 }
 
 .error {
   margin: auto;
-  color: red;
+  color: $red-color;
 }

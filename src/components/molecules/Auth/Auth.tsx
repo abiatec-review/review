@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import React, { useState } from 'react';
 import { auth } from '../../../firebase';
 import Modal from '../Modal/Modal';
@@ -8,7 +8,7 @@ import Button from '../../atoms/Button/Button';
 
 const Auth = () => {
   const [isModalActive, setIsModalActive] = useState<boolean>(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | any>(null);
 
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser !== null && !user) {
@@ -34,7 +34,7 @@ const Auth = () => {
       }
       {isModalActive &&
       <Modal setIsActive={setIsModalActive} isActive={isModalActive}>
-        <AuthModal modalControl={setIsModalActive} />
+        <AuthModal setIsModalVisible={setIsModalActive} />
       </Modal>}
     </>
   );

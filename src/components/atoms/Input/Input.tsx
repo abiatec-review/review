@@ -1,18 +1,20 @@
 
 import React from 'react';
 
-interface IInputProps {
+interface InputProps {
   value: string,
   handleChange: (event: React.FormEvent<HTMLInputElement>) => void
-  disabled?: boolean
+  disabled?: boolean,
+  testId?: string,
 }
 
-const Input: React.FC<IInputProps> = ({ value, handleChange, disabled }) => (
+const Input = ({ value, handleChange, disabled, testId }: InputProps) => (
   <div>
     <input
       disabled={disabled}
       value={value}
       onChange={handleChange}
+      data-testid={testId}
     />
   </div>
 );

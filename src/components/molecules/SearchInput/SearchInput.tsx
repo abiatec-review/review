@@ -38,7 +38,7 @@ const SearchInput = () => {
 
   return (
     <div>
-      <Input disabled={!isAuth} value={searchQuery} handleChange={handleInputChange} />
+      <Input testId='search-input' disabled={!isAuth} value={searchQuery} handleChange={handleInputChange} />
     </div>
   );
 };

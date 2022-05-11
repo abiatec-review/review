@@ -7,9 +7,9 @@ interface ButtonProps {
 }
 
 const Button = (props: ButtonProps) => {
-  const { className, handleClick, children } = props;
+  const { className, handleClick, children, ...rest } = props;
   return (
-    <button onClick={handleClick} className={className}>{children}</button>
+    <button onClick={handleClick} className={className} {...rest}>{children}</button>
   );
 };
 

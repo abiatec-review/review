@@ -4,30 +4,32 @@ import React, { SetStateAction, useState } from 'react';
 import { auth } from '../../../../firebase';
 import styles from './SignIn.module.scss';
 
-const SignIn = (props: { modalControl: React.Dispatch<SetStateAction<boolean>> }) => {
+const SignIn = (props: { setIsModalVisible: React.Dispatch<SetStateAction<boolean>> }) => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [isError, setIsError] = useState(false);
-  const { modalControl } = props;
+  const { setIsModalVisible } = props;
 
-  const login = async () => {
+  const login = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
     try {
       const user = await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword,
       );
-      modalControl(false);
+      setIsModalVisible(false);
     } catch (error) {
       setIsError(true);
     }
   };
 
   return (
-    <div className={styles.formContainer}>
+    <form className={styles.formContainer}>
       <div className={styles.registerForm}>
         <input
           onChange={(evt) => setLoginEmail(evt.target.value)}
+          value={loginEmail}
           id="email"
           className={styles.formField}
           type="text"
@@ -36,20 +38,21 @@ const SignIn = (props: { modalControl: React.Dispatch<SetStateAction<boolean>> }
         />
         <input
           onChange={(evt) => setLoginPassword(evt.target.value)}
+          value={loginPassword}
           id="password"
           className={styles.formField}
           type="password"
           placeholder="Password"
           name="password"
         />
-        <button className={styles.formField} onClick={login}>
+        <button className={styles.formField} onClick={(e) => login(e)}>
           Login
         </button>
         {isError && (
           <span className={styles.error}>Login or password are invalid</span>
         )}
       </div>
-    </div>
+    </form>
   );
 };
 

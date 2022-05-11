@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Character } from '../../../models/CharacterReducer';
 import { Episode } from '../../../models/EpisodeReducer';
 import { FetchEpisodesCharacters } from '../../../store/actions/EpisodesAction';
 import { RootReducer } from '../../../store/reducers';
@@ -14,7 +15,7 @@ interface EpisodeProps {
 const CurrentEpisode = (props: EpisodeProps) => {
 
   const { data } = props;
-  const heroes = useSelector((state: RootReducer) => state.episodes!.charactersInEpisode![data.name]);
+  const heroes = useSelector<RootReducer, Character[]>((state: RootReducer) => state.episodes!.charactersInEpisode![data.name]);
 
   const dispatch = useDispatch();
 
@@ -29,7 +30,7 @@ const CurrentEpisode = (props: EpisodeProps) => {
         <div>{ data.air_date }</div>
       </div>
       <div className={styles.imgsWrapper}>
-        {heroes && heroes.map(({ id, image, name }) => <Image className={styles.characterImg} key={id} textAlt={name} sourceToImg={image} />)}
+        {heroes?.map(({ id, image, name }) => <Image className={styles.characterImg} key={id} textAlt={name} sourceToImg={image} />)}
       </div>
     </div>
   );
