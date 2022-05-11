@@ -1,4 +1,4 @@
 export {Input} from './Input';
 export {Image} from './Image';
 export {Button} from './Button';
-export {Modal} from './Modal';
+export {Radio} from './Radio'

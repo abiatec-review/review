@@ -1,0 +1,34 @@
+@import 'styles/mixins.module.scss';
+@import 'styles/variables.module.scss';
+
+.filterModal {
+  position: fixed;
+
+  .filter {
+    @include flex(flex, center, center, column);
+    position: fixed;
+    top: 20%;
+    left: 0;
+    padding: 20px;
+    background-color: $white;;
+    z-index: 2;
+
+    .formCont {
+      @include flex(flex, flex-start, center, column);
+    }
+  }
+
+  .filterShadow {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: $black;
+    top: 0;
+    left: 0;
+    opacity: 0.75;
+  }
+}
+
+
+
+

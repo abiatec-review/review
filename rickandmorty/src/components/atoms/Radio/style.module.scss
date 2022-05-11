@@ -1,0 +1,12 @@
+@import 'styles/mixins.module.scss';
+@import 'styles/variables.module.scss';
+
+.radioLabel {
+  cursor: pointer;
+
+  .radioInput {
+    cursor: pointer;
+  }
+}
+
+

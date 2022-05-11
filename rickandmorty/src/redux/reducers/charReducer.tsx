@@ -1,4 +1,4 @@
-import {DELETE_CHARACTERS, SET_CHARACTERS, SET_ERROR, SET_LOADER} from '../actions';
+import {DELETE_CHARACTERS, FILTER_CHARACTERS, SET_CHARACTERS, SET_ERROR, SET_LOADER} from '../actions';
 import {TCharacter} from "../../models/character";
 
 const initialState = {
@@ -6,7 +6,7 @@ const initialState = {
     charactersLoader: false,
     error: false,
     page: 1,
-    info: {}
+    info: {},
 }
 
 export const charactersReducer = (state = initialState, action: { type: string; payload: {results: TCharacter<string>; info: {next: string}}; }) => {
@@ -17,7 +17,7 @@ export const charactersReducer = (state = initialState, action: { type: string; 
                 ...state,
                 characters: action.payload.results,
                 page: state.page + 1,
-                info: action.payload.info.next
+                info: action.payload.info.next,
             }
         }
         case DELETE_CHARACTERS: {

@@ -5,10 +5,10 @@ import Loader from "react-js-loader";
 
 import {deleteEpisodesCharacter, getCharacters, getEpisodes} from "../../../redux/actions";
 
-import { ContentItem } from "../../atoms/ContentItem";
-import { EpisodeItem } from "../../atoms/EpisodeItem";
+import { ContentItem } from "../../molecules/ContentItem";
+import { EpisodeItem } from "../../molecules/EpisodeItem";
 import {FetchMoreButton} from "../../atoms/FetchMoreButton";
-import {Modal} from "../../atoms";
+import {Modal} from "../../molecules";
 
 import {TEpisode} from "../../../models/episode";
 import {TCharacter} from "../../../models/character";
@@ -67,10 +67,12 @@ export const Content:React.FC<IProps> = ({data, info, dataEpisodes, inputRef}) =
         dispatch(getCharacters( {characterName: inputRef?.current?.value as string}  ))
     }
 
+
     return (
         <>
             <div className={styles.gallery}>
-                {data.map((item: TCharacter<string>) => (
+                {data
+                    .map((item: TCharacter<string>) => (
                     <ContentItem key={item.id} showModal={() => setModalVisible(true)} setId={setId} item={item} />
                 ))}
             </div>

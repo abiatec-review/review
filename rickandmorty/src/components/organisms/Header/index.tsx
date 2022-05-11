@@ -12,14 +12,15 @@ interface IProps{
     inputRef: React.RefObject<HTMLInputElement>,
     emailHeader: string,
     logIn: boolean,
-    toggleVisible: () => void
+    toggleVisible: () => void,
+    setFilterVisible: (arg: boolean) => void
 }
 
-export const Header:React.FC<IProps> = ({inputRef, emailHeader, logIn, toggleVisible}) => {
+export const Header:React.FC<IProps> = ({inputRef, setFilterVisible, emailHeader, logIn, toggleVisible}) => {
     return (
         <header className={styles.Header}>
             <Image type={allImages.LIST} className={styles.Header_logo}/>
-            <SearchInput inputRef={inputRef}/>
+            <SearchInput inputRef={inputRef} setFilterVisible={setFilterVisible} />
             <LogInButton toggleVisible={toggleVisible} emailHeader={emailHeader} logIn={logIn}/>
         </header>
     )

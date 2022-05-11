@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 
 import {signInAuth, signUpAuth} from "redux/actions";
 
-import {Modal} from "../../atoms";
+import {Modal} from "../../molecules";
 
 import {regEmail} from "utils/constants";
 
