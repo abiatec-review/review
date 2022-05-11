@@ -1,8 +1,7 @@
 import {all, fork, put, takeEvery} from "redux-saga/effects";
 import {logInWithEmailAndPassword, logout, registerWithEmailAndPassword} from "../../utils/firebase";
-import {signInFailed, signInSuccess, signOut, signUpFailed, signUpSuccess} from "../actions/auth";
+import {signInFailed, signInSuccess, signUpFailed, signUpSuccess} from "../actions/auth";
 import {SIGN_IN_WITH_EMAIL_AND_PASSWORD, SIGN_OUT, SIGN_UP} from "../actionTypes";
-import exp from "constants";
 
 
 function* signUpSaga({payload}: any): Generator<any, any, any> {
@@ -30,7 +29,6 @@ function* signInSaga({payload}: any): Generator<any, any, any> {
 function* signOutSaga() {
     try {
         yield logout();
-        // yield put(signOut())
     } catch (err) {
         console.log(err)
     }

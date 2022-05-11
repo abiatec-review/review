@@ -16,10 +16,9 @@ export const SearchBox: React.FC<IProps> = ( {inputValue, onChangeHandler, getCh
   return ( 
     <form className={styles.headerSearchBox}>
       <Input inputValue={inputValue} onChangeHandler={onChangeHandler} name={'name'} placeholder={'Enter the character name'} className={styles.headerInputField}/>
-      <Button buttonText='Find!'
-              handleClick={getCharactersHandler}
+      <Button handleClick={getCharactersHandler}
               className={styles.submitButton}
-              type={'submit'} />
+              type={'submit'}>{'Find'}</Button>
     </form>
   )
 } 

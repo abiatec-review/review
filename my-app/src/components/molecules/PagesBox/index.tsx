@@ -19,7 +19,7 @@ export const PagesBox: React.FC<IProps> = ({selectPage, number})=> {
   return ( 
     <div className={styles.pagesBox}>
       {pages.length > 1  && pages.map((page: any) => {
-        return <Button key={page} className={styles.pageNumberButton} handleClick={selectPage} type={'button'} buttonText={page}/>
+        return <Button key={page} className={styles.pageNumberButton} handleClick={selectPage} type={'button'}>{page}</Button>
       })}
     </div>
   )

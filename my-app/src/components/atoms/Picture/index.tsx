@@ -1,26 +1,28 @@
 import classnames from 'classnames'
 
-import { constants } from '../../../utils/constants'
+import {constants} from '../../../utils/constants'
 
 import styles from './styles.module.scss'
 import animations from '../../../styles/animations.module.scss'
+import React from "react";
 
 interface IProps {
-  type: constants
-  srcImage: string
-  click?: (event:any)=>void
+    type: constants
+    srcImage: string
+    click?: (event: any) => void
 }
 
-export const Picture: React.FC<IProps> = ( {type, srcImage, click} ) => {
-  switch (type) {
-    case constants.HEADER_PICTURE: 
-    return (
-      <svg className={classnames(styles.headerPicture, animations.rotation)} version="1.0" xmlns="http://www.w3.org/2000/svg"
-      width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
-      preserveAspectRatio="xMidYMid meet">
-      <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-      fill="#000000" stroke="none">
-      <path d="M29 4921 c-16 -16 -29 -38 -29 -48 0 -10 72 -396 160 -858 88 -462
+export const Picture: React.FC<IProps> = ({type, srcImage, click}) => {
+    switch (type) {
+        case constants.HEADER_PICTURE:
+            return (
+                <svg className={classnames(styles.headerPicture, animations.rotation)} version="1.0"
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+                     preserveAspectRatio="xMidYMid meet">
+                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                       fill="#000000" stroke="none">
+                        <path d="M29 4921 c-16 -16 -29 -38 -29 -48 0 -10 72 -396 160 -858 88 -462
       160 -843 160 -847 0 -3 -61 -8 -136 -10 -135 -3 -136 -3 -160 -31 l-24 -28 0
       -319 c0 -213 4 -327 11 -343 18 -39 50 -47 194 -47 l135 0 0 -477 c0 -362 3
       -484 13 -503 10 -21 79 -52 417 -187 222 -90 407 -166 411 -170 4 -5 -10 -179
@@ -55,69 +57,78 @@ export const Picture: React.FC<IProps> = ( {type, srcImage, click} ) => {
       7 0 275 -105 595 -233z m1812 216 c0 -10 14 -151 30 -313 16 -162 30 -298 30
       -302 0 -5 -254 -8 -565 -8 l-565 0 -35 70 c-19 38 -47 77 -61 86 -25 17 -22
       19 553 250 318 128 586 233 596 233 10 1 17 -6 17 -16z"/>
-      <path d="M461 4414 c-39 -32 -43 -83 -8 -117 24 -24 1732 -627 1775 -627 58 0
+                        <path d="M461 4414 c-39 -32 -43 -83 -8 -117 24 -24 1732 -627 1775 -627 58 0
       94 91 55 139 -13 15 -271 109 -891 326 -480 168 -879 305 -887 305 -7 0 -27
       -12 -44 -26z"/>
-      <path d="M561 4082 c-45 -22 -59 -62 -38 -107 14 -30 33 -39 244 -124 126 -50
+                        <path d="M561 4082 c-45 -22 -59 -62 -38 -107 14 -30 33 -39 244 -124 126 -50
       243 -91 261 -91 70 0 108 85 59 134 -17 17 -465 206 -488 206 -2 0 -19 -8 -38
       -18z"/>
-      <path d="M540 3730 c-45 -45 -33 -108 27 -138 21 -11 131 -56 245 -101 223
+                        <path d="M540 3730 c-45 -45 -33 -108 27 -138 21 -11 131 -56 245 -101 223
       -88 241 -91 279 -42 23 29 21 83 -4 108 -22 22 -459 193 -494 193 -20 0 -41
       -8 -53 -20z"/>
-      <path d="M1305 3725 l-25 -24 0 -586 0 -586 23 -22 c13 -14 202 -95 466 -201
+                        <path d="M1305 3725 l-25 -24 0 -586 0 -586 23 -22 c13 -14 202 -95 466 -201
       402 -160 446 -176 474 -167 59 21 56 -5 57 637 l0 591 -22 20 c-32 29 -875
       363 -916 363 -22 0 -41 -8 -57 -25z m500 -323 l320 -128 3 -463 c2 -438 1
       -462 -15 -457 -10 3 -162 63 -338 134 l-320 128 -3 463 c-2 438 -1 462 15 457
       10 -3 162 -63 338 -134z"/>
-      <path d="M1305 2275 c-32 -31 -33 -76 -2 -108 31 -35 899 -381 933 -373 63 16
+                        <path d="M1305 2275 c-32 -31 -33 -76 -2 -108 31 -35 899 -381 933 -373 63 16
       86 95 41 140 -28 28 -874 366 -917 366 -19 0 -40 -9 -55 -25z"/>
-      <path d="M716 2198 c-15 -13 -29 -37 -32 -54 -12 -65 -9 -67 788 -394 787
+                        <path d="M716 2198 c-15 -13 -29 -37 -32 -54 -12 -65 -9 -67 788 -394 787
       -323 776 -319 813 -267 20 29 19 80 -2 106 -19 23 -1485 631 -1521 631 -12 0
       -32 -10 -46 -22z"/>
-      <path d="M730 1867 c-52 -26 -62 -98 -20 -134 27 -23 1456 -613 1502 -620 30
+                        <path d="M730 1867 c-52 -26 -62 -98 -20 -134 27 -23 1456 -613 1502 -620 30
       -4 41 -1 62 20 31 31 35 84 9 116 -17 19 -1488 631 -1517 631 -6 0 -22 -6 -36
       -13z"/>
-      <path d="M3725 4134 c-610 -214 -875 -311 -887 -325 -26 -31 -23 -85 7 -114
+                        <path d="M3725 4134 c-610 -214 -875 -311 -887 -325 -26 -31 -23 -85 7 -114
       38 -39 31 -41 345 70 52 18 381 133 730 255 775 271 737 257 755 283 18 26 19
       76 2 98 -14 19 -51 39 -69 38 -7 0 -404 -137 -883 -305z"/>
-      <path d="M4565 4086 c-73 -24 -1640 -574 -1683 -591 -48 -19 -62 -39 -62 -85
+                        <path d="M4565 4086 c-73 -24 -1640 -574 -1683 -591 -48 -19 -62 -39 -62 -85
       0 -39 39 -80 75 -80 42 0 1747 599 1773 623 45 41 20 123 -43 140 -11 3 -38 0
       -60 -7z"/>
-      <path d="M4060 3449 c-365 -138 -390 -151 -390 -210 0 -39 39 -79 78 -79 41 0
+                        <path d="M4060 3449 c-365 -138 -390 -151 -390 -210 0 -39 39 -79 78 -79 41 0
       721 256 749 282 50 47 14 138 -55 138 -22 -1 -176 -53 -382 -131z"/>
-      <path d="M3155 3274 c-170 -74 -316 -142 -322 -151 -10 -13 -13 -91 -13 -308
+                        <path d="M3155 3274 c-170 -74 -316 -142 -322 -151 -10 -13 -13 -91 -13 -308
       l0 -292 23 -21 c14 -13 36 -22 56 -22 41 0 640 254 664 282 15 18 17 49 17
       313 l0 294 -26 20 c-15 12 -40 21 -58 20 -17 0 -170 -61 -341 -135z m248 -404
       c-5 -4 -64 -31 -133 -60 -69 -29 -160 -68 -202 -86 l-78 -33 0 163 0 163 208
       89 207 90 3 -160 c1 -88 -1 -162 -5 -166z"/>
-      <path d="M3500 2209 c-418 -168 -651 -266 -662 -280 -39 -46 -13 -120 46 -135
+                        <path d="M3500 2209 c-418 -168 -651 -266 -662 -280 -39 -46 -13 -120 46 -135
       19 -4 177 55 618 231 792 316 736 292 754 327 12 24 13 36 4 64 -13 40 -36 54
       -82 53 -18 0 -322 -117 -678 -260z"/>
-      <path d="M3500 1869 c-418 -168 -651 -266 -662 -280 -22 -26 -23 -77 -3 -106
+                        <path d="M3500 1869 c-418 -168 -651 -266 -662 -280 -22 -26 -23 -77 -3 -106
       36 -51 37 -51 730 227 358 144 656 264 663 267 21 9 44 62 36 86 -12 41 -45
       67 -83 66 -22 0 -287 -102 -681 -260z"/>
-      <path d="M3505 1529 c-402 -161 -657 -268 -667 -281 -41 -47 -4 -138 57 -138
+                        <path d="M3505 1529 c-402 -161 -657 -268 -667 -281 -41 -47 -4 -138 57 -138
       34 0 1325 517 1350 541 46 45 6 140 -59 139 -17 -1 -323 -118 -681 -261z"/>
-      </g>
-      </svg>
-    )
-    case constants.CARD_PICTURE:
-      return (
-        <img src={srcImage} alt="cardPicture" className={styles.cardPicture} onClick={click}/>
-      )
-    case constants.MAIN_MODAL_PICTURE: 
-      return (
-        <img src={srcImage} alt="CharacterPic" className={styles.modalMainPicture} />
-      )
-      case constants.CHARS_MODAL_PICTURE:
-        return (
-          <img src={srcImage} alt="CharacterPic" className={styles.modalCharPicture} />
-        )
+                    </g>
+                </svg>
+            )
+        case constants.CARD_PICTURE:
+            return (
+                <img src={srcImage} alt="cardPicture" className={styles.cardPicture} onClick={click}/>
+            )
+        case constants.MAIN_MODAL_PICTURE:
+            return (
+                <img src={srcImage} alt="CharacterPic" className={styles.modalMainPicture}/>
+            )
+        case constants.CHARS_MODAL_PICTURE:
+            return (
+                <img src={srcImage} alt="CharacterPic" className={styles.modalCharPicture}/>
+            )
         case constants.FOOTER_LOGO:
-        return (
-          <img src={srcImage} alt="CharacterPic" className={styles.footerLogo} />
-        )  
-    default: return null
-  }
-  
+            return (
+                <img src={srcImage} alt="CharacterPic" className={styles.footerLogo}/>
+            )
+        case constants.FILTER_ARROW:
+            return (
+                <svg width="24" height="24" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" clipRule="evenodd"
+                          d="M4.11 8l1.415-1.414 4.95-4.95 1.414 1.414L6.94 8l4.95 4.95-1.414 1.414-4.95-4.95L4.111 8z"
+                          fill="#000"></path>
+                </svg>
+            )
+        default:
+            return null
+    }
+
 }

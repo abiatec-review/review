@@ -72,7 +72,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
                   return <option key={e} value={selectEpisode(e)!}>Episode № {selectEpisode(e)}</option>
                 })}
               </select>
-              <Button className={styles.modalSubmit} handleClick={modalEpisodeRequest} type={'submit'} buttonText={'Show me this episode'} />
+              <Button className={styles.modalSubmit} handleClick={modalEpisodeRequest} type={'submit'}>{'Show me this episode'}</Button>
             </form>
           </>
         )
@@ -88,7 +88,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
                 <p className={styles.modalDescription} style={{margin: 0}}>{ep.name}</p>
               </div>
               })}
-              <Button className={styles.modalSubmit} type={'button'} buttonText={'Another characters'} handleClick={modalCharsRequest}/>
+              <Button className={styles.modalSubmit} type={'button'} handleClick={modalCharsRequest}>{'Another characters'}</Button>
             </div>
           </>
         )
@@ -103,12 +103,10 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
                 <div className={styles.modalTabs}>
                   <Button className={modalType === "character" ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
                           handleClick={()=>{dispatch(setCharacter('character'))}} 
-                          type={'button'}
-                          buttonText={'About Character'}/>
+                          type={'button'}>{'About Character'}</Button>
                   <Button className={modalType === "episode" ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
                           handleClick={modalType !== "episode" ? modalEpisodeRequest : null} 
-                          type={'button'}
-                          buttonText={'About Episode'}/>
+                          type={'button'}>{'About Episode'}</Button>
                 </div>
                 {modalLayout()}
              </div>

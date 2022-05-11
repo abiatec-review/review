@@ -12,7 +12,7 @@ interface IProps {
     name?: any
     titleText: string
     values: any
-    buttonText: string
+    buttonText: any
 }
   
   export const AuthForm: React.FC<IProps> = ( {onChangeHandler, handleClick, placeholder, name, titleText, values, buttonText } )=> {
@@ -33,7 +33,7 @@ interface IProps {
                        placeholder={placeholder.secondField}
                        inputValue={values.secondField}
                        />
-                <Button handleClick={handleClick} className={styles.authFormButton} type={'submit'} buttonText={buttonText}/>
+                <Button handleClick={handleClick} className={styles.authFormButton} type={'submit'}>{buttonText}</Button>
             </form>
         </div>
     )

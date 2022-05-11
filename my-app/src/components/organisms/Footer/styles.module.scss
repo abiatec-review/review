@@ -17,7 +17,7 @@
 }
 
 .footerWithChars {
-  position: relative;
+  align-content: flex-end;
   @include Size(fit-content, 100%);
   background-color: #767676;
   opacity: 0.9;

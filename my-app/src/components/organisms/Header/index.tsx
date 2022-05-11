@@ -74,8 +74,8 @@ export const Header: React.FC<IProps> = ( {inputValue, onChangeHandler,getCharac
         <Picture type={constants.HEADER_PICTURE} srcImage={""}/>
         {children}
         <div className={styles.navigationBox}>
-            <Button handleClick={openDropDown} className={styles.mailButton} type={'button'} buttonText={email}/>
-            <Button handleClick={buttonContent()?.onClick} className={styles.headerNavButton} type={'button'} buttonText={buttonContent()?.title}/>
+            <Button handleClick={openDropDown} className={styles.mailButton} type={'button'}>{email}</Button>
+            <Button handleClick={buttonContent()?.onClick} className={styles.headerNavButton} type={'button'}>{buttonContent()?.title}</Button>
         </div>
     </div>
   )
