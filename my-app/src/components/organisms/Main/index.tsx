@@ -3,7 +3,8 @@ import {RootStateOrAny, useSelector} from 'react-redux'
 import {
     Button,
     Picture,
-    TitleText} from 'components/atoms'
+    TitleText
+} from 'components/atoms'
 import {Card} from 'components/molecules'
 
 import styles from './styles.module.scss'
@@ -16,6 +17,7 @@ export const Main: React.FC = () => {
     const checkedInputs = document.querySelectorAll("input[type='checkbox']")
     const [charsForRender, setCharsForRender] = useState(charactersList)
     let filters: any = {gender: [], status: [], species: []}
+    const [currentFilters, serCurrentFilters] = useState(filters)
 
     const openFilter = () => {
         setActive(true)
@@ -42,15 +44,21 @@ export const Main: React.FC = () => {
             Object.entries(filters).every(([k, v]) => el[k].includes(v))
         )
 
+        serCurrentFilters(filters)
+
         setCharsForRender(filteredData)
     }
 
     useEffect(() => {
-    setCharsForRender(charactersList);
+
+        setCharsForRender(charactersList.filter((el: any) =>
+            Object.entries(currentFilters).every(([k, v]) => el[k].includes(v))
+        ));
         // checkedInputs.forEach((i: any) => {
         //     i.checked = false
         // })
         // filters = {gender: [], status: [], species: []}
+        return () => {}
     }, [charactersList])
 
     return (
