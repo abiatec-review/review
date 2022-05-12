@@ -99,7 +99,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
       <div className={styles.card}>
          {isOpen && <Modal onClose={closeModal}>
               <div className={styles.modalInside}>
-                <Button className={styles.closeButton} handleClick={closeModal} type={'button'}></Button>
+                <Button className={styles.closeButton} handleClick={closeModal} type={'button'}/>
                 <div className={styles.modalTabs}>
                   <Button className={modalType === "character" ? classNames(styles.modalNavButton, styles.modalNavButtonActive) : styles.modalNavButton} 
                           handleClick={()=>{dispatch(setCharacter('character'))}} 

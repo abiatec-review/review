@@ -11,12 +11,12 @@ import {DropDown} from "../../molecules/DropDown";
 
 interface IProps {
     children?: JSX.Element
-  inputValue?: string
-  onChangeHandler?: any
-  getCharactersHandler?: (event:any)=>void
+    inputValue?: string
+    onChangeHandler?: any
+    getCharactersHandler?: (event: any) => void
 }
 
-export const Header: React.FC<IProps> = ( {inputValue, onChangeHandler,getCharactersHandler, children} ) => {
+export const Header: React.FC<IProps> = ({inputValue, onChangeHandler, getCharactersHandler, children}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const location = useLocation()
@@ -51,7 +51,8 @@ export const Header: React.FC<IProps> = ( {inputValue, onChangeHandler,getCharac
                     }
                 }
             }
-            default: return null
+            default:
+                return null
         }
     }
     const openDropDown = () => {
@@ -63,20 +64,21 @@ export const Header: React.FC<IProps> = ( {inputValue, onChangeHandler,getCharac
     }
 
     return (
-    <div className={styles.header}>
-        {isOpenDropDown && <DropDown onClose={closeDropDown} >
-          <div className={styles.dropDownContent}>
-            <p className={styles.dropDownItem}>position 1</p>
-            <p className={styles.dropDownItem}>position 2</p>
-            <p className={styles.dropDownItem}>position 3</p>
-          </div>
-        </DropDown>}
-        <Picture type={constants.HEADER_PICTURE} srcImage={""}/>
-        {children}
-        <div className={styles.navigationBox}>
-            <Button handleClick={openDropDown} className={styles.mailButton} type={'button'}>{email}</Button>
-            <Button handleClick={buttonContent()?.onClick} className={styles.headerNavButton} type={'button'}>{buttonContent()?.title}</Button>
+        <div className={styles.header}>
+            {isOpenDropDown && <DropDown onClose={closeDropDown}>
+              <div className={styles.dropDownContent}>
+                <p className={styles.dropDownItem}>position 1</p>
+                <p className={styles.dropDownItem}>position 2</p>
+                <p className={styles.dropDownItem}>position 3</p>
+              </div>
+            </DropDown>}
+            <Picture type={constants.HEADER_PICTURE} srcImage={""}/>
+            {children}
+            <div className={styles.navigationBox}>
+                <Button handleClick={openDropDown} className={styles.mailButton} type={'button'}>{email}</Button>
+                <Button handleClick={buttonContent()?.onClick} className={styles.headerNavButton}
+                        type={'button'}>{buttonContent()?.title}</Button>
+            </div>
         </div>
-    </div>
-  )
+    )
 } 

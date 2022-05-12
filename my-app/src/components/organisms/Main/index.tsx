@@ -13,11 +13,11 @@ import {constants} from "../../../utils/constants";
 
 export const Main: React.FC = () => {
     let {charactersList, error} = useSelector((state: RootStateOrAny) => state.characters);
-    const [isActive, setActive] = useState(false);
+    const [isActive, setActive] = useState<boolean>(false);
     const checkedInputs = document.querySelectorAll("input[type='checkbox']")
-    const [charsForRender, setCharsForRender] = useState(charactersList)
+    const [charsForRender, setCharsForRender] = useState<any>(charactersList)
     let filters: any = {gender: [], status: [], species: []}
-    const [currentFilters, serCurrentFilters] = useState(filters)
+    const [currentFilters, serCurrentFilters] = useState<object>(filters)
 
     const openFilter = () => {
         setActive(true)
