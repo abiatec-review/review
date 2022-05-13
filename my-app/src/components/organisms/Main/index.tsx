@@ -12,10 +12,10 @@ import React, {useEffect, useState} from "react";
 import {constants} from "../../../utils/constants";
 
 export const Main: React.FC = () => {
-    let {charactersList, error} = useSelector((state: RootStateOrAny) => state.characters);
+    const {charactersList, error} = useSelector((state: RootStateOrAny) => state.characters);
     const [isActive, setActive] = useState<boolean>(false);
     const checkedInputs = document.querySelectorAll("input[type='checkbox']")
-    const [charsForRender, setCharsForRender] = useState<any>(charactersList)
+    const [charsForRender, setCharsForRender] = useState<Array<object>>(charactersList)
     let filters: any = {gender: [], status: [], species: []}
     const [currentFilters, serCurrentFilters] = useState<object>(filters)
 
@@ -54,11 +54,6 @@ export const Main: React.FC = () => {
         setCharsForRender(charactersList.filter((el: any) =>
             Object.entries(currentFilters).every(([k, v]) => el[k].includes(v))
         ));
-        // checkedInputs.forEach((i: any) => {
-        //     i.checked = false
-        // })
-        // filters = {gender: [], status: [], species: []}
-        return () => {}
     }, [charactersList])
 
     return (

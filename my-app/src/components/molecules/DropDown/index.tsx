@@ -6,7 +6,7 @@ interface IProps {
     onClose: () => void
 }
 
-export const DropDown: React.FC<IProps> = ({children, onClose,}) => {
+export const DropDown: React.FC<IProps> = ({children, onClose}) => {
 
     const overlayClick = (event: any) => {
         if (event.target.classList.contains(styles.dropDown))

@@ -18,28 +18,21 @@ export const getCharacters = (char: string) => {
     };
 };
 
-export const getCharactersByPage = (url: string) => {
-    return {
-        type: GET_CHARACTERS_BY_PAGE,
-        payload: url
-    };
-};
-
-export const getCharactersByPageAndName = (payload: any) => {
+export const getCharactersByPageAndName = (payload: object) => {
     return {
         type: GET_CHARACTERS_BY_PAGE_AND_NAME,
         payload
     }
 }
 
-export const getCharactersByPageSuccess = (chars: any) => {
+export const getCharactersByPageSuccess = (chars: number) => {
     return {
         type: GET_CHARACTERS_BY_PAGE_SUCCESS,
         payload: chars
     };
 };
 
-export const getCharactersSuccess = (chars: any) => {
+export const getCharactersSuccess = (chars: object) => {
     return {
         type: GET_CHARACTERS_SUCCESS,
         payload: chars
@@ -59,7 +52,7 @@ export const getCharacterById = (id: string) => {
     }
 }
 
-export const getCharacterByIdSuccess = (charById: any) => {
+export const getCharacterByIdSuccess = (charById: string) => {
     return {
         type: GET_CHARACTER_BY_ID_SUCCESS,
         payload: charById
@@ -72,7 +65,7 @@ export const getCharacterByIdFailed = () => {
     }
 }
 
-export const getCharactersPageInfo = (info: any) => {
+export const getCharactersPageInfo = (info: object) => {
     return {
         type: GET_CHARACTERS_PAGES_INFO,
         payload: info

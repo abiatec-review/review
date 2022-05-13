@@ -13,7 +13,7 @@ export const signUp = (email: string, password: string) => {
     };
 };
 
-export const signUpSuccess = (data: any) => {
+export const signUpSuccess = (data: object) => {
     return {
         type: SIGN_UP_SUCCESS,
         payload: data

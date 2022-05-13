@@ -31,23 +31,23 @@ export const Header: React.FC<IProps> = ({inputValue, onChangeHandler, getCharac
                     onClick: () => {
                         dispatch(clearCharacters())
                         dispatch(signOut());
-                        navigate('/signin')
+                        navigate(`/${constants.SIGNIN}`)
                     }
                 }
             }
-            case '/signin': {
+            case `/${constants.SIGNIN}`: {
                 return {
                     title: 'Sign Up',
                     onClick: () => {
-                        navigate('/signup')
+                        navigate(`/${constants.SIGNUP}`)
                     }
                 }
             }
-            case '/signup': {
+            case `/${constants.SIGNUP}`: {
                 return {
                     title: 'Sign In',
                     onClick: () => {
-                        navigate('/signin')
+                        navigate(`/${constants.SIGNIN}`)
                     }
                 }
             }

@@ -38,61 +38,6 @@ export const getCharactersByPageAndNameApi = async (name: string, page: string) 
 
 export const getThreeRandomChars = async (episodes: number[]) => {
     return await Promise.all(episodes.map(async(ep: number) => {
-        return await (await instance.get(`character/${ep}`)).data
+        return await (instance.get(`character/${ep}`).then((data) => data.data))
     }))
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// class Api {
-//     address: object;
-//     options: any;
-//     constructor(address: any) {
-//         this.address = address; 
-//     }
-
-//     getCharacters(name :string) {
-//         const query = `character/?name=${name}`
-        
-//     }
-
-
-//     _get(query: any) {
-//         return fetch(this._url(query))
-//     }
-
-//     _url(query: any) {
-//         return `${this.address}/${query}`
-//     }
-
-//     _getResponse(res:any) {
-//         if (res.ok) {
-//             return res.json().then((j: any) => Promise.resolve(j))
-//         } else {
-//             return Promise.reject(`${res.status}`)
-//         }
-//     }
-// }
-
-// const api = new Api({
-//     address: "https://rickandmortyapi.com/api/"
-// })
-
-// export { api }

@@ -7,7 +7,7 @@ export const getEpisode = (episodeId: number) => {
     };
 };
 
-export const getEpisodeSuccess = (episodeInfo: any) => {
+export const getEpisodeSuccess = (episodeInfo: object) => {
     return {
         type: GET_EPISODE_SUCCESS,
         payload: episodeInfo

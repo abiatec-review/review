@@ -8,7 +8,7 @@ import { setCharacter, setEpisode } from 'redux/actions/modalType'
 import { Modal } from '../Modal'
 import { Button, Picture, TitleText } from "components/atoms"
 
-import { selectEpisode } from 'utils/helpers'
+import {getCharEpisode, selectEpisode} from 'utils/helpers'
 import { constants } from 'utils/constants'
 
 import styles from './styles.module.scss'
@@ -34,7 +34,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
     setIsOpen(true);
     const targetChar = characters.charactersList.find((char: { image: string }) => char.image === event.target.src);
     setChar(targetChar);
-    setSelectedValue(Number(targetChar.episode[0].split('/').slice(-1)))
+    setSelectedValue(getCharEpisode(targetChar))
   }
 
   const closeModal = () => {
