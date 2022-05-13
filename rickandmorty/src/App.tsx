@@ -9,6 +9,7 @@ import {ErrorComponent} from "./components/atoms/ErrorComponent";
 import {Authentication} from "./components/molecules/Authentication";
 import {FilterModal} from "./components/molecules/FilterModal";
 import {FilterButton} from "./components/atoms/FilterButton";
+import {SortComponent} from "./components/molecules/SortComponent";
 import {TCharacter} from "./models/character";
 //@ts-ignore
 import Loader from "react-js-loader";
@@ -85,6 +86,7 @@ function App () {
     <>
       <Header inputRef={inputRef} emailHeader={emailHeader} setFilterVisible={setFilterVisible} logIn={logIn} toggleVisible={toggleVisible}/>
       <h1 className={styles.h1}>Rick and Morty</h1>
+      <SortComponent />
       <FilterButton onOpen={() => showFilter(true)}/>
       {filterVisible &&
               <FilterModal

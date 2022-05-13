@@ -1,4 +1,11 @@
-import {DELETE_CHARACTERS, FILTER_CHARACTERS, SET_CHARACTERS, SET_ERROR, SET_LOADER} from '../actions';
+import {
+    SET_CHARACTERS,
+    DELETE_CHARACTERS,
+    SET_ERROR,
+    SET_LOADER,
+    SORT_CHARACTERSNAME, SORT_CHARACTERSID, SORT_CHARACTERSLOCATION, SORT_CHARACTERSNAMELOCATION
+} from '../actions';
+
 import {TCharacter} from "../../models/character";
 
 const initialState = {
@@ -39,6 +46,31 @@ export const charactersReducer = (state = initialState, action: { type: string; 
             return {
                 ...state,
                 error: action.payload
+            }
+        }
+        case SORT_CHARACTERSID: {
+            return {
+                ...state,
+                characters: state.characters.sort((a: TCharacter<string>, b: TCharacter<string>) => a.id - b.id)
+            }
+        }
+        case SORT_CHARACTERSNAME: {
+            return {
+                ...state,
+                characters: state.characters.sort((a: TCharacter<string>, b: TCharacter<string>) => a.name.localeCompare(b.name))
+            }
+        }
+        case SORT_CHARACTERSLOCATION: {
+            return {
+                ...state,
+                characters: state.characters.sort((a: TCharacter<string>, b: TCharacter<string>) => a.location.name.localeCompare(b.location.name))
+            }
+        }
+        case SORT_CHARACTERSNAMELOCATION: {
+            return {
+                ...state,
+                characters: state.characters.sort((a: TCharacter<string>, b: TCharacter<string>) => a.name.localeCompare(b.name))
+                    .sort((a: TCharacter<string>, b: TCharacter<string>) => a.location.name.localeCompare(b.location.name))
             }
         }
         default:

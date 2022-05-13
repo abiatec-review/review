@@ -25,6 +25,9 @@ export const ContentItem:React.FC<IProps> = ({item, setId, showModal }) => {
                       <figcaption>
                           {item?.name}
                       </figcaption>
+                      <figcaption>
+                          {item?.location.name}
+                      </figcaption>
                   </div>
               </figure>
           </>

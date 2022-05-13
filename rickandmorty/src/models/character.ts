@@ -5,4 +5,5 @@ export interface TCharacter<T> extends baseModel {
     image: T
     species: T
     status: T
+    location: {name: T}
  }

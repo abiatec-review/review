@@ -11,8 +11,10 @@ export const SET_LOADER = 'SET_LOADER';
 export const SET_ERROR = 'SET_ERROR';
 export const SIGN_UP = 'SIGN_UP';
 export const SIGN_IN = 'SIGN_IN';
-export const FILTER_CHARACTERS = 'FILTER_CHARACTERS';
-
+export const SORT_CHARACTERSNAME = 'SORT_CHARACTERSNAME';
+export const SORT_CHARACTERSID = 'SORT_CHARACTERSID';
+export const SORT_CHARACTERSLOCATION = 'SORT_CHARACTERSLOCATION';
+export const SORT_CHARACTERSNAMELOCATION = 'SORT_CHARACTERSNAMELOCATION';
 
 
 export const getCharacters = (payload: {characterName: string}) => {
@@ -95,12 +97,32 @@ export const signInAuth = (payload: {email: string}) => {
     }
 }
 
-// export const filterCharacters = (payload: string) => {
-//     return {
-//         type: FILTER_CHARACTERS,
-//         payload
-//     }
-// }
+export const sortCharactersId = () => {
+    return {
+        type: SORT_CHARACTERSID
+    }
+}
+
+export const sortCharactersName = () => {
+    return {
+        type: SORT_CHARACTERSNAME
+    }
+}
+
+export const sortCharactersLocation = () => {
+    return {
+        type: SORT_CHARACTERSLOCATION
+    }
+}
+
+export const sortCharactersNameLocation = () => {
+    return {
+        type: SORT_CHARACTERSNAMELOCATION
+    }
+}
+
+
+
 
 
 
