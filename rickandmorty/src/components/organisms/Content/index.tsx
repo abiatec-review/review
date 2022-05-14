@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 //@ts-ignore
 import Loader from "react-js-loader";
 
@@ -14,6 +14,7 @@ import {TEpisode} from "../../../models/episode";
 import {TCharacter} from "../../../models/character";
 
 import styles from './style.module.scss';
+import {RootReducer} from "../../../redux/reducers";
 
 interface IDataEpisodes{
     episodeImages: TCharacter<string>[];
@@ -24,7 +25,6 @@ interface IDataEpisodes{
 interface IProps {
     inputRef: React.RefObject<HTMLInputElement>
     data:  TCharacter<string>[];
-    dataEpisodes: IDataEpisodes;
     info: {
         count: number
         next: string,
@@ -33,11 +33,13 @@ interface IProps {
     }
 }
 
-export const Content:React.FC<IProps> = ({data, info, dataEpisodes, inputRef}) => {
+export const Content:React.FC<IProps> = ({data, info, inputRef}) => {
 
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [id, setId] = useState<number>(0);
     const [isHeroPartOpen, setIsHeroPartOpen] = useState<boolean>(true)
+
+    const dataEpisodes = useSelector((state: RootReducer) => state.episodes)
 
     const foundPerson = data?.find((item: TCharacter<string>) => item.id === +id);
 

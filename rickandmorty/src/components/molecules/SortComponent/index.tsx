@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {
     sortCharactersId,
@@ -9,11 +9,14 @@ import {useDispatch} from "react-redux";
 
 import styles from './style.module.scss';
 
+interface IProps{
+    checkedName: boolean,
+    checkedLocation: boolean,
+    setCheckedName: (arg: boolean) => void,
+    setCheckedLocation: (arg: boolean) => void
+}
 
-export const SortComponent = () => {
-
-    const [checkedName, setCheckedName] = useState<boolean>(false)
-    const [checkedLocation, setCheckedNameLocation] = useState<boolean>(false)
+export const SortComponent:React.FC<IProps> = ({checkedName, setCheckedName, checkedLocation, setCheckedLocation}) => {
 
     const dispatch = useDispatch()
 
@@ -38,19 +41,19 @@ export const SortComponent = () => {
 
     const handleClickLocation = () => {
         if(checkedLocation) {
-            setCheckedNameLocation(false)
+            setCheckedLocation(false)
             dispatch(sortCharactersId())
         }
         if(!checkedName && !checkedLocation) {
-            setCheckedNameLocation(true)
+            setCheckedLocation(true)
             dispatch(sortCharactersLocation())
         }
         if(checkedName && checkedLocation) {
-            setCheckedNameLocation(false)
+            setCheckedLocation(false)
             dispatch(sortCharactersName())
         }
         if(checkedName && !checkedLocation) {
-            setCheckedNameLocation(true)
+            setCheckedLocation(true)
             dispatch(sortCharactersNameLocation())
         }
     }

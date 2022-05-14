@@ -31,9 +31,10 @@ function App () {
 
   const {characters, error, charactersLoader, info} = useSelector((state: RootReducer) => state.characters)
 
-  const dataEpisodes = useSelector((state: RootReducer) => state.episodes)
-
   const dispatch = useDispatch()
+
+  const [checkedName, setCheckedName] = useState<boolean>(false)
+  const [checkedLocation, setCheckedLocation] = useState<boolean>(false)
 
   const [filterGender, setFilterGender] = useState('')
   const [filterStatus, setFilterStatus] = useState('')
@@ -42,6 +43,28 @@ function App () {
         gender: filterGender,
         status: filterStatus
     }
+
+    const charactersProps = filterGender || filterStatus ? characters.filter((item: TCharacter<string>) => {
+            if (filter.gender && !filter.status) {
+                return item.gender === filter.gender
+            } else
+            if (!filter.gender && filter.status) {
+                return item.status === filter.status
+            } else
+            if (filter.status && filter.gender) {
+                return item.gender === filter.gender && item.status === filter.status
+            }
+            return item
+        })
+
+        : characters
+
+    useEffect(() => {
+        if(localStorage.getItem('login')) {
+            setEmailHeader(JSON.parse(localStorage.getItem(localStorage.getItem('login')!)!).email)
+            setLogIn(true)
+        }
+    }, [])
 
   const toggleVisible = () => {
     if(logIn) {
@@ -54,39 +77,17 @@ function App () {
     }
   }
 
-  useEffect(() => {
-    if(localStorage.getItem('login')) {
-      setEmailHeader(JSON.parse(localStorage.getItem(localStorage.getItem('login')!)!).email)
-      setLogIn(true)
-    }
-  }, [])
-
   const showFilter = (b: boolean) => {
     setFilterVisible(prev => !prev)
   }
 
 
-  const charactersProps = filterGender || filterStatus ? characters.filter((item: TCharacter<string>) => {
-        if (filter.gender && !filter.status) {
-          return item.gender === filter.gender
-        } else
-          if (!filter.gender && filter.status) {
-          return item.status === filter.status
-        } else
-          if (filter.status && filter.gender) {
-          return item.gender === filter.gender && item.status === filter.status
-        }
-          return item
-      })
-
-      : characters
-
-
   return (
     <>
-      <Header inputRef={inputRef} emailHeader={emailHeader} setFilterVisible={setFilterVisible} logIn={logIn} toggleVisible={toggleVisible}/>
+      <Header inputRef={inputRef} emailHeader={emailHeader} setFilterVisible={setFilterVisible} logIn={logIn} toggleVisible={toggleVisible}
+              setCheckedName={setCheckedName} setCheckedLocation={setCheckedLocation}/>
       <h1 className={styles.h1}>Rick and Morty</h1>
-      <SortComponent />
+      <SortComponent checkedName={checkedName} setCheckedName={setCheckedName} checkedLocation={checkedLocation} setCheckedLocation={setCheckedLocation}/>
       <FilterButton onOpen={() => showFilter(true)}/>
       {filterVisible &&
               <FilterModal
@@ -107,7 +108,7 @@ function App () {
             :
             <>
             <Content inputRef={inputRef} data={charactersProps}
-                     info={info} dataEpisodes={dataEpisodes} />
+                     info={info} />
             </>
         }
         {authVisible &&
