@@ -42,7 +42,7 @@ export const Card: React.FC<IProps> = ( {srcImage, titleText} )=> {
     dispatch(setCharacter('character'))
   }
 
-  const modalEpisodeRequest = (event:any) => {
+  const modalEpisodeRequest = (event: any) => {
     event?.preventDefault();
     dispatch(getEpisode(selectedValue));
 

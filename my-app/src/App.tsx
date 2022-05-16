@@ -33,8 +33,8 @@ const App = () =>  {
 
   return (
             <Routes>
-                <Route path={`/${constants.SIGNUP}`} element={<SignUp />}/>
                 <Route path={`/${constants.SIGNIN}`} element={<SignIn />}/>
+                <Route path={`/${constants.SIGNUP}`} element={<SignUp />}/>
                 <Route path={'/'} element={<Site />}/>
             </Routes>
   );

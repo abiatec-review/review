@@ -1,9 +1,7 @@
 import React from "react";
 
 import styles from './styles.module.scss'
-import {TitleText} from "../../atoms/TitleText";
-import {Input} from "../../atoms/Input";
-import {Button} from "../../atoms/Button";
+import {TitleText, Input, Button} from "../../atoms";
 
 interface IProps {
     onChangeHandler: any

@@ -2,7 +2,6 @@ import styles from './styles.module.scss'
 import React from "react";
 
 interface IProps {
-    children?: JSX.Element
     onClose: () => void
 }
 

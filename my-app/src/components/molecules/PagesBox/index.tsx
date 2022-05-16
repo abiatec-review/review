@@ -11,10 +11,7 @@ interface IProps {
 }
 
 export const PagesBox: React.FC<IProps> = ({selectPage, number})=> {
-  let pages: Array<number> = [];
-  for (let i = 1; i <= number; i++) {
-    pages.push(i)
-  }
+  const pages = Array.from({length: number}, (_, i) => i + 1);
   
   return ( 
     <div className={styles.pagesBox}>
