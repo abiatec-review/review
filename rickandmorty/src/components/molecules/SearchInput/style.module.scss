@@ -1,0 +1,11 @@
+@import 'styles/mixins.module.scss';
+
+.searchInput {
+    @include flex(flex, center, center);
+
+    @media screen and (max-width: 500px) {
+        & {
+            flex-direction: column;
+        }
+    }
+}

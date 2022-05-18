@@ -1,0 +1,33 @@
+@import 'styles/variables.module.scss';
+@import 'styles/mixins.module.scss';
+
+body {
+    text-align: center;
+    background-color: $whitesmoke;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+h1 {
+    padding-top: 200px;
+    color: $darkslateblue;
+}
+
+button {
+    @include dimensions(8.325rem, 2.325rem);
+    background: $darkslateblue;
+    border-radius: 0.25rem;
+    padding: 0 1rem;
+    outline: 0;
+    border: 0;
+    color: $white;
+    transition: background-color 100ms ease-in-out;
+    cursor: pointer;
+}
+
+.filterButton {
+    position: fixed;
+    left: 0;
+}

@@ -1,0 +1,26 @@
+@import 'styles/mixins.module.scss';
+@import 'styles/variables.module.scss';
+
+.modalBlock {
+  position: fixed;
+}
+
+.modal {
+  @include flex(flex, center, center, column);
+
+  position: fixed;
+  top: 20%;
+  left: 36%;
+  padding: 20px;
+  background-color: $whitesmoke;;
+  z-index: 2;
+}
+
+.modalShadow {
+  @include dimensions(100%, 100%);
+  position: fixed;
+  background-color: $black;
+  top: 0;
+  left: 0;
+  opacity: 0.75;
+}

@@ -1,0 +1,71 @@
+@import 'styles/mixins.module.scss';
+@import 'styles/variables.module.scss';
+
+.gallery {
+  @include flex(flex, center, center, row, wrap);
+  gap: 20px;
+  }
+
+.episodes {
+  max-height: 500px;
+  overflow: auto;
+  padding: 15px;
+  font-size: 26px;
+  color: indianred;
+}
+
+.tabs {
+  @include flex(flex, center, center);
+
+  .modalTab {
+    margin: 10px;
+    padding: 10px;
+    background-color: #bdb5f1;
+    font-size: 26px;
+    width: 200px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.character {
+  @include flex(flex, flex-start, center);
+
+  img {
+    border-radius: 50%;
+  }
+
+  .figcaptionImg {
+    font-size: 24px;
+    color: $darkslateblue;
+    margin: 8px;
+  }
+}
+
+.episodeCard {
+  @include flex(flex, center, center, column);
+
+  & > p {
+    font-size: 24px;
+    color: $darkslateblue;
+    margin: 5px;
+  }
+
+  .episodeCardImages {
+    @include flex(flex, center, center);
+
+    .figure {
+      .episodeImg {
+        width: 130px;
+        height: 130px;
+        padding: 10px;
+      }
+
+      .figcaptionImg {
+        font-size: 18px;
+      }
+    }
+  }
+}

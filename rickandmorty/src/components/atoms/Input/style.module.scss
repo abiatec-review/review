@@ -1,0 +1,15 @@
+@import 'styles/variables.module.scss';
+@import 'styles/mixins.module.scss';
+
+  .input {
+    height: 2rem;
+    font-size: 1.5rem;
+    border-radius: 0.25rem;
+    outline: 0;
+    border: 0.1rem solid $bc;
+    margin-right: 1rem;
+
+    @include mobile() {
+      margin-right: 0;
+    }
+  }

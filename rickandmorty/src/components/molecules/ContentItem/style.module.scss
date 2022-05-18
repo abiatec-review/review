@@ -1,0 +1,27 @@
+@import 'styles/mixins.module.scss';
+@import 'styles/variables.module.scss';
+
+.figureCont {
+
+  &:hover {
+    box-shadow: 2px 2px 15px;
+    transform: scale(1.02);
+    cursor: pointer;
+  }
+
+  .figureContImg {
+    @include dimensions(300px, 300px);
+  }
+
+  .figcaptionCont {
+    @include flex(flex, center, center, column);
+  }
+
+  figcaption {
+    margin: 10px 0;
+    max-width: 300px;
+    color: $darkslateblue;
+    font-size: 20px;
+  }
+
+}
