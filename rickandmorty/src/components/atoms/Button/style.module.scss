@@ -2,7 +2,7 @@
 @import 'styles/variables.module.scss';
 
 .button {
-    height: 2.325rem;
+    @include dimensions(8.325rem, 2.325rem);
     background: $bc;
     border-radius: 0.25rem;
     padding: 0 1rem;
@@ -12,12 +12,8 @@
     transition: background-color 100ms ease-in-out;
     cursor: pointer;
 
-    @media screen and (max-width: 500px) {
-        & {
-            width: 250px;
-            margin-top: 10px;
-        }
+    @include mobile() {
+        width: 250px;
+        margin-top: 10px;
     }
 }
-
-

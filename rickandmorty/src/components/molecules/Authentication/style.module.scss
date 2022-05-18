@@ -4,8 +4,7 @@
 .authenticationCont {
   @include flex(flex, center, center, column);
   background-color: $white;
-  width: 500px;
-  height: 500px;
+  @include dimensions(500px, 500px);
   position: fixed;
   top: 20%;
   left: 36%;
@@ -22,12 +21,10 @@
   .input {
     margin: 5px 5px 20px 5px;
     background: none;
-
     border-radius: 30px;
     outline: 1px solid $darkslateblue;
     border: none;
-    width: 300px;
-    height: 30px;
+    @include dimensions(300px, 30px);
 
     &:focus {
       outline: 2px solid $darkslateblue;
@@ -52,8 +49,3 @@
     font-size: 20px;
     width: 100%;
   }
-
-
-
-
-

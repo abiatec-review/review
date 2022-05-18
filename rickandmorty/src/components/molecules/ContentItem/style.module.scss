@@ -10,13 +10,11 @@
   }
 
   .figureContImg {
-    width: 300px;
-    height: 300px;
+    @include dimensions(300px, 300px);
   }
 
   .figcaptionCont {
-    @include flex(flex, center, center);
-    flex-direction: column;
+    @include flex(flex, center, center, column);
   }
 
   figcaption {
@@ -27,8 +25,3 @@
   }
 
 }
-
-
-
-
-

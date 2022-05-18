@@ -1,129 +1,137 @@
-import {TCharacter} from "../../models/character";
-export const GET_CHARACTERS = 'GET_CHARACTERS';
-export const SET_CHARACTERS = 'SET_CHARACTERS';
-export const DELETE_CHARACTERS = 'DELETE_CHARACTERS';
-export const GET_EPISODES = 'GET_EPISODES';
-export const SET_EPISODES = 'SET_EPISODES';
-export const GET_EPISODES_CHARACTER = 'GET_EPISODES_CHARACTER';
-export const SET_EPISODES_CHARACTER = 'SET_EPISODES_CHARACTER';
-export const DELETE_EPISODES_CHARACTER = 'DELETE_EPISODES_CHARACTER';
-export const SET_LOADER = 'SET_LOADER';
-export const SET_ERROR = 'SET_ERROR';
-export const SIGN_UP = 'SIGN_UP';
-export const SIGN_IN = 'SIGN_IN';
-export const SORT_CHARACTERSNAME = 'SORT_CHARACTERSNAME';
-export const SORT_CHARACTERSID = 'SORT_CHARACTERSID';
-export const SORT_CHARACTERSLOCATION = 'SORT_CHARACTERSLOCATION';
-export const SORT_CHARACTERSNAMELOCATION = 'SORT_CHARACTERSNAMELOCATION';
+import {TCharacter} from "models";
+
+export enum Characters {
+  GET_CHARACTERS = 'GET_CHARACTERS',
+  SET_CHARACTERS = 'SET_CHARACTERS',
+  DELETE_CHARACTERS = 'DELETE_CHARACTERS'
+}
+
+export enum Episodes {
+  GET_EPISODES = 'GET_EPISODES',
+  SET_EPISODES = 'SET_EPISODES',
+  GET_EPISODES_CHARACTER = 'GET_EPISODES_CHARACTER',
+  SET_EPISODES_CHARACTER = 'SET_EPISODES_CHARACTER',
+  DELETE_EPISODES_CHARACTER = 'DELETE_EPISODES_CHARACTER'
+}
+
+export enum LoaderError {
+  SET_LOADER = 'SET_LOADER',
+  SET_ERROR = 'SET_ERROR'
+}
+
+export enum Sign {
+  SIGN_UP = 'SIGN_UP',
+  SIGN_IN = 'SIGN_IN'
+}
+
+export enum Sort {
+  SORT_CHARACTERSNAME = 'SORT_CHARACTERSNAME',
+  SORT_CHARACTERSID = 'SORT_CHARACTERSID',
+  SORT_CHARACTERSLOCATION = 'SORT_CHARACTERSLOCATION',
+  SORT_CHARACTERSNAMELOCATION = 'SORT_CHARACTERSNAMELOCATION'
+}
 
 
 export const getCharacters = (payload: {characterName: string}) => {
 
-    return {
-        type: GET_CHARACTERS,
-        payload
-    }
+  return {
+    type: Characters.GET_CHARACTERS,
+    payload
+  }
 }
 
 export const setCharacters = (payload: {results: Array<TCharacter<string>>, info: Record<string, unknown>}) => {
 
-    return {
-        type: SET_CHARACTERS,
-        payload
-    }
-}
-
-export const setError = (payload: boolean) => {
-
-    return {
-        type: SET_ERROR,
-        payload
-    }
-}
-
-export const setLoader = (payload: boolean) => {
-
-    return {
-        type: SET_LOADER,
-        payload
-    }
+  return {
+    type: Characters.SET_CHARACTERS,
+    payload
+  }
 }
 
 export const deleteCharacters = () => {
 
-    return {
-        type: DELETE_CHARACTERS,
-    }
+  return {
+    type: Characters.DELETE_CHARACTERS,
+  }
+}
+
+export const setError = (payload: boolean) => {
+
+  return {
+    type: LoaderError.SET_ERROR,
+    payload
+  }
+}
+
+export const setLoader = (payload: boolean) => {
+
+  return {
+    type: LoaderError.SET_LOADER,
+    payload
+  }
 }
 
 export const getEpisodes = (payload: {episodeName: string}) => {
-    return {
-        type: GET_EPISODES,
-        payload
-    }
+  return {
+    type: Episodes.GET_EPISODES,
+    payload
+  }
 }
 
 export const setEpisodes = (payload: string) => {
-    return {
-        type: SET_EPISODES,
-        payload
-    }
+  return {
+    type: Episodes.SET_EPISODES,
+    payload
+  }
 }
 
 export const setEpisodesCharacter = (payload: string) => {
-    return {
-        type: SET_EPISODES_CHARACTER,
-        payload
-    }
+  return {
+    type: Episodes.SET_EPISODES_CHARACTER,
+    payload
+  }
 }
 
 export const deleteEpisodesCharacter = () => {
-    return {
-        type: DELETE_EPISODES_CHARACTER,
-    }
+  return {
+    type: Episodes.DELETE_EPISODES_CHARACTER,
+  }
 }
 
 export const signUpAuth = (payload: {email: string, password: string, name: string, surname: string, login: boolean}) => {
-    return {
-        type: SIGN_UP,
-        payload
-    }
+  return {
+    type: Sign.SIGN_UP,
+    payload
+  }
 }
 
 export const signInAuth = (payload: {email: string}) => {
-    return {
-        type: SIGN_IN,
-        payload
-    }
+  return {
+    type: Sign.SIGN_IN,
+    payload
+  }
 }
 
 export const sortCharactersId = () => {
-    return {
-        type: SORT_CHARACTERSID
-    }
+  return {
+    type: Sort.SORT_CHARACTERSID
+  }
 }
 
 export const sortCharactersName = () => {
-    return {
-        type: SORT_CHARACTERSNAME
-    }
+  return {
+    type: Sort.SORT_CHARACTERSNAME
+  }
 }
 
 export const sortCharactersLocation = () => {
-    return {
-        type: SORT_CHARACTERSLOCATION
-    }
+  return {
+    type: Sort.SORT_CHARACTERSLOCATION
+  }
 }
 
 export const sortCharactersNameLocation = () => {
-    return {
-        type: SORT_CHARACTERSNAMELOCATION
-    }
+  return {
+    type: Sort.SORT_CHARACTERSNAMELOCATION
+  }
 }
-
-
-
-
-
-
-
