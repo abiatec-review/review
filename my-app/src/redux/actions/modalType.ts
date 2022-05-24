@@ -1,15 +1,15 @@
-import { SET_CHARACTER, SET_EPISODE } from "redux/actionTypes";
+import * as actionTypes from "redux/actionTypes";
 
 export const setCharacter = (modalType: string) => {
     return {
-        type: SET_CHARACTER,
+        type: actionTypes.SET_CHARACTER,
         payload: modalType
     };
 };
 
 export const setEpisode = (modalType: string) => {
     return {
-        type: SET_EPISODE,
+        type: actionTypes.SET_EPISODE,
         payload: modalType
     };
 };

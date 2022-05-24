@@ -1,13 +1,15 @@
 import {all, fork, put, takeEvery} from "redux-saga/effects";
 import {AxiosResponse} from "axios"
-import { getFoundCharacters, getCharacterByIdApi, getCharactersByPageApi, getCharactersByPageAndNameApi } from "../../api/api";
-import { GET_CHARACTERS, GET_CHARACTERS_BY_PAGE, GET_CHARACTERS_BY_PAGE_AND_NAME, GET_CHARACTER_BY_ID } from "redux/actionTypes";
+import {charactersService} from "../../services/axios/endpoints/charecters";
+import * as actionTypes from "redux/actionTypes";
 import { getCharacterByIdFailed, 
          getCharacterByIdSuccess, 
          getCharactersByPageSuccess, 
          getCharactersFailed, 
          getCharactersPageInfo, 
          getCharactersSuccess } from "redux/actions/characters";
+
+const { getFoundCharacters, getCharacterByIdApi, getCharactersByPageApi, getCharactersByPageAndNameApi } = charactersService
 
 
 function* getCharactersSaga(charName: any) {
@@ -62,19 +64,19 @@ function* getCharactersByPageAndNameSaga(payload: any) {
 }
 
 export function* getCharactersFork() {
-    yield takeEvery(GET_CHARACTERS, getCharactersSaga);
+    yield takeEvery(actionTypes.GET_CHARACTERS, getCharactersSaga);
 };
 
 export function* getCharacterByIdFork() {
-    yield takeEvery(GET_CHARACTER_BY_ID, getCharacterByIdSaga)
+    yield takeEvery(actionTypes.GET_CHARACTER_BY_ID, getCharacterByIdSaga)
 };
 
 export function* getCharactersByPageFork() {
-    yield takeEvery(GET_CHARACTERS_BY_PAGE, getCharactersByPageSaga)
+    yield takeEvery(actionTypes.GET_CHARACTERS_BY_PAGE, getCharactersByPageSaga)
 }
 
 export function* getCharactersByPageAndNameFork() {
-    yield takeEvery(GET_CHARACTERS_BY_PAGE_AND_NAME, getCharactersByPageAndNameSaga)
+    yield takeEvery(actionTypes.GET_CHARACTERS_BY_PAGE_AND_NAME, getCharactersByPageAndNameSaga)
 }
 
 export default function* rootSaga() {

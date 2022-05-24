@@ -1,21 +1,21 @@
-import { GET_EPISODE, GET_EPISODE_FAILED, GET_EPISODE_SUCCESS } from "redux/actionTypes";
+import * as actionTypes from "redux/actionTypes";
 
 export const getEpisode = (episodeId: number) => {
     return {
-        type: GET_EPISODE,
+        type: actionTypes.GET_EPISODE,
         payload: episodeId
     };
 };
 
 export const getEpisodeSuccess = (episodeInfo: object) => {
     return {
-        type: GET_EPISODE_SUCCESS,
+        type: actionTypes.GET_EPISODE_SUCCESS,
         payload: episodeInfo
     };
 };
 
 export const getEpisodeFailed = () => {
     return {
-        type: GET_EPISODE_FAILED
+        type: actionTypes.GET_EPISODE_FAILED
     }
 }

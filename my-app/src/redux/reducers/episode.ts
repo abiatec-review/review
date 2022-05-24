@@ -1,4 +1,4 @@
-import { GET_EPISODE, GET_EPISODE_FAILED, GET_EPISODE_SUCCESS } from '../actionTypes' 
+import * as actionTypes from '../actionTypes'
 
 const initialState = {
     episodeId: '',
@@ -11,14 +11,14 @@ const initialState = {
 
 const EpisodeReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case GET_EPISODE: {
+        case actionTypes.GET_EPISODE: {
             return {
                 ...state,
                 episodeId: action.payload,
                 loader: true,
             }
         }
-        case GET_EPISODE_SUCCESS: {
+        case actionTypes.GET_EPISODE_SUCCESS: {
             return {
                 ...state,
                 episodeInfo: action.payload,
@@ -27,7 +27,7 @@ const EpisodeReducer = (state = initialState, action: any) => {
                 message: 'Success',
             }
         }
-        case GET_EPISODE_FAILED: {
+        case actionTypes.GET_EPISODE_FAILED: {
             return {
                 ...state,
                 loader: false,

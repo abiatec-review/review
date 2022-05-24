@@ -1,6 +1,8 @@
 import {all, fork, put, takeEvery} from "redux-saga/effects";
 import {AxiosResponse} from "axios"
-import { getSelectEpisode, getThreeRandomChars } from "../../api/api";
+import { episodesService } from "../../services/axios/endpoints/episodes";
+import { charactersService } from "../../services/axios/endpoints/charecters";
+
 import { GET_EPISODE } from "redux/actionTypes";
 import { getEpisodeFailed, getEpisodeSuccess } from "redux/actions/episode";
 import { selectEpisode } from "utils/helpers";
@@ -8,7 +10,7 @@ import { selectEpisode } from "utils/helpers";
 
 function* getEpisodeSaga(episodeId: any) {
     try {
-        const response:AxiosResponse<any> = yield getSelectEpisode(episodeId.payload);
+        const response:AxiosResponse<any> = yield episodesService.getSelectEpisode(episodeId.payload);
         const {data: {id, name, air_date, episode, url, created, characters}} = response
         
         const charsId = characters.map((url: string) => {
@@ -22,7 +24,9 @@ function* getEpisodeSaga(episodeId: any) {
             }
         }
 
-        const randomCharsList:AxiosResponse<any> = yield getThreeRandomChars(randomArr);
+
+
+        const randomCharsList:AxiosResponse<any> = yield charactersService.getThreeRandomChars(randomArr);
            
         yield put(getEpisodeSuccess({id, name, air_date, episode, url, created, randomCharsList}));
 

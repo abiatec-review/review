@@ -9,7 +9,7 @@ import {SignIn} from "./layouts/signIn";
 import {SignUp} from "./layouts/signUp";
 import {auth} from "./utils/firebase";
 import {signInSuccess} from "./redux/actions/auth";
-import {constants} from "./utils/constants";
+import {routes} from "./utils/constants";
 
 
 const App = () =>  {
@@ -25,7 +25,7 @@ const App = () =>  {
 
      useEffect(() => {
          if(!aboutUser) {
-             navigate(`/${constants.SIGNIN}`)
+             navigate(`/${routes.SIGNIN}`)
          } else {
              navigate('/')
          }
@@ -33,8 +33,8 @@ const App = () =>  {
 
   return (
             <Routes>
-                <Route path={`/${constants.SIGNIN}`} element={<SignIn />}/>
-                <Route path={`/${constants.SIGNUP}`} element={<SignUp />}/>
+                <Route path={`/${routes.SIGNIN}`} element={<SignIn />}/>
+                <Route path={`/${routes.SIGNUP}`} element={<SignUp />}/>
                 <Route path={'/'} element={<Site />}/>
             </Routes>
   );

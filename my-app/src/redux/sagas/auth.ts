@@ -1,7 +1,9 @@
 import {all, fork, put, takeEvery} from "redux-saga/effects";
-import {logInWithEmailAndPassword, logout, registerWithEmailAndPassword} from "../../utils/firebase";
+import {authService} from "../../services/firebase/endpoints/auth";
 import {signInFailed, signInSuccess, signUpFailed, signUpSuccess} from "../actions/auth";
 import {SIGN_IN_WITH_EMAIL_AND_PASSWORD, SIGN_OUT, SIGN_UP} from "../actionTypes";
+
+const { registerWithEmailAndPassword, logInWithEmailAndPassword, logout} = authService
 
 
 function* signUpSaga({payload}: any): Generator<any, any, any> {

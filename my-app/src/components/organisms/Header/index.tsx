@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import {Button, Picture} from "../../atoms";
 import styles from './styles.module.scss'
-import {constants} from '../../../utils/constants'
+import {constants, routes} from '../../../utils/constants'
 import {useLocation, useNavigate} from "react-router-dom";
 import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
 import {signOut} from "../../../redux/actions/auth";
@@ -31,23 +31,23 @@ export const Header: React.FC<IProps> = ({inputValue, onChangeHandler, getCharac
                     onClick: () => {
                         dispatch(clearCharacters())
                         dispatch(signOut());
-                        navigate(`/${constants.SIGNIN}`)
+                        navigate(`/${routes.SIGNIN}`)
                     }
                 }
             }
-            case `/${constants.SIGNIN}`: {
+            case `/${routes.SIGNIN}`: {
                 return {
                     title: 'Sign Up',
                     onClick: () => {
-                        navigate(`/${constants.SIGNUP}`)
+                        navigate(`/${routes.SIGNUP}`)
                     }
                 }
             }
-            case `/${constants.SIGNUP}`: {
+            case `/${routes.SIGNUP}`: {
                 return {
                     title: 'Sign In',
                     onClick: () => {
-                        navigate(`/${constants.SIGNIN}`)
+                        navigate(`/${routes.SIGNIN}`)
                     }
                 }
             }

@@ -5,6 +5,9 @@ export enum constants {
   CHARS_MODAL_PICTURE = 'CHARS_MODAL_PICTURE',
   FOOTER_LOGO = 'FOOTER_LOGO',
   FILTER_ARROW = 'FILTER_ARROW',
+}
+
+export enum routes {
   SIGNUP = 'signup',
   SIGNIN = 'signin'
 }

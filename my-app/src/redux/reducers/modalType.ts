@@ -1,4 +1,4 @@
-import { SET_CHARACTER, SET_EPISODE } from "redux/actionTypes";
+import * as actionTypes from "redux/actionTypes";
 
 const initialState = {
     modalType: ''
@@ -6,12 +6,12 @@ const initialState = {
 
 const ModalTypeReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case SET_CHARACTER: {
+        case actionTypes.SET_CHARACTER: {
             return {
                 modalType: 'character'
             }
         }
-        case SET_EPISODE: {
+        case actionTypes.SET_EPISODE: {
             return {
                 modalType: 'episode'
             }
