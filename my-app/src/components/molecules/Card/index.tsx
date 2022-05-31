@@ -2,14 +2,14 @@ import classNames from 'classnames'
 import React, {useState} from 'react'
 
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
-import { getEpisode } from 'redux/actions/episode'
-import { setCharacter, setEpisode } from 'redux/actions/modalType'
+import { getEpisode } from 'src/redux/actions/episode'
+import { setCharacter, setEpisode } from 'src/redux/actions/modalType'
 
-import { Modal } from '../Modal'
-import { Button, Picture, TitleText } from "components/atoms"
+import { Modal } from 'src/components/molecules/Modal'
+import { Button, Picture, TitleText } from "src/components/atoms"
 
-import {getCharEpisode, selectEpisode} from 'utils/helpers'
-import { constants } from 'utils/constants'
+import {getCharEpisode, selectEpisode} from 'src/utils/helpers'
+import { constants } from 'src/utils/constants'
 
 import styles from './styles.module.scss'
 

@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Footer } from "components/organisms/Footer";
-import {TitleText} from "../components/atoms/TitleText";
+import { Footer } from "src/components/organisms/Footer";
+import {TitleText} from "src/components/atoms";
 import styles from './styles.module.scss'
-import {AuthForm} from "../components/molecules/AuthForm";
-import {Header} from "../components/organisms/Header";
+import {AuthForm} from "src/components/molecules/AuthForm";
+import {Header} from "src/components/organisms";
 import {useDispatch} from "react-redux";
-import {signIn} from "../redux/actions/auth";
+import {signIn} from "src/redux/actions/auth";
 
 export const SignIn: React.FC = () => {
 

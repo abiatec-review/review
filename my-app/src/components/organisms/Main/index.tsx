@@ -4,12 +4,12 @@ import {
     Button,
     Picture,
     TitleText
-} from 'components/atoms'
-import {Card} from 'components/molecules'
+} from 'src/components/atoms'
+import {Card} from 'src/components/molecules'
 
 import styles from './styles.module.scss'
 import React, {useEffect, useState} from "react";
-import {constants} from "../../../utils/constants";
+import {constants} from "src/utils/constants";
 
 export const Main: React.FC = () => {
     const {charactersList, error} = useSelector((state: RootStateOrAny) => state.characters);

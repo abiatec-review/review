@@ -1,13 +1,13 @@
 import {all, fork, put, takeEvery} from "redux-saga/effects";
 import {AxiosResponse} from "axios"
-import {charactersService} from "../../services/axios/endpoints/charecters";
-import * as actionTypes from "redux/actionTypes";
+import {charactersService} from "src/services/axios/endpoints/charecters";
+import * as actionTypes from "src/redux/actionTypes";
 import { getCharacterByIdFailed,
          getCharacterByIdSuccess,
          getCharactersByPageSuccess,
          getCharactersFailed,
          getCharactersPageInfo,
-         getCharactersSuccess } from "redux/actions/characters";
+         getCharactersSuccess } from "src/redux/actions/characters";
 
 const { getFoundCharacters, getCharacterByIdApi, getCharactersByPageApi, getCharactersByPageAndNameApi } = charactersService
 

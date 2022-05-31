@@ -1,11 +1,11 @@
 import {all, fork, put, takeEvery} from "redux-saga/effects";
 import {AxiosResponse} from "axios"
-import { episodesService } from "../../services/axios/endpoints/episodes";
-import { charactersService } from "../../services/axios/endpoints/charecters";
+import { episodesService } from "src/services/axios/endpoints/episodes";
+import { charactersService } from "src/services/axios/endpoints/charecters";
 
-import { GET_EPISODE } from "redux/actionTypes";
-import { getEpisodeFailed, getEpisodeSuccess } from "redux/actions/episode";
-import { selectEpisode } from "utils/helpers";
+import { GET_EPISODE } from "src/redux/actionTypes";
+import { getEpisodeFailed, getEpisodeSuccess } from "src/redux/actions/episode";
+import { selectEpisode } from "src/utils/helpers";
 
 
 function* getEpisodeSaga(episodeId: any) {

@@ -1,12 +1,12 @@
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 
-import { getCharactersByPageAndName } from 'redux/actions/characters';
+import { getCharactersByPageAndName } from 'src/redux/actions/characters';
 
-import { PagesBox } from 'components/molecules/PagesBox'
-import { Picture } from 'components/atoms';
+import { PagesBox } from 'src/components/molecules/PagesBox'
+import { Picture } from 'src/components/atoms';
 
-import { constants } from 'utils/constants';
-import footerLogo from '../../../images/footer_logo.jpg'
+import { constants } from 'src/utils/constants';
+import footerLogo from 'src/images/footer_logo.jpg'
 
 import styles from './styles.module.scss'
 import React from "react";

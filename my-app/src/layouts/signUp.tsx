@@ -1,14 +1,14 @@
 import React, {useEffect} from "react";
 
-import { Footer } from "components/organisms/Footer";
-import {TitleText} from "../components/atoms/TitleText";
+import { Footer } from "src/components/organisms/Footer";
+import {TitleText} from "src/components/atoms";
 import styles from './styles.module.scss'
-import {AuthForm} from "../components/molecules/AuthForm";
+import {AuthForm} from "src/components/molecules/AuthForm";
 import {Link, useNavigate} from "react-router-dom";
-import {Header} from "../components/organisms/Header";
+import {Header} from "src/components/organisms";
 import {RootStateOrAny, useDispatch, useSelector} from "react-redux";
-import {signUp} from "../redux/actions/auth";
-import {routes} from "../utils/constants";
+import {signUp} from "src/redux/actions/auth";
+import {routes} from "src/utils/constants";
 
 export const SignUp: React.FC = () => {
     const dispatch = useDispatch()

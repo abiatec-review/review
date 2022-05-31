@@ -1,4 +1,4 @@
-import * as actionTypes from "redux/actionTypes";
+import * as actionTypes from "src/redux/actionTypes";
 
 export const signUp = (email: string, password: string) => {
     return {

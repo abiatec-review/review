@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 
 import {useDispatch} from "react-redux";
-import {getCharacters} from "redux/actions/characters";
-import {setCharacter} from "redux/actions/modalType";
+import {getCharacters} from "src/redux/actions/characters";
+import {setCharacter} from "src/redux/actions/modalType";
 
-import {Footer} from "components/organisms/Footer";
-import {Header, Main} from "../components/organisms";
-import {SearchBox} from "../components/molecules/SearchBox";
+import {Footer} from "src/components/organisms/Footer";
+import {Header, Main} from "src/components/organisms";
+import {SearchBox} from "src/components/molecules";
 
 export const Site: React.FC = () => {
     const dispatch = useDispatch();
