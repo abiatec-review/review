@@ -9,8 +9,9 @@ import { selectEpisode } from "utils/helpers";
 
 
 function* getEpisodeSaga(episodeId: any) {
+    const { payload } = episodeId
     try {
-        const response:AxiosResponse<any> = yield episodesService.getSelectEpisode(episodeId.payload);
+        const response:AxiosResponse = yield episodesService.getSelectEpisode(payload);
         const {data: {id, name, air_date, episode, url, created, characters}} = response
         
         const charsId = characters.map((url: string) => {
@@ -26,7 +27,7 @@ function* getEpisodeSaga(episodeId: any) {
 
 
 
-        const randomCharsList:AxiosResponse<any> = yield charactersService.getThreeRandomChars(randomArr);
+        const randomCharsList:AxiosResponse = yield charactersService.getThreeRandomChars(randomArr);
            
         yield put(getEpisodeSuccess({id, name, air_date, episode, url, created, randomCharsList}));
 

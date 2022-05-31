@@ -12,7 +12,7 @@
   margin: 0;
   padding: 50px 60px;
   box-shadow: 8px 8px 24px 2px rgba(212, 212, 211, 0.877);
-  border-radius: 15px;
+  border-radius: 0 0 25px 25px;
 
   @media screen and (max-width: 940px) {
     @include Flex('', '', column);

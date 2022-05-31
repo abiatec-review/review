@@ -1,10 +1,13 @@
 import * as actionTypes from '../actionTypes'
 
-const initialState = {
-    aboutUser: ''
+interface typesState {
+    aboutUser: object
+}
+const initialState: typesState = {
+    aboutUser: {}
 };
 
-const AuthReducer = (state = initialState, action: any) => {
+const AuthReducer= (state = initialState, action: {payload: object, type: string}) => {
     switch (action.type) {
         case actionTypes.SIGN_UP_SUCCESS: {
             return {

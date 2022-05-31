@@ -9,7 +9,7 @@ import animations from '../../../styles/animations.module.scss'
 interface IProps {
     type: constants
     srcImage: string
-    click?: (event: any) => void
+    click?: any
 }
 
 export const Picture: React.FC<IProps> = ({type, srcImage, click}) => {

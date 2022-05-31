@@ -8,8 +8,9 @@ interface IProps {
   
   export const Modal: React.FC<IProps> = ( {children, onClose} )=> {
 
-    const overlayClick = (event:any) => {
-        if (event.target.classList.contains(styles.modal))
+    const overlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        const tar = event.target as HTMLDivElement
+        if (tar.classList.contains(styles.modal))
         onClose();
     }
     

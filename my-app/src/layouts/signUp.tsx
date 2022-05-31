@@ -14,7 +14,7 @@ export const SignUp: React.FC = () => {
     const dispatch = useDispatch()
     const {aboutUser} = useSelector((state: RootStateOrAny) => state.auth);
 
-    const [values, setValues] = React.useState<any>({
+    const [values, setValues] = React.useState<{email: string, password: string}>({
         email: '',
         password: ''
     })
@@ -26,16 +26,16 @@ export const SignUp: React.FC = () => {
         }
     }, [aboutUser, navigate])
 
-    const onChange = (event: any) => {
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
 
-        setValues((v: any) => ({
+        setValues((v: {email: string, password: string}) => ({
             ...v,
             [name]: value,
         }))
     };
 
-    const handleSubmit = (event: any) => {
+    const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
 
         if(!values.email || !values.password) {
@@ -51,8 +51,8 @@ export const SignUp: React.FC = () => {
             </Header>
             <AuthForm onChangeHandler={onChange}
                       handleClick={handleSubmit}
-                      placeholder={{firstField: 'your eMail', secondField: 'your password'}}
-                      name={{firstField: 'email', secondField: 'password'}}
+                      placeholder={{email: 'your eMail', password: 'your password'}}
+                      credentials={{name: 'email', password: 'password'}}
                       titleText={'Sign Up'}
                       values={values}
                       buttonText={'Become a new variation of reality'}/>

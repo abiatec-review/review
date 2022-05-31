@@ -7,8 +7,9 @@ interface IProps {
 
 export const DropDown: React.FC<IProps> = ({children, onClose}) => {
 
-    const overlayClick = (event: any) => {
-        if (event.target.classList.contains(styles.dropDown))
+    const overlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        const tar = event.target as HTMLDivElement
+        if (tar.classList.contains(styles.dropDown))
             onClose();
 
     }

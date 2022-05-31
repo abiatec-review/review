@@ -4,7 +4,7 @@ const initialState = {
     modalType: ''
 };
 
-const ModalTypeReducer = (state = initialState, action: any) => {
+const ModalTypeReducer = (state = initialState, action: { type: string }) => {
     switch (action.type) {
         case actionTypes.SET_CHARACTER: {
             return {

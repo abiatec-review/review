@@ -27,7 +27,7 @@ export const signIn = (email: string, password: string) => {
     };
 };
 
-export const signInSuccess = (data: any) => {
+export const signInSuccess = (data: object | null) => {
     return {
         type: actionTypes.SIGN_IN_WITH_EMAIL_AND_PASSWORD_SUCCESS,
         payload: data

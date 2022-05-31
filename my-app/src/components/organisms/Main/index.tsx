@@ -16,7 +16,7 @@ export const Main: React.FC = () => {
     const [isActive, setActive] = useState<boolean>(false);
     const checkedInputs = document.querySelectorAll("input[type='checkbox']")
     const [charsForRender, setCharsForRender] = useState<Array<object>>(charactersList)
-    let filters: any = {gender: [], status: [], species: []}
+    let filters: {[key: string]: string[]} = {gender: [], status: [], species: []}
     const [currentFilters, serCurrentFilters] = useState<object>(filters)
 
     const openFilter = () => {
@@ -27,7 +27,7 @@ export const Main: React.FC = () => {
         setActive(false)
     }
 
-    const changeStatus = (event: any) => {
+    const changeStatus = () => {
         checkedInputs.forEach((i: any) => {
             if (i.checked) {
                 if (i.parentElement?.textContent === 'Male' || i.parentElement?.textContent === 'Female' || i.parentElement?.textContent === 'unknown' || i.parentElement?.textContent === "Genderless") {
@@ -43,14 +43,11 @@ export const Main: React.FC = () => {
         const filteredData = charactersList.filter((el: any) =>
             Object.entries(filters).every(([k, v]) => el[k].includes(v))
         )
-
         serCurrentFilters(filters)
-
         setCharsForRender(filteredData)
     }
 
     useEffect(() => {
-
         setCharsForRender(charactersList.filter((el: any) =>
             Object.entries(currentFilters).every(([k, v]) => el[k].includes(v))
         ));
@@ -64,7 +61,7 @@ export const Main: React.FC = () => {
                     return <Card key={char.id} titleText={char.name} srcImage={char.image}/>
                 })}
             </div>
-            <Button handleClick={openFilter} className={styles.filterButton} type={'button'}>{'Filter'}</Button>
+            <Button handleClick={openFilter} className={styles.filterButton} type={"button"}>{'Filter'}</Button>
             <div id={'filterBox'}
                  className={`${styles.filterContainer} ${isActive ? styles.filterContainerActive : ''}`}>
                 <div className={styles.filterCloseHandler} onClick={closeFilter}><Picture

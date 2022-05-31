@@ -2,11 +2,11 @@ import React from 'react'
 
 interface IProps {
   inputValue?: string
-  onChangeHandler: any
+  onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void
   name: string
   placeholder: string
-  rest?: any
-  className: any
+  rest?: object
+  className: string
 }
 
 export const Input: React.FC<IProps> & React.HTMLProps<HTMLInputElement> = ( { inputValue,

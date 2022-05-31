@@ -2,11 +2,11 @@ import {all, fork, put, takeEvery} from "redux-saga/effects";
 import {AxiosResponse} from "axios"
 import {charactersService} from "../../services/axios/endpoints/charecters";
 import * as actionTypes from "redux/actionTypes";
-import { getCharacterByIdFailed, 
-         getCharacterByIdSuccess, 
-         getCharactersByPageSuccess, 
-         getCharactersFailed, 
-         getCharactersPageInfo, 
+import { getCharacterByIdFailed,
+         getCharacterByIdSuccess,
+         getCharactersByPageSuccess,
+         getCharactersFailed,
+         getCharactersPageInfo,
          getCharactersSuccess } from "redux/actions/characters";
 
 const { getFoundCharacters, getCharacterByIdApi, getCharactersByPageApi, getCharactersByPageAndNameApi } = charactersService
@@ -14,9 +14,9 @@ const { getFoundCharacters, getCharacterByIdApi, getCharactersByPageApi, getChar
 
 function* getCharactersSaga(charName: any) {
     try {
-        const response:AxiosResponse<any> = yield getFoundCharacters(charName.payload);
+        const response:AxiosResponse = yield getFoundCharacters(charName.payload);
         const {data: {results, info}} = response;
-        
+
         yield put(getCharactersSuccess(results));
         yield put(getCharactersPageInfo(info))
     } catch (err) {
@@ -27,7 +27,7 @@ function* getCharactersSaga(charName: any) {
 
 function* getCharacterByIdSaga(id: any) {
     try {
-        const response:AxiosResponse<any> = yield getCharacterByIdApi(id.payload);
+        const response:AxiosResponse = yield getCharacterByIdApi(id.payload);
         const {data} = response;
 
         yield put(getCharacterByIdSuccess(data));
@@ -39,9 +39,9 @@ function* getCharacterByIdSaga(id: any) {
 
 function* getCharactersByPageSaga(url: any) {
     try {
-        const response:AxiosResponse<any> = yield getCharactersByPageApi(url.payload);
+        const response:AxiosResponse = yield getCharactersByPageApi(url.payload);
         const {data: {results, info}} = response;
-        
+
         yield put(getCharactersByPageSuccess(results));
         yield put(getCharactersPageInfo(info));
     } catch (err) {
@@ -52,7 +52,7 @@ function* getCharactersByPageSaga(url: any) {
 
 function* getCharactersByPageAndNameSaga(payload: any) {
     try {
-        const response:AxiosResponse<any> = yield getCharactersByPageAndNameApi(payload.payload.name, payload.payload.page)
+        const response:AxiosResponse = yield getCharactersByPageAndNameApi(payload.payload.name, payload.payload.page)
         const {data:{results, info}} = response
 
         yield put(getCharactersByPageSuccess(results));

@@ -1,18 +1,29 @@
 import * as actionTypes from '../actionTypes'
 
-const initialState = {
+interface typesState {
+    charName: string,
+    charId: string,
+    characterById: object[],
+    charactersList: object[],
+    loader: boolean,
+    error: boolean,
+    pagesInfo: string,
+    message: string
+}
+
+const initialState: typesState = {
     charName: '',
     charId: '',
     characterById: [],
     charactersList: [],
     loader: false,
     error: false,
-    pagesInfo: '', 
+    pagesInfo: '',
     message: ''
-    
+
 };
 
-const CharactersReducer = (state = initialState, action: any) => {
+const CharactersReducer = (state = initialState, action: {type: string, payload: object}) => {
     switch (action.type) {
         case actionTypes.GET_CHARACTERS: {
             return {
@@ -31,7 +42,7 @@ const CharactersReducer = (state = initialState, action: any) => {
         case actionTypes.GET_CHARACTERS_BY_PAGE_AND_NAME: {
             return {
                 ...state,
-                charName: action.payload.name,
+                charName: action.payload,
                 message: ''
             }
         }
@@ -92,7 +103,8 @@ const CharactersReducer = (state = initialState, action: any) => {
                 message: ''
             }
         }
-        default: return state; 
+        default:
+            return state;
     }
 }
 

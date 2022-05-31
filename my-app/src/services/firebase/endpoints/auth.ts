@@ -5,24 +5,22 @@ import {firebaseConfig} from "../index";
 
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 export const authService = {
     logInWithEmailAndPassword: async (email: string, password: string) => {
         try {
             const response = await signInWithEmailAndPassword(auth, email, password);
             return response.user
-        } catch (err: any) {
+        } catch (err) {
             console.error(err);
-            alert(err.message);
         }
     },
-    registerWithEmailAndPassword: async (email: any, password: any) => {
+    registerWithEmailAndPassword: async (email: string, password: string) => {
         try {
             return await createUserWithEmailAndPassword(auth, email, password)
-        } catch (err: any) {
+        } catch (err) {
             console.error(err);
-            alert(err.message);
         }
     },
     logout: () => signOut(auth)

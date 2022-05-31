@@ -1,15 +1,22 @@
 import * as actionTypes from '../actionTypes'
 
-const initialState = {
+interface typesState {
+    episodeId: string,
+    episodeInfo: object[],
+    loader: boolean,
+    error: boolean,
+    message: string,
+}
+
+const initialState: typesState = {
     episodeId: '',
     episodeInfo: [],
     loader: false,
     error: false,
     message: '',
-    
 };
 
-const EpisodeReducer = (state = initialState, action: any) => {
+const EpisodeReducer = (state = initialState, action: {type: string, payload: object}) => {
     switch (action.type) {
         case actionTypes.GET_EPISODE: {
             return {

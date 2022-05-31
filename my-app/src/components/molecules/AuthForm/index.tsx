@@ -4,16 +4,16 @@ import styles from './styles.module.scss'
 import {TitleText, Input, Button} from "../../atoms";
 
 interface IProps {
-    onChangeHandler: any
-    handleClick: any
-    placeholder?: any
-    name?: any
+    onChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void
+    handleClick: (event: React.FormEvent) => void
+    placeholder: {email: string, password: string}
+    credentials: {name: string, password: string}
     titleText: string
-    values: any
-    buttonText: any
+    values: {email: string, password: string}
+    buttonText: string
 }
   
-  export const AuthForm: React.FC<IProps> = ( {onChangeHandler, handleClick, placeholder, name, titleText, values, buttonText } )=> {
+  export const AuthForm: React.FC<IProps> = ( {onChangeHandler, handleClick, placeholder, credentials, titleText, values, buttonText } )=> {
     
     return (
         <div className={styles.authFormBox}>
@@ -21,17 +21,17 @@ interface IProps {
             <form className={styles.authForm}>
                 <Input onChangeHandler={onChangeHandler}
                        className={styles.authInput}
-                       name={name.firstField}
-                       placeholder={placeholder.firstField}
-                       inputValue={values.firstField}
+                       name={credentials.name}
+                       placeholder={placeholder.email}
+                       inputValue={values.email}
                        />
                 <Input onChangeHandler={onChangeHandler}
                        className={styles.authInput}
-                       name={name.secondField}
-                       placeholder={placeholder.secondField}
-                       inputValue={values.secondField}
+                       name={credentials.password}
+                       placeholder={placeholder.password}
+                       inputValue={values.password}
                        />
-                <Button handleClick={handleClick} className={styles.authFormButton} type={'submit'}>{buttonText}</Button>
+                <Button handleClick={handleClick} className={styles.authFormButton} type={"submit"}>{buttonText}</Button>
             </form>
         </div>
     )

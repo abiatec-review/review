@@ -15,13 +15,13 @@ export const Footer: React.FC = ( ) => {
   const {pagesInfo, charName, message} = useSelector((state: RootStateOrAny) => state.characters);
   const dispatch = useDispatch();
 
-  const changePage = (event: any) => {
+  const changePage = (event: React.ChangeEvent<HTMLElement>) => {
     dispatch(getCharactersByPageAndName({name: charName, page: event.target.innerText}))
   }
 
   return ( 
     <div className={(message === 'Success' && pagesInfo.pages > 1) ? styles.footerWithChars : styles.footer}>
-      <PagesBox selectPage={changePage} number={pagesInfo.pages}/>
+      <PagesBox selectPage={changePage} numb={pagesInfo.pages}/>
         <Picture type={constants.FOOTER_LOGO} srcImage={footerLogo}/>
     </div>
   )

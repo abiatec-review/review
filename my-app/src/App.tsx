@@ -7,7 +7,7 @@ import {Site} from "./layouts/site";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import {SignIn} from "./layouts/signIn";
 import {SignUp} from "./layouts/signUp";
-import {auth} from "./utils/firebase";
+import {auth} from "./services/firebase/endpoints/auth";
 import {signInSuccess} from "./redux/actions/auth";
 import {routes} from "./utils/constants";
 
