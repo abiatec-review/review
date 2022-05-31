@@ -26,6 +26,7 @@ export const SignIn: React.FC = () => {
     };
 
     const handleSubmit = (event: React.FormEvent) => {
+        console.log(1)
         event.preventDefault();
 
         if(!values.email || !values.password) {
