@@ -1,7 +1,0 @@
-@import 'styles/mixins.module.scss';
-
-.loader {
-  @include flex(row, center, center);
-  @include size(100%);
-  margin-top: 20vw;
-}
