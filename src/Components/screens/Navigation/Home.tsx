@@ -3,13 +3,16 @@ import MainScreen from '../Main';
 import FavoriteCharacters from '../FavoriteCharacters';
 import React, {useState} from 'react';
 import {changeThemeMode} from '../../../redux/actions/characters';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Home = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const Tab = createBottomTabNavigator();
   const dispatch = useDispatch();
+  const {
+    CharactersReducer: {themeMode},
+  } = useSelector((CharactersReducer: any) => CharactersReducer);
 
   const toggleSwitch = () => {
     if (isEnabled) {
@@ -69,6 +72,19 @@ const Home = () => {
           );
         },
         tabBarActiveBackgroundColor: 'rgba(151,216,237, 0.4)',
+        headerTitleStyle: {
+          color: themeMode !== 'light' ? 'white' : 'black',
+        },
+        headerStyle: {
+          borderBottomLeftRadius: 10,
+          borderBottomRightRadius: 10,
+          backgroundColor: themeMode === 'light' ? 'white' : 'black',
+        },
+        tabBarStyle: {
+          borderTopLeftRadius: 10,
+          borderTopRightRadius: 10,
+          backgroundColor: themeMode === 'light' ? 'white' : 'black',
+        },
       })}>
       <Tab.Screen
         name="Charters"
@@ -83,14 +99,6 @@ const Home = () => {
             />
           ),
           title: 'Charters',
-          headerStyle: {
-            borderBottomLeftRadius: 10,
-            borderBottomRightRadius: 10,
-          },
-          tabBarStyle: {
-            borderTopLeftRadius: 10,
-            borderTopRightRadius: 10,
-          },
           tabBarItemStyle: {
             borderTopLeftRadius: 10,
           },
@@ -102,14 +110,6 @@ const Home = () => {
         component={FavoriteCharacters}
         options={{
           title: 'Favorite Charaters',
-          headerStyle: {
-            borderBottomLeftRadius: 10,
-            borderBottomRightRadius: 10,
-          },
-          tabBarStyle: {
-            borderTopLeftRadius: 10,
-            borderTopRightRadius: 10,
-          },
         }}
       />
       <Tab.Screen
@@ -117,14 +117,6 @@ const Home = () => {
         component={FavoriteCharacters}
         options={{
           title: 'Log in',
-          headerStyle: {
-            borderBottomLeftRadius: 10,
-            borderBottomRightRadius: 10,
-          },
-          tabBarStyle: {
-            borderTopLeftRadius: 10,
-            borderTopRightRadius: 10,
-          },
           tabBarItemStyle: {
             borderTopRightRadius: 10,
           },

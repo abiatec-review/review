@@ -1,6 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {ImageBackground, Modal, StyleSheet, Switch} from 'react-native';
+import {
+  ImageBackground,
+  Modal,
+  StyleSheet,
+  Switch,
+  useColorScheme,
+} from 'react-native';
 import {
   changeThemeMode,
   getCharatersSucsess,
@@ -65,6 +71,12 @@ const NavigationComponent = () => {
         source={changeThemeModeHandler()}>
         <Stack.Navigator
           screenOptions={{
+            headerTitleStyle: {
+              color: themeMode !== 'light' ? 'white' : 'black',
+            },
+            headerStyle: {
+              backgroundColor: themeMode === 'light' ? 'white' : 'black',
+            },
             headerRight: () => {
               return (
                 <Switch
