@@ -12,6 +12,7 @@ target 'TestTaskRickAndMorty' do
     :hermes_enabled => false
   )
 
+
   target 'TestTaskRickAndMortyTests' do
     inherit! :complete
     # Pods for testing

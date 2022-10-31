@@ -17,3 +17,8 @@ export const services = {
     return response.data;
   },
 };
+
+export const apiHelper = async (url: string) => {
+  const getSmth = await axios.get(url);
+  return getSmth.data;
+};

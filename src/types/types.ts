@@ -30,3 +30,13 @@ export type allDataInfo = {
   info: infoTypes;
   results: Characters[];
 };
+
+export type Episodes = {
+  air_date: string;
+  characters: string[];
+  created: string;
+  episode: string;
+  id: number;
+  name: string;
+  url: string;
+};
