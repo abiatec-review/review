@@ -16,10 +16,10 @@ const Table: FC<TableTypes> = ({objectParse, navigation}) => {
 
   const itemCheker = (item: string) => {
     if (item === 'origin') {
-      return 'heroes from';
+      return 'Heroes from';
     }
     if (item === 'location') {
-      return 'heroes from';
+      return 'Heroes from';
     }
     return item;
   };

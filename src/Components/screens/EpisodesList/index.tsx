@@ -39,7 +39,7 @@ const EpisodesList = ({route, navigation}: any) => {
           style={{width: 150, height: 150, borderRadius: 100}}
         />
         <View>
-          <Text>heroes from {item.episodeNum}</Text>
+          <Text>Heroes from {item.episodeNum}</Text>
         </View>
       </View>
     </TouchableOpacity>
