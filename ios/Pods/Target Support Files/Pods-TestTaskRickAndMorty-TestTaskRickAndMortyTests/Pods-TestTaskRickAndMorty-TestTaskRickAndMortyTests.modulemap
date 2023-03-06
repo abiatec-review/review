@@ -1,4 +1,4 @@
-module Pods_TestTaskRickAndMorty_TestTaskRickAndMortyTests {
+framework module Pods_TestTaskRickAndMorty_TestTaskRickAndMortyTests {
   umbrella header "Pods-TestTaskRickAndMorty-TestTaskRickAndMortyTests-umbrella.h"
 
   export *

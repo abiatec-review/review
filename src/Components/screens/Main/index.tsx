@@ -1,28 +1,16 @@
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  Modal,
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getNextCharatersSucsess} from '../../../redux/actions/characters';
 import CharactersInfoBlock from '../../Items/CharactersBlock';
 import {Characters} from '../../../types/types';
 import {setModalType} from '../../../redux/actions/modal';
-import Table from '../../TableCustom/Table';
 
-const MainScreen = ({navigation}: any) => {
+const MainScreen = () => {
   const {
     CharactersReducer: {characters, nextCharactersPage, charactersLoader},
   } = useSelector((CharactersReducer: any) => CharactersReducer);
-  // const {
-  //   ModalReducer: {modalType, modalData},
-  // } = useSelector((ModalReducer: any) => ModalReducer);
+
   const dispatch = useDispatch();
 
   const renderItem = ({item}: {item: Characters}) => (
@@ -38,34 +26,6 @@ const MainScreen = ({navigation}: any) => {
 
   return (
     <View style={styles.mainScreenContainer}>
-      {/*{modalType ? (*/}
-      {/*  <Modal transparent={true} style={{zIndex: -1}}>*/}
-      {/*    <View style={styles.centeredView}>*/}
-      {/*      <View style={styles.modalView}>*/}
-      {/*        <View style={styles.modalHeader}>*/}
-      {/*          <Text style={styles.characterName}>{modalData.name}</Text>*/}
-      {/*          <Pressable*/}
-      {/*            style={styles.buttonClose}*/}
-      {/*            onPress={() =>*/}
-      {/*              dispatch(setModalType({modalType: '', modalData: null}))*/}
-      {/*            }>*/}
-      {/*            <Text>X</Text>*/}
-      {/*          </Pressable>*/}
-      {/*        </View>*/}
-      {/*        <View>*/}
-      {/*          <Image*/}
-      {/*            style={styles.imageStyle}*/}
-      {/*            source={{uri: modalData.image}}*/}
-      {/*          />*/}
-      {/*        </View>*/}
-      {/*        <View style={styles.tableContainer}>*/}
-      {/*          <Table objectParse={modalData} navigation={navigation} />*/}
-      {/*        </View>*/}
-      {/*      </View>*/}
-      {/*    </View>*/}
-      {/*  </Modal>*/}
-      {/*) : null}*/}
-
       <FlatList
         ListFooterComponent={charactersLoader ? <Text>Loading</Text> : null}
         onEndReached={() => {
@@ -118,7 +78,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 50,
-    // backgroundColor: "#2196F3",
   },
   modalHeader: {
     width: '100%',

@@ -1,13 +1,18 @@
-import {Image, StyleSheet, Switch} from 'react-native';
+import {Image, Switch, Text, View} from 'react-native';
 import MainScreen from '../Main';
 import FavoriteCharacters from '../FavoriteCharacters';
 import React, {useState} from 'react';
 import {changeThemeMode} from '../../../redux/actions/characters';
 import {useDispatch, useSelector} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import LogIn from '../Auth';
+import UserProfile from '../UserProfile';
 
 const Home = () => {
   const [isEnabled, setIsEnabled] = useState(false);
+  const {
+    Authentification: {authLoader, errorMessage, token, userEmail, userName},
+  } = useSelector((Authentification: any) => Authentification);
   const Tab = createBottomTabNavigator();
   const dispatch = useDispatch();
   const {
@@ -85,6 +90,13 @@ const Home = () => {
           borderTopRightRadius: 10,
           backgroundColor: themeMode === 'light' ? 'white' : 'black',
         },
+        headerLeft: () => {
+          return (
+            <View>
+              <Text style={{color: 'red'}}>{userName}</Text>
+            </View>
+          );
+        },
       })}>
       <Tab.Screen
         name="Charters"
@@ -114,9 +126,9 @@ const Home = () => {
       />
       <Tab.Screen
         name="LogIn"
-        component={FavoriteCharacters}
+        component={userName ? UserProfile : LogIn}
         options={{
-          title: 'Log in',
+          title: userName ? 'Profile' : 'Autorization',
           tabBarItemStyle: {
             borderTopRightRadius: 10,
           },
@@ -125,54 +137,5 @@ const Home = () => {
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  mainScreenContainer: {
-    height: '100%',
-  },
-  modalView: {
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 15,
-    width: '90%',
-    height: 'auto',
-    alignItems: 'center',
-    shadowColor: '#000',
-  },
-  buttonClose: {
-    width: 20,
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    // backgroundColor: "#2196F3",
-  },
-  modalHeader: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  characterName: {
-    width: '90%',
-    textAlign: 'center',
-    fontSize: 25,
-    paddingLeft: 35,
-  },
-  imageStyle: {
-    width: 160,
-    height: 160,
-    borderRadius: 100,
-  },
-  tableContainer: {
-    width: '75%',
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default Home;

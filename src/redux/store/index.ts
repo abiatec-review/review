@@ -2,17 +2,16 @@ import createSagaMiddleware from 'redux-saga';
 import {createStore, applyMiddleware} from 'redux';
 import rootSaga from '../sagas';
 import createReducer from '../reducers';
-import thunk from 'redux-thunk';
 const sagaMiddleware = createSagaMiddleware();
-import logger from 'redux-logger';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
-export default function configureStore(preloadedState: any = {}) {
+export default function configureStore() {
   const store = createStore(
     createReducer(),
-    preloadedState,
-    applyMiddleware(thunk, sagaMiddleware, logger),
+    composeWithDevTools(applyMiddleware(sagaMiddleware)),
   );
+  sagaMiddleware.run(rootSaga);
 
-  sagaMiddleware.run(rootSaga, () => {});
+  // compose(applyMiddleware(sagaMiddleware)));
   return store;
 }

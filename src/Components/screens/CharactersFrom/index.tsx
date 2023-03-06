@@ -16,7 +16,7 @@ const CharactersFrom = ({route}: any) => {
 
   useEffect(() => {
     dispatch(getAdditional(locationCharactersApi));
-  }, [dispatch]);
+  }, [dispatch, locationCharactersApi]);
 
   console.log(characterFromLocation);
 

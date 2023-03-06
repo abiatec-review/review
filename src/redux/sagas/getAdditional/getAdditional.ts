@@ -2,7 +2,7 @@
 import {all, fork, put, takeEvery} from 'redux-saga/effects';
 import {actionsTypes} from '../../actions/actionsType';
 import {apiHelper} from '../../../api/api';
-import {Characters, Episodes} from '../../../types/types';
+import {Characters} from '../../../types/types';
 import {
   setCharactersFromLocation,
   setEpisodeCharacters,
