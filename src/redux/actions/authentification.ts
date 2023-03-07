@@ -47,8 +47,16 @@ export const logOutUser = () => {
   };
 };
 
-export const userLoadAvatar = () => {
+export const userLoadAvatar = (payload: any) => {
   return {
     type: actionsTypes.USER_LOAD_AVATAR,
+    payload,
+  };
+};
+
+export const userLoadAvatarSuccess = (payload: any) => {
+  return {
+    type: actionsTypes.USER_LOAD_AVATAR_SUCCESS,
+    payload,
   };
 };

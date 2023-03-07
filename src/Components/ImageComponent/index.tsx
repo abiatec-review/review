@@ -5,7 +5,10 @@ interface I_CustomImage {
   imageBorderRadius: number;
   isButtonNeed: boolean;
   buttonText: string;
-  handleOnPressInImage: () => void;
+  handleOnPressInImage: (() => void) | null;
+  imageUri: string;
+  width: number;
+  height: number;
 }
 
 const CustomImage = ({
@@ -13,14 +16,35 @@ const CustomImage = ({
   isButtonNeed,
   buttonText,
   handleOnPressInImage,
+  imageUri,
+  width,
+  height,
 }: I_CustomImage) => {
   return (
     <View style={styles.imageConatainer}>
-      <Image
-        style={{...styles.image, borderRadius: imageBorderRadius}}
-        source={require('../../assets/images/icons/noAvatar.jpeg')}
-      />
-      {isButtonNeed ? (
+      {imageUri ? (
+        <Image
+          style={{
+            ...styles.image,
+            borderRadius: imageBorderRadius,
+            width,
+            height,
+          }}
+          source={{uri: imageUri}}
+        />
+      ) : (
+        <Image
+          style={{
+            ...styles.image,
+            borderRadius: imageBorderRadius,
+            width,
+            height,
+          }}
+          source={require('../../assets/images/icons/noAvatar.jpeg')}
+        />
+      )}
+
+      {isButtonNeed && handleOnPressInImage ? (
         <TouchableOpacity
           style={styles.imageButton}
           onPress={handleOnPressInImage}>

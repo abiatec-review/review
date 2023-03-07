@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {authSignIn, authSignUp} from '../../../redux/actions/authentification';
 import Form from '../../Form';
@@ -54,17 +54,16 @@ const LogIn = () => {
         buttonText={'Sign in'}
         handleData={handleFormData}
         isButtonDisableStatus={authLoader}
+        validationMessage={errorMessage}
       />
       <TouchableButton
         buttonText={
-          handleFormType === 'signUp' ? 'I have an acc' : 'I havent an acc'
+          handleFormType === 'signUp' ? 'I have an acc' : "I haven't an acc"
         }
         isButtonDisableStatus={false}
         handleSubmit={swichFormType}
+        type={'singleBtn'}
       />
-      <View>
-        <Text>{errorMessage}</Text>
-      </View>
     </View>
   );
 };

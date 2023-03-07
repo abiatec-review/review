@@ -7,11 +7,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import LogIn from '../Auth';
 import UserProfile from '../UserProfile';
+import CustomImage from '../../ImageComponent';
 
 const Home = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const {
-    Authentification: {authLoader, errorMessage, token, userEmail, userName},
+    Authentification: {userEmail, userName, userAvatar},
   } = useSelector((Authentification: any) => Authentification);
   const Tab = createBottomTabNavigator();
   const dispatch = useDispatch();
@@ -92,9 +93,19 @@ const Home = () => {
         },
         headerLeft: () => {
           return (
-            <View>
-              <Text style={{color: 'red'}}>{userName}</Text>
-            </View>
+            <>
+              {userAvatar && (
+                <CustomImage
+                  imageUri={userAvatar}
+                  imageBorderRadius={50}
+                  isButtonNeed={false}
+                  buttonText={'+'}
+                  handleOnPressInImage={null}
+                  width={35}
+                  height={35}
+                />
+              )}
+            </>
           );
         },
       })}>

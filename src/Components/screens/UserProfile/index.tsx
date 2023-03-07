@@ -5,17 +5,17 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {logOutUser} from '../../../redux/actions/authentification';
 import {setModalType} from '../../../redux/actions/modal';
 import CustomImage from '../../ImageComponent';
+import TouchableButton from '../../TouchableButton';
 
 const UserProfile = () => {
   const {
-    Authentification: {userEmail, userName},
+    Authentification: {userEmail, userName, userAvatar},
   } = useSelector((Authentification: any) => Authentification);
   const dispatch = useDispatch();
 
@@ -33,18 +33,24 @@ const UserProfile = () => {
         <View style={styles.mainScreenContainer}>
           <View style={styles.mainUserDataContainer}>
             <CustomImage
+              imageUri={userAvatar}
               imageBorderRadius={50}
               isButtonNeed={true}
               buttonText={'+'}
               handleOnPressInImage={loadUserAvatar}
+              width={70}
+              height={70}
             />
             <View style={styles.userDataBlock}>
               <Text style={styles.userDataBlockText}>{userEmail}</Text>
               <Text style={styles.userDataBlockText}>{userName}</Text>
             </View>
-            <TouchableOpacity style={styles.logOutButton} onPress={logOut}>
-              <Text style={styles.userDataBlockText}>Log Out</Text>
-            </TouchableOpacity>
+            <TouchableButton
+              buttonText="Log Out"
+              handleSubmit={logOut}
+              isButtonDisableStatus={false}
+              type={'singleBtn'}
+            />
           </View>
         </View>
       </ScrollView>

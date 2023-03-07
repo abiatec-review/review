@@ -35,18 +35,25 @@ const Authentification = (
         userEmail: action.payload.email,
         token: action.payload.token,
         userName: action.payload.displayName,
+        userAvatar: action.payload.photoURL,
       };
     }
 
     case actionsTypes.AUTHENTIFICATION_IDENTIFY: {
       const userData: {
-        _user: {displayName: string; email: string; refreshToken: string};
+        _user: {
+          displayName: string;
+          email: string;
+          refreshToken: string;
+          photoURL: string;
+        };
       } = getUser();
       return {
         ...state,
         userEmail: userData?._user.email,
         token: userData?._user.refreshToken,
         userName: userData?._user.displayName,
+        userAvatar: userData?._user.photoURL,
       };
     }
     case actionsTypes.AUTHENTIFICATION_SIGN_UP_SUCCESS: {
@@ -76,10 +83,15 @@ const Authentification = (
       };
     }
     case actionsTypes.USER_LOAD_AVATAR: {
-      console.log(action.payload);
       return {
         ...state,
-        userAvatar: null, // here we set new user avatar
+      };
+    }
+    case actionsTypes.USER_LOAD_AVATAR_SUCCESS: {
+      console.log(456456, action.payload);
+      return {
+        ...state,
+        userAvatar: action.payload.newUserAvatar,
       };
     }
     default:

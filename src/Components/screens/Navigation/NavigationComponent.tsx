@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {ImageBackground, Modal, StyleSheet, Switch} from 'react-native';
 import {getCharatersSucsess} from '../../../redux/actions/characters';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import CharacterFullInfo from '../../ModalsComponents/CharacterFullInfo';
 import {helper} from './helper';
 import {navigations} from './navigationList';
 import {identifyAuthUser} from '../../../redux/actions/authentification';
@@ -27,9 +26,8 @@ const NavigationComponent = () => {
   return (
     <>
       {modalType ? (
-        <Modal transparent={true} style={{zIndex: -1}}>
-          <ModalController modalType={modalType}/>
-          {/* <CharacterFullInfo /> */}
+        <Modal transparent={true} animationType="fade">
+          <ModalController modalType={modalType} />
         </Modal>
       ) : null}
       <ImageBackground

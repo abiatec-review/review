@@ -2,6 +2,7 @@ import React from 'react';
 import {Control, useController, useForm} from 'react-hook-form';
 import {SafeAreaView, TextInput, StyleSheet, Text, View} from 'react-native';
 import TouchableButton from '../TouchableButton';
+import ValidationMessage from '../validationMessageInForm';
 
 interface I_InputItems {
   inputName: string;
@@ -16,6 +17,7 @@ interface I_FormComponent {
   buttonText: string;
   handleData: (data: T_handleData) => void;
   isButtonDisableStatus: boolean;
+  validationMessage: string;
 }
 
 function Input({name, control}: {name: string; control: Control}) {
@@ -39,6 +41,7 @@ const Form = ({
   buttonText,
   handleData,
   isButtonDisableStatus,
+  validationMessage,
 }: I_FormComponent) => {
   const {control, handleSubmit} = useForm();
 
@@ -57,11 +60,15 @@ const Form = ({
           })}
         </View>
       </View>
+      {validationMessage && (
+        <ValidationMessage validationMessage={validationMessage} />
+      )}
 
       <TouchableButton
         buttonText={buttonText}
         handleSubmit={handleSubmit(handleData)}
         isButtonDisableStatus={isButtonDisableStatus}
+        type={'singleBtn'}
       />
     </SafeAreaView>
   );
@@ -69,13 +76,13 @@ const Form = ({
 
 const styles = StyleSheet.create({
   input: {
-    height: 25,
+    height: 35,
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 5,
   },
   safeArea: {
-    width: '60%',
+    width: '80%',
     borderRadius: 15,
     backgroundColor: 'rgba(151,216,237, 0.5)',
   },
@@ -101,6 +108,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  validationContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'red',
+  },
+  validationMessage: {
+    color: '#FFFFFF',
   },
 });
 
