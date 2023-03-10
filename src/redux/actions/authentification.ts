@@ -41,6 +41,13 @@ export const identifyAuthUser = () => {
   };
 };
 
+export const identifyAuthUserSuccess = (payload: any) => {
+  return {
+    type: actionsTypes.AUTHENTIFICATION_IDENTIFY_SUCCESS,
+    payload,
+  };
+};
+
 export const logOutUser = () => {
   return {
     type: actionsTypes.LOG_OUT_USER,

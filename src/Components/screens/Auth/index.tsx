@@ -8,7 +8,7 @@ import TouchableButton from '../../TouchableButton';
 const LogIn = () => {
   const dispatch = useDispatch();
   const {
-    Authentification: {authLoader, errorMessage, token, userEmail},
+    Authentification: {authLoader, errorMessage},
   } = useSelector((Authentification: any) => Authentification);
   const [handleFormType, setHandleFormType] = useState('signIn');
   const signUpInputs = [
@@ -20,8 +20,6 @@ const LogIn = () => {
     {label: 'Email', inputName: 'email'},
     {label: 'Password', inputName: 'password'},
   ];
-
-  console.log(132, authLoader, errorMessage, token, userEmail);
 
   const swichFormType = () => {
     setHandleFormType(prev => (prev === 'signIn' ? 'signUp' : 'signIn'));

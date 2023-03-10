@@ -33,3 +33,16 @@ export const changeThemeMode = (payload: any) => {
     payload,
   };
 };
+
+export const getFavoriteCharacters = (payload: any) => {
+  return {
+    type: actionsTypes.GET_USER_FAVORITE_CHARACTERS,
+    payload,
+  };
+};
+export const getFavoriteCharactersSuccess = (payload: any) => {
+  return {
+    type: actionsTypes.GET_USER_FAVORITE_CHARACTERS_SUCCESS,
+    payload,
+  };
+};

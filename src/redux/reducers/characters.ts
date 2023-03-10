@@ -3,8 +3,10 @@ import {actionsTypes} from '../actions/actionsType';
 const initState: any = {
   themeMode: 'dark',
   characters: [],
+  favoriteCharacters: [],
   nextCharactersPage: '',
   charactersLoader: false,
+  favoriteCharactersLoader: false,
 };
 
 const Characters = (
@@ -26,7 +28,19 @@ const Characters = (
         charactersLoader: false,
       };
     }
-
+    case actionsTypes.GET_USER_FAVORITE_CHARACTERS: {
+      return {
+        ...state,
+        favoriteCharactersLoader: true,
+      };
+    }
+    case actionsTypes.GET_USER_FAVORITE_CHARACTERS_SUCCESS: {
+      return {
+        ...state,
+        favoriteCharacters: action.payload.favoriteCharacters,
+        favoriteCharactersLoader: false,
+      };
+    }
     case actionsTypes.GET_NEXT_CHARACTERS: {
       return {
         ...state,

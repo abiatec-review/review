@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setModalType} from '../../redux/actions/modal';
 import {
   CameraOptions,
@@ -14,6 +14,9 @@ import {userLoadAvatar} from '../../redux/actions/authentification';
 
 const ImagePickerModal = () => {
   const dispatch = useDispatch();
+  const {
+    Authentification: {avatarLoader},
+  } = useSelector((Authentification: any) => Authentification);
 
   const [newImage, setNewImage] = useState<string>();
 
@@ -29,7 +32,6 @@ const ImagePickerModal = () => {
       (photoData: ImagePickerResponse) => {
         if (photoData.assets) {
           const newPhoto = photoData.assets[0].uri;
-          console.log(newPhoto);
           setNewImage(newPhoto);
         }
       },
@@ -82,9 +84,10 @@ const ImagePickerModal = () => {
             }}
           />
           <TouchableButton
-            buttonText="Upload new avatar"
+            buttonText={avatarLoader ? 'Process ... wait' : 'Upload new avatar'}
             handleSubmit={onLoadImageToFirebase}
-            isButtonDisableStatus={false}
+            isButtonDisableStatus={avatarLoader}
+            type={'singleBtn'}
           />
         </View>
       )}

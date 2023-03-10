@@ -36,9 +36,8 @@ const MainScreen = () => {
         numColumns={2}
         style={styles.flatListContainer}
         data={characters}
-        renderItem={renderItem}>
-        keyExtractor={(item: Characters) => item.id}
-      </FlatList>
+        renderItem={renderItem}
+      />
     </View>
   );
 };

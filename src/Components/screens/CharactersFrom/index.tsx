@@ -18,8 +18,6 @@ const CharactersFrom = ({route}: any) => {
     dispatch(getAdditional(locationCharactersApi));
   }, [dispatch, locationCharactersApi]);
 
-  console.log(characterFromLocation);
-
   const renderItem = ({item}: {item: Characters}) => (
     <TouchableOpacity
       onPress={() => {

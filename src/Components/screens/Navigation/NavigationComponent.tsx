@@ -1,7 +1,10 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ImageBackground, Modal, StyleSheet, Switch} from 'react-native';
-import {getCharatersSucsess} from '../../../redux/actions/characters';
+import {
+  getCharatersSucsess,
+  getFavoriteCharacters,
+} from '../../../redux/actions/characters';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {helper} from './helper';
 import {navigations} from './navigationList';
@@ -17,11 +20,25 @@ const NavigationComponent = () => {
   const {
     CharactersReducer: {themeMode},
   } = useSelector((CharactersReducer: any) => CharactersReducer);
+  const {
+    UserFaireBaseData: {faireBaseData, uniqueId},
+  } = useSelector((UserFaireBaseData: any) => UserFaireBaseData);
 
   useEffect(() => {
     dispatch(getCharatersSucsess());
     dispatch(identifyAuthUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (faireBaseData && uniqueId && faireBaseData[uniqueId].favoriteChars) {
+      const favoriteCharacterIds = faireBaseData[uniqueId].favoriteChars.map(
+        ({charId}: any) => charId,
+      );
+      dispatch(getFavoriteCharacters({favoriteCharacterIds}));
+    } else {
+      dispatch(getFavoriteCharacters({favoriteCharacterIds: []}));
+    }
+  }, [dispatch, faireBaseData, uniqueId]);
 
   return (
     <>

@@ -4,6 +4,8 @@ import Table from '../TableCustom/Table';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
+import TouchableButton from '../TouchableButton';
+import {putFaireBaseData} from '../../redux/actions/userDataFromFairebase';
 
 const CharacterFullInfo = () => {
   const navigation = useNavigation();
@@ -11,6 +13,48 @@ const CharacterFullInfo = () => {
   const {
     ModalReducer: {modalData},
   } = useSelector((ModalReducer: any) => ModalReducer);
+  const {
+    UserFaireBaseData: {faireBaseData, loader, uniqueId},
+  } = useSelector((UserFaireBaseData: any) => UserFaireBaseData);
+  const {
+    Authentification: {uid},
+  } = useSelector((Authentification: any) => Authentification);
+
+  const isCharInFavorites = (characterId: number) => {
+    if (Array.isArray(faireBaseData[uniqueId].favoriteChars)) {
+      return faireBaseData[uniqueId].favoriteChars.some(
+        ({charId}: {charId: number}) => characterId === charId,
+      );
+    }
+  };
+
+  const addToFavorite = (characterId: number) => {
+    if (isCharInFavorites(characterId)) {
+      const newFavorites = faireBaseData[uniqueId].favoriteChars.filter(
+        (item: {charId: number}) => item.charId !== characterId,
+      );
+      const newDataForFB = {
+        [uniqueId]: {
+          additionalData: faireBaseData[uniqueId].additionalData,
+          favoriteChars: newFavorites,
+        },
+      };
+      dispatch(putFaireBaseData({newDataForFB, uid}));
+    } else {
+      const newFavorites = faireBaseData[uniqueId].favoriteChars
+        ? [...faireBaseData[uniqueId].favoriteChars, {charId: characterId}]
+        : [{charId: characterId}];
+      const newDataForFB = {
+        [uniqueId]: {
+          additionalData: faireBaseData[uniqueId].additionalData,
+          favoriteChars: [...newFavorites],
+        },
+      };
+      console.log(newDataForFB);
+      dispatch(putFaireBaseData({newDataForFB, uid}));
+    }
+  };
+
   return (
     <View style={styles.centeredView}>
       <View style={styles.modalView}>
@@ -30,6 +74,16 @@ const CharacterFullInfo = () => {
         <View style={styles.tableContainer}>
           <Table objectParse={modalData} navigation={navigation} />
         </View>
+        <TouchableButton
+          buttonText={
+            isCharInFavorites(modalData.id)
+              ? 'Remove from favorites'
+              : 'Add to favorite'
+          }
+          handleSubmit={() => addToFavorite(modalData.id)}
+          isButtonDisableStatus={loader}
+          type={'singleBtn'}
+        />
       </View>
     </View>
   );

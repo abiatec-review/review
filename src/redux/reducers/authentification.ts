@@ -1,10 +1,12 @@
-import {getUser, signOut} from '../../Components/firebase';
+import {signOut} from '../../Components/firebase';
 import {actionsTypes} from '../actions/actionsType';
 
 const initState: any = {
   userEmail: null,
   userName: null,
   userAvatar: null,
+  avatarLoader: false,
+  uid: null,
   token: null,
   authLoader: false,
   errorMessage: null,
@@ -36,24 +38,24 @@ const Authentification = (
         token: action.payload.token,
         userName: action.payload.displayName,
         userAvatar: action.payload.photoURL,
+        uid: action.payload.UID,
       };
     }
 
     case actionsTypes.AUTHENTIFICATION_IDENTIFY: {
-      const userData: {
-        _user: {
-          displayName: string;
-          email: string;
-          refreshToken: string;
-          photoURL: string;
-        };
-      } = getUser();
       return {
         ...state,
-        userEmail: userData?._user.email,
-        token: userData?._user.refreshToken,
-        userName: userData?._user.displayName,
-        userAvatar: userData?._user.photoURL,
+      };
+    }
+
+    case actionsTypes.AUTHENTIFICATION_IDENTIFY_SUCCESS: {
+      return {
+        ...state,
+        userEmail: action.payload.email,
+        token: action.payload.token,
+        userName: action.payload.displayName,
+        userAvatar: action.payload.photoURL,
+        uid: action.payload.UID,
       };
     }
     case actionsTypes.AUTHENTIFICATION_SIGN_UP_SUCCESS: {
@@ -63,6 +65,7 @@ const Authentification = (
         userEmail: action.payload.email,
         token: action.payload.token,
         userName: action.payload.displayName,
+        uid: action.payload.UID,
       };
     }
     case actionsTypes.AUTHENTIFICATION_SIGN_UP_ERROR: {
@@ -79,19 +82,23 @@ const Authentification = (
         userEmail: null,
         userName: null,
         userAvatar: null,
+        uid: null,
         token: null,
+        authLoader: false,
+        errorMessage: null,
       };
     }
     case actionsTypes.USER_LOAD_AVATAR: {
       return {
         ...state,
+        avatarLoader: true,
       };
     }
     case actionsTypes.USER_LOAD_AVATAR_SUCCESS: {
-      console.log(456456, action.payload);
       return {
         ...state,
         userAvatar: action.payload.newUserAvatar,
+        avatarLoader: false,
       };
     }
     default:

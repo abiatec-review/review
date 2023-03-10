@@ -1,4 +1,4 @@
-import {Image, Switch, Text, View} from 'react-native';
+import {Switch} from 'react-native';
 import MainScreen from '../Main';
 import FavoriteCharacters from '../FavoriteCharacters';
 import React, {useState} from 'react';
@@ -8,11 +8,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import LogIn from '../Auth';
 import UserProfile from '../UserProfile';
 import CustomImage from '../../ImageComponent';
+import {helper} from './helper';
 
 const Home = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const {
-    Authentification: {userEmail, userName, userAvatar},
+    Authentification: {userName, userAvatar},
   } = useSelector((Authentification: any) => Authentification);
   const Tab = createBottomTabNavigator();
   const dispatch = useDispatch();
@@ -40,33 +41,9 @@ const Home = () => {
 
   return (
     <Tab.Navigator
-      screenOptions={({route}: any) => ({
-        tabBarIcon: () => {
-          if (route.name === 'LogIn') {
-            return (
-              <Image
-                style={{width: 25, height: 25}}
-                source={require('../../../assets/images/icons/green_portal.png')}
-              />
-            );
-          }
-          if (route.name === 'Charters') {
-            return (
-              <Image
-                style={{width: 25, height: 25}}
-                source={require('../../../assets/images/icons/Characters.png')}
-              />
-            );
-          }
-          if (route.name === 'FavoriteCharaters') {
-            return (
-              <Image
-                style={{width: 25, height: 25}}
-                source={require('../../../assets/images/icons/favorite.jpeg')}
-              />
-            );
-          }
-        },
+      screenOptions={({route}) => ({
+        tabBarIcon: () =>
+          helper.tabIconSwitch(route.name, {width: 25, height: 25}),
         headerRight: () => {
           return (
             <Switch

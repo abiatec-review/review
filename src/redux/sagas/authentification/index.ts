@@ -10,10 +10,13 @@ import {
   authSignInSuccess,
   authSignUpError,
   authSignUpSuccess,
+  identifyAuthUserSuccess,
   userLoadAvatarSuccess,
 } from '../../actions/authentification';
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {setModalType} from '../../actions/modal';
+import {firebaseAPI_Handler} from '../../../api/api';
+import {getFaireBaseDataSuccess} from '../../actions/userDataFromFairebase';
 
 function* authentificationSignUp({payload}: any) {
   try {
@@ -23,13 +26,20 @@ function* authentificationSignUp({payload}: any) {
       payload.email,
       payload.password,
     );
+
     yield put(
       authSignUpSuccess({
         displayName: _auth._user._user.displayName,
         token: _auth._user._user.refreshToken,
         email: _auth._user._user.email,
+        UID: _auth._user._user.uid,
       }),
     );
+    yield firebaseAPI_Handler.setUserData(_auth._user._user.uid);
+    const fairbaseData: {data: object} = yield firebaseAPI_Handler.getUserData(
+      _auth._user._user.uid,
+    );
+    yield put(getFaireBaseDataSuccess({fairbaseData}));
   } catch (err) {
     if (
       !payload.userName.length ||
@@ -61,8 +71,13 @@ function* authentificationSignIn({payload}: any) {
         token: user._user.refreshToken,
         email: user._user.email,
         photoURL: user._user.photoURL,
+        UID: user._user.uid,
       }),
     );
+    const fairbaseData: {data: object} = yield firebaseAPI_Handler.getUserData(
+      user._user.uid,
+    );
+    yield put(getFaireBaseDataSuccess({fairbaseData}));
   } catch (err) {
     if (!payload.email.length || !payload.password.length) {
       yield put(
@@ -82,7 +97,6 @@ function* authentificationSignIn({payload}: any) {
 
 function* loadUserAvatarSaga({payload}: any) {
   try {
-    console.log(payload);
     yield call(updateUser, {
       photoURL: payload.newUserAvatar?.slice(7),
     });
@@ -95,8 +109,30 @@ function* loadUserAvatarSaga({payload}: any) {
           newUserAvatar: user.photoURL,
         }),
       );
-      yield put(setModalType({modalType: '', modalData: null}));
     }
+    yield put(setModalType({modalType: '', modalData: null}));
+  } catch (err) {
+    console.dir(err);
+  }
+}
+
+function* identifayUser() {
+  try {
+    const user: FirebaseAuthTypes.UserInfo = yield getUser();
+    yield put(
+      identifyAuthUserSuccess({
+        displayName: user._user.displayName,
+        token: user._user.refreshToken,
+        email: user._user.email,
+        photoURL: user._user.photoURL,
+        UID: user._user.uid,
+      }),
+    );
+
+    const fairbaseData: {data: object} = yield firebaseAPI_Handler.getUserData(
+      user._user.uid,
+    );
+    yield put(getFaireBaseDataSuccess({fairbaseData}));
   } catch (err) {
     console.dir(err);
   }
@@ -107,5 +143,6 @@ export default function* rootSaga() {
     takeEvery(actionsTypes.AUTHENTIFICATION_SIGN_UP, authentificationSignUp),
     takeEvery(actionsTypes.AUTHENTIFICATION_SIGN_IN, authentificationSignIn),
     takeEvery(actionsTypes.USER_LOAD_AVATAR, loadUserAvatarSaga),
+    takeEvery(actionsTypes.AUTHENTIFICATION_IDENTIFY, identifayUser),
   ]);
 }
