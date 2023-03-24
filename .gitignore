@@ -39,15 +39,21 @@ build/Release
 
 # Dependency directories
 node_modules/
+ios/Pods
 jspm_packages/
+build/
+
 
 # TypeScript v1 declaration files
 typings/
 
 # TypeScript cache
 *.tsbuildinfo
+*-error.log
 
 # Optional npm cache directory
+.idea/
+.vscode/
 .npm
 
 # Optional eslint cache
