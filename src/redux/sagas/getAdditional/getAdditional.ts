@@ -1,15 +1,14 @@
-// import {AxiosResponse} from 'axios';
-import {all, fork, put, takeEvery} from 'redux-saga/effects';
-import {actionsTypes} from '../../actions/actionsType';
-import {apiHelper} from '../../../api/api';
-import {Characters} from '../../../types/types';
+import { all, fork, put, takeEvery } from 'redux-saga/effects';
+import { apiHelper } from '../../../api/api';
+import { Characters } from '../../../types/types';
 import {
   setCharactersFromLocation,
   setEpisodeCharacters,
-} from '../../actions/getAdditional';
-import {helper} from './helper';
+} from '../../actions/additionalData/actions';
+import { helper } from './helper';
+import { AdditionalDataActionTypes } from '../../actions/additionalData/action-types';
 
-function* getAdditionalDataFromUrl({payload}: any) {
+function* getAdditionalDataFromUrl({ payload }: any) {
   try {
     // @ts-ignore
     const data = yield apiHelper(payload);
@@ -43,7 +42,10 @@ function* getAdditionalDataFromUrl({payload}: any) {
 }
 
 function* getAdditionalDataFromUrlFork() {
-  yield takeEvery(actionsTypes.GET_ADDITIONAL, getAdditionalDataFromUrl);
+  yield takeEvery(
+    AdditionalDataActionTypes.GET_ADDITIONAL,
+    getAdditionalDataFromUrl,
+  );
 }
 
 export default function* rootSaga() {

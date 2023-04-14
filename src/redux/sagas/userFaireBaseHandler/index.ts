@@ -1,38 +1,35 @@
-import {all, put, takeEvery} from 'redux-saga/effects';
-import {apiHelper, firebaseAPI_Handler} from '../../../api/api';
-import {actionsTypes} from '../../actions/actionsType';
-import {getFaireBaseDataSuccess} from '../../actions/userDataFromFairebase';
-import {Characters} from '../../../types/types';
-import {getFavoriteCharactersSuccess} from '../../actions/characters';
+import { all, put, takeEvery } from 'redux-saga/effects';
+import { apiHelper, firebaseAPI_Handler } from '../../../api/api';
+import { actionsTypes } from '../../actions/actionsType';
+import { getFaireBaseDataSuccess } from '../../actions/userDataFromFairebase';
+import { Characters } from '../../../types/types';
+import { getFavoriteCharactersSuccess } from '../../actions/characters/actions';
+import { CharactersActionTypes } from '../../actions/characters/action-types';
 
-function* updateUserFaireBaseData({payload}: any) {
+function* updateUserFaireBaseData({ payload }: any) {
   try {
     const fairbaseData = yield firebaseAPI_Handler.putUserData(
       payload.uid,
       payload.newDataForFB,
     );
-    yield put(getFaireBaseDataSuccess({fairbaseData}));
+    yield put(getFaireBaseDataSuccess({ fairbaseData }));
   } catch (err) {
     console.dir(err);
   }
 }
 
-function* getFavoriteCharactersFromApi({payload}: any) {
+function* getFavoriteCharactersFromApi({ payload }: any) {
   try {
     const favoriteCharacters: Characters[] = yield apiHelper(
-      `https://rickandmortyapi.com/api/character/[${payload.favoriteCharacterIds}]`,
+      `https://rickandmortyapi.com/api/character/[${payload.favoriteCharacters}]`,
     );
-
-    console.log(payload);
-
     yield put(
       getFavoriteCharactersSuccess({
         favoriteCharacters,
       }),
     );
   } catch (err) {
-    // console.dir(err);
-    if (!payload.favoriteCharacterIds.length) {
+    if (!payload.favoriteCharacters.length) {
       yield put(
         getFavoriteCharactersSuccess({
           favoriteCharacters: [],
@@ -46,7 +43,7 @@ export default function* rootSaga() {
   yield all([
     takeEvery(actionsTypes.PUT_FAIRBASE_USER_DATA, updateUserFaireBaseData),
     takeEvery(
-      actionsTypes.GET_USER_FAVORITE_CHARACTERS,
+      CharactersActionTypes.GET_USER_FAVORITE_CHARACTERS,
       getFavoriteCharactersFromApi,
     ),
   ]);

@@ -1,19 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-interface I_TouchableButton {
+export interface TouchableButtonProps {
   buttonText: string;
   handleSubmit: () => void;
   isButtonDisableStatus: boolean;
   type: string;
 }
 
-const TouchableButton = ({
+export const TouchableButton = ({
   buttonText,
   handleSubmit,
   isButtonDisableStatus,
   type,
-}: I_TouchableButton) => {
+}: TouchableButtonProps) => {
   return (
     <View
       style={
@@ -29,7 +29,7 @@ const TouchableButton = ({
             : singleButtonStyles.createAccBtn
         }
         onPress={handleSubmit}>
-        <Text style={{textAlign: 'center'}}>{buttonText}</Text>
+        <Text style={singleButtonStyles.btnsText}>{buttonText}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -51,6 +51,9 @@ const singleButtonStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  btnsText: {
+    textAlign: 'center',
   },
 });
 
@@ -77,5 +80,3 @@ const multipleButtonsStyles = StyleSheet.create({
     height: 40,
   },
 });
-
-export default TouchableButton;

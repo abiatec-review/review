@@ -1,7 +1,7 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-interface I_CustomImage {
+export interface CustomImageProps {
   imageBorderRadius: number;
   isButtonNeed: boolean;
   buttonText: string;
@@ -11,7 +11,7 @@ interface I_CustomImage {
   height: number;
 }
 
-const CustomImage = ({
+export const CustomImage = ({
   imageBorderRadius,
   isButtonNeed,
   buttonText,
@@ -19,7 +19,7 @@ const CustomImage = ({
   imageUri,
   width,
   height,
-}: I_CustomImage) => {
+}: CustomImageProps) => {
   return (
     <View style={styles.imageConatainer}>
       {imageUri ? (
@@ -30,7 +30,7 @@ const CustomImage = ({
             width,
             height,
           }}
-          source={{uri: imageUri}}
+          source={{ uri: imageUri }}
         />
       ) : (
         <Image
@@ -40,19 +40,17 @@ const CustomImage = ({
             width,
             height,
           }}
-          source={require('../../assets/images/icons/noAvatar.jpeg')}
+          source={require('@images/icons/noAvatar.jpeg')}
         />
       )}
 
-      {isButtonNeed && handleOnPressInImage ? (
+      {isButtonNeed && handleOnPressInImage && (
         <TouchableOpacity
           style={styles.imageButton}
           onPress={handleOnPressInImage}>
-          <Text style={{color: '#ffffff', padding: 0, margin: 0}}>
-            {buttonText}
-          </Text>
+          <Text style={styles.textStyle}>{buttonText}</Text>
         </TouchableOpacity>
-      ) : null}
+      )}
     </View>
   );
 };
@@ -82,6 +80,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
   },
+  textStyle: {
+    color: '#ffffff',
+    padding: 0,
+    margin: 0,
+  },
 });
-
-export default CustomImage;

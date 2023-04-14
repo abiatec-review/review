@@ -1,26 +1,21 @@
-import {all, call, put, takeEvery} from 'redux-saga/effects';
-import {
-  getUser,
-  signIn,
-  signUp,
-  updateUser,
-} from '../../../Components/firebase';
-import {actionsTypes} from '../../actions/actionsType';
+import { all, call, put, takeEvery } from 'redux-saga/effects';
+import { getUser, signIn, signUp, updateUser } from '../../../utils/firebase';
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { setModalType } from '../../actions/modals/modal';
+import { firebaseAPI_Handler } from '../../../api/api';
+import { getFaireBaseDataSuccess } from '../../actions/userDataFromFairebase';
 import {
   authSignInSuccess,
   authSignUpError,
   authSignUpSuccess,
   identifyAuthUserSuccess,
   userLoadAvatarSuccess,
-} from '../../actions/authentification';
-import {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {setModalType} from '../../actions/modal';
-import {firebaseAPI_Handler} from '../../../api/api';
-import {getFaireBaseDataSuccess} from '../../actions/userDataFromFairebase';
+} from '../../../redux/actions/authentication/actions';
+import { AuthenticationActionTypes } from '../../actions/authentication/action-types';
 
-function* authentificationSignUp({payload}: any) {
+function* authentificationSignUp({ payload }: any) {
   try {
-    const {_auth} = yield call(
+    const { _auth } = yield call(
       signUp,
       payload.userName,
       payload.email,
@@ -36,10 +31,9 @@ function* authentificationSignUp({payload}: any) {
       }),
     );
     yield firebaseAPI_Handler.setUserData(_auth._user._user.uid);
-    const fairbaseData: {data: object} = yield firebaseAPI_Handler.getUserData(
-      _auth._user._user.uid,
-    );
-    yield put(getFaireBaseDataSuccess({fairbaseData}));
+    const fairbaseData: { data: object } =
+      yield firebaseAPI_Handler.getUserData(_auth._user._user.uid);
+    yield put(getFaireBaseDataSuccess({ fairbaseData }));
   } catch (err) {
     if (
       !payload.userName.length ||
@@ -61,10 +55,10 @@ function* authentificationSignUp({payload}: any) {
   }
 }
 
-function* authentificationSignIn({payload}: any) {
+function* authentificationSignIn({ payload }: any) {
   try {
-    const {user} = yield call(signIn, payload.email, payload.password);
-
+    const { user } = yield call(signIn, payload.email, payload.password);
+    console.log(11111);
     yield put(
       authSignInSuccess({
         displayName: user._user.displayName,
@@ -74,11 +68,11 @@ function* authentificationSignIn({payload}: any) {
         UID: user._user.uid,
       }),
     );
-    const fairbaseData: {data: object} = yield firebaseAPI_Handler.getUserData(
-      user._user.uid,
-    );
-    yield put(getFaireBaseDataSuccess({fairbaseData}));
+    const fairbaseData: { data: object } =
+      yield firebaseAPI_Handler.getUserData(user._user.uid);
+    yield put(getFaireBaseDataSuccess({ fairbaseData }));
   } catch (err) {
+    console.log(22222);
     if (!payload.email.length || !payload.password.length) {
       yield put(
         authSignUpError({
@@ -95,7 +89,7 @@ function* authentificationSignIn({payload}: any) {
   }
 }
 
-function* loadUserAvatarSaga({payload}: any) {
+function* loadUserAvatarSaga({ payload }: any) {
   try {
     yield call(updateUser, {
       photoURL: payload.newUserAvatar?.slice(7),
@@ -110,7 +104,7 @@ function* loadUserAvatarSaga({payload}: any) {
         }),
       );
     }
-    yield put(setModalType({modalType: '', modalData: null}));
+    yield put(setModalType({ modalType: '', modalData: null }));
   } catch (err) {
     console.dir(err);
   }
@@ -129,10 +123,10 @@ function* identifayUser() {
       }),
     );
 
-    const fairbaseData: {data: object} = yield firebaseAPI_Handler.getUserData(
-      user._user.uid,
-    );
-    yield put(getFaireBaseDataSuccess({fairbaseData}));
+    const fairbaseData: { data: object } =
+      yield firebaseAPI_Handler.getUserData(user._user.uid);
+
+    yield put(getFaireBaseDataSuccess({ fairbaseData }));
   } catch (err) {
     console.dir(err);
   }
@@ -140,9 +134,15 @@ function* identifayUser() {
 
 export default function* rootSaga() {
   yield all([
-    takeEvery(actionsTypes.AUTHENTIFICATION_SIGN_UP, authentificationSignUp),
-    takeEvery(actionsTypes.AUTHENTIFICATION_SIGN_IN, authentificationSignIn),
-    takeEvery(actionsTypes.USER_LOAD_AVATAR, loadUserAvatarSaga),
-    takeEvery(actionsTypes.AUTHENTIFICATION_IDENTIFY, identifayUser),
+    takeEvery(
+      AuthenticationActionTypes.AUTHENTICATION_SIGN_UP,
+      authentificationSignUp,
+    ),
+    takeEvery(
+      AuthenticationActionTypes.AUTHENTICATION_SIGN_IN,
+      authentificationSignIn,
+    ),
+    takeEvery(AuthenticationActionTypes.USER_LOAD_AVATAR, loadUserAvatarSaga),
+    takeEvery(AuthenticationActionTypes.AUTHENTICATION_IDENTIFY, identifayUser),
   ]);
 }

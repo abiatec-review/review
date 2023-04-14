@@ -1,4 +1,7 @@
-import {actionsTypes} from '../actions/actionsType';
+import {
+  AdditionalActions,
+  AdditionalDataActionTypes,
+} from '../actions/additionalData/action-types';
 
 const initState: any = {
   additionalDataFromUrl: null,
@@ -7,25 +10,22 @@ const initState: any = {
   charactersFromLocation: null,
 };
 
-const AdditionalData = (
-  state = initState,
-  action: {type: string; payload: any},
-) => {
+const AdditionalData = (state = initState, action: AdditionalActions) => {
   switch (action.type) {
-    case actionsTypes.GET_ADDITIONAL: {
+    case AdditionalDataActionTypes.GET_ADDITIONAL: {
       return {
         ...state,
         loader: true,
       };
     }
-    case actionsTypes.SET_EPISODE_CHARACTERS: {
+    case AdditionalDataActionTypes.SET_EPISODE_CHARACTERS: {
       return {
         ...state,
         loader: false,
         charactersFromEpisode: action.payload.charactersFromEpisode,
       };
     }
-    case actionsTypes.SET_CHARACTERS_FROM_LOCATION: {
+    case AdditionalDataActionTypes.SET_CHARACTERS_FROM_LOCATION: {
       return {
         ...state,
         loader: false,

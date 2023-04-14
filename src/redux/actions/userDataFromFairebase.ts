@@ -1,4 +1,4 @@
-import {actionsTypes} from './actionsType';
+import { actionsTypes } from './actionsType';
 
 export const getFaireBaseData = (payload: any) => {
   return {

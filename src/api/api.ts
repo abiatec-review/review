@@ -1,10 +1,12 @@
 import axios from 'axios';
+import { REACT_APP_FIREBASE_API, REACT_APP_BASE_URL } from '@env';
 
-const firebaseAPI =
-  'https://authforrickandmorty-default-rtdb.europe-west1.firebasedatabase.app';
+const firebaseAPI = REACT_APP_FIREBASE_API;
+
+console.log(REACT_APP_BASE_URL);
 
 const instanceRickAndMortyAPI = axios.create({
-  baseURL: 'https://rickandmortyapi.com/api/',
+  baseURL: REACT_APP_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

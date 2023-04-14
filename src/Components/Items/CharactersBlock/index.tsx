@@ -1,11 +1,11 @@
-import React, {FC} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {Characters} from '../../../types/types';
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { Characters } from '../../../types/types';
 
-const CharactersInfoBlock: FC<Characters> = ({image, name}) => {
+export const CharactersInfoBlock = ({ image, name }: Characters) => {
   return (
     <View style={styles.itemContainer}>
-      <Image style={styles.imageStyle} source={{uri: image}} />
+      <Image style={styles.imageStyle} source={{ uri: image }} />
       <Text style={styles.text}>{name}</Text>
     </View>
   );
@@ -30,5 +30,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
-export default CharactersInfoBlock;

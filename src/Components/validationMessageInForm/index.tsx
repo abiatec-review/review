@@ -1,23 +1,27 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {authSignUpError} from '../../redux/actions/authentification';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { authSignUpError } from '../../redux/actions/authentication/actions.ts';
 
-interface I_ValidationMessage {
+export interface ValidationMessageProps {
   validationMessage: string;
 }
 
-const ValidationMessage = ({validationMessage}: I_ValidationMessage) => {
+export const ValidationMessage = ({
+  validationMessage,
+}: ValidationMessageProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setTimeout(() => {
+    const signUpErrorMessage = setTimeout(() => {
       dispatch(
         authSignUpError({
           errorMessage: null,
         }),
       );
     }, 3500);
+
+    return () => clearTimeout(signUpErrorMessage);
   }, [dispatch, validationMessage]);
 
   return (
@@ -37,5 +41,3 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
 });
-
-export default ValidationMessage;

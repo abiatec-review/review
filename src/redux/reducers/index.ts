@@ -1,16 +1,16 @@
-import {combineReducers} from 'redux';
-import CharactersReducer from './characters';
+import { combineReducers } from 'redux';
+import CharactersReducer from './characters/characters';
 import ModalReducer from './modal';
 import AdditionalData from './getAdditional';
-import Authentification from './authentification';
 import FairebaseUserDataReducer from './userDataFromFairebase';
+import Authentication from './authentication/authentication';
 
 const createReducer = () =>
   combineReducers({
     CharactersReducer,
     ModalReducer,
     AdditionalData,
-    Authentification,
+    Authentication,
     UserFaireBaseData: FairebaseUserDataReducer,
   });
 

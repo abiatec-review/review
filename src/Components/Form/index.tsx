@@ -1,60 +1,43 @@
 import React from 'react';
-import {Control, useController, useForm} from 'react-hook-form';
-import {SafeAreaView, TextInput, StyleSheet, Text, View} from 'react-native';
-import TouchableButton from '../TouchableButton';
-import ValidationMessage from '../validationMessageInForm';
+import { useForm } from 'react-hook-form';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { TouchableButton, ValidationMessage } from '..';
+import { FormInput } from './Input';
 
-interface I_InputItems {
-  inputName: string;
-  label: string;
-}
-
-type T_handleData = object;
-
-interface I_FormComponent {
+export interface FormComponentProps {
   title: string;
-  inputItems: I_InputItems[];
+  inputItems: InputItemsProps[];
   buttonText: string;
-  handleData: (data: T_handleData) => void;
+  handleData: (data: object) => void;
   isButtonDisableStatus: boolean;
   validationMessage: string;
 }
 
-function Input({name, control}: {name: string; control: Control}) {
-  const {field} = useController({
-    control,
-    defaultValue: '',
-    name,
-  });
-  return (
-    <TextInput
-      value={field.value}
-      style={styles.input}
-      onChangeText={field.onChange}
-    />
-  );
+export interface InputItemsProps {
+  inputName: string;
+  label: string;
 }
 
-const Form = ({
+export const Form = ({
   title,
   inputItems,
   buttonText,
   handleData,
   isButtonDisableStatus,
   validationMessage,
-}: I_FormComponent) => {
-  const {control, handleSubmit} = useForm();
+}: FormComponentProps) => {
+  const { control, handleSubmit } = useForm();
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.safeAreaContainer}>
         <Text style={styles.headerText}>{title}</Text>
         <View>
-          {inputItems.map((itputItem: I_InputItems, itputItemId: number) => {
+          {inputItems.map((itputItem: InputItemsProps, itputItemId: number) => {
             return (
               <View key={itputItemId}>
                 <Text>{itputItem.label}</Text>
-                <Input name={itputItem.inputName} control={control} />
+                <FormInput name={itputItem.inputName} control={control} />
               </View>
             );
           })}
@@ -118,5 +101,3 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
 });
-
-export default Form;

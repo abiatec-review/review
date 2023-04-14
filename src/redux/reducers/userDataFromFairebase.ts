@@ -1,4 +1,4 @@
-import {actionsTypes} from '../actions/actionsType';
+import { actionsTypes } from '../actions/actionsType';
 
 const initState: any = {
   uniqueId: null,
@@ -9,7 +9,7 @@ const initState: any = {
 
 const FairebaseUserDataReducer = (
   state = initState,
-  action: {type: string; payload: any},
+  action: { type: string; payload: any },
 ) => {
   switch (action.type) {
     case actionsTypes.GET_FAIRBASE_USER_DATA: {

@@ -1,13 +1,16 @@
-import {actionsTypes} from '../actions/actionsType';
+import {
+  CharactersAction,
+  ModalsActionTypes,
+} from '../actions/modals/action-types';
 
 const initState: any = {
   modalType: '',
   modalData: null,
 };
 
-const Modal = (state = initState, action: {type: string; payload: any}) => {
+const Modal = (state = initState, action: CharactersAction) => {
   switch (action.type) {
-    case actionsTypes.CALL_MODAL: {
+    case ModalsActionTypes.CALL_MODAL: {
       return {
         ...state,
         modalType: action.payload.modalType,
