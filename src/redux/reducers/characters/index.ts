@@ -2,11 +2,21 @@ import {
   CharactersAction,
   CharactersActionTypes,
 } from '../../actions/characters/action-types';
+import { Characters } from '../../../types/types';
 
 const nextCharactersPageNumber = (link: string) =>
   link ? link.split('=')[1] : null;
 
-const initState: any = {
+type CharactersProps = {
+  themeMode: string;
+  characters: Characters[];
+  favoriteCharacters: Characters[];
+  nextCharactersPage: string;
+  charactersLoader: boolean;
+  favoriteCharactersLoader: boolean;
+};
+
+const initState: CharactersProps = {
   themeMode: 'dark',
   characters: [],
   favoriteCharacters: [],
@@ -15,7 +25,7 @@ const initState: any = {
   favoriteCharactersLoader: false,
 };
 
-const Characters = (state = initState, action: CharactersAction) => {
+const CharactersReducer = (state = initState, action: CharactersAction) => {
   switch (action.type) {
     case CharactersActionTypes.GET_CHARACTERS: {
       return {
@@ -74,4 +84,4 @@ const Characters = (state = initState, action: CharactersAction) => {
   }
 };
 
-export default Characters;
+export default CharactersReducer;

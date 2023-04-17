@@ -1,7 +1,13 @@
-import { actionsTypes } from '../actions/actionsType';
+import { GetFaireBaseDataSuccess } from 'src/types/types';
+import { UserDataFromFirebaseActionTypes } from '../../actions/userDataFromFirebase/action-types';
 
-const initState: any = {
-  uniqueId: null,
+type initStateProps = {
+  faireBaseData: null | GetFaireBaseDataSuccess;
+  loader: boolean;
+  errorMessage: string | null;
+};
+
+const initState: initStateProps = {
   faireBaseData: null,
   loader: false,
   errorMessage: null,
@@ -12,21 +18,20 @@ const FairebaseUserDataReducer = (
   action: { type: string; payload: any },
 ) => {
   switch (action.type) {
-    case actionsTypes.GET_FAIRBASE_USER_DATA: {
+    case UserDataFromFirebaseActionTypes.GET_FIREBASE_USER_DATA: {
       return {
         ...state,
         loader: true,
       };
     }
-    case actionsTypes.GET_FAIRBASE_USER_DATA_SUCCESS: {
+    case UserDataFromFirebaseActionTypes.GET_FIREBASE_USER_DATA_SUCCESS: {
       return {
         ...state,
-        uniqueId: Object.keys(action.payload.fairbaseData)[0],
-        faireBaseData: action.payload.fairbaseData,
+        faireBaseData: action.payload.favoriteChars,
         loader: false,
       };
     }
-    case actionsTypes.GET_FAIRBASE_USER_DATA_ERROR: {
+    case UserDataFromFirebaseActionTypes.GET_FIREBASE_USER_DATA_ERROR: {
       return {
         ...state,
         errorMessage: 'Test error message',
@@ -34,19 +39,19 @@ const FairebaseUserDataReducer = (
       };
     }
     // here start put reducers
-    case actionsTypes.PUT_FAIRBASE_USER_DATA: {
+    case UserDataFromFirebaseActionTypes.PUT_FIREBASE_USER_DATA: {
       return {
         ...state,
         loader: true,
       };
     }
-    case actionsTypes.PUT_FAIRBASE_USER_DATA_SUCCESS: {
+    case UserDataFromFirebaseActionTypes.PUT_FIREBASE_USER_DATA_SUCCESS: {
       return {
         ...state,
         loader: false,
       };
     }
-    case actionsTypes.PUT_FAIRBASE_USER_DATA_ERROR: {
+    case UserDataFromFirebaseActionTypes.PUT_FIREBASE_USER_DATA_ERROR: {
       return {
         ...state,
         errorMessage: 'Test error message',

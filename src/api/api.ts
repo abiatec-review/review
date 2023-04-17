@@ -35,14 +35,17 @@ export const firebaseAPI_Handler = {
     return (await axios.get(`${firebaseAPI}/users_data/${userUID}.json`)).data;
   },
   setUserData: (userUID: string) => {
-    axios.post(`${firebaseAPI}/users_data/${userUID}.json`, {
+    axios.put(`${firebaseAPI}/users_data/${userUID}.json`, {
       favoriteChars: '',
       additionalData: '',
     });
   },
   putUserData: async (userUID: string, newData: object) => {
     return (
-      await axios.put(`${firebaseAPI}/users_data/${userUID}.json`, newData)
+      await axios.put(
+        `${firebaseAPI}/users_data/${userUID}.json`,
+        newData ? newData : {},
+      )
     ).data;
   },
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setModalType } from '../../redux/actions/modals/modal';
+import { setModalType } from '../../redux/actions/modals/actions';
 import {
   CameraOptions,
   // launchCamera,
@@ -9,14 +9,15 @@ import {
   ImagePickerResponse,
 } from 'react-native-image-picker';
 import { Image } from 'react-native-elements';
-import { userLoadAvatar } from '../../redux/actions/authentication/actions.ts';
+
 import { TouchableButton } from '@components/index';
+import { userLoadAvatar } from '../../redux/actions/authentication/actions';
 
 export const ImagePickerModal = () => {
   const dispatch = useDispatch();
   const {
-    Authentification: { avatarLoader },
-  } = useSelector((Authentification: any) => Authentification);
+    Authentication: { avatarLoader },
+  } = useSelector((Authentication: any) => Authentication);
 
   const [newImage, setNewImage] = useState<string>();
 
@@ -48,7 +49,9 @@ export const ImagePickerModal = () => {
   };
 
   const onLoadImageToFirebase = async () => {
-    dispatch(userLoadAvatar({ newUserAvatar: newImage }));
+    if (newImage) {
+      dispatch(userLoadAvatar({ newUserAvatar: newImage }));
+    }
   };
 
   return (

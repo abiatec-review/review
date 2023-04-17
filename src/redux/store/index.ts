@@ -12,6 +12,5 @@ export default function configureStore() {
   );
   sagaMiddleware.run(rootSaga);
 
-  // compose(applyMiddleware(sagaMiddleware)));
   return store;
 }

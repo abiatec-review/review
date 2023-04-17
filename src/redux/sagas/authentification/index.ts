@@ -1,9 +1,9 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects';
 import { getUser, signIn, signUp, updateUser } from '../../../utils/firebase';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import { setModalType } from '../../actions/modals/modal';
+import { setModalType } from '../../actions/modals/actions';
 import { firebaseAPI_Handler } from '../../../api/api';
-import { getFaireBaseDataSuccess } from '../../actions/userDataFromFairebase';
+import { getFaireBaseDataSuccess } from '../../actions/userDataFromFirebase/actions';
 import {
   authSignInSuccess,
   authSignUpError,
@@ -30,10 +30,13 @@ function* authentificationSignUp({ payload }: any) {
         UID: _auth._user._user.uid,
       }),
     );
+
+    console.log(11111111, payload);
+
     yield firebaseAPI_Handler.setUserData(_auth._user._user.uid);
     const fairbaseData: { data: object } =
       yield firebaseAPI_Handler.getUserData(_auth._user._user.uid);
-    yield put(getFaireBaseDataSuccess({ fairbaseData }));
+    yield put(getFaireBaseDataSuccess(Object.values(fairbaseData)[0]));
   } catch (err) {
     if (
       !payload.userName.length ||
@@ -70,9 +73,9 @@ function* authentificationSignIn({ payload }: any) {
     );
     const fairbaseData: { data: object } =
       yield firebaseAPI_Handler.getUserData(user._user.uid);
-    yield put(getFaireBaseDataSuccess({ fairbaseData }));
+    yield put(getFaireBaseDataSuccess(Object.values(fairbaseData)[0]));
+    // console.log(123, fairbaseData);
   } catch (err) {
-    console.log(22222);
     if (!payload.email.length || !payload.password.length) {
       yield put(
         authSignUpError({
@@ -123,10 +126,9 @@ function* identifayUser() {
       }),
     );
 
-    const fairbaseData: { data: object } =
-      yield firebaseAPI_Handler.getUserData(user._user.uid);
-
-    yield put(getFaireBaseDataSuccess({ fairbaseData }));
+    const fairbaseData = yield firebaseAPI_Handler.getUserData(user._user.uid);
+    console.log(7777, fairbaseData);
+    yield put(getFaireBaseDataSuccess(fairbaseData));
   } catch (err) {
     console.dir(err);
   }

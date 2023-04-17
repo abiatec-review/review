@@ -25,7 +25,7 @@ const NavigationComponent = () => {
     CharactersReducer: { themeMode },
   } = useSelector((CharactersReducer: any) => CharactersReducer);
   const {
-    UserFaireBaseData: { faireBaseData, uniqueId },
+    UserFaireBaseData: { faireBaseData },
   } = useSelector((UserFaireBaseData: any) => UserFaireBaseData);
 
   useEffect(() => {
@@ -34,8 +34,8 @@ const NavigationComponent = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (faireBaseData && uniqueId && faireBaseData[uniqueId].favoriteChars) {
-      const favoriteCharacterIds = faireBaseData[uniqueId].favoriteChars.map(
+    if (faireBaseData) {
+      const favoriteCharacterIds = faireBaseData.map(
         ({ charId }: any) => charId,
       );
       dispatch(
@@ -44,7 +44,7 @@ const NavigationComponent = () => {
     } else {
       dispatch(getFavoriteCharacters({ favoriteCharacters: [] }));
     }
-  }, [dispatch, faireBaseData, uniqueId]);
+  }, [dispatch, faireBaseData]);
 
   return (
     <>

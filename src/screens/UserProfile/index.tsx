@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOutUser } from '../../redux/actions/authentication/actions';
-import { setModalType } from '../../redux/actions/modals/modal';
+import { setModalType } from '../../redux/actions/modals/actions';
 
 const UserProfile = () => {
   const {

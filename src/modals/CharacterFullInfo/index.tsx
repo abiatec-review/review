@@ -1,9 +1,9 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { setModalType } from '../../redux/actions/modals/modal';
+import { setModalType } from '../../redux/actions/modals/actions';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import { putFaireBaseData } from '../../redux/actions/userDataFromFairebase';
+import { putFaireBaseData } from '../../redux/actions/userDataFromFirebase/actions';
 import { Table, TouchableButton } from '@components/index';
 
 export const CharacterFullInfo = () => {
@@ -13,15 +13,15 @@ export const CharacterFullInfo = () => {
     ModalReducer: { modalData },
   } = useSelector((ModalReducer: any) => ModalReducer);
   const {
-    UserFaireBaseData: { faireBaseData, loader, uniqueId },
+    UserFaireBaseData: { faireBaseData, loader },
   } = useSelector((UserFaireBaseData: any) => UserFaireBaseData);
   const {
     Authentication: { uid },
   } = useSelector((Authentication: any) => Authentication);
 
   const isCharInFavorites = (characterId: number) => {
-    if (uniqueId && Array.isArray(faireBaseData[uniqueId].favoriteChars)) {
-      return faireBaseData[uniqueId].favoriteChars.some(
+    if (faireBaseData) {
+      return faireBaseData.some(
         ({ charId }: { charId: number }) => characterId === charId,
       );
     }
@@ -29,27 +29,22 @@ export const CharacterFullInfo = () => {
 
   const addToFavorite = (characterId: number) => {
     if (isCharInFavorites(characterId)) {
-      const newFavorites = faireBaseData[uniqueId].favoriteChars.filter(
+      const newFavorites = faireBaseData.filter(
         (item: { charId: number }) => item.charId !== characterId,
       );
       const newDataForFB = {
-        [uniqueId]: {
-          additionalData: faireBaseData[uniqueId].additionalData,
-          favoriteChars: newFavorites,
-        },
+        additionalData: null,
+        favoriteChars: newFavorites.length ? newFavorites : '',
       };
       dispatch(putFaireBaseData({ newDataForFB, uid }));
     } else {
-      const newFavorites = faireBaseData[uniqueId].favoriteChars
-        ? [...faireBaseData[uniqueId].favoriteChars, { charId: characterId }]
+      const newFavorites = faireBaseData
+        ? [...faireBaseData, { charId: characterId }]
         : [{ charId: characterId }];
       const newDataForFB = {
-        [uniqueId]: {
-          additionalData: faireBaseData[uniqueId].additionalData,
-          favoriteChars: [...newFavorites],
-        },
+        additionalData: null,
+        favoriteChars: [...newFavorites],
       };
-      console.log(newDataForFB);
       dispatch(putFaireBaseData({ newDataForFB, uid }));
     }
   };

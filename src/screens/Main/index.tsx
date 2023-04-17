@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { getNextCharatersSucsess } from '../../redux/actions/characters/actions';
 import { Characters } from '../../types/types';
-import { setModalType } from '../../redux/actions/modals/modal';
+import { setModalType } from '../../redux/actions/modals/actions';
 import { CharactersInfoBlock } from '@components/index';
 
 const MainScreen = () => {

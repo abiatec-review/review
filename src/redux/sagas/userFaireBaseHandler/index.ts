@@ -1,10 +1,10 @@
 import { all, put, takeEvery } from 'redux-saga/effects';
 import { apiHelper, firebaseAPI_Handler } from '../../../api/api';
-import { actionsTypes } from '../../actions/actionsType';
-import { getFaireBaseDataSuccess } from '../../actions/userDataFromFairebase';
+import { getFaireBaseDataSuccess } from '../../actions/userDataFromFirebase/actions';
 import { Characters } from '../../../types/types';
 import { getFavoriteCharactersSuccess } from '../../actions/characters/actions';
 import { CharactersActionTypes } from '../../actions/characters/action-types';
+import { UserDataFromFirebaseActionTypes } from '../../actions/userDataFromFirebase/action-types';
 
 function* updateUserFaireBaseData({ payload }: any) {
   try {
@@ -12,7 +12,7 @@ function* updateUserFaireBaseData({ payload }: any) {
       payload.uid,
       payload.newDataForFB,
     );
-    yield put(getFaireBaseDataSuccess({ fairbaseData }));
+    yield put(getFaireBaseDataSuccess(fairbaseData));
   } catch (err) {
     console.dir(err);
   }
@@ -41,7 +41,10 @@ function* getFavoriteCharactersFromApi({ payload }: any) {
 
 export default function* rootSaga() {
   yield all([
-    takeEvery(actionsTypes.PUT_FAIRBASE_USER_DATA, updateUserFaireBaseData),
+    takeEvery(
+      UserDataFromFirebaseActionTypes.PUT_FIREBASE_USER_DATA,
+      updateUserFaireBaseData,
+    ),
     takeEvery(
       CharactersActionTypes.GET_USER_FAVORITE_CHARACTERS,
       getFavoriteCharactersFromApi,

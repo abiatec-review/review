@@ -1,7 +1,7 @@
 import {
   AdditionalActions,
   AdditionalDataActionTypes,
-} from '../actions/additionalData/action-types';
+} from '../../actions/additionalData/action-types';
 
 const initState: any = {
   additionalDataFromUrl: null,

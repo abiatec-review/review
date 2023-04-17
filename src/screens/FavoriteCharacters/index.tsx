@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setModalType } from '../../redux/actions/modals/modal';
+import { setModalType } from '../../redux/actions/modals/actions';
 import { Characters } from '../../types/types';
 
 const FavoriteCharacters = () => {

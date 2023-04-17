@@ -4,7 +4,18 @@ import {
 } from '../../actions/authentication/action-types';
 import { signOut } from '../../../utils/firebase';
 
-const initState: any = {
+type AuthenticationProps = {
+  userEmail: string | null;
+  userName: string | null;
+  userAvatar: string | null;
+  avatarLoader: boolean;
+  uid: string | null;
+  token: string | null;
+  authLoader: boolean;
+  errorMessage: string | null;
+};
+
+const initState: AuthenticationProps = {
   userEmail: null,
   userName: null,
   userAvatar: null,

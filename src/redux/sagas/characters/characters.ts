@@ -1,9 +1,12 @@
 import { AxiosResponse } from 'axios';
 import { all, fork, put, takeEvery } from 'redux-saga/effects';
-import { services } from '../../api/api';
-import { allDataInfo } from '../../types/types';
-import { CharactersActionTypes } from '../actions/characters/action-types';
-import { getCharaters, getNextCharaters } from '../actions/characters/actions';
+import { services } from '../../../api/api';
+import { allDataInfo } from '../../../types/types';
+import { CharactersActionTypes } from '../../actions/characters/action-types';
+import {
+  getCharaters,
+  getNextCharaters,
+} from '../../actions/characters/actions';
 
 function* getAllCharactersSaga() {
   try {

@@ -3,7 +3,7 @@ import { FlatList, TouchableOpacity, View } from 'react-native';
 import { getAdditional } from '../../redux/actions/additionalData/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Characters } from '../../types/types';
-import { setModalType } from '../../redux/actions/modals/modal';
+import { setModalType } from '../../redux/actions/modals/actions';
 import { CharactersInfoBlock } from '@components/index';
 
 const CharactersFromEpisode = ({ route }: any) => {

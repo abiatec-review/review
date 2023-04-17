@@ -1,7 +1,7 @@
 import {
   CharactersAction,
   ModalsActionTypes,
-} from '../actions/modals/action-types';
+} from '../../actions/modals/action-types';
 
 const initState: any = {
   modalType: '',

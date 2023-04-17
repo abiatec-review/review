@@ -96,6 +96,25 @@ export type ModalData = {
   modalData: Characters;
 };
 
+//firebase actions types
+export type GetFaireBaseDataSuccess = {
+  favoriteChars: { charId: number }[];
+};
+
+export type ErrorParams = {
+  errorMessage: string;
+};
+
+export type newDataForFB = {
+  additionalData: null | {};
+  favoriteChars: GetFaireBaseDataSuccess;
+};
+
+export type PutFaireBaseData = {
+  newDataForFB: newDataForFB;
+  uid: string;
+};
+
 // navigation types
 export type RootStackParamList = {
   Home: { headerShown: boolean };
