@@ -1,5 +1,8 @@
 import { GetFaireBaseDataSuccess } from 'src/types/types';
-import { UserDataFromFirebaseActionTypes } from '../../actions/userDataFromFirebase/action-types';
+import {
+  UserDataFireBaseAction,
+  UserDataFromFirebaseActionTypes,
+} from '../../actions/userDataFromFirebase/action-types';
 
 type initStateProps = {
   faireBaseData: null | GetFaireBaseDataSuccess;
@@ -15,7 +18,7 @@ const initState: initStateProps = {
 
 const FairebaseUserDataReducer = (
   state = initState,
-  action: { type: string; payload: any },
+  action: { type: string; payload: UserDataFireBaseAction },
 ) => {
   switch (action.type) {
     case UserDataFromFirebaseActionTypes.GET_FIREBASE_USER_DATA: {

@@ -1,10 +1,5 @@
 import { Characters } from 'src/types/types';
 
-type additional = {
-  charactersFromEpisode?: Characters[];
-  charactersFromLocation?: Characters[];
-};
-
 export const enum AdditionalDataActionTypes {
   GET_ADDITIONAL = 'GET_ADDITIONAL',
   SET_EPISODE_CHARACTERS = 'SET_EPISODE_CHARACTERS',
@@ -18,12 +13,12 @@ export type GetAdditionalActionType = {
 
 export type SetEpisodeCharactersActionType = {
   type: AdditionalDataActionTypes.SET_EPISODE_CHARACTERS;
-  payload: additional;
+  payload: Characters[];
 };
 
 export type SetCharactersFromLocationActionType = {
   type: AdditionalDataActionTypes.SET_CHARACTERS_FROM_LOCATION;
-  payload: additional;
+  payload: Characters[];
 };
 
 export type AdditionalActions =

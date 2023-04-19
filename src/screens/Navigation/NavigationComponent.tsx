@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ImageBackground, Modal, StyleSheet, Switch } from 'react-native';
 import {
+  changeThemeMode,
   getCharatersSucsess,
   getFavoriteCharacters,
 } from '../../redux/actions/characters/actions';
@@ -14,19 +15,14 @@ import EpisodesList from '../EpisodesList';
 import Home from './Home';
 import CharactersFrom from '../CharactersFrom';
 import CharactersFromEpisode from '../CharactersFromEpisode';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 const NavigationComponent = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   const dispatch = useDispatch();
-  const {
-    ModalReducer: { modalType },
-  } = useSelector((ModalReducer: any) => ModalReducer);
-  const {
-    CharactersReducer: { themeMode },
-  } = useSelector((CharactersReducer: any) => CharactersReducer);
-  const {
-    UserFaireBaseData: { faireBaseData },
-  } = useSelector((UserFaireBaseData: any) => UserFaireBaseData);
+  const { modalType } = useAppSelector(store => store.ModalReducer);
+  const { themeMode } = useAppSelector(store => store.CharactersReducer);
+  const { faireBaseData } = useAppSelector(store => store.UserFaireBaseData);
 
   useEffect(() => {
     dispatch(getCharatersSucsess());
@@ -36,7 +32,7 @@ const NavigationComponent = () => {
   useEffect(() => {
     if (faireBaseData) {
       const favoriteCharacterIds = faireBaseData.map(
-        ({ charId }: any) => charId,
+        ({ charId }: { charId: number }) => charId,
       );
       dispatch(
         getFavoriteCharacters({ favoriteCharacters: favoriteCharacterIds }),
@@ -45,6 +41,14 @@ const NavigationComponent = () => {
       dispatch(getFavoriteCharacters({ favoriteCharacters: [] }));
     }
   }, [dispatch, faireBaseData]);
+
+  const changeTheme = (value: string) => {
+    dispatch(
+      changeThemeMode({
+        themeMode: value,
+      }),
+    );
+  };
 
   return (
     <>
@@ -68,7 +72,9 @@ const NavigationComponent = () => {
                 <Switch
                   trackColor={{ false: '#767577', true: '#81b0ff' }}
                   thumbColor={themeMode === 'light' ? '#f5dd4b' : '#f4f3f4'}
-                  onValueChange={() => helper.toggleSwitch(themeMode, dispatch)}
+                  onValueChange={() =>
+                    helper.toggleSwitch(themeMode, changeTheme)
+                  }
                   value={themeMode === 'light'}
                 />
               );
@@ -88,13 +94,13 @@ const NavigationComponent = () => {
             name={'charactersFrom'}
             component={CharactersFrom}
             options={({ route }: ScreenProps<'charactersFrom'>) => ({
-              title: `Characters From ${route.params.locationName}`,
+              title: `Characters From ${route.params.name}`,
             })}
           />
           <Stack.Screen
             name={'charactersFromEpisode'}
             component={CharactersFromEpisode}
-            options={({ route }: any) => ({
+            options={({ route }: ScreenProps<'charactersFromEpisode'>) => ({
               title: `Characters From Episode # ${route.params.episodeNum}`,
             })}
           />

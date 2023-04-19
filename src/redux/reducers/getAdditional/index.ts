@@ -1,11 +1,19 @@
+import { Characters } from 'src/types/types';
 import {
   AdditionalActions,
   AdditionalDataActionTypes,
 } from '../../actions/additionalData/action-types';
 
-const initState: any = {
+type AdditionalDataProps = {
+  additionalDataFromUrl: string | null;
+  loader: boolean;
+  charactersFromEpisode: Characters[] | null;
+  charactersFromLocation: Characters[] | null;
+};
+
+const initState: AdditionalDataProps = {
   additionalDataFromUrl: null,
-  loader: null,
+  loader: false,
   charactersFromEpisode: null,
   charactersFromLocation: null,
 };
@@ -22,14 +30,14 @@ const AdditionalData = (state = initState, action: AdditionalActions) => {
       return {
         ...state,
         loader: false,
-        charactersFromEpisode: action.payload.charactersFromEpisode,
+        charactersFromEpisode: action.payload,
       };
     }
     case AdditionalDataActionTypes.SET_CHARACTERS_FROM_LOCATION: {
       return {
         ...state,
         loader: false,
-        characterFromLocation: action.payload.charactersFromLocation,
+        charactersFromLocation: action.payload,
       };
     }
     default:

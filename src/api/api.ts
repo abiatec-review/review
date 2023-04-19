@@ -3,8 +3,6 @@ import { REACT_APP_FIREBASE_API, REACT_APP_BASE_URL } from '@env';
 
 const firebaseAPI = REACT_APP_FIREBASE_API;
 
-console.log(REACT_APP_BASE_URL);
-
 const instanceRickAndMortyAPI = axios.create({
   baseURL: REACT_APP_BASE_URL,
   headers: {

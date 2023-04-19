@@ -7,14 +7,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { setModalType } from '../../redux/actions/modals/actions';
 import { Characters } from '../../types/types';
 
 const FavoriteCharacters = () => {
-  const {
-    CharactersReducer: { favoriteCharacters, favoriteCharactersLoader },
-  } = useSelector((CharactersReducer: any) => CharactersReducer);
+  const { favoriteCharacters, favoriteCharactersLoader } = useAppSelector(
+    store => store.CharactersReducer,
+  );
   const dispatch = useDispatch();
 
   const renderItem = ({ item }: { item: Characters }) => (

@@ -1,5 +1,15 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+export type CharacterLocation = {
+  created: string;
+  dimension: string;
+  id: number;
+  name: string;
+  residents: string[];
+  type: string;
+  url: string;
+};
+
 export type Characters = {
   created?: string;
   episode?: string[];
@@ -47,7 +57,7 @@ export type NextCharactersParams = {
   nextCharactersPage: string;
 };
 export type ThemeModeParams = {
-  themeMode: number[];
+  themeMode: string;
 };
 export type FavoriteCharactersParams = {
   favoriteCharacters: number[];
@@ -70,10 +80,10 @@ export type AuthSignInParams = {
 
 export type AuthSignInSuccessParams = {
   UID: string;
-  displayName: string;
-  email: string;
-  photoURL: string;
-  token: string;
+  displayName: string | null;
+  email: string | null;
+  photoURL: string | null;
+  token: string | null | undefined;
 };
 
 export type AuthSignUpSuccessParams = {
@@ -93,12 +103,13 @@ export type UserLoadAvatarParams = {
 //modal data types
 export type ModalData = {
   modalType: string;
-  modalData: Characters;
+  modalData: Characters | null;
 };
 
 //firebase actions types
 export type GetFaireBaseDataSuccess = {
-  favoriteChars: { charId: number }[];
+  favoriteChars: { charId: number }[] | string;
+  additionalData?: string;
 };
 
 export type ErrorParams = {
@@ -126,12 +137,10 @@ export type RootStackParamList = {
   };
   charactersFrom: {
     episodes: string[];
-    locationName: string;
-    locationCharactersApi: string;
+    name: string;
+    url: string;
   };
 };
-
-export type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 export type ScreenProps<T extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, T>;

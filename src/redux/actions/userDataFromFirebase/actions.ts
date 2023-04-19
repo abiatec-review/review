@@ -40,7 +40,6 @@ export const getFaireBaseDataError = (
 export const putFaireBaseData = (
   payload: PutFaireBaseData,
 ): PutFaireBaseDataActionType => {
-  console.log(1234, payload);
   return {
     type: UserDataFromFirebaseActionTypes.PUT_FIREBASE_USER_DATA,
     payload,

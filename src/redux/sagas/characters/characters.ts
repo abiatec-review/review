@@ -1,8 +1,10 @@
-import { AxiosResponse } from 'axios';
 import { all, fork, put, takeEvery } from 'redux-saga/effects';
 import { services } from '../../../api/api';
 import { allDataInfo } from '../../../types/types';
-import { CharactersActionTypes } from '../../actions/characters/action-types';
+import {
+  CharactersActionTypes,
+  GetNextChartersSuccessActionType,
+} from '../../actions/characters/action-types';
 import {
   getCharaters,
   getNextCharaters,
@@ -10,20 +12,19 @@ import {
 
 function* getAllCharactersSaga() {
   try {
-    const allCharactersGetResult: AxiosResponse<allDataInfo> =
-      yield services.getCharacters();
+    const allCharactersGetResult: allDataInfo = yield services.getCharacters();
     yield put(getCharaters(allCharactersGetResult));
   } catch (err) {
     console.log(err);
   }
 }
 
-function* getNextAllCharactersSaga(payload: any) {
+function* getNextAllCharactersSaga(payload: GetNextChartersSuccessActionType) {
   try {
-    const nexstCharacters: AxiosResponse<allDataInfo> =
-      yield services.getNextCharacters(payload.payload.nextCharactersPage);
+    const nexstCharacters: allDataInfo = yield services.getNextCharacters(
+      payload.payload.nextCharactersPage,
+    );
 
-    console.log(payload);
     yield put(getNextCharaters(nexstCharacters));
   } catch (err) {
     console.log(err);

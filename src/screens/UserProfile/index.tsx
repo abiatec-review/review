@@ -8,14 +8,15 @@ import {
   Text,
   View,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { logOutUser } from '../../redux/actions/authentication/actions';
 import { setModalType } from '../../redux/actions/modals/actions';
 
 const UserProfile = () => {
-  const {
-    Authentication: { userEmail, userName, userAvatar },
-  } = useSelector((Authentication: any) => Authentication);
+  const { userEmail, userName, userAvatar } = useAppSelector(
+    store => store.Authentication,
+  );
   const dispatch = useDispatch();
 
   const logOut = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { Control, useForm } from 'react-hook-form';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { TouchableButton, ValidationMessage } from '..';
 import { FormInput } from './Input';
@@ -8,7 +8,7 @@ export interface FormComponentProps {
   title: string;
   inputItems: InputItemsProps[];
   buttonText: string;
-  handleData: (data: object) => void;
+  handleData: (data: { email: string; password: string; name: string }) => void;
   isButtonDisableStatus: boolean;
   validationMessage: string;
 }
@@ -18,6 +18,12 @@ export interface InputItemsProps {
   label: string;
 }
 
+type FormValues = {
+  email: string;
+  password: string;
+  name?: string;
+};
+
 export const Form = ({
   title,
   inputItems,
@@ -26,7 +32,7 @@ export const Form = ({
   isButtonDisableStatus,
   validationMessage,
 }: FormComponentProps) => {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm<FormValues>();
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -37,7 +43,10 @@ export const Form = ({
             return (
               <View key={itputItemId}>
                 <Text>{itputItem.label}</Text>
-                <FormInput name={itputItem.inputName} control={control} />
+                <FormInput
+                  name={itputItem.inputName}
+                  control={control as unknown as Control}
+                />
               </View>
             );
           })}
@@ -49,7 +58,7 @@ export const Form = ({
 
       <TouchableButton
         buttonText={buttonText}
-        handleSubmit={handleSubmit(handleData)}
+        handleSubmit={handleSubmit(handleData as () => void)}
         isButtonDisableStatus={isButtonDisableStatus}
         type={'singleBtn'}
       />

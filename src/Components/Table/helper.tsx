@@ -1,18 +1,17 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
-import { setModalType } from '../../redux/actions/modals/actions';
 import { OpenURLButton } from '..';
-import { Dispatch } from 'redux';
 
 export const helper = {
   typeIdentifier: (
-    type: string,
-    value: any,
-    navigation: any,
-    dispatch: Dispatch<{ type: string }>,
+    value: number | string | { name: string; url: string } | string[],
+    onNavigate: (
+      screenName: 'charactersFrom' | 'episodesList',
+      props: { episodes: string[] } | { name: string; url: string },
+    ) => void,
   ) => {
-    switch (type) {
+    switch (typeof value) {
       case 'string': {
         if (!isNaN(Date.parse(value)) && !value.includes('http')) {
           return <Text>{moment(value, 'YYYYMMDD').fromNow()}</Text>;
@@ -29,10 +28,7 @@ export const helper = {
         if (Array.isArray(value)) {
           return (
             <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('episodesList', { episodes: value });
-                dispatch(setModalType({ modalType: '', modalData: null }));
-              }}>
+              onPress={() => onNavigate('episodesList', { episodes: value })}>
               <Text style={{ color: 'blue' }}>Episodes list</Text>
             </TouchableOpacity>
           );
@@ -40,11 +36,7 @@ export const helper = {
         return (
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('charactersFrom', {
-                locationName: value.name,
-                locationCharactersApi: value.url,
-              });
-              dispatch(setModalType({ modalType: '', modalData: null }));
+              return onNavigate('charactersFrom', value);
             }}>
             <Text style={{ color: 'blue' }}>{value.name}</Text>
           </TouchableOpacity>

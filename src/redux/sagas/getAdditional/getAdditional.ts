@@ -1,28 +1,28 @@
 import { all, fork, put, takeEvery } from 'redux-saga/effects';
 import { apiHelper } from '../../../api/api';
-import { Characters } from '../../../types/types';
+import { CharacterLocation, Characters } from '../../../types/types';
 import {
   setCharactersFromLocation,
   setEpisodeCharacters,
 } from '../../actions/additionalData/actions';
 import { helper } from './helper';
-import { AdditionalDataActionTypes } from '../../actions/additionalData/action-types';
+import {
+  AdditionalDataActionTypes,
+  GetAdditionalActionType,
+} from '../../actions/additionalData/action-types';
 
-function* getAdditionalDataFromUrl({ payload }: any) {
+function* getAdditionalDataFromUrl({ payload }: GetAdditionalActionType) {
   try {
-    // @ts-ignore
-    const data = yield apiHelper(payload);
-    if (data.characters) {
+    const data: CharacterLocation = yield apiHelper(payload);
+    console.log('payload', payload);
+    console.log('data', data);
+    if (data.residents) {
       const charactersFromEpisode: Characters[] = yield apiHelper(
         `https://rickandmortyapi.com/api/character/${helper.getCharactersIdFromUrl(
-          data.characters,
+          data.residents,
         )}`,
       );
-      yield put(
-        setEpisodeCharacters({
-          charactersFromEpisode,
-        }),
-      );
+      yield put(setEpisodeCharacters([...charactersFromEpisode]));
     }
     if (data.residents) {
       const charactersFromLocation: Characters[] = yield apiHelper(
@@ -30,11 +30,7 @@ function* getAdditionalDataFromUrl({ payload }: any) {
           data.residents,
         )}`,
       );
-      yield put(
-        setCharactersFromLocation({
-          charactersFromLocation,
-        }),
-      );
+      yield put(setCharactersFromLocation([...charactersFromLocation]));
     }
   } catch (err) {
     console.dir(err);

@@ -6,16 +6,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getNextCharatersSucsess } from '../../redux/actions/characters/actions';
 import { Characters } from '../../types/types';
 import { setModalType } from '../../redux/actions/modals/actions';
 import { CharactersInfoBlock } from '@components/index';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 const MainScreen = () => {
-  const {
-    CharactersReducer: { characters, nextCharactersPage, charactersLoader },
-  } = useSelector((CharactersReducer: any) => CharactersReducer);
+  const { characters, nextCharactersPage, charactersLoader } = useAppSelector(
+    store => store.CharactersReducer,
+  );
 
   const dispatch = useDispatch();
 
@@ -35,7 +36,6 @@ const MainScreen = () => {
       <FlatList
         ListFooterComponent={charactersLoader ? <Text>Loading</Text> : null}
         onEndReached={() => {
-          console.log();
           if (charactersLoader) {
             dispatch(getNextCharatersSucsess({ nextCharactersPage }));
           }

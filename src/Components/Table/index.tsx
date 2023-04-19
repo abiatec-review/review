@@ -2,10 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { helper } from './helper';
 import { useDispatch } from 'react-redux';
+import { Characters, ScreenProps } from 'src/types/types';
+import { setModalType } from '../../redux/actions/modals/actions';
 
-export type TableTypes = {
-  objectParse: object;
-  navigation: any;
+export type TableTypes = ScreenProps<
+  'charactersFrom' | 'episodesList' | 'charactersFromEpisode' | 'Home'
+> & {
+  objectParse: Characters;
 };
 
 export const Table = ({ objectParse, navigation }: TableTypes) => {
@@ -14,14 +17,12 @@ export const Table = ({ objectParse, navigation }: TableTypes) => {
   }));
   const dispatch = useDispatch();
 
-  const itemCheker = (item: string) => {
-    if (item === 'origin') {
-      return 'Heroes from';
-    }
-    if (item === 'location') {
-      return 'Heroes from';
-    }
-    return item;
+  const navigateTo = (
+    screenName: 'charactersFrom' | 'episodesList',
+    value: any,
+  ) => {
+    navigation.navigate(screenName, value);
+    dispatch(setModalType({ modalType: '', modalData: null }));
   };
 
   return (
@@ -35,13 +36,8 @@ export const Table = ({ objectParse, navigation }: TableTypes) => {
         ) {
           return (
             <View key={id} style={styles.itemsInTable}>
-              <Text>{itemCheker(Object.keys(item)[0]).toUpperCase()}:</Text>
-              {helper.typeIdentifier(
-                typeof Object.values(item)[0],
-                Object.values(item)[0],
-                navigation,
-                dispatch,
-              )}
+              <Text>{Object.keys(item)[0].toUpperCase()}:</Text>
+              {helper.typeIdentifier(Object.values(item)[0], navigateTo)}
             </View>
           );
         }

@@ -1,9 +1,15 @@
+import { ModalData } from 'src/types/types';
 import {
   CharactersAction,
   ModalsActionTypes,
 } from '../../actions/modals/action-types';
 
-const initState: any = {
+type ModalInitStateProps = {
+  modalType: string;
+  modalData: null | ModalData;
+};
+
+const initState: ModalInitStateProps = {
   modalType: '',
   modalData: null,
 };

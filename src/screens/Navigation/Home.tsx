@@ -3,23 +3,22 @@ import MainScreen from '../Main';
 import FavoriteCharacters from '../FavoriteCharacters';
 import React, { useState } from 'react';
 import { changeThemeMode } from '../../redux/actions/characters/actions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LogIn from '../Auth';
 import UserProfile from '../UserProfile';
 import { helper } from './helper';
 import { CustomImage } from '@components/index';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 const Home = () => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const {
-    Authentication: { userName, userAvatar },
-  } = useSelector((Authentication: any) => Authentication);
+  const { userName, userAvatar } = useAppSelector(
+    store => store.Authentication,
+  );
   const Tab = createBottomTabNavigator();
   const dispatch = useDispatch();
-  const {
-    CharactersReducer: { themeMode },
-  } = useSelector((CharactersReducer: any) => CharactersReducer);
+  const { themeMode } = useAppSelector(store => store.CharactersReducer);
 
   const toggleSwitch = () => {
     if (isEnabled) {

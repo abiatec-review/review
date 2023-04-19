@@ -6,12 +6,13 @@ import {
   authSignIn,
   authSignUp,
 } from '../../redux/actions/authentication/actions';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 const LogIn = () => {
   const dispatch = useDispatch();
-  const {
-    Authentication: { authLoader, errorMessage },
-  } = useSelector((Authentication: any) => Authentication);
+  const { authLoader, errorMessage } = useAppSelector(
+    store => store.Authentication,
+  );
   const [handleFormType, setHandleFormType] = useState('signIn');
   const signUpInputs = [
     { label: 'Email', inputName: 'email' },
@@ -27,7 +28,11 @@ const LogIn = () => {
     setHandleFormType(prev => (prev === 'signIn' ? 'signUp' : 'signIn'));
   };
 
-  const handleFormData = (data: any) => {
+  const handleFormData = (data: {
+    email: string;
+    password: string;
+    name: string;
+  }) => {
     if (handleFormType === 'signUp') {
       dispatch(
         authSignUp({

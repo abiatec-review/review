@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 import { FlatList, TouchableOpacity, View } from 'react-native';
 import { getAdditional } from '../../redux/actions/additionalData/actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { Characters } from '../../types/types';
+import { useDispatch } from 'react-redux';
+import { Characters, ScreenProps } from '../../types/types';
 import { setModalType } from '../../redux/actions/modals/actions';
 import { CharactersInfoBlock } from '@components/index';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
-const CharactersFromEpisode = ({ route }: any) => {
+const CharactersFromEpisode = ({
+  route,
+}: ScreenProps<'charactersFromEpisode'>) => {
   const { urlForGetCharactersFromSelectedEpisode } = route.params;
-  const {
-    AdditionalData: { charactersFromEpisode },
-  } = useSelector((AdditionalData: any) => AdditionalData);
+  const { charactersFromEpisode } = useAppSelector(
+    store => store.AdditionalData,
+  );
 
   const dispatch = useDispatch();
 

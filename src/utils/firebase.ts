@@ -28,8 +28,12 @@ export function onAuthStateChanged(
   return firebase.auth().onAuthStateChanged(listener);
 }
 
-export function getUser() {
-  return firebase.auth().currentUser;
+export async function getUser() {
+  const token = await firebase.auth().currentUser?.getIdTokenResult();
+  return {
+    currentUser: firebase.auth().currentUser,
+    token,
+  };
 }
 
 export async function updateUser(model: FirebaseAuthTypes.UpdateProfile) {

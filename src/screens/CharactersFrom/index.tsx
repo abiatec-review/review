@@ -7,22 +7,23 @@ import {
   View,
 } from 'react-native';
 import { getAdditional } from '../../redux/actions/additionalData/actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { Characters, CharactersFromProps } from '../../types/types';
+import { useDispatch } from 'react-redux';
+import { Characters, ScreenProps } from '../../types/types';
 import { setModalType } from '../../redux/actions/modals/actions';
 import { CharactersInfoBlock } from '@components/index';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
-const CharactersFrom = ({ route }: CharactersFromProps) => {
-  const { locationCharactersApi } = route.params;
-  const {
-    AdditionalData: { characterFromLocation },
-  } = useSelector((AdditionalData: any) => AdditionalData);
+const CharactersFrom = ({ route }: ScreenProps<'charactersFrom'>) => {
+  const { url } = route.params;
+  const { charactersFromLocation } = useAppSelector(
+    store => store.AdditionalData,
+  );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAdditional(locationCharactersApi));
-  }, [dispatch, locationCharactersApi]);
+    dispatch(getAdditional(url));
+  }, [dispatch, url]);
 
   const renderItem = ({ item }: { item: Characters }) => (
     <TouchableOpacity
@@ -37,10 +38,10 @@ const CharactersFrom = ({ route }: CharactersFromProps) => {
 
   return (
     <View style={styles.container}>
-      {characterFromLocation?.length ? (
+      {charactersFromLocation?.length ? (
         <FlatList
           numColumns={2}
-          data={characterFromLocation}
+          data={charactersFromLocation}
           renderItem={renderItem}
         />
       ) : (

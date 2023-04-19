@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setModalType } from '../../redux/actions/modals/actions';
 import {
   CameraOptions,
@@ -12,12 +12,11 @@ import { Image } from 'react-native-elements';
 
 import { TouchableButton } from '@components/index';
 import { userLoadAvatar } from '../../redux/actions/authentication/actions';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 export const ImagePickerModal = () => {
   const dispatch = useDispatch();
-  const {
-    Authentication: { avatarLoader },
-  } = useSelector((Authentication: any) => Authentication);
+  const { avatarLoader } = useAppSelector(store => store.Authentication);
 
   const [newImage, setNewImage] = useState<string>();
 
@@ -44,7 +43,6 @@ export const ImagePickerModal = () => {
   };
 
   const onCancel = async () => {
-    console.log('onCancel');
     dispatch(setModalType({ modalType: '', modalData: null }));
   };
 

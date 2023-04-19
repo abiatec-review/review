@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image, ImageStyle } from 'react-native';
-import { changeThemeMode } from '../../redux/actions/characters/actions';
 
 export const helper = {
   changeThemeModeHandler: (themeMode: string) => {
@@ -10,19 +9,14 @@ export const helper = {
       return require('@images/background/rik_and_morty_theme_iPhoneX.jpeg');
     }
   },
-  toggleSwitch: (themeMode: string, dispatch: any) => {
+  toggleSwitch: (
+    themeMode: string,
+    changeThemeHandler: (themeMode: 'dark' | 'light') => void,
+  ) => {
     if (themeMode === 'light') {
-      dispatch(
-        changeThemeMode({
-          themeMode: 'dark',
-        }),
-      );
+      changeThemeHandler('dark');
     } else {
-      dispatch(
-        changeThemeMode({
-          themeMode: 'light',
-        }),
-      );
+      changeThemeHandler('light');
     }
   },
   tabIconSwitch: (routerType: string, style: ImageStyle) => {

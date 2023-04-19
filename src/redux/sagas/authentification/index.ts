@@ -3,7 +3,7 @@ import { getUser, signIn, signUp, updateUser } from '../../../utils/firebase';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { setModalType } from '../../actions/modals/actions';
 import { firebaseAPI_Handler } from '../../../api/api';
-import { getFaireBaseDataSuccess } from '../../actions/userDataFromFirebase/actions';
+
 import {
   authSignInSuccess,
   authSignUpError,
@@ -11,9 +11,16 @@ import {
   identifyAuthUserSuccess,
   userLoadAvatarSuccess,
 } from '../../../redux/actions/authentication/actions';
-import { AuthenticationActionTypes } from '../../actions/authentication/action-types';
+import {
+  AuthenticationActionTypes,
+  LoadAvatarActionTypes,
+  SignInActionType,
+  SignUpActionType,
+} from '../../actions/authentication/action-types';
+import { getFaireBaseDataSuccess } from '../../actions/userDataFromFirebase/actions';
+import { GetFaireBaseDataSuccess } from 'src/types/types';
 
-function* authentificationSignUp({ payload }: any) {
+function* authentificationSignUp({ payload }: SignUpActionType) {
   try {
     const { _auth } = yield call(
       signUp,
@@ -31,13 +38,12 @@ function* authentificationSignUp({ payload }: any) {
       }),
     );
 
-    console.log(11111111, payload);
-
     yield firebaseAPI_Handler.setUserData(_auth._user._user.uid);
-    const fairbaseData: { data: object } =
+    const fairbaseData: { additionalData: string; favoriteChars: string } =
       yield firebaseAPI_Handler.getUserData(_auth._user._user.uid);
-    yield put(getFaireBaseDataSuccess(Object.values(fairbaseData)[0]));
+    yield put(getFaireBaseDataSuccess(fairbaseData));
   } catch (err) {
+    const firebaseError = err as FirebaseAuthTypes.NativeFirebaseAuthError;
     if (
       !payload.userName.length ||
       !payload.email.length ||
@@ -51,17 +57,16 @@ function* authentificationSignUp({ payload }: any) {
     } else {
       yield put(
         authSignUpError({
-          errorMessage: err?.nativeErrorMessage,
+          errorMessage: firebaseError.nativeErrorMessage,
         }),
       );
     }
   }
 }
 
-function* authentificationSignIn({ payload }: any) {
+function* authentificationSignIn({ payload }: SignInActionType) {
   try {
     const { user } = yield call(signIn, payload.email, payload.password);
-    console.log(11111);
     yield put(
       authSignInSuccess({
         displayName: user._user.displayName,
@@ -71,11 +76,11 @@ function* authentificationSignIn({ payload }: any) {
         UID: user._user.uid,
       }),
     );
-    const fairbaseData: { data: object } =
+    const fairbaseData: { additionalData: string; favoriteChars: string } =
       yield firebaseAPI_Handler.getUserData(user._user.uid);
-    yield put(getFaireBaseDataSuccess(Object.values(fairbaseData)[0]));
-    // console.log(123, fairbaseData);
+    yield put(getFaireBaseDataSuccess(fairbaseData));
   } catch (err) {
+    const firebaseError = err as FirebaseAuthTypes.NativeFirebaseAuthError;
     if (!payload.email.length || !payload.password.length) {
       yield put(
         authSignUpError({
@@ -85,25 +90,25 @@ function* authentificationSignIn({ payload }: any) {
     } else {
       yield put(
         authSignUpError({
-          errorMessage: err?.nativeErrorMessage,
+          errorMessage: firebaseError.nativeErrorMessage,
         }),
       );
     }
   }
 }
 
-function* loadUserAvatarSaga({ payload }: any) {
+function* loadUserAvatarSaga({ payload }: LoadAvatarActionTypes) {
   try {
     yield call(updateUser, {
       photoURL: payload.newUserAvatar?.slice(7),
     });
 
-    const user: FirebaseAuthTypes.UserInfo = getUser();
+    const { currentUser } = yield getUser();
 
-    if (user?.photoURL) {
+    if (currentUser?.photoURL) {
       yield put(
         userLoadAvatarSuccess({
-          newUserAvatar: user.photoURL,
+          newUserAvatar: currentUser.photoURL,
         }),
       );
     }
@@ -115,19 +120,22 @@ function* loadUserAvatarSaga({ payload }: any) {
 
 function* identifayUser() {
   try {
-    const user: FirebaseAuthTypes.UserInfo = yield getUser();
-    yield put(
-      identifyAuthUserSuccess({
-        displayName: user._user.displayName,
-        token: user._user.refreshToken,
-        email: user._user.email,
-        photoURL: user._user.photoURL,
-        UID: user._user.uid,
-      }),
-    );
+    const { currentUser, token } = yield getUser();
 
-    const fairbaseData = yield firebaseAPI_Handler.getUserData(user._user.uid);
-    console.log(7777, fairbaseData);
+    if (currentUser) {
+      yield put(
+        identifyAuthUserSuccess({
+          displayName: currentUser.displayName,
+          token: token.token,
+          email: currentUser.email,
+          photoURL: currentUser.photoURL,
+          UID: currentUser.uid,
+        }),
+      );
+    }
+    const fairbaseData: GetFaireBaseDataSuccess =
+      yield firebaseAPI_Handler.getUserData(currentUser.uid);
+
     yield put(getFaireBaseDataSuccess(fairbaseData));
   } catch (err) {
     console.dir(err);

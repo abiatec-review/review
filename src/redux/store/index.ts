@@ -5,7 +5,7 @@ import createReducer from '../reducers';
 const sagaMiddleware = createSagaMiddleware();
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-export default function configureStore() {
+function configureStore() {
   const store = createStore(
     createReducer(),
     composeWithDevTools(applyMiddleware(sagaMiddleware)),
@@ -14,3 +14,8 @@ export default function configureStore() {
 
   return store;
 }
+
+export const store = configureStore();
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

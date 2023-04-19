@@ -2,22 +2,20 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { setModalType } from '../../redux/actions/modals/actions';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { putFaireBaseData } from '../../redux/actions/userDataFromFirebase/actions';
+import { useDispatch } from 'react-redux';
+
 import { Table, TouchableButton } from '@components/index';
+import { putFaireBaseData } from '../../redux/actions/userDataFromFirebase/actions';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 export const CharacterFullInfo = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {
-    ModalReducer: { modalData },
-  } = useSelector((ModalReducer: any) => ModalReducer);
-  const {
-    UserFaireBaseData: { faireBaseData, loader },
-  } = useSelector((UserFaireBaseData: any) => UserFaireBaseData);
-  const {
-    Authentication: { uid },
-  } = useSelector((Authentication: any) => Authentication);
+  const { modalData } = useAppSelector(store => store.ModalReducer);
+  const { faireBaseData, loader } = useAppSelector(
+    store => store.UserFaireBaseData,
+  );
+  const { uid } = useAppSelector(store => store.Authentication);
 
   const isCharInFavorites = (characterId: number) => {
     if (faireBaseData) {
