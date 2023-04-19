@@ -17,9 +17,17 @@ export const Table = ({ objectParse, navigation }: TableTypes) => {
   }));
   const dispatch = useDispatch();
 
-  const navigateTo = (
-    screenName: 'charactersFrom' | 'episodesList',
-    value: any,
+  const onNavigateToEpisodesList = (
+    screenName: 'episodesList',
+    value: { episodes: string[] },
+  ) => {
+    navigation.navigate(screenName, value);
+    dispatch(setModalType({ modalType: '', modalData: null }));
+  };
+
+  const onNavigateToCharactersFrom = (
+    screenName: 'charactersFrom',
+    value: { name: string; url: string },
   ) => {
     navigation.navigate(screenName, value);
     dispatch(setModalType({ modalType: '', modalData: null }));
@@ -37,7 +45,11 @@ export const Table = ({ objectParse, navigation }: TableTypes) => {
           return (
             <View key={id} style={styles.itemsInTable}>
               <Text>{Object.keys(item)[0].toUpperCase()}:</Text>
-              {helper.typeIdentifier(Object.values(item)[0], navigateTo)}
+              {helper.typeIdentifier(
+                Object.values(item)[0],
+                onNavigateToEpisodesList,
+                onNavigateToCharactersFrom,
+              )}
             </View>
           );
         }

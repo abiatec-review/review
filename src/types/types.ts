@@ -129,14 +129,14 @@ export type PutFaireBaseData = {
 // navigation types
 export type RootStackParamList = {
   Home: { headerShown: boolean };
-  episodesList: { episodes: string[]; episodeNum: string };
+  episodesList: { episodes: string[]; episodeNum?: string };
   charactersFromEpisode: {
     urlForGetCharactersFromSelectedEpisode: string;
     episodes?: string[];
     episodeNum?: string;
   };
   charactersFrom: {
-    episodes: string[];
+    // episodes: string[];
     name: string;
     url: string;
   };

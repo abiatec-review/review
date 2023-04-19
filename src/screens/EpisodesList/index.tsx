@@ -25,7 +25,7 @@ const EpisodesList = ({ route, navigation }: ScreenProps<'episodesList'>) => {
   const renderItem = ({
     item,
   }: {
-    item: { id: string; episodeNum: string; episodeLink: string; gif: string };
+    item: { id: string; episodeNum?: string; episodeLink: string; gif: string };
   }) => (
     <TouchableOpacity
       onPress={() => {
@@ -67,9 +67,7 @@ const styles = StyleSheet.create({
   texst: {
     color: 'red',
   },
-  episodesItem: {
-    // width: '95%',
-  },
+  episodesItem: {},
   itemContainer: {
     width: 175,
     justifyContent: 'center',

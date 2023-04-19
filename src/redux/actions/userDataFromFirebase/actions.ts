@@ -36,7 +36,7 @@ export const getFaireBaseDataError = (
     payload,
   };
 };
-// here we start put new data to faire base actions
+
 export const putFaireBaseData = (
   payload: PutFaireBaseData,
 ): PutFaireBaseDataActionType => {

@@ -6,9 +6,13 @@ import { OpenURLButton } from '..';
 export const helper = {
   typeIdentifier: (
     value: number | string | { name: string; url: string } | string[],
-    onNavigate: (
-      screenName: 'charactersFrom' | 'episodesList',
-      props: { episodes: string[] } | { name: string; url: string },
+    onNavigateToEpisodesList: (
+      screenName: 'episodesList',
+      props: { episodes: string[] },
+    ) => void,
+    onNavigateToCharactersFrom: (
+      screenName: 'charactersFrom',
+      props: { name: string; url: string },
     ) => void,
   ) => {
     switch (typeof value) {
@@ -28,7 +32,9 @@ export const helper = {
         if (Array.isArray(value)) {
           return (
             <TouchableOpacity
-              onPress={() => onNavigate('episodesList', { episodes: value })}>
+              onPress={() =>
+                onNavigateToEpisodesList('episodesList', { episodes: value })
+              }>
               <Text style={{ color: 'blue' }}>Episodes list</Text>
             </TouchableOpacity>
           );
@@ -36,7 +42,7 @@ export const helper = {
         return (
           <TouchableOpacity
             onPress={() => {
-              return onNavigate('charactersFrom', value);
+              return onNavigateToCharactersFrom('charactersFrom', value);
             }}>
             <Text style={{ color: 'blue' }}>{value.name}</Text>
           </TouchableOpacity>

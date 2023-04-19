@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 10,
-    // paddingBottom: 10,
   },
   userDataBlockText: {
     color: '#FFFFFF',

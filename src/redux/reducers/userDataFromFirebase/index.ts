@@ -1,24 +1,30 @@
-import { GetFaireBaseDataSuccess } from 'src/types/types';
+// import { GetFaireBaseDataSuccess } from 'src/types/types';
 import {
   UserDataFireBaseAction,
   UserDataFromFirebaseActionTypes,
 } from '../../actions/userDataFromFirebase/action-types';
 
 type initStateProps = {
-  faireBaseData: null | GetFaireBaseDataSuccess;
+  faireBaseData: {
+    favoriteChars: string | { charId: number }[];
+    additionalData?: string;
+  };
   loader: boolean;
   errorMessage: string | null;
 };
 
 const initState: initStateProps = {
-  faireBaseData: null,
+  faireBaseData: {
+    favoriteChars: '',
+    additionalData: '',
+  },
   loader: false,
   errorMessage: null,
 };
 
 const FairebaseUserDataReducer = (
   state = initState,
-  action: { type: string; payload: UserDataFireBaseAction },
+  action: UserDataFireBaseAction,
 ) => {
   switch (action.type) {
     case UserDataFromFirebaseActionTypes.GET_FIREBASE_USER_DATA: {
@@ -30,7 +36,7 @@ const FairebaseUserDataReducer = (
     case UserDataFromFirebaseActionTypes.GET_FIREBASE_USER_DATA_SUCCESS: {
       return {
         ...state,
-        faireBaseData: action.payload.favoriteChars,
+        faireBaseData: action.payload,
         loader: false,
       };
     }

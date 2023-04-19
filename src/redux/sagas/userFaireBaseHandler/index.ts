@@ -17,7 +17,6 @@ function* updateUserFaireBaseData({ payload }: PutFaireBaseDataActionType) {
   try {
     const fairbaseData: GetFaireBaseDataSuccess =
       yield firebaseAPI_Handler.putUserData(payload.uid, payload.newDataForFB);
-    console.log(7777, fairbaseData);
     yield put(getFaireBaseDataSuccess(fairbaseData));
   } catch (err) {
     console.dir(err);

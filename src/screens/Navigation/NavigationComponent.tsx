@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ImageBackground, Modal, StyleSheet, Switch } from 'react-native';
 import {
   changeThemeMode,
@@ -30,8 +30,8 @@ const NavigationComponent = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (faireBaseData) {
-      const favoriteCharacterIds = faireBaseData.map(
+    if (Array.isArray(faireBaseData.favoriteChars)) {
+      const favoriteCharacterIds = faireBaseData.favoriteChars.map(
         ({ charId }: { charId: number }) => charId,
       );
       dispatch(

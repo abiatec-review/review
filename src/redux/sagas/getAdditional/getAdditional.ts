@@ -14,8 +14,6 @@ import {
 function* getAdditionalDataFromUrl({ payload }: GetAdditionalActionType) {
   try {
     const data: CharacterLocation = yield apiHelper(payload);
-    console.log('payload', payload);
-    console.log('data', data);
     if (data.residents) {
       const charactersFromEpisode: Characters[] = yield apiHelper(
         `https://rickandmortyapi.com/api/character/${helper.getCharactersIdFromUrl(
