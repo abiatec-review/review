@@ -1,8 +1,5 @@
-import {
-  CharactersAction,
-  CharactersActionTypes,
-} from '../../actions/characters/action-types';
-import { Characters } from '../../../types/types';
+import { Characters } from 'src/types/types';
+import { CharactersAction, CharactersActionTypes } from './action-types';
 
 const nextCharactersPageNumber = (link: string) =>
   link ? link.split('=')[1] : null;

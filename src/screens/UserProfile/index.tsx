@@ -9,9 +9,9 @@ import {
   View,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
+import { logOutUser } from '../../redux/authentication/actions';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { logOutUser } from '../../redux/actions/authentication/actions';
-import { setModalType } from '../../redux/actions/modals/actions';
+import { setModalType } from '../../redux/modals/actions';
 
 const UserProfile = () => {
   const { userEmail, userName, userAvatar } = useAppSelector(

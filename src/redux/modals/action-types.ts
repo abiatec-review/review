@@ -1,4 +1,4 @@
-import { ModalData } from '../../../types/types';
+import { ModalData } from 'src/types/types';
 
 export const enum ModalsActionTypes {
   CALL_MODAL = 'CALL_MODAL',

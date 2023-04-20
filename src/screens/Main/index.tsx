@@ -7,11 +7,13 @@ import {
   View,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { getNextCharatersSucsess } from '../../redux/actions/characters/actions';
+
 import { Characters } from '../../types/types';
-import { setModalType } from '../../redux/actions/modals/actions';
+
 import { CharactersInfoBlock } from '@components/index';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { setModalType } from '../../redux/modals/actions';
+import { getNextCharatersSucsess } from '../../redux/characters/actions';
 
 const MainScreen = () => {
   const { characters, nextCharactersPage, charactersLoader } = useAppSelector(

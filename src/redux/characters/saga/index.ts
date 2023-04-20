@@ -4,11 +4,8 @@ import { allDataInfo } from '../../../types/types';
 import {
   CharactersActionTypes,
   GetNextChartersSuccessActionType,
-} from '../../actions/characters/action-types';
-import {
-  getCharaters,
-  getNextCharaters,
-} from '../../actions/characters/actions';
+} from '../action-types';
+import { getCharaters, getNextCharaters } from '../actions';
 
 function* getAllCharactersSaga() {
   try {

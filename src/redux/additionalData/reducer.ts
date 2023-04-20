@@ -2,7 +2,7 @@ import { Characters } from 'src/types/types';
 import {
   AdditionalActions,
   AdditionalDataActionTypes,
-} from '../../actions/additionalData/action-types';
+} from '../../redux/additionalData/action-types';
 
 type AdditionalDataProps = {
   additionalDataFromUrl: string | null;

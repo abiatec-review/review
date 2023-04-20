@@ -2,14 +2,12 @@ import { all, fork, put, takeEvery } from 'redux-saga/effects';
 import { apiHelper } from '../../../api/api';
 import { CharacterLocation, Characters } from '../../../types/types';
 import {
-  setCharactersFromLocation,
-  setEpisodeCharacters,
-} from '../../actions/additionalData/actions';
-import { helper } from './helper';
-import {
   AdditionalDataActionTypes,
   GetAdditionalActionType,
-} from '../../actions/additionalData/action-types';
+} from '../action-types';
+import { setCharactersFromLocation, setEpisodeCharacters } from '../actions';
+
+import { helper } from './helper';
 
 function* getAdditionalDataFromUrl({ payload }: GetAdditionalActionType) {
   try {

@@ -1,24 +1,23 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects';
 import { getUser, signIn, signUp, updateUser } from '../../../utils/firebase';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import { setModalType } from '../../actions/modals/actions';
 import { firebaseAPI_Handler } from '../../../api/api';
-
+import { GetFaireBaseDataSuccess } from 'src/types/types';
+import {
+  AuthenticationActionTypes,
+  LoadAvatarActionTypes,
+  SignInActionType,
+  SignUpActionType,
+} from '../action-types';
 import {
   authSignInSuccess,
   authSignUpError,
   authSignUpSuccess,
   identifyAuthUserSuccess,
   userLoadAvatarSuccess,
-} from '../../../redux/actions/authentication/actions';
-import {
-  AuthenticationActionTypes,
-  LoadAvatarActionTypes,
-  SignInActionType,
-  SignUpActionType,
-} from '../../actions/authentication/action-types';
-import { getFaireBaseDataSuccess } from '../../actions/userDataFromFirebase/actions';
-import { GetFaireBaseDataSuccess } from 'src/types/types';
+} from '../actions';
+import { getFaireBaseDataSuccess } from '../../userDataFromFirebase/actions';
+import { setModalType } from '../../../redux/modals/actions';
 
 function* authentificationSignUp({ payload }: SignUpActionType) {
   try {
@@ -39,7 +38,7 @@ function* authentificationSignUp({ payload }: SignUpActionType) {
     );
 
     yield firebaseAPI_Handler.setUserData(_auth._user._user.uid);
-    const fairbaseData: { additionalData: string; favoriteChars: string } =
+    const fairbaseData: GetFaireBaseDataSuccess =
       yield firebaseAPI_Handler.getUserData(_auth._user._user.uid);
     yield put(getFaireBaseDataSuccess(fairbaseData));
   } catch (err) {
@@ -76,7 +75,7 @@ function* authentificationSignIn({ payload }: SignInActionType) {
         UID: user._user.uid,
       }),
     );
-    const fairbaseData: { additionalData: string; favoriteChars: string } =
+    const fairbaseData: GetFaireBaseDataSuccess =
       yield firebaseAPI_Handler.getUserData(user._user.uid);
     yield put(getFaireBaseDataSuccess(fairbaseData));
   } catch (err) {

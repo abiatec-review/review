@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { setModalType } from '../../redux/actions/modals/actions';
+import { setModalType } from '../../redux/modals/actions';
 import { Characters } from '../../types/types';
 
 const FavoriteCharacters = () => {

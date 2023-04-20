@@ -1,17 +1,16 @@
 import { all, put, takeEvery } from 'redux-saga/effects';
+import { getFavoriteCharactersSuccess } from '../../../redux/characters/actions';
 import { apiHelper, firebaseAPI_Handler } from '../../../api/api';
-
 import { Characters, GetFaireBaseDataSuccess } from '../../../types/types';
-import { getFavoriteCharactersSuccess } from '../../actions/characters/actions';
-import {
-  CharactersActionTypes,
-  GetFavoriteCharactersActionType,
-} from '../../actions/characters/action-types';
 import {
   PutFaireBaseDataActionType,
   UserDataFromFirebaseActionTypes,
-} from '../../actions/userDataFromFirebase/action-types';
-import { getFaireBaseDataSuccess } from '../../actions/userDataFromFirebase/actions';
+} from '../action-types';
+import { getFaireBaseDataSuccess } from '../actions';
+import {
+  CharactersActionTypes,
+  GetFavoriteCharactersActionType,
+} from '../../characters/action-types';
 
 function* updateUserFaireBaseData({ payload }: PutFaireBaseDataActionType) {
   try {

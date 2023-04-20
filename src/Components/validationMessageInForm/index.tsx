@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { authSignUpError } from '../../redux/actions/authentication/actions.ts';
+import { authSignUpError } from '../../redux/authentication/actions';
 
 export interface ValidationMessageProps {
   validationMessage: string;
@@ -16,7 +16,7 @@ export const ValidationMessage = ({
     const signUpErrorMessage = setTimeout(() => {
       dispatch(
         authSignUpError({
-          errorMessage: null,
+          errorMessage: '',
         }),
       );
     }, 3500);

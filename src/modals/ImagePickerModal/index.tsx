@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { setModalType } from '../../redux/actions/modals/actions';
+import { setModalType } from '../../redux/modals/actions';
 import {
   CameraOptions,
   // launchCamera,
@@ -11,7 +11,7 @@ import {
 import { Image } from 'react-native-elements';
 
 import { TouchableButton } from '@components/index';
-import { userLoadAvatar } from '../../redux/actions/authentication/actions';
+import { userLoadAvatar } from '../../redux/authentication/actions';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
 export const ImagePickerModal = () => {

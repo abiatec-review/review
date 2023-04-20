@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { ImageBackground, Modal, StyleSheet, Switch } from 'react-native';
-import {
-  changeThemeMode,
-  getCharatersSucsess,
-  getFavoriteCharacters,
-} from '../../redux/actions/characters/actions';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { helper } from './helper';
 import ModalController from './ModalConroller';
-import { identifyAuthUser } from '../../redux/actions/authentication/actions';
 import { RootStackParamList, ScreenProps } from 'src/types/types';
 import EpisodesList from '../EpisodesList';
 import Home from './Home';
 import CharactersFrom from '../CharactersFrom';
 import CharactersFromEpisode from '../CharactersFromEpisode';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import {
+  changeThemeMode,
+  getCharatersSucsess,
+  getFavoriteCharacters,
+} from '../../redux/characters/actions';
+import { identifyAuthUser } from '../../redux/authentication/actions';
 
 const NavigationComponent = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -32,7 +32,7 @@ const NavigationComponent = () => {
   useEffect(() => {
     if (Array.isArray(faireBaseData.favoriteChars)) {
       const favoriteCharacterIds = faireBaseData.favoriteChars.map(
-        ({ charId }: { charId: number }) => charId,
+        ({ charId }) => charId,
       );
       dispatch(
         getFavoriteCharacters({ favoriteCharacters: favoriteCharacterIds }),

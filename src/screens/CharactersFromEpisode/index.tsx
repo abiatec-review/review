@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { FlatList, TouchableOpacity, View } from 'react-native';
-import { getAdditional } from '../../redux/actions/additionalData/actions';
+
 import { useDispatch } from 'react-redux';
 import { Characters, ScreenProps } from '../../types/types';
-import { setModalType } from '../../redux/actions/modals/actions';
+
 import { CharactersInfoBlock } from '@components/index';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { getAdditional } from '../../redux/additionalData/actions';
+import { setModalType } from '../../redux/modals/actions';
 
 const CharactersFromEpisode = ({
   route,

@@ -2,7 +2,6 @@ import { Switch } from 'react-native';
 import MainScreen from '../Main';
 import FavoriteCharacters from '../FavoriteCharacters';
 import React, { useState } from 'react';
-import { changeThemeMode } from '../../redux/actions/characters/actions';
 import { useDispatch } from 'react-redux';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LogIn from '../Auth';
@@ -10,6 +9,7 @@ import UserProfile from '../UserProfile';
 import { helper } from './helper';
 import { CustomImage } from '@components/index';
 import { useAppSelector } from '../../hooks/useAppSelector';
+import { changeThemeMode } from '../../redux/characters/actions';
 
 const Home = () => {
   const [isEnabled, setIsEnabled] = useState(false);

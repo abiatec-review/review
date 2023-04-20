@@ -1,8 +1,5 @@
-import {
-  AuthAction,
-  AuthenticationActionTypes,
-} from '../../actions/authentication/action-types';
-import { signOut } from '../../../utils/firebase';
+import { signOut } from '../../utils/firebase';
+import { AuthAction, AuthenticationActionTypes } from './action-types';
 
 type AuthenticationProps = {
   userEmail: string | null;

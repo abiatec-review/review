@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Form, TouchableButton } from '@components/index';
-import {
-  authSignIn,
-  authSignUp,
-} from '../../redux/actions/authentication/actions';
+import { authSignIn, authSignUp } from '../../redux/authentication/actions';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
 const LogIn = () => {

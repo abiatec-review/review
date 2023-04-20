@@ -1,17 +1,29 @@
-import { ModalData } from 'src/types/types';
-import {
-  CharactersAction,
-  ModalsActionTypes,
-} from '../../actions/modals/action-types';
+import { CharacterLocation } from 'src/types/types';
+import { CharactersAction, ModalsActionTypes } from './action-types';
 
 type ModalInitStateProps = {
   modalType: string;
-  modalData: null | ModalData;
+  modalData: CharacterLocation | null;
 };
 
 const initState: ModalInitStateProps = {
   modalType: '',
-  modalData: null,
+  modalData: {
+    created: '',
+    dimension: '',
+    id: 0,
+    name: '',
+    residents: [],
+    type: '',
+    url: '',
+    episode: [],
+    gender: '',
+    image: '',
+    location: { name: '', url: '' },
+    origin: { name: '', url: '' },
+    species: '',
+    status: '',
+  },
 };
 
 const Modal = (state = initState, action: CharactersAction) => {

@@ -1,57 +1,56 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { setModalType } from '../../redux/actions/modals/actions';
+import { setModalType } from '../../redux/modals/actions';
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
-
 import { Table, TouchableButton } from '@components/index';
-import { putFaireBaseData } from '../../redux/actions/userDataFromFirebase/actions';
+import { putFaireBaseData } from '../../redux/userDataFromFirebase/actions';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
 export const CharacterFullInfo = () => {
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const { modalData } = useAppSelector(store => store.ModalReducer);
-  const { faireBaseData, loader } = useAppSelector(
-    store => store.UserFaireBaseData,
-  );
+  const {
+    faireBaseData: { favoriteChars },
+    loader,
+  } = useAppSelector(store => store.UserFaireBaseData);
   const { uid } = useAppSelector(store => store.Authentication);
 
-  const isCharInFavorites = (characterId: number) => {
-    if (faireBaseData) {
-      return faireBaseData.some(
-        ({ charId }: { charId: number }) => characterId === charId,
-      );
-    }
+  const isCharInFavorites = (characterId: number | undefined) => {
+    return favoriteChars.some(({ charId }) => characterId === charId);
   };
 
-  const addToFavorite = (characterId: number) => {
+  const addToFavorite = (characterId: number | undefined) => {
     if (isCharInFavorites(characterId)) {
-      const newFavorites = faireBaseData.filter(
-        (item: { charId: number }) => item.charId !== characterId,
+      const newFavorites = favoriteChars.filter(
+        item => item.charId !== characterId,
       );
       const newDataForFB = {
-        additionalData: null,
-        favoriteChars: newFavorites.length ? newFavorites : '',
+        additionalData: '',
+        favoriteChars: newFavorites.length ? newFavorites : [''],
       };
       dispatch(putFaireBaseData({ newDataForFB, uid }));
     } else {
-      const newFavorites = faireBaseData
-        ? [...faireBaseData, { charId: characterId }]
+      const newFavorites = favoriteChars
+        ? [...favoriteChars, { charId: characterId }]
         : [{ charId: characterId }];
+      console.log(112, newFavorites);
+
       const newDataForFB = {
-        additionalData: null,
-        favoriteChars: [...newFavorites],
+        additionalData: '',
+        favoriteChars: [...favoriteChars, { charId: characterId }],
       };
-      dispatch(putFaireBaseData({ newDataForFB, uid }));
+      console.log(1111, favoriteChars);
+      dispatch(putFaireBaseData({ uid, newDataForFB }));
     }
   };
+
+  console.log('modalData', modalData);
 
   return (
     <View style={styles.centeredView}>
       <View style={styles.modalView}>
         <View style={styles.modalHeader}>
-          <Text style={styles.characterName}>{modalData.name}</Text>
+          <Text style={styles.characterName}>{modalData?.name}</Text>
           <TouchableOpacity
             style={styles.buttonClose}
             onPress={() => {
@@ -61,18 +60,18 @@ export const CharacterFullInfo = () => {
           </TouchableOpacity>
         </View>
         <View>
-          <Image style={styles.imageStyle} source={{ uri: modalData.image }} />
+          <Image style={styles.imageStyle} source={{ uri: modalData?.image }} />
         </View>
         <View style={styles.tableContainer}>
-          <Table objectParse={modalData} navigation={navigation} />
+          <Table objectParse={modalData} />
         </View>
         <TouchableButton
           buttonText={
-            isCharInFavorites(modalData.id)
+            isCharInFavorites(modalData?.id)
               ? 'Remove from favorites'
               : 'Add to favorite'
           }
-          handleSubmit={() => addToFavorite(modalData.id)}
+          handleSubmit={() => addToFavorite(modalData?.id)}
           isButtonDisableStatus={loader}
           type={'singleBtn'}
         />

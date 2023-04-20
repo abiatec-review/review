@@ -2,19 +2,24 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { helper } from './helper';
 import { useDispatch } from 'react-redux';
-import { Characters, ScreenProps } from 'src/types/types';
-import { setModalType } from '../../redux/actions/modals/actions';
+import { CharacterLocation } from 'src/types/types';
+import { setModalType } from '../../redux/modals/actions';
+import { useNavigation } from '@react-navigation/native';
 
-export type TableTypes = ScreenProps<
-  'charactersFrom' | 'episodesList' | 'charactersFromEpisode' | 'Home'
-> & {
-  objectParse: Characters;
+export type TableTypes = {
+  objectParse: CharacterLocation | null;
 };
 
-export const Table = ({ objectParse, navigation }: TableTypes) => {
-  const objToArr = Object.entries(objectParse).map(([key, value]) => ({
-    [key]: value,
-  }));
+export const Table = ({ objectParse }: TableTypes) => {
+  const navigation: any = useNavigation();
+  let objToArr;
+
+  if (objectParse) {
+    objToArr = Object.entries(objectParse).map(([key, value]) => ({
+      [key]: value,
+    }));
+  }
+
   const dispatch = useDispatch();
 
   const onNavigateToEpisodesList = (
@@ -35,11 +40,11 @@ export const Table = ({ objectParse, navigation }: TableTypes) => {
 
   return (
     <View>
-      {objToArr.map((item, id) => {
+      {objToArr?.map((item, id) => {
         if (
           Object.values(item)[0] !== '' &&
           Object.keys(item)[0] !== 'url' &&
-          Object.values(item)[0].name !== 'unknown' &&
+          // Object.values(item)[0].name !== 'unknown' &&
           Object.values(item)[0] !== 'unknown'
         ) {
           return (

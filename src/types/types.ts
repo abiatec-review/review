@@ -1,13 +1,20 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export type CharacterLocation = {
-  created: string;
-  dimension: string;
-  id: number;
-  name: string;
-  residents: string[];
-  type: string;
-  url: string;
+  created?: string;
+  dimension?: string;
+  id?: number;
+  name?: string;
+  residents?: string[];
+  type?: string;
+  url?: string;
+  episode?: string[];
+  gender?: string;
+  image?: string;
+  location?: { name: string; url: string };
+  origin?: { name: string; url: string };
+  species?: string;
+  status?: string;
 };
 
 export type Characters = {
@@ -103,12 +110,12 @@ export type UserLoadAvatarParams = {
 //modal data types
 export type ModalData = {
   modalType: string;
-  modalData: Characters | null;
+  modalData: CharacterLocation | null;
 };
 
 //firebase actions types
 export type GetFaireBaseDataSuccess = {
-  favoriteChars: { charId: number }[] | string;
+  favoriteChars: (string | { charId?: number })[];
   additionalData?: string;
 };
 
@@ -116,13 +123,10 @@ export type ErrorParams = {
   errorMessage: string;
 };
 
-export type newDataForFB = {
-  additionalData: null | {};
-  favoriteChars: GetFaireBaseDataSuccess;
-};
+// export type newDataForFB = {
 
 export type PutFaireBaseData = {
-  newDataForFB: newDataForFB;
+  newDataForFB: GetFaireBaseDataSuccess;
   uid: string;
 };
 
