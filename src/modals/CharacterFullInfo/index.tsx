@@ -44,8 +44,6 @@ export const CharacterFullInfo = () => {
     }
   };
 
-  console.log('modalData', modalData);
-
   return (
     <View style={styles.centeredView}>
       <View style={styles.modalView}>
