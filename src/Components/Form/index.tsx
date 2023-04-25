@@ -52,9 +52,11 @@ export const Form = ({
           })}
         </View>
       </View>
-      {validationMessage && (
-        <ValidationMessage validationMessage={validationMessage} />
-      )}
+      <Text>
+        {validationMessage && (
+          <ValidationMessage validationMessage={validationMessage} />
+        )}
+      </Text>
 
       <TouchableButton
         buttonText={buttonText}

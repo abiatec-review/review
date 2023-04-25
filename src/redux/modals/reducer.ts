@@ -3,7 +3,7 @@ import { CharactersAction, ModalsActionTypes } from './action-types';
 
 type ModalInitStateProps = {
   modalType: string;
-  modalData: CharacterLocation | null;
+  modalData: CharacterLocation;
 };
 
 const initState: ModalInitStateProps = {

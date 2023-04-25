@@ -131,11 +131,10 @@ function* identifayUser() {
           UID: currentUser.uid,
         }),
       );
+      const fairbaseData: GetFaireBaseDataSuccess =
+        yield firebaseAPI_Handler.getUserData(currentUser.uid);
+      yield put(getFaireBaseDataSuccess(fairbaseData));
     }
-    const fairbaseData: GetFaireBaseDataSuccess =
-      yield firebaseAPI_Handler.getUserData(currentUser.uid);
-
-    yield put(getFaireBaseDataSuccess(fairbaseData));
   } catch (err) {
     console.dir(err);
   }

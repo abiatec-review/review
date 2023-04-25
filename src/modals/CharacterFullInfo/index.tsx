@@ -16,31 +16,36 @@ export const CharacterFullInfo = () => {
   const { uid } = useAppSelector(store => store.Authentication);
 
   const isCharInFavorites = (characterId: number | undefined) => {
-    return favoriteChars.some(({ charId }) => characterId === charId);
+    return (
+      favoriteChars.length &&
+      favoriteChars.some(({ charId }) => characterId === charId)
+    );
   };
 
   const addToFavorite = (characterId: number | undefined) => {
-    if (isCharInFavorites(characterId)) {
-      const newFavorites = favoriteChars.filter(
-        item => item.charId !== characterId,
-      );
-      const newDataForFB = {
-        additionalData: '',
-        favoriteChars: newFavorites.length ? newFavorites : [''],
-      };
-      dispatch(putFaireBaseData({ newDataForFB, uid }));
-    } else {
-      const newFavorites = favoriteChars
-        ? [...favoriteChars, { charId: characterId }]
-        : [{ charId: characterId }];
-      console.log(112, newFavorites);
+    if (uid) {
+      if (isCharInFavorites(characterId)) {
+        const newFavorites = favoriteChars.filter(
+          item => item.charId !== characterId,
+        );
+        const newDataForFB = {
+          additionalData: '',
+          favoriteChars: newFavorites.length ? newFavorites : '',
+        };
+        dispatch(putFaireBaseData({ newDataForFB, uid }));
+      } else {
+        const newFavorites = favoriteChars
+          ? [...favoriteChars, { charId: characterId }]
+          : [{ charId: characterId }];
+        console.log(112, newFavorites);
 
-      const newDataForFB = {
-        additionalData: '',
-        favoriteChars: [...favoriteChars, { charId: characterId }],
-      };
-      console.log(1111, favoriteChars);
-      dispatch(putFaireBaseData({ uid, newDataForFB }));
+        const newDataForFB = {
+          additionalData: '',
+          favoriteChars: [...favoriteChars, { charId: characterId }],
+        };
+        console.log(1111, favoriteChars);
+        dispatch(putFaireBaseData({ uid, newDataForFB }));
+      }
     }
   };
 
