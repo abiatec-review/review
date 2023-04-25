@@ -6,7 +6,7 @@ export interface CustomImageProps {
   isButtonNeed: boolean;
   buttonText: string;
   handleOnPressInImage: (() => void) | null;
-  imageUri: string;
+  imageUri?: string | null;
   width: number;
   height: number;
 }

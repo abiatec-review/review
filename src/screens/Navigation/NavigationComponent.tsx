@@ -22,7 +22,9 @@ const NavigationComponent = () => {
   const dispatch = useDispatch();
   const { modalType } = useAppSelector(store => store.ModalReducer);
   const { themeMode } = useAppSelector(store => store.CharactersReducer);
-  const { faireBaseData } = useAppSelector(store => store.UserFaireBaseData);
+  const {
+    faireBaseData: { favoriteChars },
+  } = useAppSelector(store => store.UserFaireBaseData);
 
   useEffect(() => {
     dispatch(getCharatersSucsess());
@@ -30,17 +32,17 @@ const NavigationComponent = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (Array.isArray(faireBaseData.favoriteChars)) {
-      const favoriteCharacterIds = faireBaseData.favoriteChars.map(
-        ({ charId }) => charId,
-      );
+    if (Array.isArray(favoriteChars)) {
       dispatch(
-        getFavoriteCharacters({ favoriteCharacters: favoriteCharacterIds }),
+        getFavoriteCharacters({
+          favoriteCharacters:
+            favoriteChars && favoriteChars.map(({ charId }) => charId),
+        }),
       );
     } else {
       dispatch(getFavoriteCharacters({ favoriteCharacters: [] }));
     }
-  }, [dispatch, faireBaseData]);
+  }, [dispatch, favoriteChars]);
 
   const changeTheme = (value: string) => {
     dispatch(

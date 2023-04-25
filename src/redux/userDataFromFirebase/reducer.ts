@@ -5,7 +5,7 @@ import {
 
 type initStateProps = {
   faireBaseData: {
-    favoriteChars: (string | { charId?: number })[];
+    favoriteChars: { charId?: number }[] | '';
     additionalData?: string;
   };
   loader: boolean;
@@ -14,7 +14,7 @@ type initStateProps = {
 
 const initState: initStateProps = {
   faireBaseData: {
-    favoriteChars: [''],
+    favoriteChars: '',
     additionalData: '',
   },
   loader: false,
@@ -33,7 +33,6 @@ const FairebaseUserDataReducer = (
       };
     }
     case UserDataFromFirebaseActionTypes.GET_FIREBASE_USER_DATA_SUCCESS: {
-      console.log(111465, action.payload);
       return {
         ...state,
         faireBaseData: action.payload,

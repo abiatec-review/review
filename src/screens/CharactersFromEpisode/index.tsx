@@ -45,6 +45,4 @@ const CharactersFromEpisode = ({
   );
 };
 
-// const styles = StyleSheet.create({});
-
 export default CharactersFromEpisode;

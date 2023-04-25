@@ -12,6 +12,8 @@ function configureStore() {
   );
   sagaMiddleware.run(rootSaga);
 
+  console.log(store.getState());
+
   return store;
 }
 

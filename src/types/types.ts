@@ -67,10 +67,10 @@ export type ThemeModeParams = {
   themeMode: string;
 };
 export type FavoriteCharactersParams = {
-  favoriteCharacters: number[];
+  favoriteCharacters: number[] | unknown;
 };
 export type FavoriteCharactersSuccessParams = {
-  favoriteCharacters: Characters[];
+  favoriteCharacters?: Characters[];
 };
 
 // authentification.ts types
@@ -115,7 +115,8 @@ export type ModalData = {
 
 //firebase actions types
 export type GetFaireBaseDataSuccess = {
-  favoriteChars: (string | { charId?: number })[];
+  // favoriteChars: (string | { charId?: number })[];
+  favoriteChars: { charId?: number }[] | '';
   additionalData?: string;
 };
 
@@ -126,7 +127,10 @@ export type ErrorParams = {
 // export type newDataForFB = {
 
 export type PutFaireBaseData = {
-  newDataForFB: GetFaireBaseDataSuccess;
+  newDataForFB: {
+    additionalData: string;
+    favoriteChars: { charId?: number }[] | unknown;
+  };
   uid: string;
 };
 

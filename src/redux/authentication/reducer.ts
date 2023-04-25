@@ -1,15 +1,15 @@
 import { signOut } from '../../utils/firebase';
 import { AuthAction, AuthenticationActionTypes } from './action-types';
-
+import { Reducer } from 'redux';
 type AuthenticationProps = {
-  userEmail: string | null;
-  userName: string | null;
-  userAvatar: string | null;
-  avatarLoader: boolean;
-  uid: string | null;
-  token: string | null;
-  authLoader: boolean;
-  errorMessage: string | null;
+  userEmail?: string | null;
+  userName?: string | null;
+  userAvatar?: string | null;
+  avatarLoader?: boolean;
+  uid?: string | null;
+  token?: string | null;
+  authLoader?: boolean;
+  errorMessage?: string | null;
 };
 
 const initState: AuthenticationProps = {
@@ -23,7 +23,10 @@ const initState: AuthenticationProps = {
   errorMessage: null,
 };
 
-const Authentication = (state = initState, action: AuthAction) => {
+const Authentication: Reducer<AuthenticationProps, AuthAction> = (
+  state = initState,
+  action: AuthAction,
+) => {
   switch (action.type) {
     case AuthenticationActionTypes.AUTHENTICATION_SIGN_UP: {
       return {

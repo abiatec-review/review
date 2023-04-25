@@ -9,8 +9,8 @@ export interface FormComponentProps {
   inputItems: InputItemsProps[];
   buttonText: string;
   handleData: (data: { email: string; password: string; name: string }) => void;
-  isButtonDisableStatus: boolean;
-  validationMessage: string;
+  isButtonDisableStatus: boolean | undefined;
+  validationMessage: string | undefined | null;
 }
 
 export interface InputItemsProps {

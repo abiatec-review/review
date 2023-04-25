@@ -15,16 +15,18 @@ export const CharacterFullInfo = () => {
   } = useAppSelector(store => store.UserFaireBaseData);
   const { uid } = useAppSelector(store => store.Authentication);
 
-  const isCharInFavorites = (characterId: number | undefined) => {
-    return (
-      favoriteChars.length &&
-      favoriteChars.some(({ charId }) => characterId === charId)
-    );
+  const isCharInFavorites = (characterId: number | undefined | null) => {
+    if (typeof favoriteChars !== 'string') {
+      return (
+        favoriteChars.length &&
+        favoriteChars.some(({ charId }) => characterId === charId)
+      );
+    }
   };
 
   const addToFavorite = (characterId: number | undefined) => {
     if (uid) {
-      if (isCharInFavorites(characterId)) {
+      if (isCharInFavorites(characterId) && typeof favoriteChars !== 'string') {
         const newFavorites = favoriteChars.filter(
           item => item.charId !== characterId,
         );
@@ -32,18 +34,13 @@ export const CharacterFullInfo = () => {
           additionalData: '',
           favoriteChars: newFavorites.length ? newFavorites : '',
         };
+        console.log('remove', newDataForFB);
         dispatch(putFaireBaseData({ newDataForFB, uid }));
       } else {
-        const newFavorites = favoriteChars
-          ? [...favoriteChars, { charId: characterId }]
-          : [{ charId: characterId }];
-        console.log(112, newFavorites);
-
         const newDataForFB = {
           additionalData: '',
           favoriteChars: [...favoriteChars, { charId: characterId }],
         };
-        console.log(1111, favoriteChars);
         dispatch(putFaireBaseData({ uid, newDataForFB }));
       }
     }

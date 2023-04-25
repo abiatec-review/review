@@ -1,9 +1,10 @@
 import { CharacterLocation } from 'src/types/types';
 import { CharactersAction, ModalsActionTypes } from './action-types';
+import { Reducer } from 'redux';
 
 type ModalInitStateProps = {
   modalType: string;
-  modalData: CharacterLocation;
+  modalData: CharacterLocation | null;
 };
 
 const initState: ModalInitStateProps = {
@@ -26,7 +27,10 @@ const initState: ModalInitStateProps = {
   },
 };
 
-const Modal = (state = initState, action: CharactersAction) => {
+const Modal: Reducer<ModalInitStateProps, CharactersAction> = (
+  state = initState,
+  action: CharactersAction,
+) => {
   switch (action.type) {
     case ModalsActionTypes.CALL_MODAL: {
       return {

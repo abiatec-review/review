@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 export interface TouchableButtonProps {
   buttonText: string;
   handleSubmit: () => void;
-  isButtonDisableStatus: boolean;
+  isButtonDisableStatus: boolean | undefined;
   type: string;
 }
 

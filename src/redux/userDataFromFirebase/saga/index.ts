@@ -35,13 +35,11 @@ function* getFavoriteCharactersFromApi({
       }),
     );
   } catch (err) {
-    if (!payload.favoriteCharacters.length) {
-      yield put(
-        getFavoriteCharactersSuccess({
-          favoriteCharacters: [],
-        }),
-      );
-    }
+    yield put(
+      getFavoriteCharactersSuccess({
+        favoriteCharacters: [],
+      }),
+    );
   }
 }
 
